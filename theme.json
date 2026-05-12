@@ -1,0 +1,531 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "1400px",
+      "wideSize": "1600px"
+    },
+    "color": {
+      "defaultPalette": true,
+      "defaultGradients": false,
+      "defaultDuotone": false,
+      "custom": true,
+      "palette": [
+        {
+          "slug": "naranja",
+          "color": "#ff8700",
+          "name": "Naranja Energía"
+        },
+        {
+          "slug": "violeta",
+          "color": "#320028",
+          "name": "Violeta Ocaso"
+        },
+        {
+          "slug": "granate",
+          "color": "#7d0032",
+          "name": "Granate Tierra"
+        },
+        {
+          "slug": "amarillo",
+          "color": "#ffab00",
+          "name": "Amarillo Luz"
+        },
+        {
+          "slug": "naranja-intenso",
+          "color": "#ff500a",
+          "name": "Naranja Intenso"
+        },
+        {
+          "slug": "verde",
+          "color": "#2d5a27",
+          "name": "Verde Biosfera"
+        },
+        {
+          "slug": "blanco",
+          "color": "#ffffff",
+          "name": "Blanco"
+        },
+        {
+          "slug": "gris-piedra",
+          "color": "#f4f4f4",
+          "name": "Gris Piedra"
+        },
+        {
+          "slug": "gris-medio",
+          "color": "#e0e0e0",
+          "name": "Gris Medio"
+        },
+        {
+          "slug": "antracita",
+          "color": "#1a1a1a",
+          "name": "Antracita"
+        }
+      ],
+      "gradients": [
+        {
+          "slug": "sunset-hero",
+          "gradient": "linear-gradient(135deg, #ff8700 0%, #ffa94d 50%, #ffc680 100%)",
+          "name": "Atardecer Hero"
+        },
+        {
+          "slug": "stats-dark",
+          "gradient": "linear-gradient(135deg, #320028, #1a0014)",
+          "name": "Oscuro Stats"
+        },
+        {
+          "slug": "cta-dark",
+          "gradient": "linear-gradient(135deg, #320028, #1a0014)",
+          "name": "CTA Oscuro"
+        },
+        {
+          "slug": "naranja-warm",
+          "gradient": "linear-gradient(135deg, #ff8700, #ff500a)",
+          "name": "Naranja Cálido"
+        },
+        {
+          "slug": "hero-light",
+          "gradient": "linear-gradient(135deg, #ff8700 0%, #ffb347 50%, #ffd699 100%)",
+          "name": "Hero Claro"
+        },
+        {
+          "slug": "verde-natural",
+          "gradient": "linear-gradient(135deg, #2d5a27, #4a8f3f)",
+          "name": "Verde Natural"
+        }
+      ]
+    },
+    "typography": {
+      "customFontSize": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "'Lato', sans-serif",
+          "slug": "body",
+          "name": "Lato"
+        },
+        {
+          "fontFamily": "'Outfit', sans-serif",
+          "slug": "display",
+          "name": "Outfit"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "size": "0.875rem",
+          "name": "Pequeño"
+        },
+        {
+          "slug": "medium",
+          "size": "1rem",
+          "name": "Normal"
+        },
+        {
+          "slug": "large",
+          "size": "1.25rem",
+          "name": "Grande"
+        },
+        {
+          "slug": "x-large",
+          "size": "clamp(1.8rem, 3.5vw, 2.6rem)",
+          "name": "Sección"
+        },
+        {
+          "slug": "xx-large",
+          "size": "clamp(2.4rem, 5.5vw, 4.2rem)",
+          "name": "Impacto"
+        }
+      ]
+    },
+    "spacing": {
+      "customSpacingSize": true,
+      "spacingScale": {
+        "steps": 0
+      },
+      "spacingSizes": [
+        {
+          "slug": "10",
+          "size": "0.5rem",
+          "name": "XS"
+        },
+        {
+          "slug": "20",
+          "size": "1rem",
+          "name": "S"
+        },
+        {
+          "slug": "30",
+          "size": "clamp(2rem, 3.5vw, 2.5rem)",
+          "name": "M"
+        },
+        {
+          "slug": "40",
+          "size": "clamp(2.5rem, 5vw, 3.5rem)",
+          "name": "L"
+        },
+        {
+          "slug": "50",
+          "size": "clamp(4rem, 7vw, 6rem)",
+          "name": "XL"
+        },
+        {
+          "slug": "60",
+          "size": "clamp(5rem, 9vw, 8rem)",
+          "name": "XXL"
+        }
+      ],
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%"
+      ]
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "shadow": {
+      "defaultPresets": false,
+      "presets": [
+        {
+          "slug": "card",
+          "shadow": "0 4px 24px rgba(255, 135, 0, 0.08)",
+          "name": "Tarjeta"
+        },
+        {
+          "slug": "card-hover",
+          "shadow": "0 12px 40px rgba(255, 135, 0, 0.14)",
+          "name": "Tarjeta Hover"
+        },
+        {
+          "slug": "elevated",
+          "shadow": "0 2px 12px rgba(255, 135, 0, 0.06)",
+          "name": "Elevada"
+        }
+      ]
+    },
+    "custom": {
+      "radius": {
+        "default": "12px",
+        "small": "8px",
+        "pill": "50px"
+      },
+      "transition": "0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--blanco)",
+      "text": "var(--wp--preset--color--antracita)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--body)",
+      "fontSize": "var(--wp--preset--font-size--medium)",
+      "lineHeight": "1.7"
+    },
+    "spacing": {
+      "padding": {
+        "left": "var(--wp--preset--spacing--30)",
+        "right": "var(--wp--preset--spacing--30)"
+      }
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "700",
+          "lineHeight": "1.2"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xx-large)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--naranja)"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--x-large)",
+          "fontWeight": "600"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--naranja)"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--large)",
+          "fontFamily": "var(--wp--preset--font-family--body)",
+          "fontWeight": "700"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--violeta)"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "1.1rem",
+          "fontWeight": "600"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--naranja)"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "#cc6e00"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--naranja)"
+          },
+          "typography": {
+            "textDecoration": "none"
+          }
+        },
+        ":focus": {
+          "color": {
+            "text": "var(--wp--preset--color--naranja)"
+          },
+          "typography": {
+            "textDecoration": "underline"
+          }
+        }
+      },
+      "button": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "600",
+          "fontSize": "0.95rem",
+          "textTransform": "uppercase",
+          "letterSpacing": "0.04em"
+        },
+        "color": {
+          "background": "var(--wp--preset--color--naranja)",
+          "text": "var(--wp--preset--color--blanco)"
+        },
+        "border": {
+          "radius": "10px"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.85rem",
+            "bottom": "0.85rem",
+            "left": "2rem",
+            "right": "2rem"
+          }
+        },
+        ":hover": {
+          "color": {
+            "background": "#e67300",
+            "text": "var(--wp--preset--color--blanco)"
+          }
+        },
+        ":focus": {
+          "color": {
+            "background": "#e67300"
+          },
+          "border": {
+            "color": "var(--wp--preset--color--amarillo)",
+            "width": "2px",
+            "style": "solid"
+          }
+        }
+      },
+      "caption": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)"
+        },
+        "color": {
+          "text": "#777"
+        }
+      }
+    },
+    "blocks": {
+      "core/navigation": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "500",
+          "fontSize": "0.92rem"
+        },
+        "elements": {
+          "link": {
+            "typography": {
+              "textDecoration": "none"
+            },
+            ":hover": {
+              "typography": {
+                "textDecoration": "none"
+              }
+            }
+          }
+        }
+      },
+      "core/site-title": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "700",
+          "fontSize": "1.6rem"
+        },
+        "color": {
+          "text": "#2d2d3a"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "#2d2d3a"
+            },
+            "typography": {
+              "textDecoration": "none"
+            },
+            ":hover": {
+              "color": {
+                "text": "var(--wp--preset--color--naranja)"
+              },
+              "typography": {
+                "textDecoration": "none"
+              }
+            }
+          }
+        }
+      },
+      "core/post-title": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)"
+        }
+      },
+      "core/query-pagination": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--display)",
+          "fontWeight": "600"
+        }
+      },
+      "core/separator": {
+        "color": {
+          "text": "var(--wp--preset--color--gris-medio)"
+        },
+        "border": {
+          "color": "currentColor",
+          "width": "1px"
+        }
+      },
+      "core/quote": {
+        "border": {
+          "color": "var(--wp--preset--color--naranja)",
+          "width": "4px",
+          "style": "solid"
+        },
+        "spacing": {
+          "padding": {
+            "left": "var(--wp--preset--spacing--30)"
+          }
+        },
+        "typography": {
+          "fontStyle": "italic"
+        }
+      },
+      "core/image": {
+        "border": {
+          "radius": "var(--wp--custom--radius--small)"
+        }
+      }
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Cabecera",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Pie de página",
+      "area": "footer"
+    },
+    {
+      "name": "sidebar",
+      "title": "Barra lateral",
+      "area": "uncategorized"
+    },
+    {
+      "name": "hero",
+      "title": "Hero reutilizable",
+      "area": "uncategorized"
+    },
+    {
+      "name": "cta",
+      "title": "Llamada a acción",
+      "area": "uncategorized"
+    },
+    {
+      "name": "card-actividad",
+      "title": "Tarjeta actividad",
+      "area": "uncategorized"
+    },
+    {
+      "name": "card-proyecto",
+      "title": "Tarjeta proyecto",
+      "area": "uncategorized"
+    },
+    {
+      "name": "activity-meta",
+      "title": "Metadatos actividad",
+      "area": "uncategorized"
+    }
+  ],
+  "customTemplates": [
+    {
+      "name": "single-actividad",
+      "title": "Single Actividad",
+      "postTypes": [
+        "actividad"
+      ]
+    },
+    {
+      "name": "archive-actividad",
+      "title": "Archive Actividad",
+      "postTypes": [
+        "actividad"
+      ]
+    },
+    {
+      "name": "page-proyecto",
+      "title": "Página de Proyecto",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "page-actividad",
+      "title": "Página de Actividad",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "page-institucional",
+      "title": "Página Institucional",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "page-landing",
+      "title": "Landing Page",
+      "postTypes": [
+        "page"
+      ]
+    }
+  ]
+}

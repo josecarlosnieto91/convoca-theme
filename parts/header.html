@@ -1,0 +1,40 @@
+<!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained","contentSize":"1500px"}} -->
+<header class="wp-block-group site-header" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
+    <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+    <div class="wp-block-group">
+
+        <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
+        <div class="wp-block-group">
+            <!-- wp:site-logo {"width":48} /-->
+            <!-- wp:site-title {"level":0} /-->
+        </div>
+        <!-- /wp:group -->
+
+        <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
+        <div class="wp-block-group">
+            <!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"blanco","overlayTextColor":"antracita","layout":{"type":"flex","setCascadingProperties":true}} -->
+            <!-- wp:navigation-link {"label":"Inicio","url":"/","kind":"custom","isTopLevelLink":true} /-->
+            <!-- wp:navigation-link {"label":"Actividades","url":"/actividades/","kind":"custom","isTopLevelLink":true} /-->
+            <!-- wp:navigation-link {"label":"Proyectos","url":"/proyectos/","kind":"custom","isTopLevelLink":true} /-->
+            <!-- wp:navigation-link {"label":"Quiénes somos","url":"/quienes-somos/","kind":"custom","isTopLevelLink":true} /-->
+            <!-- wp:navigation-link {"label":"Contacto","url":"/contacto/","kind":"custom","isTopLevelLink":true} /-->
+            <!-- /wp:navigation -->
+
+            <!-- wp:shortcode -->
+            [biodevas_dark_mode_toggle]
+            <!-- /wp:shortcode -->
+
+            <!-- wp:buttons {"className":"header-cta"} -->
+            <div class="wp-block-buttons header-cta">
+                <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small","style":{"border":{"radius":"50px"}}} -->
+                <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="/alta-socios/" style="border-radius:50px">Hazte Socio/a</a></div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:group -->
+</header>
+<!-- /wp:group -->

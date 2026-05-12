@@ -1,0 +1,84 @@
+    <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"margin":{"bottom":"var:preset|spacing|20"}}},"backgroundColor":"gris-piedra","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between"}} -->
+    <div class="wp-block-group has-gris-piedra-background-color has-background"
+        style="margin-bottom:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
+
+    <!-- wp:columns {"isStackedOnMobile":false,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|40"}}}} -->
+    <div class="wp-block-columns is-not-stacked-on-mobile">
+
+        <!-- wp:column {"width":"25%"} -->
+        <div class="wp-block-column" style="flex-basis:25%">
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+            <div class="wp-block-group">
+                <!-- wp:paragraph {"className":"bdv-meta-icon"} -->
+                <p class="bdv-meta-icon"><span class="dashicons dashicons-calendar-alt" style="font-size:24px;color:var(--wp--preset--color--naranja);"></span></p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem","fontWeight":"600"},"color":{"text":"#777777"}}} -->
+                <p style="color:#777777;font-size:0.75rem;font-weight:600">FECHA</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:shortcode -->
+                [biodevas_actividad_meta field="fecha_inicio"]
+                <!-- /wp:shortcode -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"width":"25%"} -->
+        <div class="wp-block-column" style="flex-basis:25%">
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+            <div class="wp-block-group">
+                <!-- wp:paragraph {"className":"bdv-meta-icon"} -->
+                <p class="bdv-meta-icon"><span class="dashicons dashicons-location" style="font-size:24px;color:var(--wp--preset--color--naranja);"></span></p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem","fontWeight":"600"},"color":{"text":"#777777"}}} -->
+                <p style="color:#777777;font-size:0.75rem;font-weight:600">UBICACIÓN</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:shortcode -->
+                [biodevas_actividad_meta field="ubicacion"]
+                <!-- /wp:shortcode -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"width":"25%"} -->
+        <div class="wp-block-column" style="flex-basis:25%">
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+            <div class="wp-block-group">
+                <!-- wp:paragraph {"className":"bdv-meta-icon"} -->
+                <p class="bdv-meta-icon"><span class="dashicons dashicons-groups" style="font-size:24px;color:var(--wp--preset--color--naranja);"></span></p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem","fontWeight":"600"},"color":{"text":"#777777"}}} -->
+                <p style="color:#777777;font-size:0.75rem;font-weight:600">PLAZAS</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.95rem","fontWeight":"500"}}} -->
+                <p style="font-size:0.95rem;font-weight:500"><span class="biodevas-badge" style="background-color:var(--wp--preset--color--naranja);color:var(--wp--preset--color--blanco);padding:2px 8px;border-radius:4px;">[biodevas_actividad_meta field="plazas_disponibles"]</span> / <span class="biodevas-plazas-total">[biodevas_actividad_meta field="plazas_totales"]</span></p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+        <!-- wp:column {"width":"25%"} -->
+        <div class="wp-block-column" style="flex-basis:25%">
+            <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","orientation":"vertical"}} -->
+            <div class="wp-block-group">
+                <!-- wp:paragraph {"className":"bdv-meta-icon"} -->
+                <p class="bdv-meta-icon"><span class="dashicons dashicons-tickets-alt" style="font-size:24px;color:var(--wp--preset--color--naranja);"></span></p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.75rem","fontWeight":"600"},"color":{"text":"#777777"}}} -->
+                <p style="color:#777777;font-size:0.75rem;font-weight:600">PRECIO</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"style":{"typography":{"fontSize":"1rem","fontWeight":"700","color":{"text":"var:preset|color--naranja"}}}} -->
+                <p style="color:var(--wp--preset--color--naranja);font-size:1rem;font-weight:700">[biodevas_actividad_meta field="precio_general"]</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:column -->
+
+    </div>
+    <!-- /wp:columns -->
+
+</div>
+<!-- /wp:group -->

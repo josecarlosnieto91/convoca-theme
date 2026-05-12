@@ -1,0 +1,110 @@
+<?php
+/**
+ * Custom shortcodes for the Biodevas theme.
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+/**
+ * Display the user profile with membership status and active inscriptions.
+ * Usage: [biodevas_mi_perfil]
+ */
+add_shortcode('biodevas_mi_perfil', function () {
+    if (!is_user_logged_in()) {
+        return sprintf(
+            '<div class="bdv-profile-login">%s <a href="%s" class="button">%s</a></div>',
+            __('Inicia sesión para ver tu perfil.', 'biodevas-theme'),
+            wp_login_url(get_permalink()),
+            __('Iniciar sesión', 'biodevas-theme')
+        );
+    }
+
+    $current_user = wp_get_current_user();
+    $email = $current_user->user_email;
+
+    // 1. Get member record.
+    $members = get_posts([
+        'post_type' => 'miembro',
+        'posts_per_page' => 1,
+        'meta_query' => [
+            ['key' => '_bdv_email', 'value' => $email]
+        ]
+    ]);
+
+    $member_html = '';
+    if (!empty($members)) {
+        $m = $members[0];
+        $estado = get_post_meta($m->ID, '_bdv_estado_miembro', true);
+        $plan = get_post_meta($m->ID, '_bdv_plan', true);
+        $renovacion = get_post_meta($m->ID, '_bdv_fecha_renovacion', true);
+
+        $member_html = sprintf(
+            '<div class="bdv-member-info card glass">
+                <h3>%s</h3>
+                <p><strong>%s:</strong> <span class="badge state-%s">%s</span></p>
+                <p><strong>%s:</strong> %s</p>
+                <p><strong>%s:</strong> %s</p>
+            </div>',
+            __('Tu condición de socio/a', 'biodevas-theme'),
+            __('Estado', 'biodevas-theme'),
+            esc_attr($estado),
+            esc_html(ucfirst($estado)),
+            __('Plan', 'biodevas-theme'),
+            esc_html(ucfirst($plan)),
+            __('Próxima renovación', 'biodevas-theme'),
+            esc_html($renovacion)
+        );
+    } else {
+        $member_html = sprintf(
+            '<div class="bdv-member-info card glass">
+                <p>%s</p>
+                <a href="%s" class="button">%s</a>
+            </div>',
+            __('Aún no eres socio/a de Biodevas.', 'biodevas-theme'),
+            home_url('/hazte-socio/'),
+            __('Hacerse socio/a', 'biodevas-theme')
+        );
+    }
+
+    // 2. Get active inscriptions.
+    $inscriptions = get_posts([
+        'post_type' => 'inscripcion',
+        'posts_per_page' => -1,
+        'meta_query' => [
+            'relation' => 'AND',
+            ['key' => '_bde_email', 'value' => $email],
+            ['key' => '_bde_estado', 'value' => 'cancelada', 'compare' => '!='],
+        ]
+    ]);
+
+    $insc_html = '<h3>' . __('Tus inscripciones activas', 'biodevas-theme') . '</h3>';
+    if (!empty($inscriptions)) {
+        $insc_html .= '<div class="bdv-inscriptions-grid">';
+        foreach ($inscriptions as $i) {
+            $actividad_id = get_post_meta($i->ID, '_bde_actividad_id', true);
+            $estado = get_post_meta($i->ID, '_bde_estado', true);
+            $fecha = get_the_date('d/m/Y', $i->ID);
+
+            $insc_html .= sprintf(
+                '<div class="bdv-insc-item card secondary">
+                    <h4>%s</h4>
+                    <p><span class="badge state-%s">%s</span> — %s</p>
+                    <a href="%s" class="link-arrow">%s</a>
+                </div>',
+                get_the_title($actividad_id),
+                esc_attr($estado),
+                esc_html(ucfirst($estado)),
+                $fecha,
+                get_permalink($actividad_id),
+                __('Ver actividad', 'biodevas-theme')
+            );
+        }
+        $insc_html .= '</div>';
+    } else {
+        $insc_html .= '<p>' . __('No tienes inscripciones actives en este momento.', 'biodevas-theme') . '</p>';
+    }
+
+    return '<div class="biodevas-my-profile">' . $member_html . $insc_html . '</div>';
+});

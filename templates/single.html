@@ -1,0 +1,53 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","anchor":"main-content","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
+<main id="main-content" class="wp-block-group"
+    style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--50)">
+
+    <!-- wp:post-featured-image {"isLink":false,"style":{"border":{"radius":"12px"}},"height":"420px"} /-->
+
+    <!-- wp:spacer {"height":"var:preset|spacing|30"} -->
+    <div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
+    <!-- wp:post-title {"level":1} /-->
+
+    <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"},"style":{"spacing":{"blockGap":"var:preset|spacing|20","margin":{"bottom":"var:preset|spacing|20"}},"typography":{"fontSize":"0.85rem"},"color":{"text":"#777777"}}} -->
+    <div class="wp-block-group" style="color:#777777;font-size:0.85rem;margin-bottom:var(--wp--preset--spacing--20)">
+        <!-- wp:post-date /-->
+        <!-- wp:paragraph {"style":{"color":{"text":"#cccccc"}}} -->
+        <p style="color:#cccccc">·</p>
+        <!-- /wp:paragraph -->
+        <!-- wp:post-author-name {"isLink":true} /-->
+        <!-- wp:post-terms {"term":"category","className":"biodevas-tag"} /-->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+
+    <!-- wp:spacer {"height":"var:preset|spacing|30"} -->
+    <div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
+    <!-- wp:separator {"style":{"color":{"background":"var(--wp--preset--color--gris-medio)"}}} -->
+    <hr class="wp-block-separator has-alpha-channel-opacity has-background"
+        style="background-color:var(--wp--preset--color--gris-medio)" />
+    <!-- /wp:separator -->
+
+    <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|20"}}}} -->
+    <div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--20)">
+        <!-- wp:post-navigation-link {"type":"previous","label":"← Anterior"} /-->
+        <!-- wp:post-navigation-link {"label":"Siguiente →"} /-->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:spacer {"height":"var:preset|spacing|30"} -->
+    <div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
+    <!-- /wp:spacer -->
+
+    <!-- wp:template-part {"slug":"cta"} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->

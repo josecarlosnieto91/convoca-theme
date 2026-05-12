@@ -1,0 +1,1282 @@
+/*
+Theme Name:  Convoca
+Theme URI:   https://biodevas.org
+Author:      Jose Carlos Nieto Ramos
+Author URI:  https://josecarlosnietoramos.com
+Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
+Version: 2.6.0
+Requires at least: 6.4
+Tested up to: 6.7
+Requires PHP: 8.0
+License:     GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: convoca
+Tags:        full-site-editing, block-patterns, custom-colors, custom-logo, editor-style, translation-ready, accessibility-ready
+*/
+
+/* =========================================================
+   BIODEVAS — Design System v2
+   Fonts: Outfit (titles) + Lato (body)
+   Palette: Sunset & Earth
+   ========================================================= */
+
+/* Google Fonts loaded via functions.php for better performance (preconnect + enqueue) */
+
+/* ---------- Global Reset ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+img {
+    border-radius: var(--wp--custom--radius--small);
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------- Selection ---------- */
+::selection {
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+}
+
+/* ---------- Focus & Accessibility ---------- */
+:focus-visible {
+    outline: 3px solid var(--wp--preset--color--amarillo);
+    outline-offset: 2px;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--wp--preset--color--amarillo);
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+/* ------------------------------------------------------------------
+/* ===================================================================
+   🌙 BOTANICAL EDITORIAL INTERFACE — v3
+   
+   Una escena nocturna iluminada por luz cálida indirecta.
+   Papel artesanal oscuro, madera satinada, observatorio ambiental.
+   
+   Premium, editorial, atmosférico. No es un dark mode.
+   Es la edición nocturna de Biodevas.
+   
+   Principios:
+     - Naranja = ACENTO, nunca fondo. Solo en interacción.
+     - Violeta/ciruela/vino = protagonistas secundarios.
+     - Capas de profundidad que alternan tonos.
+     - Jerarquía lumínica: nada con el mismo peso.
+     - Glassmorphism real en cards.
+     - Tipografía editorial: aire, tracking, elegancia.
+   =================================================================== */
+
+:root {
+    --dark-bg: #1F171B;
+    --dark-surface: #24161D;
+    --dark-elevated: #2A1D24;
+    --dark-elevated-2: #34232D;
+    --dark-card: rgba(58, 40, 48, 0.58);
+    --dark-card-hover: rgba(65, 42, 55, 0.75);
+    --dark-text: #F3EDE7;
+    --dark-text-secondary: #D7C7BD;
+    --dark-text-muted: #A89286;
+    --dark-border: rgba(255, 235, 220, 0.04);
+    --dark-amber: #FFAB00;
+    --dark-orange: #FF8700;
+    --dark-wine: #7D0032;
+    --dark-plum: #5E2246;
+}
+
+body { transition: background-color 0.6s ease, color 0.6s ease; }
+
+.dark-mode {
+    --wp--preset--color--antracita: var(--dark-text);
+    --wp--preset--color--gris-piedra: var(--dark-surface);
+    --wp--preset--color--gris-medio: var(--dark-elevated);
+    --wp--preset--color--violeta: var(--dark-plum);
+    --wp--preset--color--granate: var(--dark-wine);
+    --wp--preset--color--naranja: var(--dark-orange);
+    --wp--preset--color--naranja-intenso: #E06828;
+    --wp--preset--color--amarillo: var(--dark-amber);
+    --wp--preset--color--verde: #7FA36B;
+    color-scheme: dark;
+}
+
+/* ── Page title header (stats-dark gradient) ── */
+.dark-mode .has-stats-dark-gradient-background {
+    background: linear-gradient(135deg, rgba(42, 29, 36, 0.6) 0%, rgba(36, 22, 29, 0.8) 100%) !important;
+}
+.dark-mode .has-stats-dark-gradient-background .wp-block-post-title {
+    color: #F3EDE7 !important;
+}
+
+/* Hide duplicate page title in post content (already shown in header) */
+.wp-block-post-content > .wp-block-heading:first-child {
+    display: none;
+}
+.entry-content > .wp-block-heading:first-child {
+    display: none;
+}
+
+/* ── Search block ── */
+.dark-mode .wp-block-search__button-inside {
+    background: transparent !important;
+}
+.dark-mode .wp-block-search__inside-wrapper {
+    background: rgba(42, 29, 36, 0.5) !important;
+    border: 1px solid rgba(255, 235, 220, 0.06) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+}
+.dark-mode .wp-block-search__input {
+    background: transparent !important;
+    color: #F3EDE7 !important;
+    border: none !important;
+    padding: 0.85rem 1rem !important;
+}
+.dark-mode .wp-block-search__input::placeholder {
+    color: #A89286 !important;
+}
+.dark-mode .wp-block-search__button {
+    background: transparent !important;
+    color: var(--dark-amber) !important;
+    border: none !important;
+    padding: 0.85rem 1.2rem !important;
+    font-weight: 450 !important;
+    transition: all 0.25s ease;
+}
+.dark-mode .wp-block-search__button:hover {
+    background: rgba(255, 171, 0, 0.1) !important;
+}
+.dark-mode .wp-block-search__button svg {
+    fill: var(--dark-amber) !important;
+}
+.dark-mode .wp-block-search__button .wp-block-search__button-text {
+    color: var(--dark-amber) !important;
+}
+
+/* ── Navigation (footer menus, page lists) ── */
+.dark-mode .wp-block-page-list a,
+.dark-mode .wp-block-navigation .wp-block-navigation-item__content {
+    color: var(--dark-text-secondary) !important;
+}
+.dark-mode .wp-block-navigation .wp-block-navigation-item__content:hover {
+    color: var(--dark-amber) !important;
+}
+
+/* ── Post titles in query loops ── */
+.dark-mode .wp-block-post-title a {
+    color: #F3EDE7 !important;
+}
+.dark-mode .wp-block-post-title a:hover {
+    color: var(--dark-amber) !important;
+}
+
+/* ── Excerpts and post meta ── */
+.dark-mode .wp-block-post-excerpt__excerpt {
+    color: var(--dark-text-secondary) !important;
+}
+.dark-mode .wp-block-post-date a {
+    color: var(--dark-text-muted) !important;
+}
+
+/* ── FONDO BASE: profundidad atmosférica multicapa ──
+     Capa 1: ciruela en esquina superior izquierda
+     Capa 2: vino difuso en lateral derecho
+     Capa 3: café oscuro en base
+     Capa 4: naranja casi imperceptible como contraluz
+   ── */
+.dark-mode, .dark-mode .wp-site-blocks {
+    background-color: var(--dark-bg) !important;
+    background-image:
+        radial-gradient(ellipse at 15% 10%, rgba(94, 34, 70, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 20%, rgba(125, 0, 50, 0.05) 0%, transparent 45%),
+        radial-gradient(ellipse at 50% 90%, rgba(31, 23, 27, 0.5) 0%, transparent 60%),
+        radial-gradient(ellipse at 95% 80%, rgba(255, 135, 0, 0.015) 0%, transparent 35%) !important;
+    color: var(--dark-text) !important;
+}
+
+/* ── ALTERNANCIA DE SECCIONES: jerarquía tonal ──
+     Las secciones alternan fondos para crear profundidad.
+     Sección 1 → ciruela oscuro
+     Sección 2 → café profundo
+     Sección 3 → marrón humo
+     CTA → vino oscuro elegante
+   ── */
+.dark-mode .bdv-section-deep-plum {
+    background: linear-gradient(180deg, rgba(94, 34, 70, 0.08) 0%, rgba(42, 29, 36, 0.04) 100%) !important;
+}
+.dark-mode .bdv-section-wine {
+    background: linear-gradient(180deg, rgba(125, 0, 50, 0.06) 0%, rgba(31, 23, 27, 0.03) 100%) !important;
+}
+.dark-mode .bdv-section-smoke {
+    background: rgba(42, 29, 36, 0.25) !important;
+}
+.dark-mode .bdv-section-coffee {
+    background: rgba(36, 22, 29, 0.35) !important;
+}
+
+/* ── TIPOGRAFÍA EDITORIAL ── */
+.dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4 {
+    letter-spacing: -0.025em;
+    color: #F3EDE7;
+}
+.dark-mode h1 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
+.dark-mode h2 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
+.dark-mode h3 { font-weight: 600; letter-spacing: -0.01em; }
+.dark-mode h4 { font-weight: 500; color: var(--dark-amber); }
+.dark-mode h5, .dark-mode h6 { color: #F3EDE7; }
+.dark-mode p, .dark-mode li {
+    color: var(--dark-text-secondary);
+    line-height: 1.8;
+    font-weight: 400;
+}
+
+/* ── HEADER: translúcido premium ── */
+.dark-mode .site-header {
+    background: rgba(31, 23, 27, 0.72) !important;
+    backdrop-filter: blur(32px) saturate(110%);
+    -webkit-backdrop-filter: blur(32px) saturate(110%);
+    border-bottom: 1px solid var(--dark-border);
+}
+.dark-mode .site-header .wp-block-navigation-item__content { color: var(--dark-text-muted) !important; font-weight: 450; }
+.dark-mode .site-header .wp-block-navigation-item__content:hover,
+.dark-mode .site-header .current-menu-item .wp-block-navigation-item__content {
+    color: var(--dark-amber) !important;
+}
+.dark-mode .site-header .wp-block-navigation__responsive-container.is-menu-open {
+    background: var(--dark-elevated) !important;
+}
+
+/* ── HERO: CINEMATOGRÁFICO ──
+     SIN naranja de fondo. Degradado oscuro café-violeta
+     con glow cálido muy suave localizado.
+     Iluminación lateral, no frontal.
+   ── */
+.dark-mode .hero-topographic {
+    position: relative;
+    overflow: hidden;
+}
+/* Override the Cover block's built-in gradient background span */
+.dark-mode .hero-topographic .wp-block-cover__background {
+    background: linear-gradient(145deg, #1F171B 0%, #24161D 40%, #2A1D24 70%, #1F171B 100%) !important;
+    opacity: 1 !important;
+}
+/* Add a subtle warm glow overlay on top */
+.dark-mode .hero-topographic .wp-block-cover__background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 30%, rgba(94, 34, 70, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(255, 171, 0, 0.03) 0%, transparent 40%);
+    pointer-events: none;
+}
+.dark-mode .hero-topographic::before {
+    opacity: 0.04 !important;
+}
+.dark-mode .hero-topographic .wp-block-cover__inner-container { position: relative; z-index: 1; }
+.dark-mode .hero-topographic h1 {
+    color: #F3EDE7 !important;
+    max-width: 1000px;
+    font-size: clamp(2.8rem, 6vw, 4.5rem) !important;
+    line-height: 1.05 !important;
+}
+.dark-mode .hero-topographic p {
+    color: var(--dark-text-muted) !important;
+    max-width: 680px;
+    font-size: 1.15rem !important;
+}
+/* Buttons in hero: amber outline, not orange */
+.dark-mode .hero-topographic .wp-block-button:not(.is-style-outline) .wp-block-button__link {
+    background: rgba(255, 171, 0, 0.85) !important;
+    color: #1F171B !important;
+}
+.dark-mode .hero-topographic .wp-block-button:not(.is-style-outline) .wp-block-button__link:hover {
+    background: #FFAB00 !important;
+}
+.dark-mode .hero-topographic .is-style-outline .wp-block-button__link {
+    border-color: rgba(255, 235, 220, 0.1) !important;
+    color: #D7C7BD !important;
+}
+.dark-mode .hero-topographic .is-style-outline .wp-block-button__link:hover {
+    border-color: var(--dark-amber) !important;
+    color: var(--dark-amber) !important;
+}
+
+/* ── CARDS: GLASSMORPHISM PREMIUM ──
+     Fondo translúcido con blur, borde apenas visible,
+     sombra ambiental cálida. Sin bloque sólido.
+   ── */
+.dark-mode .biodevas-card,
+.dark-mode .is-style-card {
+    background: var(--dark-card) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--dark-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.dark-mode .biodevas-card:hover,
+.dark-mode .is-style-card:hover {
+    background: var(--dark-card-hover) !important;
+    border-color: rgba(255, 171, 0, 0.06);
+    box-shadow: 0 20px 64px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+.dark-mode .wp-block-post {
+    background: var(--dark-card) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 24px;
+    border: 1px solid var(--dark-border);
+    padding: 2.5rem;
+    transition: all 0.5s ease;
+}
+.dark-mode .wp-block-post:hover {
+    border-color: rgba(255, 171, 0, 0.06);
+    background: var(--dark-card-hover) !important;
+}
+
+/* ── GRUPOS GENÉRICOS: transparentes siempre ── */
+.dark-mode .wp-block-columns .wp-block-column > .wp-block-group,
+.dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.biodevas-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+/* ── BOTONES: NARANJA SOLO COMO ACENTO ──
+     Sin abusar. Brilla en la oscuridad como una brasa.
+     Solo para CTAs principales, hover states, interacción.
+   ── */
+.dark-mode .wp-block-button__link {
+    background: rgba(255, 135, 0, 0.85) !important;
+    color: #1F171B !important;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 24px rgba(255, 135, 0, 0.06);
+    border-radius: 14px;
+    transition: all 0.35s ease;
+}
+.dark-mode .wp-block-button__link:hover {
+    background: var(--wp--preset--color--naranja, #FF8700) !important;
+    box-shadow: 0 8px 32px rgba(255, 135, 0, 0.12);
+    transform: translateY(-2px) scale(1.01);
+}
+
+.dark-mode .is-style-outline .wp-block-button__link {
+    background: transparent !important;
+    border: 1.5px solid rgba(255, 235, 220, 0.08) !important;
+    color: var(--dark-text-secondary) !important;
+    box-shadow: none;
+}
+.dark-mode .is-style-outline .wp-block-button__link:hover {
+    border-color: var(--dark-amber) !important;
+    color: var(--dark-amber) !important;
+    background: rgba(255, 171, 0, 0.03) !important;
+}
+
+/* ── FORMULARIOS: integrados, no recortados ── */
+.dark-mode input, .dark-mode textarea, .dark-mode select {
+    background: rgba(42, 29, 36, 0.55) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--dark-border) !important;
+    color: #F3EDE7 !important;
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.dark-mode input:focus, .dark-mode textarea:focus, .dark-mode select:focus {
+    border-color: rgba(255, 171, 0, 0.15) !important;
+    box-shadow: 0 0 0 4px rgba(255, 171, 0, 0.03) !important;
+    background: rgba(52, 35, 45, 0.7) !important;
+    outline: none;
+}
+
+/* ── TABLAS ── */
+.dark-mode th {
+    background: var(--dark-elevated) !important;
+    color: #F3EDE7;
+    font-weight: 450;
+}
+.dark-mode td { border-color: rgba(255, 235, 220, 0.03) !important; }
+
+/* ── ENLACES: sutiles, sin naranja agresivo ── */
+.dark-mode a:not(.wp-block-button__link) {
+    color: var(--dark-amber);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 171, 0, 0.1);
+    transition: all 0.25s ease;
+}
+.dark-mode a:not(.wp-block-button__link):hover {
+    color: var(--dark-orange);
+    border-bottom-color: rgba(255, 135, 0, 0.2);
+}
+
+/* ── MÉTRICAS: minimalistas, enormes, aire ── */
+.dark-mode .biodevas-stats {
+    background: rgba(36, 22, 29, 0.3) !important;
+    border-top: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--dark-border);
+    padding-block: 3rem !important;
+}
+.dark-mode .stat-value {
+    color: #F3EDE7;
+    font-size: 3.5rem;
+    font-weight: 200;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+.dark-mode .stat-label {
+    color: var(--dark-text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* ── FOOTER: minimalista, premium ── */
+.dark-mode .site-footer {
+    border-top: 1px solid var(--dark-border) !important;
+    background: linear-gradient(180deg, #1F171B 0%, #181216 100%) !important;
+    padding-block: 3rem !important;
+}
+.dark-mode .site-footer h3 {
+    color: var(--dark-text-muted) !important;
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.dark-mode .site-footer a { color: var(--dark-text-muted); font-size: 0.85rem; transition: color 0.25s ease; }
+.dark-mode .site-footer a:hover { color: var(--dark-amber); }
+.dark-mode .site-footer p { color: #7A6E66; font-size: 0.8rem; }
+
+/* ── CITAS, SEPARADORES, METADATOS ── */
+.dark-mode .wp-block-quote {
+    border-left: 2px solid rgba(255, 171, 0, 0.15);
+    color: var(--dark-text-secondary);
+    background: rgba(42, 29, 36, 0.2);
+    padding: 1.5rem 2rem;
+    border-radius: 0 16px 16px 0;
+}
+.dark-mode .wp-block-separator { color: rgba(255, 235, 220, 0.03) !important; }
+.dark-mode figcaption,
+.dark-mode .wp-block-post-date,
+.dark-mode .wp-block-post-author__name,
+.dark-mode .is-style-lead {
+    color: var(--dark-text-muted) !important;
+}
+
+/* Toggle Switch Styling */
+.dark-mode-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--wp--preset--color--antracita);
+    border-radius: 50%;
+    transition: background-color 0.2s;
+    width: 40px;
+    height: 40px;
+}
+
+.dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode-toggle:focus-visible {
+    outline: 2px solid var(--wp--preset--color--naranja);
+    outline-offset: 2px;
+}
+
+.dark-mode .dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.dark-mode-toggle .sun {
+    display: none;
+}
+
+.dark-mode-toggle .moon {
+    display: block;
+}
+
+.dark-mode .dark-mode-toggle .sun {
+    display: block;
+}
+
+.dark-mode .dark-mode-toggle .moon {
+    display: none;
+}
+
+.dark-mode .biodevas-widget {
+    background: rgba(42, 29, 36, 0.4) !important;
+    border: 1px solid var(--dark-border);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.dark-mode .wp-block-latest-posts__featured-image img {
+    border-radius: 8px;
+}
+
+.dark-mode .wp-block-categories-list a,
+.dark-mode .wp-block-latest-posts__post-title {
+    color: var(--dark-text-secondary) !important;
+}
+.dark-mode .wp-block-categories-list a:hover,
+.dark-mode .wp-block-latest-posts__post-title:hover {
+    color: var(--dark-amber) !important;
+}
+
+.dark-mode .wp-block-categories__post-count {
+    color: var(--dark-text-muted) !important;
+}
+
+.wp-block-button__link:focus-visible {
+    outline: 3px solid var(--wp--preset--color--amarillo);
+    outline-offset: 3px;
+}
+
+/* Skip link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--wp--custom--radius--pill);
+    font-family: var(--wp--preset--font-family--display);
+    font-weight: 600;
+    z-index: 999;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: var(--wp--preset--spacing--20);
+}
+
+/* ---------- Sticky Header ---------- */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: box-shadow var(--wp--custom--transition), padding var(--wp--custom--transition);
+    padding: 0.8rem 0;
+}
+
+.site-header.scrolled {
+    box-shadow: var(--wp--preset--shadow--elevated);
+    padding: 0.4rem 0;
+}
+
+.site-header.scrolled .wp-block-site-logo img {
+    height: 40px;
+    width: auto;
+}
+
+.site-header .wp-block-site-logo img {
+    transition: height var(--wp--custom--transition);
+}
+
+/* Mobile Menu Enhancements */
+.wp-block-navigation__responsive-container.is-menu-open {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    width: 100%;
+}
+
+.wp-block-navigation__responsive-container-close {
+    top: 1.5rem !important;
+    right: 1.5rem !important;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 50%;
+}
+
+/* Dark Mode Mobile Menu */
+.dark-mode .wp-block-navigation__responsive-container.is-menu-open {
+    background: var(--dark-bg) !important;
+    color: var(--dark-text) !important;
+}
+
+.dark-mode .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .wp-block-navigation__responsive-container-close {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .wp-block-navigation__responsive-container .wp-block-navigation-item__content {
+    color: var(--dark-text) !important;
+}
+
+/* Nav link underline animation */
+.site-header .wp-block-navigation-item__content {
+    position: relative;
+    text-decoration: none;
+}
+
+.site-header .wp-block-navigation-item__content::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--wp--preset--color--naranja);
+    transition: width var(--wp--custom--transition);
+}
+
+.site-header .wp-block-navigation-item__content:hover::after,
+.site-header .wp-block-navigation-item.current-menu-item .wp-block-navigation-item__content::after {
+    width: 100%;
+}
+
+/* Header CTA button override */
+.header-cta .wp-block-button__link {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.85rem;
+}
+
+/* ---------- Hero Topographic Overlay ---------- */
+.hero-topographic::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cpath d='M0 300Q150 250 300 300T600 300' fill='none' stroke='rgba(255,255,255,.06)' stroke-width='2'/%3E%3Cpath d='M0 340Q150 290 300 340T600 340' fill='none' stroke='rgba(255,255,255,.04)' stroke-width='2'/%3E%3Cpath d='M0 380Q150 330 300 380T600 380' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='2'/%3E%3Cpath d='M0 220Q150 170 300 220T600 220' fill='none' stroke='rgba(255,255,255,.05)' stroke-width='1.5'/%3E%3Cpath d='M0 160Q150 110 300 160T600 160' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 0;
+    animation: topographic-drift 60s linear infinite;
+}
+
+@keyframes topographic-drift {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 600px 0;
+    }
+}
+
+.hero-topographic>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* ---------- Cards ---------- */
+.biodevas-card,
+.is-style-card {
+    background: var(--wp--preset--color--blanco);
+    border-radius: var(--wp--custom--radius--default);
+    overflow: hidden;
+    box-shadow: var(--wp--preset--shadow--card);
+    transition: transform var(--wp--custom--transition), box-shadow var(--wp--custom--transition);
+}
+
+.biodevas-card:hover,
+.is-style-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--wp--preset--shadow--card-hover);
+}
+
+.biodevas-card img,
+.is-style-card>.wp-block-post-featured-image img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 0;
+    transition: transform var(--wp--custom--transition);
+}
+
+.biodevas-card:hover img,
+.is-style-card:hover>.wp-block-post-featured-image img {
+    transform: scale(1.04);
+}
+
+/* Card tag badge */
+.biodevas-tag {
+    display: inline-block;
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--wp--custom--radius--pill);
+    font-size: 0.75rem;
+    font-family: var(--wp--preset--font-family--display);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.biodevas-tag--paused {
+    background: var(--wp--preset--color--granate);
+}
+
+.biodevas-tag--active {
+    background: var(--wp--preset--color--verde);
+}
+
+.biodevas-tag--new {
+    background: var(--wp--preset--color--naranja-intenso);
+}
+
+/* ---------- Glass Card ---------- */
+.is-style-glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--wp--custom--radius--default);
+}
+
+/* ---------- Coordinator Box ---------- */
+.biodevas-coordinator,
+.is-style-coordinator {
+    background: var(--wp--preset--color--gris-piedra);
+    border-radius: var(--wp--custom--radius--default);
+    padding: var(--wp--preset--spacing--30);
+    margin: var(--wp--preset--spacing--30) 0;
+    border-left: 4px solid var(--wp--preset--color--naranja);
+}
+
+/* ---------- Pricing Cards ---------- */
+.biodevas-price-card {
+    background: var(--wp--preset--color--blanco);
+    border-radius: var(--wp--custom--radius--default);
+    padding: var(--wp--preset--spacing--30);
+    text-align: center;
+    box-shadow: var(--wp--preset--shadow--card);
+    transition: transform var(--wp--custom--transition), box-shadow var(--wp--custom--transition);
+    border: 2px solid transparent;
+}
+
+.biodevas-price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--wp--preset--shadow--card-hover);
+}
+
+.biodevas-price-card.featured {
+    border-color: var(--wp--preset--color--naranja);
+    position: relative;
+}
+
+.biodevas-price-card.featured::before {
+    content: 'Popular';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+    padding: 0.2rem 1rem;
+    border-radius: var(--wp--custom--radius--pill);
+    font-family: var(--wp--preset--font-family--display);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.price-amount {
+    font-family: var(--wp--preset--font-family--display);
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--wp--preset--color--naranja);
+    margin: var(--wp--preset--spacing--20) 0;
+}
+
+.price-amount span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #777;
+}
+
+.price-features {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: var(--wp--preset--spacing--20) 0 var(--wp--preset--spacing--30);
+}
+
+.price-features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--wp--preset--color--gris-piedra);
+    font-size: 0.92rem;
+}
+
+.price-features li::before {
+    content: '✓ ';
+    color: var(--wp--preset--color--verde);
+    font-weight: 700;
+}
+
+/* ---------- Team Cards ---------- */
+.biodevas-team-card {
+    text-align: center;
+    padding: var(--wp--preset--spacing--30);
+}
+
+.biodevas-team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto var(--wp--preset--spacing--20);
+    border: 4px solid var(--wp--preset--color--naranja);
+    transition: border-color var(--wp--custom--transition);
+}
+
+.biodevas-team-card:hover img {
+    border-color: var(--wp--preset--color--naranja-intenso);
+}
+
+/* ---------- Stats Section ---------- */
+.biodevas-stats .stat-value {
+    font-family: var(--wp--preset--font-family--display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--wp--preset--color--amarillo);
+    margin-bottom: 0.2rem;
+    line-height: 1;
+}
+
+.biodevas-stats .stat-label {
+    font-size: 0.95rem;
+    opacity: 0.85;
+}
+
+/* ---------- Value Items ---------- */
+.biodevas-value-item {
+    text-align: center;
+    padding: var(--wp--preset--spacing--30);
+}
+
+.biodevas-value-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--wp--preset--spacing--20);
+    display: block;
+}
+
+/* ---------- Sidebar Widgets ---------- */
+.biodevas-widget {
+    background: var(--wp--preset--color--blanco);
+    border-radius: var(--wp--custom--radius--default);
+    padding: var(--wp--preset--spacing--30);
+    box-shadow: var(--wp--preset--shadow--card);
+    margin-bottom: var(--wp--preset--spacing--30);
+}
+
+/* ---------- Forms ---------- */
+.biodevas-form input,
+.biodevas-form textarea,
+.biodevas-form select,
+.wp-block-search__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--wp--preset--color--gris-medio);
+    border-radius: var(--wp--custom--radius--small);
+    font-family: var(--wp--preset--font-family--body);
+    font-size: 1rem;
+    transition: border-color var(--wp--custom--transition), box-shadow var(--wp--custom--transition);
+    background: var(--wp--preset--color--blanco);
+    color: var(--wp--preset--color--antracita);
+}
+
+.biodevas-form input:focus,
+.biodevas-form textarea:focus,
+.biodevas-form select:focus,
+.wp-block-search__input:focus {
+    border-color: var(--wp--preset--color--naranja);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 135, 0, 0.12);
+}
+
+.biodevas-form label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.biodevas-form .form-group {
+    margin-bottom: var(--wp--preset--spacing--20);
+}
+
+/* Form states */
+.biodevas-form--success {
+    border-left: 4px solid var(--wp--preset--color--verde);
+}
+
+.biodevas-form--error {
+    border-left: 4px solid #d32f2f;
+}
+
+.biodevas-form--pending {
+    border-left: 4px solid var(--wp--preset--color--amarillo);
+}
+
+/* ---------- Alerts ---------- */
+.biodevas-alert {
+    padding: var(--wp--preset--spacing--20);
+    border-radius: var(--wp--custom--radius--small);
+    margin-bottom: var(--wp--preset--spacing--20);
+    font-size: 0.95rem;
+}
+
+.biodevas-alert--ok {
+    background: rgba(45, 90, 39, 0.08);
+    border: 1px solid var(--wp--preset--color--verde);
+    color: #1a3a15;
+}
+
+.biodevas-alert--warn {
+    background: rgba(255, 171, 0, 0.08);
+    border: 1px solid var(--wp--preset--color--amarillo);
+    color: #7a5000;
+}
+
+.biodevas-alert--danger {
+    background: rgba(211, 47, 47, 0.08);
+    border: 1px solid #d32f2f;
+    color: #7a1a1a;
+}
+
+/* ---------- Badges ---------- */
+.biodevas-badge {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: var(--wp--custom--radius--pill);
+    font-size: 0.75rem;
+    font-family: var(--wp--preset--font-family--display);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.biodevas-badge--confirmed {
+    background: rgba(45, 90, 39, 0.12);
+    color: #2d5a27;
+}
+
+.biodevas-badge--pending {
+    background: rgba(255, 171, 0, 0.12);
+    color: #7a5000;
+}
+
+.biodevas-badge--waitlist {
+    background: rgba(125, 0, 50, 0.12);
+    color: var(--wp--preset--color--granate);
+}
+
+/* ---------- Tables ---------- */
+.biodevas-table,
+.is-style-biodevas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.biodevas-table th,
+.is-style-biodevas th {
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-family: var(--wp--preset--font-family--display);
+    font-weight: 600;
+}
+
+.biodevas-table td,
+.is-style-biodevas td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--wp--preset--color--gris-medio);
+}
+
+.biodevas-table tr:nth-child(even),
+.is-style-biodevas tr:nth-child(even) {
+    background: var(--wp--preset--color--gris-piedra);
+}
+
+.biodevas-table tr:hover,
+.is-style-biodevas tr:hover {
+    background: rgba(255, 135, 0, 0.04);
+}
+
+/* ---------- Block Styles ---------- */
+.is-style-topographic {
+    position: relative;
+}
+
+.is-style-topographic::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cpath d='M0 300Q150 250 300 300T600 300' fill='none' stroke='rgba(255,255,255,.06)' stroke-width='2'/%3E%3Cpath d='M0 340Q150 290 300 340T600 340' fill='none' stroke='rgba(255,255,255,.04)' stroke-width='2'/%3E%3Cpath d='M0 380Q150 330 300 380T600 380' fill='none' stroke='rgba(255,255,255,.03)' stroke-width='2'/%3E%3C/svg%3E") repeat;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.is-style-topographic>* {
+    position: relative;
+    z-index: 1;
+}
+
+/* Elevated image style */
+.is-style-elevated img {
+    box-shadow: var(--wp--preset--shadow--card);
+    border-radius: var(--wp--custom--radius--default);
+    transition: box-shadow var(--wp--custom--transition);
+}
+
+.is-style-elevated:hover img {
+    box-shadow: var(--wp--preset--shadow--card-hover);
+}
+
+/* Secondary button (visible on dark AND light backgrounds) */
+.is-style-secondary .wp-block-button__link {
+    background: transparent;
+    border: 2px solid var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--naranja);
+}
+
+.is-style-secondary .wp-block-button__link:hover {
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+}
+
+/* Outline button — fix for visibility on white backgrounds */
+.is-style-outline .wp-block-button__link {
+    border: 2px solid currentColor;
+}
+
+.is-style-outline .wp-block-button__link:not([class*="has-"]):not([style*="color"]) {
+    color: var(--wp--preset--color--naranja);
+    border-color: var(--wp--preset--color--naranja);
+}
+
+/* Lead paragraph */
+.is-style-lead {
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 680px;
+    line-height: 1.8;
+}
+
+/* ---------- Scroll-to-top ---------- */
+.scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    background: var(--wp--preset--color--naranja);
+    color: var(--wp--preset--color--blanco);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--wp--custom--transition), visibility var(--wp--custom--transition), transform var(--wp--custom--transition);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--wp--preset--shadow--elevated);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: #e67300;
+    transform: translateY(-2px);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    position: relative;
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, #ff8700, #ffa94d, #ffc680) 1;
+}
+
+.site-footer a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color var(--wp--custom--transition);
+}
+
+.site-footer a:hover {
+    color: #ff8700;
+}
+
+.site-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.site-footer li {
+    padding: 0.3rem 0;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+}
+
+.animate-on-scroll.visible {
+    animation: fade-in-up 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 781px) {
+
+    .biodevas-card img,
+    .is-style-card>.wp-block-post-featured-image img {
+        height: 180px;
+    }
+
+    .biodevas-team-card img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .price-amount {
+        font-size: 2rem;
+    }
+
+    .site-header {
+        backdrop-filter: blur(12px);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .biodevas-card img,
+    .is-style-card>.wp-block-post-featured-image img {
+        height: 150px;
+    }
+
+    .header-cta {
+        display: none;
+    }
+}
+
+/* ---------- Print ---------- */
+@media print {
+
+    .site-header,
+    .site-footer,
+    .scroll-to-top,
+    .header-cta,
+    .wp-block-buttons,
+    nav {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+        line-height: 1.5;
+        color: #000;
+        background: #fff;
+    }
+
+    a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 0.8em;
+        color: #666;
+    }
+
+    img {
+        max-width: 100% !important;
+        page-break-inside: avoid;
+    }
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ── Center un-centered button blocks ─────────────── */
+/* WP core sets display:flex on .is-layout-flex but doesn't
+   add justify-content by default (defaults to flex-start/left).
+   Some button containers lack is-content-justification-center.
+   This centers ALL wp-block-buttons that don't already have
+   an explicit justification override. */
+.wp-block-buttons:not([class*="is-content-justification-"]) {
+    justify-content: center;
+}
