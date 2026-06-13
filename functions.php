@@ -486,7 +486,7 @@ function convoca_dark_mode_inline_init(): void {
 	</script>
 	<?php
 }
-add_action('wp_head', 'biodevas_dark_mode_inline_init', 1);
+add_action('wp_head', 'convoca_dark_mode_inline_init', 1);
 
 /**
  * 10. Shortcode for Dark Mode Toggle
