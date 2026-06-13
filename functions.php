@@ -106,12 +106,12 @@ add_action('after_setup_theme', 'convoca_setup');
 function convoca_register_pattern_categories(): void
 {
 	register_block_pattern_category('convoca', [
-		'label' => __('...', 'convoca-theme'),
-		'description' => __('...', 'convoca-theme'),
+		'label' => __('Biodevas', 'convoca-theme'),
+		'description' => __('Patrones del theme Biodevas.', 'convoca-theme'),
 	]);
 	register_block_pattern_category('convoca-layout', [
-		'label' => __('...', 'convoca-theme'),
-		'description' => __('...', 'convoca-theme'),
+		'label' => __('Biodevas — Layout', 'convoca-theme'),
+		'description' => __('Secciones de página completas.', 'convoca-theme'),
 	]);
 }
 add_action('init', 'convoca_register_pattern_categories');
@@ -124,49 +124,49 @@ function convoca_register_block_styles(): void
 	// Paragraph: Lead style.
 	register_block_style('core/paragraph', [
 		'name' => 'lead',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Destacado (Lead)', 'convoca-theme'),
 	]);
 
 	// Group: Card style.
 	register_block_style('core/group', [
 		'name' => 'card',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Tarjeta', 'convoca-theme'),
 	]);
 
 	// Group: Coordinator box style.
 	register_block_style('core/group', [
 		'name' => 'coordinator',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Caja Coordinador', 'convoca-theme'),
 	]);
 
 	// Group: Glass (frosted glass effect).
 	register_block_style('core/group', [
 		'name' => 'glass',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Cristal Esmerilado', 'convoca-theme'),
 	]);
 
 	// Cover: Topographic overlay.
 	register_block_style('core/cover', [
 		'name' => 'topographic',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Overlay Topográfico', 'convoca-theme'),
 	]);
 
 	// Table: Biodevas styled table.
 	register_block_style('core/table', [
 		'name' => 'biodevas',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Tabla Convoca', 'convoca-theme'),
 	]);
 
 	// Buttons: Secondary (outline on dark).
 	register_block_style('core/button', [
 		'name' => 'secondary',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Secundario', 'convoca-theme'),
 	]);
 
 	// Image: Rounded + shadow.
 	register_block_style('core/image', [
 		'name' => 'elevated',
-		'label' => __('...', 'convoca-theme'),
+		'label' => __('Elevada', 'convoca-theme'),
 	]);
 }
 add_action('init', 'convoca_register_block_styles');
@@ -251,7 +251,7 @@ add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment, $
 function convoca_skip_link(): void
 {
 	echo '<a class="skip-link screen-reader-text" href="#main-content">' .
-		esc_html__('...', 'convoca-theme') . '</a>';
+		esc_html__('Ir al contenido', 'convoca-theme') . '</a>';
 }
 add_action('wp_body_open', 'convoca_skip_link');
 
@@ -288,8 +288,8 @@ add_action('wp_enqueue_scripts', 'convoca_theme_scripts');
 function convoca_admin_menu(): void
 {
 	add_theme_page(
-		__('...', 'convoca-theme'),
-		__('...', 'convoca-theme'),
+		__('Ayuda Convoca', 'convoca-theme'),
+		__('Ayuda Convoca', 'convoca-theme'),
 		'edit_theme_options',
 		'biodevas-help',
 		'convoca_help_page_html'
@@ -309,12 +309,12 @@ function convoca_help_page_html(): void
 	$miembros_count = $has_members ? wp_count_posts('miembro') : (object)[];
 	?>
 	<div class="wrap biodevas-admin-page">
-		<h1><?php echo esc_html__('...', 'convoca-theme'); ?></h1>
+		<h1><?php echo esc_html__('Configuración y Ayuda — Theme Convoca', 'convoca-theme'); ?></h1>
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
 			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo get_template_directory_uri(); ?>/assets/images/admin-banner.png'); background-size: cover; background-position: center; color: #fff;">
-				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf(__('...', 'convoca-theme'), $theme->get('Version')); ?></h2>
-				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf(__('Bienvenido a Biodevas v%s', 'convoca-theme'), $theme->get('Version')); ?></h2>
+				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__('Este es un theme FSE (Full Site Editing) optimizado para la Asociación Biodevas. Aquí encontrarás una guía rápida de uso.', 'convoca-theme'); ?></p>
 			</div>
 		</div>
 
@@ -324,37 +324,37 @@ function convoca_help_page_html(): void
 					
 					<!-- Información del Theme -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Información del Theme', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
 							<ul>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($theme->get('Version')); ?></li>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <a href="<?php echo esc_url($theme->get('AuthorURI')); ?>" target="_blank"><?php echo esc_html($theme->get('Author')); ?></a></li>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></a></li>
+								<li><strong><?php echo esc_html__('Versión:', 'convoca-theme'); ?></strong> <?php echo esc_html($theme->get('Version')); ?></li>
+								<li><strong><?php echo esc_html__('Autor:', 'convoca-theme'); ?></strong> <a href="<?php echo esc_url($theme->get('AuthorURI')); ?>" target="_blank"><?php echo esc_html($theme->get('Author')); ?></a></li>
+								<li><strong><?php echo esc_html__('Documentación:', 'convoca-theme'); ?></strong> <a href="https://github.com/Biodevas/biodevas-theme/wiki" target="_blank"><?php echo esc_html__('Ver Wiki en GitHub', 'convoca-theme'); ?></a></li>
 							</ul>
 							<hr>
-							<a href="<?php echo admin_url('site-editor.php'); ?>" class="button button-primary"><?php echo esc_html__('...', 'convoca-theme'); ?></a>
+							<a href="<?php echo admin_url('site-editor.php'); ?>" class="button button-primary"><?php echo esc_html__('Abrir Editor de Sitios (FSE)', 'convoca-theme'); ?></a>
 						</div>
 					</div>
 
 					<!-- Estado de Inscripciones -->
 					<?php if ($has_enroll) : ?>
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Resumen de participación actual (Biodevas Enroll):', 'convoca-theme'); ?></p>
 							<ul>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->publish ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->pending ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->trash ?? 0); ?></li>
+								<li><strong><?php echo esc_html__('Confirmadas:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->publish ?? 0); ?></li>
+								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->pending ?? 0); ?></li>
+								<li><strong><?php echo esc_html__('Canceladas:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->trash ?? 0); ?></li>
 							</ul>
-							<a href="<?php echo esc_url(admin_url('edit.php?post_type=inscripcion')); ?>" class="button"><?php echo esc_html__('...', 'convoca-theme'); ?></a>
+							<a href="<?php echo esc_url(admin_url('edit.php?post_type=inscripcion')); ?>" class="button"><?php echo esc_html__('Gestionar Inscripciones', 'convoca-theme'); ?></a>
 						</div>
 					</div>
 					<?php else : ?>
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('...', 'convoca-theme'); ?></p></div>
+							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Biodevas Enroll no está activo.', 'convoca-theme'); ?></p></div>
 						</div>
 					</div>
 					<?php endif; ?>
@@ -362,21 +362,21 @@ function convoca_help_page_html(): void
 					<!-- Estado de Miembros -->
 					<?php if ($has_members) : ?>
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Resumen de la comunidad (Biodevas Members):', 'convoca-theme'); ?></p>
 							<ul>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->publish ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('...', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->pending ?? 0); ?></li>
+								<li><strong><?php echo esc_html__('Activos:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->publish ?? 0); ?></li>
+								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->pending ?? 0); ?></li>
 							</ul>
-							<a href="<?php echo esc_url(admin_url('edit.php?post_type=miembro')); ?>" class="button"><?php echo esc_html__('...', 'convoca-theme'); ?></a>
+							<a href="<?php echo esc_url(admin_url('edit.php?post_type=miembro')); ?>" class="button"><?php echo esc_html__('Ver Miembros', 'convoca-theme'); ?></a>
 						</div>
 					</div>
 					<?php else : ?>
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('...', 'convoca-theme'); ?></p></div>
+							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Biodevas Members no está activo.', 'convoca-theme'); ?></p></div>
 						</div>
 					</div>
 					<?php endif; ?>
@@ -387,30 +387,30 @@ function convoca_help_page_html(): void
 					
 					<!-- Guía de Plantillas -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Guía de Plantillas y Páginas', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<h4><?php echo esc_html__('...', 'convoca-theme'); ?></h4>
-							<p><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+							<h4><?php echo esc_html__('Página de Actividad', 'convoca-theme'); ?></h4>
+							<p><?php echo esc_html__('Usa la plantilla "Página de Actividad" para las páginas que describen una actividad específica. Incluye automáticamente el formulario de inscripción.', 'convoca-theme'); ?></p>
 							
-							<h4><?php echo esc_html__('...', 'convoca-theme'); ?></h4>
-							<p><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+							<h4><?php echo esc_html__('Página de Proyecto', 'convoca-theme'); ?></h4>
+							<p><?php echo esc_html__('Usa la plantilla "Página de Proyecto" para secciones de proyectos de largo recorrido. Incluye metadatos específicos del proyecto.', 'convoca-theme'); ?></p>
 							
 							<hr>
-							<p><strong><?php echo esc_html__('...', 'convoca-theme'); ?></p>
-							<a href="<?php echo esc_url(wp_nonce_url(admin_url('themes.php?page=biodevas-help&biodevas_reset_templates=1'), 'biodevas_reset_templates')); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js(__('...', 'convoca-theme'); ?></a>
+							<p><strong><?php echo esc_html__('Nota:', 'convoca-theme'); ?></strong> <?php echo esc_html__('Si las plantillas no se visualizan correctamente, puedes intentar reiniciarlas.', 'convoca-theme'); ?></p>
+							<a href="<?php echo esc_url(wp_nonce_url(admin_url('themes.php?page=biodevas-help&biodevas_reset_templates=1'), 'biodevas_reset_templates')); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js(__('¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme.', 'convoca-theme')); ?>');"><?php echo esc_html__('Reiniciar Plantillas a valores de fábrica', 'convoca-theme'); ?></a>
 						</div>
 					</div>
 
 					<!-- Patrones Recomendados -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('...', 'convoca-theme'); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__('Patrones Convoca', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('...', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Biodevas:', 'convoca-theme'); ?></p>
 							<ul style="list-style: disc; padding-left: 20px;">
-								<li><code>biodevas/hero</code>: <?php echo esc_html__('...', 'convoca-theme'); ?></li>
-								<li><code>biodevas/cards-grid</code>: <?php echo esc_html__('...', 'convoca-theme'); ?></li>
-								<li><code>biodevas/stats-bar</code>: <?php echo esc_html__('...', 'convoca-theme'); ?></li>
-								<li><code>biodevas/inscripcion-actividad</code>: <?php echo esc_html__('...', 'convoca-theme'); ?></li>
+								<li><code>biodevas/hero</code>: <?php echo esc_html__('Cabecera principal con texto.', 'convoca-theme'); ?></li>
+								<li><code>biodevas/cards-grid</code>: <?php echo esc_html__('Cuadrícula de actividades o noticias.', 'convoca-theme'); ?></li>
+								<li><code>biodevas/stats-bar</code>: <?php echo esc_html__('Barra de estadísticas animada.', 'convoca-theme'); ?></li>
+								<li><code>biodevas/inscripcion-actividad</code>: <?php echo esc_html__('Formulario de inscripción integrado.', 'convoca-theme'); ?></li>
 							</ul>
 						</div>
 					</div>
@@ -507,7 +507,7 @@ add_shortcode('biodevas_dark_mode_toggle', function() {
 add_shortcode('biodevas_inscripcion_actual', function () {
 	if (!is_singular('actividad')) {
 		if (current_user_can('manage_options')) {
-			return '<div class="biodevas-alert biodevas-alert--info" style="display:block;padding:15px;margin:10px 0;">' . esc_html__('...', 'convoca-theme') . '</div>';
+			return '<div class="biodevas-alert biodevas-alert--info" style="display:block;padding:15px;margin:10px 0;">' . esc_html__('💡 Este shortcode solo funciona en la página de una actividad individual.', 'convoca-theme') . '</div>';
 		}
 		return '';
 	}
