@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Banner de contacto
- * Slug: biodevas/contact-banner
+ * Slug: convoca/contact-banner
  * Categories: biodevas, biodevas-layout
  * Description: Franja de contacto con email, teléfono y redes sociales.
  * Keywords: contacto, email, teléfono, redes

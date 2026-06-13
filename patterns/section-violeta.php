@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Sección violeta oscuro
- * Slug: biodevas/section-violeta
+ * Slug: convoca/section-violeta
  * Categories: biodevas
  * Description: Sección de ancho completo con fondo violeta oscuro y texto blanco.
  * Keywords: sección, violeta, oscuro

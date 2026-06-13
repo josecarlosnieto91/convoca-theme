@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Hero con degradado
- * Slug: biodevas/hero-gradient
+ * Slug: convoca/hero-gradient
  * Categories: biodevas
  * Description: Sección hero con imagen destacada, overlay degradado atardecer, título y botones CTA.
  * Keywords: hero, portada, banner

@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Llamada a acción centrada
- * Slug: biodevas/cta-centered
+ * Slug: convoca/cta-centered
  * Categories: biodevas
  * Description: CTA centrada con fondo degradado oscuro, titular y dos botones.
  * Keywords: cta, llamada, acción, botones

@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Hero principal
- * Slug: biodevas/hero
+ * Slug: convoca/hero
  * Categories: biodevas, biodevas-layout
  * Description: Sección hero de portada con imagen destacada, degradado, título y botones CTA.
  * Keywords: hero, portada, cover

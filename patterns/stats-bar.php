@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Barra de estadísticas
- * Slug: biodevas/stats-bar
+ * Slug: convoca/stats-bar
  * Categories: biodevas
  * Description: Barra de 4 estadísticas con fondo degradado oscuro y valores en amarillo.
  * Keywords: estadísticas, números, stats, datos

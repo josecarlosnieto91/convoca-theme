@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Llamada a la acción
- * Slug: biodevas/cta
+ * Slug: convoca/cta
  * Categories: biodevas, biodevas-layout
  * Description: Sección CTA con título, subtítulo y botones sobre fondo oscuro.
  * Keywords: cta, llamada, acción, botones

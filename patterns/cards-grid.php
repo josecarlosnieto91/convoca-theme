@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Grid de tarjetas (3 columnas)
- * Slug: biodevas/cards-grid
+ * Slug: convoca/cards-grid
  * Categories: biodevas
  * Description: Rejilla de 3 tarjetas con imagen, etiqueta, título, descripción y botón.
  * Keywords: tarjetas, grid, cards, proyectos

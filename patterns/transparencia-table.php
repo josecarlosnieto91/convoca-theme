@@ -1,7 +1,7 @@
 <?php
 /**
  * Title: Tabla de transparencia
- * Slug: biodevas/transparencia-table
+ * Slug: convoca/transparencia-table
  * Categories: biodevas
  * Description: Tabla estilizada para datos de transparencia (ingresos, gastos, balance).
  * Keywords: tabla, transparencia, finanzas
