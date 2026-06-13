@@ -4,7 +4,7 @@ Theme URI:   https://biodevas.org
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.6.0
+Version: 2.6.3
 Requires at least: 6.4
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -241,7 +241,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode p, .dark-mode li {
     color: var(--dark-text-secondary);
     line-height: 1.8;
-    font-weight: 400;
+    font-weight: inherit;
 }
 
 /* ── HEADER: translúcido premium ── */
@@ -613,11 +613,13 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     transition: height var(--wp--custom--transition);
 }
 
-/* Mobile Menu Enhancements */
+/* Mobile Menu Enhancements - Full screen overlay */
 .wp-block-navigation__responsive-container.is-menu-open {
     padding: 2rem;
     display: flex;
     flex-direction: column;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
@@ -1209,6 +1211,113 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 
     .site-header {
         backdrop-filter: blur(12px);
+    }
+
+    /* Prevent header from wrapping on mobile */
+    .site-header > .wp-block-group {
+        flex-wrap: nowrap !important;
+    }
+
+    /* Allow children to shrink and prevent overflow */
+    .site-header > .wp-block-group > .wp-block-group {
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+    }
+
+    /* Site title on mobile: consistent bold + enough width */
+    .wp-block-site-title {
+        font-size: clamp(0.8rem, 3.5vw, 1.4rem) !important;
+        white-space: nowrap !important;
+        font-weight: 700 !important;
+        min-width: min(150px, 35vw) !important;
+    }
+
+    .site-header .wp-block-site-logo img {
+        width: auto !important;
+        max-height: 30px !important;
+    }
+
+    /* Root padding variables for has-global-padding */
+    :root {
+        --wp--style--root--padding-right: 1rem;
+        --wp--style--root--padding-left: 1rem;
+    }
+
+    /* Ensure post/page content has horizontal padding */
+    .wp-block-post-content,
+    .entry-content {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    /* Consistent alignment: same padding in both modes (dark mode behavior) */
+    .dark-mode .site-header > .wp-block-group,
+    .site-header > .wp-block-group {
+        justify-content: space-between !important;
+        padding: 0 !important;
+    }
+
+    .dark-mode .site-header > .wp-block-group > .wp-block-group.is-nowrap,
+    .site-header > .wp-block-group > .wp-block-group.is-nowrap {
+        padding: 0 !important;
+        margin: 0 0 0 0.75rem !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Prevent nav wrapping - let items shrink/overlap if needed */
+    .site-header > .wp-block-group {
+        flex-wrap: nowrap !important;
+    }
+
+    .site-header > .wp-block-group > .wp-block-group.is-nowrap {
+        flex-shrink: 0 !important;
+        min-width: 0 !important;
+    }
+
+    .site-header > .wp-block-group > .wp-block-group.is-layout-flex {
+        flex-shrink: 1 !important;
+        min-width: 0 !important;
+        flex-wrap: nowrap !important;
+        gap: 0.25rem !important;
+    }
+
+    /* Compact nav items on mobile */
+    .wp-block-navigation__responsive-container-open {
+        width: 26px !important;
+        height: 26px !important;
+        flex-shrink: 0 !important;
+    }
+
+    .wp-block-navigation__responsive-container-open svg {
+        width: 18px !important;
+        height: 18px !important;
+    }
+
+    .header-cta .wp-block-button__link {
+        padding: 0.25rem 0.4rem !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+
+    .wp-block-woocommerce-customer-account {
+        width: 22px !important;
+        height: 22px !important;
+        overflow: hidden !important;
+        flex-shrink: 0 !important;
+    }
+
+    .wp-block-woocommerce-customer-account a {
+        padding: 0 !important;
+    }
+
+    /* Compact dark mode toggle */
+    .site-header .dark-mode-toggle,
+    .site-header p[class=""],
+    .site-header p:empty {
+        margin: 0 !important;
+        font-size: 0.9rem !important;
+        line-height: 1.2 !important;
+        flex-shrink: 0 !important;
     }
 }
 

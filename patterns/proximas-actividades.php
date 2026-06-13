@@ -37,13 +37,13 @@
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","fontWeight":"500"},"color":{"text":"var:preset|color|naranja"}}} -->
                     <p class="has-custom-font-size" style="color:var(--wp--preset--color--naranja);font-size:0.85rem;font-weight:500">
                         <span class="dashicons dashicons-calendar-alt" style="vertical-align:middle"></span>
-                        <!-- wp:biodevas-common/post-meta-field {"metaField":"_bde_fecha_inicio","type":"date"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_fecha_inicio","type":"date"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","color":{"text":"#666666"}}} -->
                     <p class="has-custom-font-size" style="color:#666666;font-size:0.85rem">
                         <span class="dashicons dashicons-location" style="vertical-align:middle"></span>
-                        <!-- wp:biodevas-common/post-meta-field {"metaField":"_bde_ubicacion"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_ubicacion"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -52,12 +52,12 @@
                 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)">
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9rem","fontWeight":"700"}}} -->
                     <p style="font-size:0.9rem;font-weight:700">
-                        <!-- wp:biodevas-common/post-meta-field {"metaField":"_bde_precio_general","type":"price"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_precio_general","type":"price"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8rem","color":{"text":"#888888"}}} -->
                     <p style="color:#888888;font-size:0.8rem">
-                        <!-- wp:biodevas-common/post-meta-field {"metaField":"_bde_plazas_disponibles"} /--> plazas
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_plazas_disponibles"} /--> plazas
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -65,7 +65,7 @@
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
                 <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
                     <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small"} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="#">Más información</a></div>
+                    <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="/actividades/">Más información</a></div>
                     <!-- /wp:button -->
                 </div>
                 <!-- /wp:buttons -->
