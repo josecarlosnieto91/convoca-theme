@@ -558,7 +558,7 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 	$meta_key = '_conv_' . sanitize_key($atts['field']);
 	$value = get_post_meta($id, $meta_key, true);
 
-	if (empty($value)) {
+	if ($value === "" || $value === null || $value === false) {
 		return '';
 	}
 
@@ -567,7 +567,10 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 		return (float)$value > 0 ? number_format((float)$value, 2, ',', '.') . ' €' : 'Gratis';
 	}
 	if ($atts['field'] === 'plazas_disponibles') {
-		$total = get_post_meta($id, '_bde_plazas_totales', true);
+		$total = get_post_meta($id, '_conv_plazas_totales', true);
+		if (empty($total)) {
+			$total = get_post_meta($id, '_conv_plazas_totales', true);
+		}
 		return (int)$value . ' / ' . (int)$total;
 	}
 	if ($atts['field'] === 'fecha_inicio' || $atts['field'] === 'fecha_fin') {
@@ -592,10 +595,10 @@ function convoca_actividad_schema(): void
 
 	// Get Meta
 	$start_date = get_post_meta($post_id, '_bde_fecha_inicio', true);
-	$end_date   = get_post_meta($post_id, '_bde_fecha_fin', true);
-	$location   = get_post_meta($post_id, '_bde_ubicacion', true);
-	$price      = get_post_meta($post_id, '_bde_precio_general', true);
-	$plazas_dis = (int) get_post_meta($post_id, '_bde_plazas_disponibles', true);
+	$end_date   = get_post_meta($post_id, '_conv_fecha_fin', true);
+	$location   = get_post_meta($post_id, '_conv_ubicacion', true);
+	$price      = get_post_meta($post_id, '_conv_precio_general', true);
+	$plazas_dis = (int) get_post_meta($post_id, '_conv_plazas_disponibles', true);
 	
 	// Validate start_date: required for schema
 	if (empty($start_date) || !strtotime($start_date)) {
@@ -620,7 +623,7 @@ function convoca_actividad_schema(): void
 	// Get lowest price from all options
 	$precio_socio = get_post_meta($post_id, '_bde_precio_socio', true);
 	$precio_socio_dia = get_post_meta($post_id, '_bde_precio_socio_dia', true);
-	$precio_general = get_post_meta($post_id, '_bde_precio_general', true);
+	$precio_general = get_post_meta($post_id, '_conv_precio_general', true);
 	
 	$prices = array_filter([$precio_socio, $precio_socio_dia, $precio_general], function($v) {
 		return $v !== '' && strtolower($v) !== 'gratis';
@@ -688,12 +691,12 @@ add_shortcode('bdv_calendario', function () {
         $title = esc_html(get_the_title($id));
         $excerpt = esc_html(get_the_excerpt($id) ?: wp_trim_words(strip_tags(get_post_field('post_content', $id)), 30));
         $fecha = get_post_meta($id, '_bde_fecha_inicio', true);
-        $fecha_fin = get_post_meta($id, '_bde_fecha_fin', true);
-        $lugar = get_post_meta($id, '_bde_lugar', true) ?: get_post_meta($id, '_bde_ubicacion', true);
-        $precio = get_post_meta($id, '_bde_precio', true);
-        $plazas_disp = (int) get_post_meta($id, '_bde_plazas_disponibles', true);
-        $plazas_total = (int) get_post_meta($id, '_bde_plazas_totales', true);
-        $requires_payment = get_post_meta($id, '_bde_requires_payment', true);
+        $fecha_fin = get_post_meta($id, '_conv_fecha_fin', true);
+        $lugar = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
+        $precio = get_post_meta($id, '_conv_precio', true);
+        $plazas_disp = (int) get_post_meta($id, '_conv_plazas_disponibles', true);
+        $plazas_total = (int) get_post_meta($id, '_conv_plazas_totales', true);
+        $requires_payment = get_post_meta($id, '_conv_requires_payment', true);
         $permalink = esc_url(get_permalink($id));
         
         $fecha_str = '';
@@ -758,14 +761,14 @@ add_filter('render_block_core/post-template', function ($block_content, $block) 
                 $v = get_post_meta($id, '_bde_fecha_inicio', true);
                 return $v ? date_i18n('j M Y', strtotime($v)) : '';
             case 'LUGAR':
-                $v = get_post_meta($id, '_bde_lugar', true) ?: get_post_meta($id, '_bde_ubicacion', true);
+                $v = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
                 return esc_html($v);
             case 'PRECIO':
-                $v = (float) get_post_meta($id, '_bde_precio', true);
+                $v = (float) get_post_meta($id, '_conv_precio', true);
                 return $v > 0 ? number_format($v, 2, ',', '.') . ' €' : 'Gratis';
             case 'PLAZAS':
-                $disp = (int) get_post_meta($id, '_bde_plazas_disponibles', true);
-                $total = (int) get_post_meta($id, '_bde_plazas_totales', true);
+                $disp = (int) get_post_meta($id, '_conv_plazas_disponibles', true);
+                $total = (int) get_post_meta($id, '_conv_plazas_totales', true);
                 return $disp . ' / ' . $total;
         }
         return '';
@@ -780,9 +783,9 @@ add_filter('render_block', function ($html, $block) {
     $id = $post->ID;
     $map = [
         '%%FECHA_INICIO%%' => function() use($id) { $v = get_post_meta($id, '_bde_fecha_inicio', true); return $v ? date_i18n('j M Y', strtotime($v)) : ''; },
-        '%%LUGAR%%' => function() use($id) { return esc_html(get_post_meta($id, '_bde_lugar', true) ?: get_post_meta($id, '_bde_ubicacion', true) ?: ''); },
-        '%%PRECIO%%' => function() use($id) { $p = (float) get_post_meta($id, '_bde_precio', true); return $p > 0 ? number_format($p, 2, ',', '.') . ' €' : 'Gratis'; },
-        '%%PLAZAS%%' => function() use($id) { return ((int) get_post_meta($id, '_bde_plazas_disponibles', true)) . ' / ' . ((int) get_post_meta($id, '_bde_plazas_totales', true)); },
+        '%%LUGAR%%' => function() use($id) { return esc_html(get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true) ?: ''); },
+        '%%PRECIO%%' => function() use($id) { $p = (float) get_post_meta($id, '_conv_precio', true); return $p > 0 ? number_format($p, 2, ',', '.') . ' €' : 'Gratis'; },
+        '%%PLAZAS%%' => function() use($id) { return ((int) get_post_meta($id, '_conv_plazas_disponibles', true)) . ' / ' . ((int) get_post_meta($id, '_conv_plazas_totales', true)); },
     ];
     foreach ($map as $k => $fn) $html = str_replace($k, $fn(), $html);
     return $html;
