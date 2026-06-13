@@ -9,9 +9,9 @@ if (!defined('ABSPATH')) {
 
 /**
  * Display the user profile with membership status and active inscriptions.
- * Usage: [biodevas_mi_perfil]
+ * Usage: [convoca_mi_perfil]
  */
-add_shortcode('biodevas_mi_perfil', function () {
+add_shortcode('convoca_mi_perfil', function () {
     if (!is_user_logged_in()) {
         return sprintf(
             '<div class="bdv-profile-login">%s <a href="%s" class="button">%s</a></div>',

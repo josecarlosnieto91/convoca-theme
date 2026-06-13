@@ -24,10 +24,10 @@
             <!-- /wp:paragraph -->
             <!-- wp:list {"style":{"color":{"text":"#666666"}}} -->
             <ul style="color:#666666">
-                <li><strong>📅 Fecha:</strong> [biodevas_actividad_meta field="fecha_inicio"]</li>
-                <li><strong>📍 Ubicación:</strong> [biodevas_actividad_meta field="ubicacion"]</li>
-                <li><strong>👥 Plazas:</strong> [biodevas_actividad_meta field="plazas_disponibles"] disponibles de [biodevas_actividad_meta field="plazas_totales"]</li>
-                <li><strong>💰 Precio:</strong> [biodevas_actividad_meta field="precio_general"]€ (socio/a: [biodevas_actividad_meta field="precio_socio"]€)</li>
+                <li><strong>📅 Fecha:</strong> [convoca_actividad_meta field="fecha_inicio"]</li>
+                <li><strong>📍 Ubicación:</strong> [convoca_actividad_meta field="ubicacion"]</li>
+                <li><strong>👥 Plazas:</strong> [convoca_actividad_meta field="plazas_disponibles"] disponibles de [convoca_actividad_meta field="plazas_totales"]</li>
+                <li><strong>💰 Precio:</strong> [convoca_actividad_meta field="precio_general"]€ (socio/a: [convoca_actividad_meta field="precio_socio"]€)</li>
             </ul>
             <!-- /wp:list -->
         </div>

@@ -73,7 +73,7 @@ add_action('admin_init', function () {
 /**
  * 1. Theme Setup
  */
-function biodevas_setup(): void
+function convoca_setup(): void
 {
 	add_theme_support('wp-block-styles');
 	add_theme_support('editor-styles');
@@ -98,12 +98,12 @@ function biodevas_setup(): void
 	// Load editor stylesheet.
 	add_editor_style('style.css');
 }
-add_action('after_setup_theme', 'biodevas_setup');
+add_action('after_setup_theme', 'convoca_setup');
 
 /**
  * 2. Register Block Pattern Categories
  */
-function biodevas_register_pattern_categories(): void
+function convoca_register_pattern_categories(): void
 {
 	register_block_pattern_category('biodevas', [
 		'label' => __('Biodevas', 'biodevas'),
@@ -114,12 +114,12 @@ function biodevas_register_pattern_categories(): void
 		'description' => __('Secciones de página completas.', 'biodevas'),
 	]);
 }
-add_action('init', 'biodevas_register_pattern_categories');
+add_action('init', 'convoca_register_pattern_categories');
 
 /**
  * 3. Register Custom Block Styles
  */
-function biodevas_register_block_styles(): void
+function convoca_register_block_styles(): void
 {
 	// Paragraph: Lead style.
 	register_block_style('core/paragraph', [
@@ -169,12 +169,12 @@ function biodevas_register_block_styles(): void
 		'label' => __('Elevada', 'biodevas'),
 	]);
 }
-add_action('init', 'biodevas_register_block_styles');
+add_action('init', 'convoca_register_block_styles');
 
 /**
  * 4. Resource Hints & Performance
  */
-function biodevas_resource_hints(array $urls, string $relation): array
+function convoca_resource_hints(array $urls, string $relation): array
 {
 	if ('preconnect' === $relation || 'dns-prefetch' === $relation) {
 		$urls[] = [
@@ -185,12 +185,12 @@ function biodevas_resource_hints(array $urls, string $relation): array
 	}
 	return $urls;
 }
-add_filter('wp_resource_hints', 'biodevas_resource_hints', 10, 2);
+add_filter('wp_resource_hints', 'convoca_resource_hints', 10, 2);
 
 /**
  * 5. Preload Google Fonts Stylesheet
  */
-function biodevas_style_loader_tag(string $tag, string $handle): string
+function convoca_style_loader_tag(string $tag, string $handle): string
 {
 	if ('biodevas-google-fonts' === $handle) {
 		return str_replace("rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $tag) .
@@ -198,12 +198,12 @@ function biodevas_style_loader_tag(string $tag, string $handle): string
 	}
 	return $tag;
 }
-add_filter('style_loader_tag', 'biodevas_style_loader_tag', 10, 2);
+add_filter('style_loader_tag', 'convoca_style_loader_tag', 10, 2);
 
 /**
  * 6. Inline Critical CSS (Header & Above the fold)
  */
-function biodevas_critical_css(): void
+function convoca_critical_css(): void
 {
 	?>
 	<style id="biodevas-critical-css">
@@ -218,12 +218,12 @@ function biodevas_critical_css(): void
 	</style>
 	<?php
 }
-add_action('wp_head', 'biodevas_critical_css', 2);
+add_action('wp_head', 'convoca_critical_css', 2);
 
 /**
  * 7. Performance: remove jQuery migrate, defer scripts, lazy loading
  */
-function biodevas_performance_tweaks(): void
+function convoca_performance_tweaks(): void
 {
 	// Remove emoji scripts.
 	remove_action('wp_head', 'print_emoji_detection_script', 7);
@@ -231,7 +231,7 @@ function biodevas_performance_tweaks(): void
 	remove_action('admin_print_scripts', 'print_emoji_detection_script');
 	remove_action('admin_print_styles', 'print_emoji_styles');
 }
-add_action('init', 'biodevas_performance_tweaks');
+add_action('init', 'convoca_performance_tweaks');
 
 /**
  * Native Lazy Loading for all images.
@@ -248,27 +248,27 @@ add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment, $
 /**
  * 8. Accessibility: skip link
  */
-function biodevas_skip_link(): void
+function convoca_skip_link(): void
 {
 	echo '<a class="skip-link screen-reader-text" href="#main-content">' .
 		esc_html__('Ir al contenido', 'biodevas') . '</a>';
 }
-add_action('wp_body_open', 'biodevas_skip_link');
+add_action('wp_body_open', 'convoca_skip_link');
 
 /**
  * 9. Custom image sizes for cards
  */
-function biodevas_image_sizes(): void
+function convoca_image_sizes(): void
 {
 	add_image_size('biodevas-card', 600, 400, true);
 	add_image_size('biodevas-hero', 1600, 900, true);
 }
-add_action('after_setup_theme', 'biodevas_image_sizes');
+add_action('after_setup_theme', 'convoca_image_sizes');
 
 /**
  * Enqueue scripts and styles.
  */
-function biodevas_theme_scripts()
+function convoca_theme_scripts()
 {
 	// Google Fonts: Lato + Outfit.
 	$theme_version = wp_get_theme()->get('Version') ?: '1.0';
@@ -280,24 +280,24 @@ function biodevas_theme_scripts()
 	);
 	wp_enqueue_style('biodevas-theme-style', get_stylesheet_uri(), array('biodevas-google-fonts'), $theme_version);
 }
-add_action('wp_enqueue_scripts', 'biodevas_theme_scripts');
+add_action('wp_enqueue_scripts', 'convoca_theme_scripts');
 
 /**
  * 11. Admin Help Page: Ayuda Biodevas
  */
-function biodevas_admin_menu(): void
+function convoca_admin_menu(): void
 {
 	add_theme_page(
 		__('Ayuda Biodevas', 'biodevas'),
 		__('Ayuda Biodevas', 'biodevas'),
 		'edit_theme_options',
 		'biodevas-help',
-		'biodevas_help_page_html'
+		'convoca_help_page_html'
 	);
 }
-add_action('admin_menu', 'biodevas_admin_menu');
+add_action('admin_menu', 'convoca_admin_menu');
 
-function biodevas_help_page_html(): void
+function convoca_help_page_html(): void
 {
 	$theme = wp_get_theme();
 	
@@ -432,7 +432,7 @@ function biodevas_help_page_html(): void
 /**
  * Enqueue Google Fonts in the block editor too.
  */
-function biodevas_editor_fonts(): void
+function convoca_editor_fonts(): void
 {
 	wp_enqueue_style(
 		'biodevas-editor-google-fonts',
@@ -441,7 +441,7 @@ function biodevas_editor_fonts(): void
 		null
 	);
 }
-add_action('enqueue_block_editor_assets', 'biodevas_editor_fonts');
+add_action('enqueue_block_editor_assets', 'convoca_editor_fonts');
 
 // Include shortcodes.
 require_once get_theme_file_path('includes/shortcodes.php');
@@ -449,7 +449,7 @@ require_once get_theme_file_path('includes/shortcodes.php');
 /**
  * 10. Enqueue theme JS (scroll-to-top, header shadow, animations)
  */
-function biodevas_enqueue_scripts(): void
+function convoca_enqueue_scripts(): void
 {
 	$version = wp_get_theme()->get('Version');
 
@@ -469,12 +469,12 @@ function biodevas_enqueue_scripts(): void
 		['strategy' => 'defer', 'in_footer' => true]
 	);
 }
-add_action('wp_enqueue_scripts', 'biodevas_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'convoca_enqueue_scripts');
 
 /**
  * 9. Dark Mode Inline Init (Prevents FOUC)
  */
-function biodevas_dark_mode_inline_init(): void {
+function convoca_dark_mode_inline_init(): void {
 	?>
 	<script id="biodevas-dark-mode-init">
 		(function() {
@@ -519,11 +519,11 @@ add_shortcode('biodevas_inscripcion_actual', function () {
 	}
 
 	// Check if the Enroll plugin shortcode exists
-	if (!shortcode_exists('biodevas_inscripcion')) {
+	if (!shortcode_exists('convoca_form_inscripcion')) {
 		return '';
 	}
 
-	return do_shortcode('[biodevas_inscripcion id="' . (int) $id . '"]');
+	return do_shortcode('[convoca_form_inscripcion id="' . (int) $id . '"]');
 });
 
 /**
@@ -544,7 +544,7 @@ add_action('pre_get_posts', function ($query) {
  * 11. Shortcode para mostrar metadatos de actividad.
  * Uso: [biodevas_actividad_meta field="ubicacion"]
  */
-add_shortcode('biodevas_actividad_meta', function ($atts) {
+add_shortcode('convoca_actividad_meta', function ($atts) {
 	$atts = shortcode_atts([
 		'field' => 'ubicacion',
 	], $atts, 'biodevas_actividad_meta');
@@ -581,7 +581,7 @@ add_shortcode('biodevas_actividad_meta', function ($atts) {
 /**
  * 12. SEO: JSON-LD Structured Data for Activities (Event Schema)
  */
-function biodevas_actividad_schema(): void
+function convoca_actividad_schema(): void
 {
 	if (!is_singular('actividad')) {
 		return;
@@ -674,7 +674,7 @@ function biodevas_actividad_schema(): void
 	echo json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 	echo "\n" . '</script>' . "\n";
 }
-add_action('wp_head', 'biodevas_actividad_schema');
+add_action('wp_head', 'convoca_actividad_schema');
 
 // ─── Register bdv_calendario shortcode for activities list ───
 add_shortcode('bdv_calendario', function () {
