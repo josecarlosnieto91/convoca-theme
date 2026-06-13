@@ -1249,8 +1249,16 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         padding-right: 0.5rem !important;
     }
 
-    /* But remove padding from the featured image in single posts */
-    #main-content > .wp-block-post-featured-image {
+    /* Remove padding from full-width elements inside content */
+    #main-content > .wp-block-post-featured-image,
+    #main-content > .wp-block-template-part {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Spacer and separator shouldn't have horizontal padding */
+    #main-content > .wp-block-spacer,
+    #main-content > .wp-block-separator {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
