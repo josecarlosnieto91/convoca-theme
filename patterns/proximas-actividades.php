@@ -21,7 +21,7 @@
         voluntariados y salidas para conectar con la naturaleza.</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:query {"queryId":10,"query":{"perPage":6,"pages":1,"offset":0,"postType":"actividad","order":"asc","orderBy":"meta_value","metaKey":"_bde_fecha_inicio","inherit":false}} -->
+    <!-- wp:query {"queryId":10,"query":{"perPage":6,"pages":1,"offset":0,"postType":"actividad","order":"asc","orderBy":"meta_value","metaKey":"_conv_fecha_inicio","inherit":false}} -->
     <div class="wp-block-query">
 
         <!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
@@ -37,13 +37,13 @@
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","fontWeight":"500"},"color":{"text":"var:preset|color|naranja"}}} -->
                     <p class="has-custom-font-size" style="color:var(--wp--preset--color--naranja);font-size:0.85rem;font-weight:500">
                         <span class="dashicons dashicons-calendar-alt" style="vertical-align:middle"></span>
-                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_fecha_inicio","type":"date"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_conv_fecha_inicio","type":"date"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","color":{"text":"#666666"}}} -->
                     <p class="has-custom-font-size" style="color:#666666;font-size:0.85rem">
                         <span class="dashicons dashicons-location" style="vertical-align:middle"></span>
-                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_ubicacion"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_conv_ubicacion"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
@@ -52,12 +52,12 @@
                 <div class="wp-block-group" style="margin-top:var(--wp--preset--spacing--10)">
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9rem","fontWeight":"700"}}} -->
                     <p style="font-size:0.9rem;font-weight:700">
-                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_precio_general","type":"price"} /-->
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_conv_precio_general","type":"price"} /-->
                     </p>
                     <!-- /wp:paragraph -->
                     <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8rem","color":{"text":"#888888"}}} -->
                     <p style="color:#888888;font-size:0.8rem">
-                        <!-- wp:convoca-common/post-meta-field {"metaField":"_bde_plazas_disponibles"} /--> plazas
+                        <!-- wp:convoca-common/post-meta-field {"metaField":"_conv_plazas_disponibles"} /--> plazas
                     </p>
                     <!-- /wp:paragraph -->
                 </div>
