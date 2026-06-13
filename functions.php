@@ -555,7 +555,7 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 		return '';
 	}
 
-	$meta_key = '_bde_' . sanitize_key($atts['field']);
+	$meta_key = '_conv_' . sanitize_key($atts['field']);
 	$value = get_post_meta($id, $meta_key, true);
 
 	if (empty($value)) {
