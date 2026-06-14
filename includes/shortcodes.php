@@ -106,5 +106,5 @@ add_shortcode('convoca_mi_perfil', function () {
         $insc_html .= '<p>' . __('No tienes inscripciones actives en este momento.', 'convoca-theme') . '</p>';
     }
 
-    return '<div class="biodevas-my-profile">' . $member_html . $insc_html . '</div>';
+    return '<div class="convoca-my-profile">' . $member_html . $insc_html . '</div>';
 });

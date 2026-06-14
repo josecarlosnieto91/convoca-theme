@@ -28,8 +28,8 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            <!-- wp:group {"className":"biodevas-price-card","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group biodevas-price-card">
+            <!-- wp:group {"className":"convoca-price-card","layout":{"type":"constrained"}} -->
+            <div class="wp-block-group convoca-price-card">
                 <!-- wp:heading {"level":3,"textAlign":"center"} -->
                 <h3 class="wp-block-heading has-text-align-center"></h3><!-- /wp:heading -->
                 <!-- wp:paragraph {"align":"center","className":"price-amount"} -->
@@ -54,8 +54,8 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            <!-- wp:group {"className":"biodevas-price-card featured","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group biodevas-price-card featured">
+            <!-- wp:group {"className":"convoca-price-card featured","layout":{"type":"constrained"}} -->
+            <div class="wp-block-group convoca-price-card featured">
                 <!-- wp:heading {"level":3,"textAlign":"center"} -->
                 <h3 class="wp-block-heading has-text-align-center"></h3><!-- /wp:heading -->
                 <!-- wp:paragraph {"align":"center","className":"price-amount"} -->
@@ -81,8 +81,8 @@
 
         <!-- wp:column -->
         <div class="wp-block-column">
-            <!-- wp:group {"className":"biodevas-price-card","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group biodevas-price-card">
+            <!-- wp:group {"className":"convoca-price-card","layout":{"type":"constrained"}} -->
+            <div class="wp-block-group convoca-price-card">
                 <!-- wp:heading {"level":3,"textAlign":"center"} -->
                 <h3 class="wp-block-heading has-text-align-center"></h3><!-- /wp:heading -->
                 <!-- wp:paragraph {"align":"center","className":"price-amount"} -->

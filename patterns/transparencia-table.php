@@ -23,8 +23,8 @@
     <div style="height:var(--wp--preset--spacing--20)" aria-hidden="true" class="wp-block-spacer"></div>
     <!-- /wp:spacer -->
 
-    <!-- wp:table {"className":"is-style-biodevas","style":{"border":{"radius":"12px"}}} -->
-    <figure class="wp-block-table is-style-biodevas" style="border-radius:12px">
+    <!-- wp:table {"className":"is-style-convoca","style":{"border":{"radius":"12px"}}} -->
+    <figure class="wp-block-table is-style-convoca" style="border-radius:12px">
         <table>
             <thead>
                 <tr>

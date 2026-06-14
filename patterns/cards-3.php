@@ -2,7 +2,7 @@
 /**
  * Title: 3 tarjetas de contenido
  * Slug: convoca/cards-3
- * Categories: convoca, biodevas-layout
+ * Categories: convoca, convoca-layout
  * Description: Grid de 3 tarjetas con icono, título y descripción.
  * Keywords: tarjetas, cards, grid, columnas
  */

@@ -2,13 +2,13 @@
 /**
  * Title: Contador de estadísticas
  * Slug: convoca/stats
- * Categories: convoca, biodevas-layout
+ * Categories: convoca, convoca-layout
  * Description: Franja con 4 columnas de estadísticas sobre fondo oscuro.
  * Keywords: stats, estadísticas, cifras, números
  */
 ?>
-<!-- wp:group {"gradient":"stats-dark","textColor":"blanco","className":"biodevas-stats","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
-<div class="wp-block-group biodevas-stats has-stats-dark-gradient-background has-background has-blanco-color has-text-color"
+<!-- wp:group {"gradient":"stats-dark","textColor":"blanco","className":"convoca-stats","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group convoca-stats has-stats-dark-gradient-background has-background has-blanco-color has-text-color"
     style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
     <!-- wp:columns {"isStackedOnMobile":true} -->
     <div class="wp-block-columns is-stacked-on-mobile">

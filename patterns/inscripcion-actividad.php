@@ -35,8 +35,8 @@
 
         <!-- wp:column {"width":"45%"} -->
         <div class="wp-block-column" style="flex-basis:45%">
-            <!-- wp:group {"className":"biodevas-form","style":{"border":{"radius":"12px","width":"2px","color":"var:preset|color|naranja"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"backgroundColor":"blanco","layout":{"type":"constrained"}} -->
-            <div class="wp-block-group biodevas-form has-blanco-background-color has-background has-border-color has-naranja-border-color"
+            <!-- wp:group {"className":"convoca-form","style":{"border":{"radius":"12px","width":"2px","color":"var:preset|color|naranja"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"backgroundColor":"blanco","layout":{"type":"constrained"}} -->
+            <div class="wp-block-group convoca-form has-blanco-background-color has-background has-border-color has-naranja-border-color"
                 style="border-color:var(--wp--preset--color--naranja);border-width:2px;border-radius:12px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
                 <!-- wp:heading {"level":3,"textColor":"naranja","fontFamily":"display"} -->
                 <h3 class="wp-block-heading has-naranja-color has-text-color has-display-font-family">Inscripción</h3>

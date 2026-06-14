@@ -2,7 +2,7 @@
 /**
  * Title: Llamada a la acción
  * Slug: convoca/cta
- * Categories: convoca, biodevas-layout
+ * Categories: convoca, convoca-layout
  * Description: Sección CTA con título, subtítulo y botones sobre fondo oscuro.
  * Keywords: cta, llamada, acción, botones
  */

@@ -15,7 +15,7 @@ defined('ABSPATH') || exit;
  * One-time utility: Reset database-cached templates/template parts.
  *
  * WordPress stores customized templates in the database (wp_posts), which override
- * theme files. Visit: ?biodevas_reset_templates=1 while logged in as admin to clear them.
+ * theme files. Visit: ?convoca_reset_templates=1 while logged in as admin to clear them.
  * Remove this block after running it once.
  */
 /**
@@ -26,14 +26,14 @@ defined('ABSPATH') || exit;
  */
 add_action('admin_init', function () {
 	if (
-		!empty($_GET['biodevas_reset_templates'])
+		!empty($_GET['convoca_reset_templates'])
 		&& current_user_can('manage_options')
-		&& wp_verify_nonce($_GET['_wpnonce'] ?? '', 'biodevas_reset_templates')
+		&& wp_verify_nonce($_GET['_wpnonce'] ?? '', 'convoca_reset_templates')
 		&& is_admin()
 		&& wp_doing_ajax() === false
 	) {
 		// Rate limit: only once per hour
-		$reset_key = 'biodevas_templates_reset_time';
+		$reset_key = 'convoca_templates_reset_time';
 		$last_reset = get_option($reset_key, 0);
 		if (time() - $last_reset < HOUR_IN_SECONDS) {
 			add_action('admin_notices', function () {
@@ -153,7 +153,7 @@ function convoca_register_block_styles(): void
 
 	// Table: Biodevas styled table.
 	register_block_style('core/table', [
-		'name' => 'biodevas',
+		'name' => 'convoca',
 		'label' => __('Tabla Convoca', 'convoca-theme'),
 	]);
 
@@ -206,7 +206,7 @@ add_filter('style_loader_tag', 'convoca_style_loader_tag', 10, 2);
 function convoca_critical_css(): void
 {
 	?>
-	<style id="biodevas-critical-css">
+	<style id="convoca-critical-css">
 		:root { --wp--preset--color--naranja: #ff8700; --wp--preset--color--blanco: #ffffff; --wp--preset--color--antracita: #1a1a1a; --wp--preset--spacing--20: 1rem; --wp--custom--transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 		body { margin: 0; font-family: 'Lato', sans-serif; background: var(--wp--preset--color--blanco); color: var(--wp--preset--color--antracita); overflow-x: hidden; }
 		.site-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px) saturate(180%); border-bottom: 1px solid rgba(0, 0, 0, 0.06); transition: box-shadow var(--wp--custom--transition); padding: var(--wp--preset--spacing--20) 0; }
@@ -291,7 +291,7 @@ function convoca_admin_menu(): void
 		__('Ayuda Convoca', 'convoca-theme'),
 		__('Ayuda Convoca', 'convoca-theme'),
 		'edit_theme_options',
-		'biodevas-help',
+		'convoca-help',
 		'convoca_help_page_html'
 	);
 }
@@ -308,7 +308,7 @@ function convoca_help_page_html(): void
 	$has_members = post_type_exists('miembro');
 	$miembros_count = $has_members ? wp_count_posts('miembro') : (object)[];
 	?>
-	<div class="wrap biodevas-admin-page">
+	<div class="wrap convoca-admin-page">
 		<h1><?php echo esc_html__('Configuración y Ayuda — Theme Convoca', 'convoca-theme'); ?></h1>
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
@@ -329,7 +329,7 @@ function convoca_help_page_html(): void
 							<ul>
 								<li><strong><?php echo esc_html__('Versión:', 'convoca-theme'); ?></strong> <?php echo esc_html($theme->get('Version')); ?></li>
 								<li><strong><?php echo esc_html__('Autor:', 'convoca-theme'); ?></strong> <a href="<?php echo esc_url($theme->get('AuthorURI')); ?>" target="_blank"><?php echo esc_html($theme->get('Author')); ?></a></li>
-								<li><strong><?php echo esc_html__('Documentación:', 'convoca-theme'); ?></strong> <a href="https://github.com/Biodevas/biodevas-theme/wiki" target="_blank"><?php echo esc_html__('Ver Wiki en GitHub', 'convoca-theme'); ?></a></li>
+								<li><strong><?php echo esc_html__('Documentación:', 'convoca-theme'); ?></strong> <a href="https://github.com/josecarlosnieto91/convoca-theme/wiki" target="_blank"><?php echo esc_html__('Ver Wiki en GitHub', 'convoca-theme'); ?></a></li>
 							</ul>
 							<hr>
 							<a href="<?php echo admin_url('site-editor.php'); ?>" class="button button-primary"><?php echo esc_html__('Abrir Editor de Sitios (FSE)', 'convoca-theme'); ?></a>
@@ -397,7 +397,7 @@ function convoca_help_page_html(): void
 							
 							<hr>
 							<p><strong><?php echo esc_html__('Nota:', 'convoca-theme'); ?></strong> <?php echo esc_html__('Si las plantillas no se visualizan correctamente, puedes intentar reiniciarlas.', 'convoca-theme'); ?></p>
-							<a href="<?php echo esc_url(wp_nonce_url(admin_url('themes.php?page=biodevas-help&biodevas_reset_templates=1'), 'biodevas_reset_templates')); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js(__('¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme.', 'convoca-theme')); ?>');"><?php echo esc_html__('Reiniciar Plantillas a valores de fábrica', 'convoca-theme'); ?></a>
+							<a href="<?php echo esc_url(wp_nonce_url(admin_url('themes.php?page=convoca-help&convoca_reset_templates=1'), 'convoca_reset_templates')); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js(__('¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme.', 'convoca-theme')); ?>');"><?php echo esc_html__('Reiniciar Plantillas a valores de fábrica', 'convoca-theme'); ?></a>
 						</div>
 					</div>
 
@@ -407,10 +407,10 @@ function convoca_help_page_html(): void
 						<div class="inside">
 							<p><?php echo esc_html__('Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Biodevas:', 'convoca-theme'); ?></p>
 							<ul style="list-style: disc; padding-left: 20px;">
-								<li><code>biodevas/hero</code>: <?php echo esc_html__('Cabecera principal con texto.', 'convoca-theme'); ?></li>
-								<li><code>biodevas/cards-grid</code>: <?php echo esc_html__('Cuadrícula de actividades o noticias.', 'convoca-theme'); ?></li>
-								<li><code>biodevas/stats-bar</code>: <?php echo esc_html__('Barra de estadísticas animada.', 'convoca-theme'); ?></li>
-								<li><code>biodevas/inscripcion-actividad</code>: <?php echo esc_html__('Formulario de inscripción integrado.', 'convoca-theme'); ?></li>
+								<li><code>convoca/hero</code>: <?php echo esc_html__('Cabecera principal con texto.', 'convoca-theme'); ?></li>
+								<li><code>convoca/cards-grid</code>: <?php echo esc_html__('Cuadrícula de actividades o noticias.', 'convoca-theme'); ?></li>
+								<li><code>convoca/stats-bar</code>: <?php echo esc_html__('Barra de estadísticas animada.', 'convoca-theme'); ?></li>
+								<li><code>convoca/inscripcion-actividad</code>: <?php echo esc_html__('Formulario de inscripción integrado.', 'convoca-theme'); ?></li>
 							</ul>
 						</div>
 					</div>
@@ -420,11 +420,11 @@ function convoca_help_page_html(): void
 		</div>
 	</div>
 	<style>
-		.biodevas-admin-page h1 { font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 20px; }
-		.biodevas-admin-page .postbox .hndle { cursor: default; }
-		.biodevas-admin-page .inside ul { margin-top: 10px; }
-		.biodevas-admin-page .button-link-delete { color: #d63638; text-decoration: none; }
-		.biodevas-admin-page .button-link-delete:hover { color: #b32d2e; }
+		.convoca-admin-page h1 { font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 20px; }
+		.convoca-admin-page .postbox .hndle { cursor: default; }
+		.convoca-admin-page .inside ul { margin-top: 10px; }
+		.convoca-admin-page .button-link-delete { color: #d63638; text-decoration: none; }
+		.convoca-admin-page .button-link-delete:hover { color: #b32d2e; }
 	</style>
 	<?php
 }
@@ -435,7 +435,7 @@ function convoca_help_page_html(): void
 function convoca_editor_fonts(): void
 {
 	wp_enqueue_style(
-		'biodevas-editor-google-fonts',
+		'convoca-editor-google-fonts',
 		'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap',
 		array(),
 		null
@@ -455,14 +455,14 @@ function convoca_enqueue_scripts(): void
 
 	wp_enqueue_script(
 		'convoca-theme',
-		get_theme_file_uri('assets/js/biodevas-theme.js'),
+		get_theme_file_uri('assets/js/convoca-theme.js'),
 		[],
 		$version,
 		['strategy' => 'defer', 'in_footer' => true]
 	);
 
 	wp_enqueue_script(
-		'biodevas-dark-mode',
+		'convoca-dark-mode',
 		get_theme_file_uri('assets/js/dark-mode.js'),
 		[],
 		$version,
@@ -476,10 +476,10 @@ add_action('wp_enqueue_scripts', 'convoca_enqueue_scripts');
  */
 function convoca_dark_mode_inline_init(): void {
 	?>
-	<script id="biodevas-dark-mode-init">
+	<script id="convoca-dark-mode-init">
 		(function() {
 			try {
-				const mode = localStorage.getItem('biodevas-theme-mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+				const mode = localStorage.getItem('convoca-theme-mode') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 				if (mode === 'dark') document.documentElement.classList.add('dark-mode'), document.body.classList.add('dark-mode');
 			} catch (e) {}
 		})();
@@ -507,7 +507,7 @@ add_shortcode('biodevas_dark_mode_toggle', function() {
 add_shortcode('biodevas_inscripcion_actual', function () {
 	if (!is_singular('actividad')) {
 		if (current_user_can('manage_options')) {
-			return '<div class="biodevas-alert biodevas-alert--info" style="display:block;padding:15px;margin:10px 0;">' . esc_html__('💡 Este shortcode solo funciona en la página de una actividad individual.', 'convoca-theme') . '</div>';
+			return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:15px;margin:10px 0;">' . esc_html__('💡 Este shortcode solo funciona en la página de una actividad individual.', 'convoca-theme') . '</div>';
 		}
 		return '';
 	}
@@ -670,7 +670,7 @@ function convoca_actividad_schema(): void
 		]
 	];
 
-	echo "\n" . '<script type="application/ld+json" id="biodevas-event-schema">' . "\n";
+	echo "\n" . '<script type="application/ld+json" id="convoca-event-schema">' . "\n";
 	echo json_encode($schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
 	echo "\n" . '</script>' . "\n";
 }
@@ -680,7 +680,7 @@ add_action('wp_head', 'convoca_actividad_schema');
 add_shortcode('bdv_calendario', function () {
     $activities = \Biodevas\Enroll\CPT_Actividad::get_upcoming(20);
     if (empty($activities)) {
-        return '<div class="biodevas-alert biodevas-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
+        return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
     }
     $html = '<div class="bdv-calendario-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin:30px 0;">';
     foreach ($activities as $a) {
