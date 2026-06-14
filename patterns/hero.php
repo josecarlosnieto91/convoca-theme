@@ -2,7 +2,7 @@
 /**
  * Title: Hero principal
  * Slug: convoca/hero
- * Categories: biodevas, biodevas-layout
+ * Categories: convoca, biodevas-layout
  * Description: Sección hero de portada con imagen destacada, degradado, título y botones CTA.
  * Keywords: hero, portada, cover
  */

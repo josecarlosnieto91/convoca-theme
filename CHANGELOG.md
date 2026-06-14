@@ -17,7 +17,7 @@
 - Actualización: Documentación sincronizada (versión 2.5.0)
 
 ## 2.4.0
-- **Branding:** Sincronización de paleta de colores (Lila/Naranja) para los componentes de `biodevas-members` (Tarjetas de socio).
+- **Branding:** Sincronización de paleta de colores (Lila/Naranja) para los componentes de `convoca-members` (Tarjetas de socio).
 - **Consistencia:** Actualizada la lógica de previsualización de bloques para alinearse con las mejoras de estabilidad de los plugins del ecosistema.
 
 ## 2.3.0

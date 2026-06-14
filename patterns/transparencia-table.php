@@ -2,7 +2,7 @@
 /**
  * Title: Tabla de transparencia
  * Slug: convoca/transparencia-table
- * Categories: biodevas
+ * Categories: convoca
  * Description: Tabla estilizada para datos de transparencia (ingresos, gastos, balance).
  * Keywords: tabla, transparencia, finanzas
  */

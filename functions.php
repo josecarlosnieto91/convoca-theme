@@ -192,7 +192,7 @@ add_filter('wp_resource_hints', 'convoca_resource_hints', 10, 2);
  */
 function convoca_style_loader_tag(string $tag, string $handle): string
 {
-	if ('biodevas-google-fonts' === $handle) {
+	if ('convoca-google-fonts' === $handle) {
 		return str_replace("rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $tag) .
 			'<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap"></noscript>';
 	}
@@ -273,12 +273,12 @@ function convoca_theme_scripts()
 	// Google Fonts: Lato + Outfit.
 	$theme_version = wp_get_theme()->get('Version') ?: '1.0';
 	wp_enqueue_style(
-		'biodevas-google-fonts',
+		'convoca-google-fonts',
 		'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap',
 		array(),
 		$theme_version
 	);
-	wp_enqueue_style('biodevas-theme-style', get_stylesheet_uri(), array('biodevas-google-fonts'), $theme_version);
+	wp_enqueue_style('convoca-theme-style', get_stylesheet_uri(), array('convoca-google-fonts'), $theme_version);
 }
 add_action('wp_enqueue_scripts', 'convoca_theme_scripts');
 
@@ -454,7 +454,7 @@ function convoca_enqueue_scripts(): void
 	$version = wp_get_theme()->get('Version');
 
 	wp_enqueue_script(
-		'biodevas-theme',
+		'convoca-theme',
 		get_theme_file_uri('assets/js/biodevas-theme.js'),
 		[],
 		$version,
@@ -531,7 +531,7 @@ add_shortcode('biodevas_inscripcion_actual', function () {
  */
 add_action('pre_get_posts', function ($query) {
 	if (!is_admin() && $query->is_post_type_archive('actividad') && $query->is_main_query()) {
-		$query->set('meta_key', '_bde_fecha_inicio');
+		$query->set('meta_key', '_conv_fecha_inicio');
 		$query->set('meta_compare', '>=');
 		$query->set('meta_value', wp_date('Y-m-d'));
 		$query->set('orderby', 'meta_value');
@@ -568,9 +568,6 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 	}
 	if ($atts['field'] === 'plazas_disponibles') {
 		$total = get_post_meta($id, '_conv_plazas_totales', true);
-		if (empty($total)) {
-			$total = get_post_meta($id, '_conv_plazas_totales', true);
-		}
 		return (int)$value . ' / ' . (int)$total;
 	}
 	if ($atts['field'] === 'fecha_inicio' || $atts['field'] === 'fecha_fin') {
@@ -594,7 +591,7 @@ function convoca_actividad_schema(): void
 	$post = get_post($post_id);
 
 	// Get Meta
-	$start_date = get_post_meta($post_id, '_bde_fecha_inicio', true);
+	$start_date = get_post_meta($post_id, '_conv_fecha_inicio', true);
 	$end_date   = get_post_meta($post_id, '_conv_fecha_fin', true);
 	$location   = get_post_meta($post_id, '_conv_ubicacion', true);
 	$price      = get_post_meta($post_id, '_conv_precio_general', true);
@@ -621,8 +618,8 @@ function convoca_actividad_schema(): void
 	$availability = ($plazas_dis > 0) ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut';
 
 	// Get lowest price from all options
-	$precio_socio = get_post_meta($post_id, '_bde_precio_socio', true);
-	$precio_socio_dia = get_post_meta($post_id, '_bde_precio_socio_dia', true);
+	$precio_socio = get_post_meta($post_id, '_conv_precio_socio', true);
+	$precio_socio_dia = get_post_meta($post_id, '_conv_precio_socio_dia', true);
 	$precio_general = get_post_meta($post_id, '_conv_precio_general', true);
 	
 	$prices = array_filter([$precio_socio, $precio_socio_dia, $precio_general], function($v) {
@@ -690,7 +687,7 @@ add_shortcode('bdv_calendario', function () {
         $id = $a->ID;
         $title = esc_html(get_the_title($id));
         $excerpt = esc_html(get_the_excerpt($id) ?: wp_trim_words(strip_tags(get_post_field('post_content', $id)), 30));
-        $fecha = get_post_meta($id, '_bde_fecha_inicio', true);
+        $fecha = get_post_meta($id, '_conv_fecha_inicio', true);
         $fecha_fin = get_post_meta($id, '_conv_fecha_fin', true);
         $lugar = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
         $precio = get_post_meta($id, '_conv_precio', true);
@@ -730,14 +727,13 @@ add_shortcode('bdv_calendario', function () {
 add_action('init', function () {
     $keys = ['fecha_inicio', 'fecha_fin', 'lugar', 'precio', 'plazas_disponibles', 'plazas_totales', 'difultad', 'requires_payment'];
     foreach ($keys as $key) {
-        register_meta('post', '_bde_' . $key, [
-            'object_subtype' => 'actividad',
+        register_meta('post', '_conv_' . $key, [
             'type' => 'string',
-            'description' => 'Biodevas Actividad: ' . $key,
+            'description' => 'Convoca Actividad: ' . $key,
             'single' => true,
             'show_in_rest' => true,
             'default' => '',
-        ]);
+        ], 'actividad');
     }
 });
 // ─── Process shortcodes in rendered blocks (FSE compatibility) ───
@@ -758,7 +754,7 @@ add_filter('render_block_core/post-template', function ($block_content, $block) 
         
         switch ($m[1]) {
             case 'FECHA_INICIO':
-                $v = get_post_meta($id, '_bde_fecha_inicio', true);
+                $v = get_post_meta($id, '_conv_fecha_inicio', true);
                 return $v ? date_i18n('j M Y', strtotime($v)) : '';
             case 'LUGAR':
                 $v = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
@@ -782,7 +778,7 @@ add_filter('render_block', function ($html, $block) {
     if (!$post || get_post_type($post) !== 'actividad') return $html;
     $id = $post->ID;
     $map = [
-        '%%FECHA_INICIO%%' => function() use($id) { $v = get_post_meta($id, '_bde_fecha_inicio', true); return $v ? date_i18n('j M Y', strtotime($v)) : ''; },
+        '%%FECHA_INICIO%%' => function() use($id) { $v = get_post_meta($id, '_conv_fecha_inicio', true); return $v ? date_i18n('j M Y', strtotime($v)) : ''; },
         '%%LUGAR%%' => function() use($id) { return esc_html(get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true) ?: ''); },
         '%%PRECIO%%' => function() use($id) { $p = (float) get_post_meta($id, '_conv_precio', true); return $p > 0 ? number_format($p, 2, ',', '.') . ' €' : 'Gratis'; },
         '%%PLAZAS%%' => function() use($id) { return ((int) get_post_meta($id, '_conv_plazas_disponibles', true)) . ' / ' . ((int) get_post_meta($id, '_conv_plazas_totales', true)); },

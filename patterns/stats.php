@@ -2,7 +2,7 @@
 /**
  * Title: Contador de estadísticas
  * Slug: convoca/stats
- * Categories: biodevas, biodevas-layout
+ * Categories: convoca, biodevas-layout
  * Description: Franja con 4 columnas de estadísticas sobre fondo oscuro.
  * Keywords: stats, estadísticas, cifras, números
  */

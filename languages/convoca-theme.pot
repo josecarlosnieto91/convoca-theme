@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the convoca-theme package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: convoca-theme 1.0\n"
+"Report-Msgid-Bugs-To: dev@getconvoca.app\n"
+"POT-Creation-Date: 2026-06-14 13:31+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: convoca-theme/includes/shortcodes.php:18
+msgid "Inicia sesión para ver tu perfil."
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:20
+msgid "Iniciar sesión"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:50
+msgid "Tu condición de socio/a"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:51
+msgid "Estado"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:54
+msgid "Plan"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:56
+msgid "Próxima renovación"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:65
+msgid "Aún no eres socio/a de Biodevas."
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:67
+msgid "Hacerse socio/a"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:82
+msgid "Tus inscripciones activas"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:101
+msgid "Ver actividad"
+msgstr ""
+
+#: convoca-theme/includes/shortcodes.php:106
+msgid "No tienes inscripciones actives en este momento."
+msgstr ""
+
+#: convoca-theme/functions.php:109
+msgid "Biodevas"
+msgstr ""
+
+#: convoca-theme/functions.php:110
+msgid "Patrones del theme Biodevas."
+msgstr ""
+
+#: convoca-theme/functions.php:113
+msgid "Biodevas — Layout"
+msgstr ""
+
+#: convoca-theme/functions.php:114
+msgid "Secciones de página completas."
+msgstr ""
+
+#: convoca-theme/functions.php:127
+msgid "Destacado (Lead)"
+msgstr ""
+
+#: convoca-theme/functions.php:133
+msgid "Tarjeta"
+msgstr ""
+
+#: convoca-theme/functions.php:139
+msgid "Caja Coordinador"
+msgstr ""
+
+#: convoca-theme/functions.php:145
+msgid "Cristal Esmerilado"
+msgstr ""
+
+#: convoca-theme/functions.php:151
+msgid "Overlay Topográfico"
+msgstr ""
+
+#: convoca-theme/functions.php:157
+msgid "Tabla Convoca"
+msgstr ""
+
+#: convoca-theme/functions.php:163
+msgid "Secundario"
+msgstr ""
+
+#: convoca-theme/functions.php:169
+msgid "Elevada"
+msgstr ""
+
+#: convoca-theme/functions.php:254
+msgid "Ir al contenido"
+msgstr ""
+
+#: convoca-theme/functions.php:291 convoca-theme/functions.php:292
+msgid "Ayuda Convoca"
+msgstr ""
+
+#: convoca-theme/functions.php:312
+msgid "Configuración y Ayuda — Theme Convoca"
+msgstr ""
+
+#: convoca-theme/functions.php:316
+#, php-format
+msgid "Bienvenido a Biodevas v%s"
+msgstr ""
+
+#: convoca-theme/functions.php:317
+msgid ""
+"Este es un theme FSE (Full Site Editing) optimizado para la Asociación "
+"Biodevas. Aquí encontrarás una guía rápida de uso."
+msgstr ""
+
+#: convoca-theme/functions.php:327
+msgid "Información del Theme"
+msgstr ""
+
+#: convoca-theme/functions.php:330
+msgid "Versión:"
+msgstr ""
+
+#: convoca-theme/functions.php:331
+msgid "Autor:"
+msgstr ""
+
+#: convoca-theme/functions.php:332
+msgid "Documentación:"
+msgstr ""
+
+#: convoca-theme/functions.php:332
+msgid "Ver Wiki en GitHub"
+msgstr ""
+
+#: convoca-theme/functions.php:335
+msgid "Abrir Editor de Sitios (FSE)"
+msgstr ""
+
+#: convoca-theme/functions.php:342 convoca-theme/functions.php:355
+msgid "Estado de Inscripciones"
+msgstr ""
+
+#: convoca-theme/functions.php:344
+msgid "Resumen de participación actual (Biodevas Enroll):"
+msgstr ""
+
+#: convoca-theme/functions.php:346
+msgid "Confirmadas:"
+msgstr ""
+
+#: convoca-theme/functions.php:347 convoca-theme/functions.php:370
+msgid "Pendientes:"
+msgstr ""
+
+#: convoca-theme/functions.php:348
+msgid "Canceladas:"
+msgstr ""
+
+#: convoca-theme/functions.php:350
+msgid "Gestionar Inscripciones"
+msgstr ""
+
+#: convoca-theme/functions.php:357
+msgid "El plugin Biodevas Enroll no está activo."
+msgstr ""
+
+#: convoca-theme/functions.php:365 convoca-theme/functions.php:377
+msgid "Estado de Socios/Miembros"
+msgstr ""
+
+#: convoca-theme/functions.php:367
+msgid "Resumen de la comunidad (Biodevas Members):"
+msgstr ""
+
+#: convoca-theme/functions.php:369
+msgid "Activos:"
+msgstr ""
+
+#: convoca-theme/functions.php:372
+msgid "Ver Miembros"
+msgstr ""
+
+#: convoca-theme/functions.php:379
+msgid "El plugin Biodevas Members no está activo."
+msgstr ""
+
+#: convoca-theme/functions.php:390
+msgid "Guía de Plantillas y Páginas"
+msgstr ""
+
+#: convoca-theme/functions.php:392
+msgid "Página de Actividad"
+msgstr ""
+
+#: convoca-theme/functions.php:393
+msgid ""
+"Usa la plantilla \"Página de Actividad\" para las páginas que describen una "
+"actividad específica. Incluye automáticamente el formulario de inscripción."
+msgstr ""
+
+#: convoca-theme/functions.php:395
+msgid "Página de Proyecto"
+msgstr ""
+
+#: convoca-theme/functions.php:396
+msgid ""
+"Usa la plantilla \"Página de Proyecto\" para secciones de proyectos de largo "
+"recorrido. Incluye metadatos específicos del proyecto."
+msgstr ""
+
+#: convoca-theme/functions.php:399
+msgid "Nota:"
+msgstr ""
+
+#: convoca-theme/functions.php:399
+msgid ""
+"Si las plantillas no se visualizan correctamente, puedes intentar "
+"reiniciarlas."
+msgstr ""
+
+#: convoca-theme/functions.php:400
+msgid ""
+"¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el "
+"Editor de Sitios y volverá a los archivos del theme."
+msgstr ""
+
+#: convoca-theme/functions.php:400
+msgid "Reiniciar Plantillas a valores de fábrica"
+msgstr ""
+
+#: convoca-theme/functions.php:406
+msgid "Patrones Convoca"
+msgstr ""
+
+#: convoca-theme/functions.php:408
+msgid ""
+"Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > "
+"Biodevas:"
+msgstr ""
+
+#: convoca-theme/functions.php:410
+msgid "Cabecera principal con texto."
+msgstr ""
+
+#: convoca-theme/functions.php:411
+msgid "Cuadrícula de actividades o noticias."
+msgstr ""
+
+#: convoca-theme/functions.php:412
+msgid "Barra de estadísticas animada."
+msgstr ""
+
+#: convoca-theme/functions.php:413
+msgid "Formulario de inscripción integrado."
+msgstr ""
+
+#: convoca-theme/functions.php:510
+msgid ""
+"💡 Este shortcode solo funciona en la página de una actividad individual."
+msgstr ""

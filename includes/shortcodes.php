@@ -15,9 +15,9 @@ add_shortcode('convoca_mi_perfil', function () {
     if (!is_user_logged_in()) {
         return sprintf(
             '<div class="bdv-profile-login">%s <a href="%s" class="button">%s</a></div>',
-            __('Inicia sesión para ver tu perfil.', 'biodevas-theme'),
+            __('Inicia sesión para ver tu perfil.', 'convoca-theme'),
             wp_login_url(get_permalink()),
-            __('Iniciar sesión', 'biodevas-theme')
+            __('Iniciar sesión', 'convoca-theme')
         );
     }
 
@@ -47,13 +47,13 @@ add_shortcode('convoca_mi_perfil', function () {
                 <p><strong>%s:</strong> %s</p>
                 <p><strong>%s:</strong> %s</p>
             </div>',
-            __('Tu condición de socio/a', 'biodevas-theme'),
-            __('Estado', 'biodevas-theme'),
+            __('Tu condición de socio/a', 'convoca-theme'),
+            __('Estado', 'convoca-theme'),
             esc_attr($estado),
             esc_html(ucfirst($estado)),
-            __('Plan', 'biodevas-theme'),
+            __('Plan', 'convoca-theme'),
             esc_html(ucfirst($plan)),
-            __('Próxima renovación', 'biodevas-theme'),
+            __('Próxima renovación', 'convoca-theme'),
             esc_html($renovacion)
         );
     } else {
@@ -62,9 +62,9 @@ add_shortcode('convoca_mi_perfil', function () {
                 <p>%s</p>
                 <a href="%s" class="button">%s</a>
             </div>',
-            __('Aún no eres socio/a de Biodevas.', 'biodevas-theme'),
+            __('Aún no eres socio/a de Biodevas.', 'convoca-theme'),
             home_url('/hazte-socio/'),
-            __('Hacerse socio/a', 'biodevas-theme')
+            __('Hacerse socio/a', 'convoca-theme')
         );
     }
 
@@ -74,17 +74,17 @@ add_shortcode('convoca_mi_perfil', function () {
         'posts_per_page' => -1,
         'meta_query' => [
             'relation' => 'AND',
-            ['key' => '_bde_email', 'value' => $email],
-            ['key' => '_bde_estado', 'value' => 'cancelada', 'compare' => '!='],
+            ['key' => '_conv_email', 'value' => $email],
+            ['key' => '_conv_estado', 'value' => 'cancelada', 'compare' => '!='],
         ]
     ]);
 
-    $insc_html = '<h3>' . __('Tus inscripciones activas', 'biodevas-theme') . '</h3>';
+    $insc_html = '<h3>' . __('Tus inscripciones activas', 'convoca-theme') . '</h3>';
     if (!empty($inscriptions)) {
         $insc_html .= '<div class="bdv-inscriptions-grid">';
         foreach ($inscriptions as $i) {
-            $actividad_id = get_post_meta($i->ID, '_bde_actividad_id', true);
-            $estado = get_post_meta($i->ID, '_bde_estado', true);
+            $actividad_id = get_post_meta($i->ID, '_conv_actividad_id', true);
+            $estado = get_post_meta($i->ID, '_conv_estado', true);
             $fecha = get_the_date('d/m/Y', $i->ID);
 
             $insc_html .= sprintf(
@@ -98,12 +98,12 @@ add_shortcode('convoca_mi_perfil', function () {
                 esc_html(ucfirst($estado)),
                 $fecha,
                 get_permalink($actividad_id),
-                __('Ver actividad', 'biodevas-theme')
+                __('Ver actividad', 'convoca-theme')
             );
         }
         $insc_html .= '</div>';
     } else {
-        $insc_html .= '<p>' . __('No tienes inscripciones actives en este momento.', 'biodevas-theme') . '</p>';
+        $insc_html .= '<p>' . __('No tienes inscripciones actives en este momento.', 'convoca-theme') . '</p>';
     }
 
     return '<div class="biodevas-my-profile">' . $member_html . $insc_html . '</div>';

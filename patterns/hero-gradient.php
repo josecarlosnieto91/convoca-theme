@@ -2,7 +2,7 @@
 /**
  * Title: Hero con degradado
  * Slug: convoca/hero-gradient
- * Categories: biodevas
+ * Categories: convoca
  * Description: Sección hero con imagen destacada, overlay degradado atardecer, título y botones CTA.
  * Keywords: hero, portada, banner
  */

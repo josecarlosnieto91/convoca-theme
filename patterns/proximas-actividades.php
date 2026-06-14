@@ -2,7 +2,7 @@
 /**
  * Title: Próximas actividades
  * Slug: convoca/proximas-actividades
- * Categories: biodevas, biodevas-layout
+ * Categories: convoca, biodevas-layout
  * Description: Grid de las próximas actividades del CPT actividad con metadatos.
  * Keywords: actividades, agenda, eventos
  */

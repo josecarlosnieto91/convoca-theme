@@ -2,7 +2,7 @@
 /**
  * Title: Barra de estadísticas
  * Slug: convoca/stats-bar
- * Categories: biodevas
+ * Categories: convoca
  * Description: Barra de 4 estadísticas con fondo degradado oscuro y valores en amarillo.
  * Keywords: estadísticas, números, stats, datos
  */

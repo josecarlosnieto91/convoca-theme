@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var storageKey = 'biodevas-theme-mode';
+    var storageKey = 'convoca-theme-mode';
     var html = document.documentElement;
     var toggles = document.querySelectorAll('.dark-mode-toggle');
 

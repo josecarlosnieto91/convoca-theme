@@ -6,8 +6,8 @@ Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
 Version: 2.6.4
 Requires at least: 6.4
-Tested up to: 6.7
-Requires PHP: 8.0
+Tested up to: 7.0
+Requires PHP: 8.1
 License:     GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: convoca
@@ -1406,4 +1406,87 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
    an explicit justification override. */
 .wp-block-buttons:not([class*="is-content-justification-"]) {
     justify-content: center;
+}
+/* ── PAGINACIÓN: Anterior / Siguiente ── */
+.wp-block-query-pagination {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.wp-block-query-pagination > .wp-block-query-pagination-previous,
+.wp-block-query-pagination > .wp-block-query-pagination-next {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    background: var(--wp--preset--color--gris-piedra, #f5f2ed);
+    color: var(--wp--preset--color--antracita, #2c2c2c) !important;
+    border: 1px solid transparent;
+}
+
+.wp-block-query-pagination > .wp-block-query-pagination-previous:hover,
+.wp-block-query-pagination > .wp-block-query-pagination-next:hover {
+    background: var(--wp--preset--color--naranja, #FF8700);
+    color: var(--wp--preset--color--blanco, #ffffff) !important;
+    border-color: var(--wp--preset--color--naranja, #FF8700);
+    transform: translateY(-1px);
+}
+
+/* Números de página */
+.wp-block-query-pagination-numbers {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.wp-block-query-pagination-numbers .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.2rem;
+    height: 2.2rem;
+    padding: 0 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    color: var(--wp--preset--color--antracita, #2c2c2c);
+    background: transparent;
+}
+
+.wp-block-query-pagination-numbers .page-numbers:hover:not(.current) {
+    background: var(--wp--preset--color--gris-piedra, #f5f2ed);
+}
+
+.wp-block-query-pagination-numbers .page-numbers.current {
+    background: var(--wp--preset--color--naranja, #FF8700);
+    color: var(--wp--preset--color--blanco, #ffffff);
+    font-weight: 600;
+}
+
+/* Dark mode */
+.dark-mode .wp-block-query-pagination > .wp-block-query-pagination-previous,
+.dark-mode .wp-block-query-pagination > .wp-block-query-pagination-next {
+    background: var(--wp--preset--color--gris-medio, #3a3a3a);
+    color: var(--wp--preset--color--blanco, #e0e0e0) !important;
+}
+
+.dark-mode .wp-block-query-pagination > .wp-block-query-pagination-previous:hover,
+.dark-mode .wp-block-query-pagination > .wp-block-query-pagination-next:hover {
+    background: var(--wp--preset--color--naranja, #FF8700);
+    color: var(--wp--preset--color--blanco, #ffffff) !important;
+}
+
+.dark-mode .wp-block-query-pagination-numbers .page-numbers {
+    color: var(--wp--preset--color--blanco, #e0e0e0);
+}
+
+.dark-mode .wp-block-query-pagination-numbers .page-numbers:hover:not(.current) {
+    background: var(--wp--preset--color--gris-medio, #3a3a3a);
 }

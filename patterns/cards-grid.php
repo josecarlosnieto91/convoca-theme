@@ -2,7 +2,7 @@
 /**
  * Title: Grid de tarjetas (3 columnas)
  * Slug: convoca/cards-grid
- * Categories: biodevas
+ * Categories: convoca
  * Description: Rejilla de 3 tarjetas con imagen, etiqueta, título, descripción y botón.
  * Keywords: tarjetas, grid, cards, proyectos
  */

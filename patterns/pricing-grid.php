@@ -2,7 +2,7 @@
 /**
  * Title: Grid de precios (membresías)
  * Slug: convoca/pricing-grid
- * Categories: biodevas
+ * Categories: convoca
  * Description: Tres planes de membresía en grid con el plan central destacado.
  * Keywords: precios, membresía, socios, pricing
  */

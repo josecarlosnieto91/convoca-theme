@@ -2,7 +2,7 @@
 /**
  * Title: Sección de inscripción a actividad
  * Slug: convoca/inscripcion-actividad
- * Categories: biodevas
+ * Categories: convoca
  * Description: Sección con formulario de inscripción (usa el shortcode dinámico para detectar la actividad actual).
  * Keywords: inscripción, actividad, formulario, plugin
  */

@@ -2,7 +2,7 @@
 /**
  * Title: Banner de contacto
  * Slug: convoca/contact-banner
- * Categories: biodevas, biodevas-layout
+ * Categories: convoca, biodevas-layout
  * Description: Franja de contacto con email, teléfono y redes sociales.
  * Keywords: contacto, email, teléfono, redes
  */

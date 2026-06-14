@@ -2,7 +2,7 @@
 /**
  * Title: Hero con imagen
  * Slug: convoca/hero-imagen
- * Categories: biodevas, biodevas-layout
+ * Categories: convoca, biodevas-layout
  * Description: Hero con imagen de fondo personalizable, overlay degradado, título y botones CTA.
  * Keywords: hero, portada, imagen, banner
  */
