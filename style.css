@@ -215,16 +215,16 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
      Sección 3 → marrón humo
      CTA → vino oscuro elegante
    ── */
-.dark-mode .bdv-section-deep-plum {
+.dark-mode .conv-section-deep-plum {
     background: linear-gradient(180deg, rgba(94, 34, 70, 0.08) 0%, rgba(42, 29, 36, 0.04) 100%) !important;
 }
-.dark-mode .bdv-section-wine {
+.dark-mode .conv-section-wine {
     background: linear-gradient(180deg, rgba(125, 0, 50, 0.06) 0%, rgba(31, 23, 27, 0.03) 100%) !important;
 }
-.dark-mode .bdv-section-smoke {
+.dark-mode .conv-section-smoke {
     background: rgba(42, 29, 36, 0.25) !important;
 }
-.dark-mode .bdv-section-coffee {
+.dark-mode .conv-section-coffee {
     background: rgba(36, 22, 29, 0.35) !important;
 }
 

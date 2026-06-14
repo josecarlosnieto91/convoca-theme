@@ -682,7 +682,7 @@ add_shortcode('bdv_calendario', function () {
     if (empty($activities)) {
         return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
     }
-    $html = '<div class="bdv-calendario-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin:30px 0;">';
+    $html = '<div class="conv-calendario-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin:30px 0;">';
     foreach ($activities as $a) {
         $id = $a->ID;
         $title = esc_html(get_the_title($id));

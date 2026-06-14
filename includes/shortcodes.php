@@ -14,7 +14,7 @@ if (!defined('ABSPATH')) {
 add_shortcode('convoca_mi_perfil', function () {
     if (!is_user_logged_in()) {
         return sprintf(
-            '<div class="bdv-profile-login">%s <a href="%s" class="button">%s</a></div>',
+            '<div class="conv-profile-login">%s <a href="%s" class="button">%s</a></div>',
             __('Inicia sesión para ver tu perfil.', 'convoca-theme'),
             wp_login_url(get_permalink()),
             __('Iniciar sesión', 'convoca-theme')
@@ -41,7 +41,7 @@ add_shortcode('convoca_mi_perfil', function () {
         $renovacion = get_post_meta($m->ID, '_bdv_fecha_renovacion', true);
 
         $member_html = sprintf(
-            '<div class="bdv-member-info card glass">
+            '<div class="conv-member-info card glass">
                 <h3>%s</h3>
                 <p><strong>%s:</strong> <span class="badge state-%s">%s</span></p>
                 <p><strong>%s:</strong> %s</p>
@@ -58,7 +58,7 @@ add_shortcode('convoca_mi_perfil', function () {
         );
     } else {
         $member_html = sprintf(
-            '<div class="bdv-member-info card glass">
+            '<div class="conv-member-info card glass">
                 <p>%s</p>
                 <a href="%s" class="button">%s</a>
             </div>',
@@ -81,14 +81,14 @@ add_shortcode('convoca_mi_perfil', function () {
 
     $insc_html = '<h3>' . __('Tus inscripciones activas', 'convoca-theme') . '</h3>';
     if (!empty($inscriptions)) {
-        $insc_html .= '<div class="bdv-inscriptions-grid">';
+        $insc_html .= '<div class="conv-inscriptions-grid">';
         foreach ($inscriptions as $i) {
             $actividad_id = get_post_meta($i->ID, '_conv_actividad_id', true);
             $estado = get_post_meta($i->ID, '_conv_estado', true);
             $fecha = get_the_date('d/m/Y', $i->ID);
 
             $insc_html .= sprintf(
-                '<div class="bdv-insc-item card secondary">
+                '<div class="conv-insc-item card secondary">
                     <h4>%s</h4>
                     <p><span class="badge state-%s">%s</span> — %s</p>
                     <a href="%s" class="link-arrow">%s</a>
