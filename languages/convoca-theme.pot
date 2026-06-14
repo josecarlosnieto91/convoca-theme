@@ -42,7 +42,7 @@ msgid "Próxima renovación"
 msgstr ""
 
 #: convoca-theme/includes/shortcodes.php:65
-msgid "Aún no eres socio/a de Biodevas."
+msgid "Aún no eres socio/a de Convoca."
 msgstr ""
 
 #: convoca-theme/includes/shortcodes.php:67
@@ -62,15 +62,15 @@ msgid "No tienes inscripciones actives en este momento."
 msgstr ""
 
 #: convoca-theme/functions.php:109
-msgid "Biodevas"
+msgid "Convoca"
 msgstr ""
 
 #: convoca-theme/functions.php:110
-msgid "Patrones del theme Biodevas."
+msgid "Patrones del theme Convoca."
 msgstr ""
 
 #: convoca-theme/functions.php:113
-msgid "Biodevas — Layout"
+msgid "Convoca — Layout"
 msgstr ""
 
 #: convoca-theme/functions.php:114
@@ -123,13 +123,13 @@ msgstr ""
 
 #: convoca-theme/functions.php:316
 #, php-format
-msgid "Bienvenido a Biodevas v%s"
+msgid "Bienvenido a Convoca v%s"
 msgstr ""
 
 #: convoca-theme/functions.php:317
 msgid ""
 "Este es un theme FSE (Full Site Editing) optimizado para la Asociación "
-"Biodevas. Aquí encontrarás una guía rápida de uso."
+"Convoca. Aquí encontrarás una guía rápida de uso."
 msgstr ""
 
 #: convoca-theme/functions.php:327
@@ -161,7 +161,7 @@ msgid "Estado de Inscripciones"
 msgstr ""
 
 #: convoca-theme/functions.php:344
-msgid "Resumen de participación actual (Biodevas Enroll):"
+msgid "Resumen de participación actual (Convoca Enroll):"
 msgstr ""
 
 #: convoca-theme/functions.php:346
@@ -181,7 +181,7 @@ msgid "Gestionar Inscripciones"
 msgstr ""
 
 #: convoca-theme/functions.php:357
-msgid "El plugin Biodevas Enroll no está activo."
+msgid "El plugin Convoca Enroll no está activo."
 msgstr ""
 
 #: convoca-theme/functions.php:365 convoca-theme/functions.php:377
@@ -189,7 +189,7 @@ msgid "Estado de Socios/Miembros"
 msgstr ""
 
 #: convoca-theme/functions.php:367
-msgid "Resumen de la comunidad (Biodevas Members):"
+msgid "Resumen de la comunidad (Convoca Members):"
 msgstr ""
 
 #: convoca-theme/functions.php:369
@@ -201,7 +201,7 @@ msgid "Ver Miembros"
 msgstr ""
 
 #: convoca-theme/functions.php:379
-msgid "El plugin Biodevas Members no está activo."
+msgid "El plugin Convoca Members no está activo."
 msgstr ""
 
 #: convoca-theme/functions.php:390
@@ -255,7 +255,7 @@ msgstr ""
 #: convoca-theme/functions.php:408
 msgid ""
 "Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > "
-"Biodevas:"
+"Convoca:"
 msgstr ""
 
 #: convoca-theme/functions.php:410

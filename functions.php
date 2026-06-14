@@ -1,11 +1,11 @@
 <?php
 /**
- * Biodevas Theme — Functions v2
+ * Convoca Theme — Functions v2
  *
  * Minimal functions.php for FSE Block Theme.
  * Handles: theme support, block patterns, block styles, performance, accessibility.
  *
- * @package Biodevas
+ * @package Convoca
  * @since   2.0.0
  */
 
@@ -37,7 +37,7 @@ add_action('admin_init', function () {
 		$last_reset = get_option($reset_key, 0);
 		if (time() - $last_reset < HOUR_IN_SECONDS) {
 			add_action('admin_notices', function () {
-				echo '<div class="notice notice-warning"><p><strong>Biodevas:</strong> El reinicio de plantillas solo puede hacerse una vez por hora. Espera unos minutos.</p></div>';
+				echo '<div class="notice notice-warning"><p><strong>Convoca:</strong> El reinicio de plantillas solo puede hacerse una vez por hora. Espera unos minutos.</p></div>';
 			});
 			return;
 		}
@@ -65,7 +65,7 @@ add_action('admin_init', function () {
 
 		update_option($reset_key, time());
 		add_action('admin_notices', function () use ($deleted) {
-			echo '<div class="notice notice-success"><p><strong>Biodevas:</strong> Se han reiniciado ' . $deleted . ' plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.</p></div>';
+			echo '<div class="notice notice-success"><p><strong>Convoca:</strong> Se han reiniciado ' . $deleted . ' plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.</p></div>';
 		});
 	}
 });
@@ -106,11 +106,11 @@ add_action('after_setup_theme', 'convoca_setup');
 function convoca_register_pattern_categories(): void
 {
 	register_block_pattern_category('convoca', [
-		'label' => __('Biodevas', 'convoca-theme'),
-		'description' => __('Patrones del theme Biodevas.', 'convoca-theme'),
+		'label' => __('Convoca', 'convoca-theme'),
+		'description' => __('Patrones del theme Convoca.', 'convoca-theme'),
 	]);
 	register_block_pattern_category('convoca-layout', [
-		'label' => __('Biodevas — Layout', 'convoca-theme'),
+		'label' => __('Convoca — Layout', 'convoca-theme'),
 		'description' => __('Secciones de página completas.', 'convoca-theme'),
 	]);
 }
@@ -151,7 +151,7 @@ function convoca_register_block_styles(): void
 		'label' => __('Overlay Topográfico', 'convoca-theme'),
 	]);
 
-	// Table: Biodevas styled table.
+	// Table: Convoca styled table.
 	register_block_style('core/table', [
 		'name' => 'convoca',
 		'label' => __('Tabla Convoca', 'convoca-theme'),
@@ -313,8 +313,8 @@ function convoca_help_page_html(): void
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
 			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo get_template_directory_uri(); ?>/assets/images/admin-banner.png'); background-size: cover; background-position: center; color: #fff;">
-				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf(__('Bienvenido a Biodevas v%s', 'convoca-theme'), $theme->get('Version')); ?></h2>
-				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__('Este es un theme FSE (Full Site Editing) optimizado para la Asociación Biodevas. Aquí encontrarás una guía rápida de uso.', 'convoca-theme'); ?></p>
+				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf(__('Bienvenido a Convoca v%s', 'convoca-theme'), $theme->get('Version')); ?></h2>
+				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__('Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso.', 'convoca-theme'); ?></p>
 			</div>
 		</div>
 
@@ -354,7 +354,7 @@ function convoca_help_page_html(): void
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Biodevas Enroll no está activo.', 'convoca-theme'); ?></p></div>
+							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Convoca Enroll no está activo.', 'convoca-theme'); ?></p></div>
 						</div>
 					</div>
 					<?php endif; ?>
@@ -376,7 +376,7 @@ function convoca_help_page_html(): void
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Biodevas Members no está activo.', 'convoca-theme'); ?></p></div>
+							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Convoca Members no está activo.', 'convoca-theme'); ?></p></div>
 						</div>
 					</div>
 					<?php endif; ?>
@@ -405,7 +405,7 @@ function convoca_help_page_html(): void
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Patrones Convoca', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Biodevas:', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Convoca:', 'convoca-theme'); ?></p>
 							<ul style="list-style: disc; padding-left: 20px;">
 								<li><code>convoca/hero</code>: <?php echo esc_html__('Cabecera principal con texto.', 'convoca-theme'); ?></li>
 								<li><code>convoca/cards-grid</code>: <?php echo esc_html__('Cuadrícula de actividades o noticias.', 'convoca-theme'); ?></li>
@@ -665,7 +665,7 @@ function convoca_actividad_schema(): void
 		],
 		'organizer'   => [
 			'@type' => 'Organization',
-			'name'  => 'Asociación Biodevas',
+			'name'  => 'Asociación Convoca',
 			'url'   => 'https://biodevas.org'
 		]
 	];

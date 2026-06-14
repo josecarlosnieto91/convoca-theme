@@ -1,6 +1,6 @@
 <?php
 /**
- * Custom shortcodes for the Biodevas theme.
+ * Custom shortcodes for the Convoca theme.
  */
 
 if (!defined('ABSPATH')) {
@@ -62,7 +62,7 @@ add_shortcode('convoca_mi_perfil', function () {
                 <p>%s</p>
                 <a href="%s" class="button">%s</a>
             </div>',
-            __('Aún no eres socio/a de Biodevas.', 'convoca-theme'),
+            sprintf(__('Aún no eres socio/a de %s.', 'convoca-theme'), get_bloginfo('name')),
             home_url('/hazte-socio/'),
             __('Hacerse socio/a', 'convoca-theme')
         );

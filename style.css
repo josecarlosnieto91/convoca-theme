@@ -1017,14 +1017,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 
 /* ---------- Tables ---------- */
 .convoca-table,
-.is-style-biodevas {
+.is-style-convoca {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.92rem;
 }
 
 .convoca-table th,
-.is-style-biodevas th {
+.is-style-convoca th {
     background: var(--wp--preset--color--naranja);
     color: var(--wp--preset--color--blanco);
     padding: 0.75rem 1rem;
@@ -1034,18 +1034,18 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 .convoca-table td,
-.is-style-biodevas td {
+.is-style-convoca td {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--wp--preset--color--gris-medio);
 }
 
 .convoca-table tr:nth-child(even),
-.is-style-biodevas tr:nth-child(even) {
+.is-style-convoca tr:nth-child(even) {
     background: var(--wp--preset--color--gris-piedra);
 }
 
 .convoca-table tr:hover,
-.is-style-biodevas tr:hover {
+.is-style-convoca tr:hover {
     background: rgba(255, 135, 0, 0.04);
 }
 

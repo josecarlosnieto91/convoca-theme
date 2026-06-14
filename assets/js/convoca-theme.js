@@ -1,5 +1,5 @@
 /**
- * Biodevas Theme — Frontend interactions v2
+ * Convoca Theme — Frontend interactions v2
  *
  * Scroll-to-top button, header scroll shadow, and scroll animations.
  */

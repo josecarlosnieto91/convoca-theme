@@ -20,7 +20,7 @@
             <h2 class="wp-block-heading has-x-large-font-size has-violeta-color has-text-color">Información de la actividad</h2>
             <!-- /wp:heading -->
             <!-- wp:paragraph {"style":{"color":{"text":"#555555"}}} -->
-            <p style="color:#555555">Completa el formulario para inscribirte en esta actividad. Si eres socio/a de Biodevas, el descuento se aplicará automáticamente.</p>
+            <p style="color:#555555">Completa el formulario para inscribirte en esta actividad. Si eres socio/a, el descuento se aplicará automáticamente.</p>
             <!-- /wp:paragraph -->
             <!-- wp:list {"style":{"color":{"text":"#666666"}}} -->
             <ul style="color:#666666">
