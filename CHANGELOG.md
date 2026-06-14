@@ -1,4 +1,4 @@
-# Changelog - Biodevas Theme
+# Changelog - Convoca Theme
 
 ## 2.6.0
 - **Rediseño visual:** Paleta naranja (#ff8700) como color primario dominante
@@ -30,4 +30,4 @@
 - **Optimización Mobile**: Gestos de cierre en menú (swipe), áreas de toque aumentadas y header dinámico.
 - **Core Web Vitals**: Precarga de fuentes, CSS crítico inline y carga diferida de JS.
 - **SEO Avanzado**: Datos estructurados JSON-LD (Event Schema) para actividades.
-- **Admin Help**: Nueva página en **Apariencia > Ayuda Biodevas** con guías y estadísticas.
+- **Admin Help**: Nueva página en **Apariencia > Ayuda Convoca** con guías y estadísticas.

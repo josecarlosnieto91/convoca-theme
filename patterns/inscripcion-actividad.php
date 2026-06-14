@@ -42,7 +42,7 @@
                 <h3 class="wp-block-heading has-naranja-color has-text-color has-display-font-family">Inscripción</h3>
                 <!-- /wp:heading -->
                 <!-- wp:shortcode -->
-                [biodevas_inscripcion_actual]
+                [convoca_inscripcion_actual]
                 <!-- /wp:shortcode -->
             </div>
             <!-- /wp:group -->

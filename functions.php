@@ -260,8 +260,8 @@ add_action('wp_body_open', 'convoca_skip_link');
  */
 function convoca_image_sizes(): void
 {
-	add_image_size('biodevas-card', 600, 400, true);
-	add_image_size('biodevas-hero', 1600, 900, true);
+	add_image_size('convoca-card', 600, 400, true);
+	add_image_size('convoca-hero', 1600, 900, true);
 }
 add_action('after_setup_theme', 'convoca_image_sizes');
 
@@ -341,7 +341,7 @@ function convoca_help_page_html(): void
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('Resumen de participación actual (Biodevas Enroll):', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Resumen de participación actual (Convoca Enroll):', 'convoca-theme'); ?></p>
 							<ul>
 								<li><strong><?php echo esc_html__('Confirmadas:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->publish ?? 0); ?></li>
 								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->pending ?? 0); ?></li>
@@ -364,7 +364,7 @@ function convoca_help_page_html(): void
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__('Resumen de la comunidad (Biodevas Members):', 'convoca-theme'); ?></p>
+							<p><?php echo esc_html__('Resumen de la comunidad (Convoca Members):', 'convoca-theme'); ?></p>
 							<ul>
 								<li><strong><?php echo esc_html__('Activos:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->publish ?? 0); ?></li>
 								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->pending ?? 0); ?></li>
@@ -490,9 +490,9 @@ add_action('wp_head', 'convoca_dark_mode_inline_init', 1);
 
 /**
  * 10. Shortcode for Dark Mode Toggle
- * Uso: [biodevas_dark_mode_toggle]
+ * Uso: [convoca_dark_mode_toggle]
  */
-add_shortcode('biodevas_dark_mode_toggle', function() {
+add_shortcode('convoca_dark_mode_toggle', function() {
 	return '
 	<button class="dark-mode-toggle" aria-label="Cambiar modo de color" type="button">
 		<svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
@@ -502,9 +502,9 @@ add_shortcode('biodevas_dark_mode_toggle', function() {
 
 /**
  * 11. Shortcode dinámico para inscripción en página de actividad.
- * Uso: [biodevas_inscripcion_actual] -会自动获取当前活动的ID。
+ * Uso: [convoca_inscripcion_actual] -会自动获取当前活动的ID。
  */
-add_shortcode('biodevas_inscripcion_actual', function () {
+add_shortcode('convoca_inscripcion_actual', function () {
 	if (!is_singular('actividad')) {
 		if (current_user_can('manage_options')) {
 			return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:15px;margin:10px 0;">' . esc_html__('💡 Este shortcode solo funciona en la página de una actividad individual.', 'convoca-theme') . '</div>';
@@ -542,12 +542,12 @@ add_action('pre_get_posts', function ($query) {
 
 /**
  * 11. Shortcode para mostrar metadatos de actividad.
- * Uso: [biodevas_actividad_meta field="ubicacion"]
+ * Uso: [convoca_actividad_meta field="ubicacion"]
  */
 add_shortcode('convoca_actividad_meta', function ($atts) {
 	$atts = shortcode_atts([
 		'field' => 'ubicacion',
-	], $atts, 'biodevas_actividad_meta');
+	], $atts, 'convoca_actividad_meta');
 
 	// Works in both singular (single actividad) and archive/list context
 	$id = get_the_ID() ?: get_queried_object_id();
@@ -678,7 +678,7 @@ add_action('wp_head', 'convoca_actividad_schema');
 
 // ─── Register bdv_calendario shortcode for activities list ───
 add_shortcode('bdv_calendario', function () {
-    $activities = \Biodevas\Enroll\CPT_Actividad::get_upcoming(20);
+    $activities = \Convoca\Enroll\CPT_Actividad::get_upcoming(20);
     if (empty($activities)) {
         return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
     }

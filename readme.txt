@@ -68,7 +68,7 @@ El tema incluye un toggle de modo oscuro. También respeta la preferencia del si
 * Padding de contenido corregido (16px + 8px)
 * CTA full-width con margen negativo
 * Blog page sin hero/stats/actividades
-* Refactor biodevas_* → convoca_* en shortcodes y funciones
+* Shortcodes usan prefijo convoca_ en shortcodes y funciones
 
 = 2.6.3 =
 * Correcciones de compatibilidad con WordPress 7.0
@@ -87,7 +87,7 @@ El tema incluye un toggle de modo oscuro. También respeta la preferencia del si
 == Upgrade Notice ==
 
 = 2.6.4 =
-Si actualizas desde una versión anterior, limpia la caché del sitio tras la actualización. Los shortcodes y funciones han cambiado de prefijo (biodevas_* → convoca_*), verifica que los shortcodes convocados en tus páginas usen los nuevos nombres.
+Los shortcodes y funciones usan el prefijo convoca_.
 
 == Additional Info ==
 

@@ -1,6 +1,6 @@
-# Biodevas Theme
+# Convoca Theme
 
-Tema hijo (FSE) para la Asociación Biodevas.
+Tema hijo (FSE) para la Asociación Convoca.
 
 ## Requirements
 
@@ -12,45 +12,45 @@ Tema hijo (FSE) para la Asociación Biodevas.
 - Diseño responsive con Full Site Editing
 - Shortcodes de perfil de socio y frontend
 - Plantillas de email
-- Integración con plugins Biodevas
+- Integración con plugins Convoca
 - Full Site Editing con theme.json
 - Modo claro/oscuro automático y manual
 - Tipografía: Outfit (títulos) + Lato (cuerpo)
 
 ## Shortcodes del Tema
 
-### `[biodevas_mi_perfil]`
+### `[convoca_mi_perfil]`
 
 Muestra el perfil del socio o voluntario logueado: nombre, email, estado de
 membresía, inscripciones activas y horas de voluntariado. Si el usuario no ha
 iniciado sesión, muestra un formulario de login (email + código de acceso).
 
-### `[biodevas_inscripcion_actual]`
+### `[convoca_inscripcion_actual]`
 
 Detecta automáticamente la página de actividad actual (por el slug o ID del
 post) e incrusta el formulario de inscripción. Ideal para usar en la plantilla
 de una actividad (single-actividad.php). Acepta el atributo opcional `id` para
 especificar una actividad concreta.
 
-### `[biodevas_actividad_meta field="ubicacion"]`
+### `[convoca_actividad_meta field="ubicacion"]`
 
 Muestra un metadato específico de la actividad actual. Campos disponibles:
 `fecha_inicio`, `fecha_fin`, `ubicacion`, `plazas_totales`, `plazas_disponibles`,
 `precio_socio`, `precio_general`. Requiere estar en una página de actividad.
 
-### `[biodevas_dark_mode_toggle]`
+### `[convoca_dark_mode_toggle]`
 
 Botón o enlace que alterna entre modo claro y oscuro en el frontend. El cambio
 se persiste en localStorage y respeta la preferencia del sistema
 (prefers-color-scheme) como valor inicial.
 
-### `[biodevas_verificar_socio]`
+### `[convoca_verificar_socio]`
 
 Página pública de verificación de membresía. El usuario introduce el código
 del socio (recibido por email) y el sistema muestra el estado actual de su
 membresía (activo, pendiente, expirado, etc.) sin necesidad de iniciar sesión.
 
-### `[biodevas_verificar_certificado]`
+### `[convoca_verificar_certificado]`
 
 Página pública de verificación de certificados de voluntariado. Introduce el
 ID único del certificado (formato `VOL-AAAA-XXXXX`) y el sistema muestra:
