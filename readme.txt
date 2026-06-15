@@ -93,4 +93,4 @@ Los shortcodes y funciones usan el prefijo convoca_.
 
 Este tema es parte del ecosistema Convoca — un conjunto de plugins y temas de código abierto para WordPress enfocados en la gestión de organizaciones, socios y comunicación digital.
 
-Desarrollado por José Carlos Nieto Ramos — https://biodevas.org
+Desarrollado por José Carlos Nieto Ramos — https://josecarlosnietoramos.wordpress.com

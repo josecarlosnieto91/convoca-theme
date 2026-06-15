@@ -29,16 +29,16 @@ add_shortcode('convoca_mi_perfil', function () {
         'post_type' => 'miembro',
         'posts_per_page' => 1,
         'meta_query' => [
-            ['key' => '_bdv_email', 'value' => $email]
+            ['key' => '_conv_email', 'value' => $email]
         ]
     ]);
 
     $member_html = '';
     if (!empty($members)) {
         $m = $members[0];
-        $estado = get_post_meta($m->ID, '_bdv_estado_miembro', true);
-        $plan = get_post_meta($m->ID, '_bdv_plan', true);
-        $renovacion = get_post_meta($m->ID, '_bdv_fecha_renovacion', true);
+        $estado = get_post_meta($m->ID, '_conv_estado_miembro', true);
+        $plan = get_post_meta($m->ID, '_conv_plan', true);
+        $renovacion = get_post_meta($m->ID, '_conv_fecha_renovacion', true);
 
         $member_html = sprintf(
             '<div class="conv-member-info card glass">

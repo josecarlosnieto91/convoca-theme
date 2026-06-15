@@ -676,8 +676,8 @@ function convoca_actividad_schema(): void
 }
 add_action('wp_head', 'convoca_actividad_schema');
 
-// ─── Register bdv_calendario shortcode for activities list ───
-add_shortcode('bdv_calendario', function () {
+// ─── Register conv_calendario shortcode for activities list ───
+add_shortcode('conv_calendario', function () {
     $activities = \Convoca\Enroll\CPT_Actividad::get_upcoming(20);
     if (empty($activities)) {
         return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
