@@ -67,6 +67,9 @@ WordPress 6.4+, PHP 8.0+
 
 ## Changelog
 
+### 2.5.1
+- docs: add MANUAL_USUARIO.md with FSE + shortcodes guide
+
 ### 2.5.0
 - Added dark mode toggle shortcode
 - Added inscripcion_actual shortcode
