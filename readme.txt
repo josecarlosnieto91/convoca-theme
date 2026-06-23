@@ -4,7 +4,7 @@ Tags: full-site-editing, block-patterns, custom-colors, custom-logo, editor-styl
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 2.6.4
+Stable tag: 2.6.5
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -61,6 +61,10 @@ El tema incluye un toggle de modo oscuro. También respeta la preferencia del si
 
 == Changelog ==
 
+
+= 2.6.5 =
+* Added: MANUAL_USUARIO.md with complete admin guide
+* Dev: Added phpstan.neon for static analysis
 = 2.6.4 =
 * Overlay menú móvil full screen (100dvh)
 * Header no hace wrap en mobile
@@ -86,6 +90,10 @@ El tema incluye un toggle de modo oscuro. También respeta la preferencia del si
 
 == Upgrade Notice ==
 
+
+= 2.6.5 =
+* Added: MANUAL_USUARIO.md with complete admin guide
+* Dev: Added phpstan.neon for static analysis
 = 2.6.4 =
 Los shortcodes y funciones usan el prefijo convoca_.
 
