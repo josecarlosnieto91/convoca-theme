@@ -29,16 +29,16 @@ add_shortcode('convoca_mi_perfil', function () {
         'post_type' => 'miembro',
         'posts_per_page' => 1,
         'meta_query' => [
-            ['key' => '_conv_email', 'value' => $email]
+            ['key' => '_convoca_email', 'value' => $email]
         ]
     ]);
 
     $member_html = '';
     if (!empty($members)) {
         $m = $members[0];
-        $estado = get_post_meta($m->ID, '_conv_estado_miembro', true);
-        $plan = get_post_meta($m->ID, '_conv_plan', true);
-        $renovacion = get_post_meta($m->ID, '_conv_fecha_renovacion', true);
+        $estado = get_post_meta($m->ID, '_convoca_estado_miembro', true);
+        $plan = get_post_meta($m->ID, '_convoca_plan', true);
+        $renovacion = get_post_meta($m->ID, '_convoca_fecha_renovacion', true);
 
         $member_html = sprintf(
             '<div class="conv-member-info card glass">
@@ -74,8 +74,8 @@ add_shortcode('convoca_mi_perfil', function () {
         'posts_per_page' => -1,
         'meta_query' => [
             'relation' => 'AND',
-            ['key' => '_conv_email', 'value' => $email],
-            ['key' => '_conv_estado', 'value' => 'cancelada', 'compare' => '!='],
+            ['key' => '_convoca_email', 'value' => $email],
+            ['key' => '_convoca_estado', 'value' => 'cancelada', 'compare' => '!='],
         ]
     ]);
 
@@ -83,8 +83,8 @@ add_shortcode('convoca_mi_perfil', function () {
     if (!empty($inscriptions)) {
         $insc_html .= '<div class="conv-inscriptions-grid">';
         foreach ($inscriptions as $i) {
-            $actividad_id = get_post_meta($i->ID, '_conv_actividad_id', true);
-            $estado = get_post_meta($i->ID, '_conv_estado', true);
+            $actividad_id = get_post_meta($i->ID, '_convoca_actividad_id', true);
+            $estado = get_post_meta($i->ID, '_convoca_estado', true);
             $fecha = get_the_date('d/m/Y', $i->ID);
 
             $insc_html .= sprintf(

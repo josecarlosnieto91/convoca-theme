@@ -531,7 +531,7 @@ add_shortcode('convoca_inscripcion_actual', function () {
  */
 add_action('pre_get_posts', function ($query) {
 	if (!is_admin() && $query->is_post_type_archive('actividad') && $query->is_main_query()) {
-		$query->set('meta_key', '_conv_fecha_inicio');
+		$query->set('meta_key', '_convoca_fecha_inicio');
 		$query->set('meta_compare', '>=');
 		$query->set('meta_value', wp_date('Y-m-d'));
 		$query->set('orderby', 'meta_value');
@@ -555,7 +555,7 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 		return '';
 	}
 
-	$meta_key = '_conv_' . sanitize_key($atts['field']);
+	$meta_key = '_convoca_' . sanitize_key($atts['field']);
 	$value = get_post_meta($id, $meta_key, true);
 
 	if ($value === "" || $value === null || $value === false) {
@@ -567,7 +567,7 @@ add_shortcode('convoca_actividad_meta', function ($atts) {
 		return (float)$value > 0 ? number_format((float)$value, 2, ',', '.') . ' €' : 'Gratis';
 	}
 	if ($atts['field'] === 'plazas_disponibles') {
-		$total = get_post_meta($id, '_conv_plazas_totales', true);
+		$total = get_post_meta($id, '_convoca_plazas_totales', true);
 		return (int)$value . ' / ' . (int)$total;
 	}
 	if ($atts['field'] === 'fecha_inicio' || $atts['field'] === 'fecha_fin') {
@@ -591,11 +591,11 @@ function convoca_actividad_schema(): void
 	$post = get_post($post_id);
 
 	// Get Meta
-	$start_date = get_post_meta($post_id, '_conv_fecha_inicio', true);
-	$end_date   = get_post_meta($post_id, '_conv_fecha_fin', true);
-	$location   = get_post_meta($post_id, '_conv_ubicacion', true);
-	$price      = get_post_meta($post_id, '_conv_precio_general', true);
-	$plazas_dis = (int) get_post_meta($post_id, '_conv_plazas_disponibles', true);
+	$start_date = get_post_meta($post_id, '_convoca_fecha_inicio', true);
+	$end_date   = get_post_meta($post_id, '_convoca_fecha_fin', true);
+	$location   = get_post_meta($post_id, '_convoca_ubicacion', true);
+	$price      = get_post_meta($post_id, '_convoca_precio_general', true);
+	$plazas_dis = (int) get_post_meta($post_id, '_convoca_plazas_disponibles', true);
 	
 	// Validate start_date: required for schema
 	if (empty($start_date) || !strtotime($start_date)) {
@@ -618,9 +618,9 @@ function convoca_actividad_schema(): void
 	$availability = ($plazas_dis > 0) ? 'https://schema.org/InStock' : 'https://schema.org/SoldOut';
 
 	// Get lowest price from all options
-	$precio_socio = get_post_meta($post_id, '_conv_precio_socio', true);
-	$precio_socio_dia = get_post_meta($post_id, '_conv_precio_socio_dia', true);
-	$precio_general = get_post_meta($post_id, '_conv_precio_general', true);
+	$precio_socio = get_post_meta($post_id, '_convoca_precio_socio', true);
+	$precio_socio_dia = get_post_meta($post_id, '_convoca_precio_socio_dia', true);
+	$precio_general = get_post_meta($post_id, '_convoca_precio_general', true);
 	
 	$prices = array_filter([$precio_socio, $precio_socio_dia, $precio_general], function($v) {
 		return $v !== '' && strtolower($v) !== 'gratis';
@@ -676,8 +676,8 @@ function convoca_actividad_schema(): void
 }
 add_action('wp_head', 'convoca_actividad_schema');
 
-// ─── Register conv_calendario shortcode for activities list ───
-add_shortcode('conv_calendario', function () {
+// ─── Register convoca_calendario shortcode for activities list ───
+add_shortcode('convoca_calendario', function () {
     $activities = \Convoca\Enroll\CPT_Actividad::get_upcoming(20);
     if (empty($activities)) {
         return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
@@ -687,13 +687,13 @@ add_shortcode('conv_calendario', function () {
         $id = $a->ID;
         $title = esc_html(get_the_title($id));
         $excerpt = esc_html(get_the_excerpt($id) ?: wp_trim_words(strip_tags(get_post_field('post_content', $id)), 30));
-        $fecha = get_post_meta($id, '_conv_fecha_inicio', true);
-        $fecha_fin = get_post_meta($id, '_conv_fecha_fin', true);
-        $lugar = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
-        $precio = get_post_meta($id, '_conv_precio', true);
-        $plazas_disp = (int) get_post_meta($id, '_conv_plazas_disponibles', true);
-        $plazas_total = (int) get_post_meta($id, '_conv_plazas_totales', true);
-        $requires_payment = get_post_meta($id, '_conv_requires_payment', true);
+        $fecha = get_post_meta($id, '_convoca_fecha_inicio', true);
+        $fecha_fin = get_post_meta($id, '_convoca_fecha_fin', true);
+        $lugar = get_post_meta($id, '_convoca_lugar', true) ?: get_post_meta($id, '_convoca_ubicacion', true);
+        $precio = get_post_meta($id, '_convoca_precio', true);
+        $plazas_disp = (int) get_post_meta($id, '_convoca_plazas_disponibles', true);
+        $plazas_total = (int) get_post_meta($id, '_convoca_plazas_totales', true);
+        $requires_payment = get_post_meta($id, '_convoca_requires_payment', true);
         $permalink = esc_url(get_permalink($id));
         
         $fecha_str = '';
@@ -727,7 +727,7 @@ add_shortcode('conv_calendario', function () {
 add_action('init', function () {
     $keys = ['fecha_inicio', 'fecha_fin', 'lugar', 'precio', 'plazas_disponibles', 'plazas_totales', 'difultad', 'requires_payment'];
     foreach ($keys as $key) {
-        register_meta('post', '_conv_' . $key, [
+        register_meta('post', '_convoca_' . $key, [
             'type' => 'string',
             'description' => 'Convoca Actividad: ' . $key,
             'single' => true,
@@ -754,17 +754,17 @@ add_filter('render_block_core/post-template', function ($block_content, $block) 
         
         switch ($m[1]) {
             case 'FECHA_INICIO':
-                $v = get_post_meta($id, '_conv_fecha_inicio', true);
+                $v = get_post_meta($id, '_convoca_fecha_inicio', true);
                 return $v ? date_i18n('j M Y', strtotime($v)) : '';
             case 'LUGAR':
-                $v = get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true);
+                $v = get_post_meta($id, '_convoca_lugar', true) ?: get_post_meta($id, '_convoca_ubicacion', true);
                 return esc_html($v);
             case 'PRECIO':
-                $v = (float) get_post_meta($id, '_conv_precio', true);
+                $v = (float) get_post_meta($id, '_convoca_precio', true);
                 return $v > 0 ? number_format($v, 2, ',', '.') . ' €' : 'Gratis';
             case 'PLAZAS':
-                $disp = (int) get_post_meta($id, '_conv_plazas_disponibles', true);
-                $total = (int) get_post_meta($id, '_conv_plazas_totales', true);
+                $disp = (int) get_post_meta($id, '_convoca_plazas_disponibles', true);
+                $total = (int) get_post_meta($id, '_convoca_plazas_totales', true);
                 return $disp . ' / ' . $total;
         }
         return '';
@@ -778,10 +778,10 @@ add_filter('render_block', function ($html, $block) {
     if (!$post || get_post_type($post) !== 'actividad') return $html;
     $id = $post->ID;
     $map = [
-        '%%FECHA_INICIO%%' => function() use($id) { $v = get_post_meta($id, '_conv_fecha_inicio', true); return $v ? date_i18n('j M Y', strtotime($v)) : ''; },
-        '%%LUGAR%%' => function() use($id) { return esc_html(get_post_meta($id, '_conv_lugar', true) ?: get_post_meta($id, '_conv_ubicacion', true) ?: ''); },
-        '%%PRECIO%%' => function() use($id) { $p = (float) get_post_meta($id, '_conv_precio', true); return $p > 0 ? number_format($p, 2, ',', '.') . ' €' : 'Gratis'; },
-        '%%PLAZAS%%' => function() use($id) { return ((int) get_post_meta($id, '_conv_plazas_disponibles', true)) . ' / ' . ((int) get_post_meta($id, '_conv_plazas_totales', true)); },
+        '%%FECHA_INICIO%%' => function() use($id) { $v = get_post_meta($id, '_convoca_fecha_inicio', true); return $v ? date_i18n('j M Y', strtotime($v)) : ''; },
+        '%%LUGAR%%' => function() use($id) { return esc_html(get_post_meta($id, '_convoca_lugar', true) ?: get_post_meta($id, '_convoca_ubicacion', true) ?: ''); },
+        '%%PRECIO%%' => function() use($id) { $p = (float) get_post_meta($id, '_convoca_precio', true); return $p > 0 ? number_format($p, 2, ',', '.') . ' €' : 'Gratis'; },
+        '%%PLAZAS%%' => function() use($id) { return ((int) get_post_meta($id, '_convoca_plazas_disponibles', true)) . ' / ' . ((int) get_post_meta($id, '_convoca_plazas_totales', true)); },
     ];
     foreach ($map as $k => $fn) $html = str_replace($k, $fn(), $html);
     return $html;
