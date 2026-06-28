@@ -1,5 +1,37 @@
 # Changelog - Convoca Theme
 
+## 2.6.5
+- **Fix:** Footer año dinámico — reemplazado `{{year}}` estático por `document.write(new Date().getFullYear())` vía JavaScript
+- **Docs:** Añadidos CODE_OF_CONDUCT.md, LICENSE (GPL v2+), SECURITY.md, SUPPORT.md, CONTRIBUTING.md
+- **Docs:** Actualizado MANUAL_USUARIO.md con shortcodes y guías completas
+- **Docs:** Actualizado readme.txt con stable tag 2.6.5 y changelog
+- **Rendimiento:** Añadida configuración phpstan, mejoras de calidad de código
+
+## 2.6.4
+- **Fix:** Ajuste de padding de contenido en plantillas post/página (excluye CTA, featured image, spacers)
+- **Fix:** CTA full-width con negative margin, padding de contenido específico
+- **Rendimiento:** Cache bust por bump de versión
+- **Mejoras:** Ajustes de theme para entorno de desarrollo
+
+## 2.6.3
+- **Fix:** Patrones de actividad usan meta keys `_conv_` (eran `_bde_`) — las cards de actividad se renderizan de nuevo
+- **Fix:** Shortcode `actividad_meta` — maneja valor numérico 0, meta keys `conv_` con fallback `bde_`
+- **Fix:** Restauradas cadenas de functions.php, corregido textdomain y rename de patrones
+- **SEO:** Schema JSON-LD para actividades con plazas totales y precios
+
+## 2.6.2
+- **Seguridad:** Hardening de seguridad, auditorías de producción aplicadas
+- **Fix:** Eliminadas todas las referencias a Biodevas, avisos de privacidad GDPR, nombre de sitio dinámico
+- **Limpieza:** Eliminados archivos temporales gitignore
+- **Infra:** uninstall.php con keep-data, traducciones .pot, hardening de seguridad
+
+## 2.6.1
+- **Refactor:** Renombrados todos los prefijos `biodevas_*` → `convoca_*` (shortcodes, funciones, hooks, textdomains, patrones)
+- **Refactor:** Renombrados namespaces CSS/JS `bdv-` → `conv-`
+- **Refactor:** Renombrados prefijos en opciones y metadatos
+- **Fix:** Hook `biodevas_dark_mode_inline_init` → `convoca_dark_mode_inline_init`
+- **Compatibilidad:** Actualizado composer.lock tras rename de paquetes
+
 ## 2.6.0
 - **Rediseño visual:** Paleta naranja (#ff8700) como color primario dominante
 - **Footer:** Fondo violeta (#320028) con borde decorativo gradiente naranja
