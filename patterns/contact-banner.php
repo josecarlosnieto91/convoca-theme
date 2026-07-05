@@ -1,28 +1,19 @@
-<?php
-/**
- * Title: Banner de contacto
- * Slug: convoca/contact-banner
- * Categories: convoca, convoca-layout
- * Description: Franja de contacto con email, teléfono y redes sociales.
- * Keywords: contacto, email, teléfono, redes
- */
-?>
-<!-- wp:group {"backgroundColor":"gris-piedra","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"900px"}} -->
-<div class="wp-block-group has-gris-piedra-background-color has-background"
-    style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
-    <!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large","fontFamily":"display"} -->
-    <h2 class="wp-block-heading has-text-align-center has-display-font-family has-x-large-font-size">¿Hablamos?</h2>
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f8f6f2"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide has-background" style="background-color:#f8f6f2;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
+    <!-- wp:heading {"textAlign":"center","level":2} -->
+    <h2 class="wp-block-heading has-text-align-center">Contacto</h2>
     <!-- /wp:heading -->
-    <!-- wp:paragraph {"align":"center","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|30"}}}} -->
-    <p class="has-text-align-center" style="margin-bottom:var(--wp--preset--spacing--30)">Escríbenos o síguenos en
-        redes. Estamos encantados de conocerte.</p>
+
+    <!-- wp:paragraph {"align":"center"} -->
+    <p class="has-text-align-center">¿Tienes dudas o quieres colaborar? Escríbenos o síguenos en redes sociales.</p>
     <!-- /wp:paragraph -->
+
     <!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->
     <div class="wp-block-columns is-stacked-on-mobile">
         <!-- wp:column -->
         <div class="wp-block-column">
             <!-- wp:paragraph {"align":"center"} -->
-            <p class="has-text-align-center">📧 <a href="mailto:coordinacion@biodevas.org">coordinacion@biodevas.org</a>
+            <p class="has-text-align-center">📧 <a href="mailto:info@asociacion.org">info@asociacion.org</a>
             </p>
             <!-- /wp:paragraph -->
         </div>
@@ -30,7 +21,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             <!-- wp:paragraph {"align":"center"} -->
-            <p class="has-text-align-center">📧 <a href="mailto:voluntarios@biodevas.org">voluntarios@biodevas.org</a>
+            <p class="has-text-align-center">📧 <a href="mailto:voluntarios@asociacion.org">voluntarios@asociacion.org</a>
             </p>
             <!-- /wp:paragraph -->
         </div>
@@ -39,9 +30,9 @@
         <div class="wp-block-column">
             <!-- wp:social-links {"iconColor":"naranja","iconColorValue":"#ff8700","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
             <ul class="wp-block-social-links has-icon-color">
-                <!-- wp:social-link {"url":"https://www.instagram.com/biodevas","service":"instagram"} /-->
-                <!-- wp:social-link {"url":"https://www.facebook.com/biodevas","service":"facebook"} /-->
-                <!-- wp:social-link {"url":"https://www.youtube.com/channel/UCfF80C0d0lFs7fXM9kNqyfQ","service":"youtube"} /-->
+                <!-- wp:social-link {"url":"https://www.instagram.com/asociacion","service":"instagram"} /-->
+                <!-- wp:social-link {"url":"https://www.facebook.com/asociacion","service":"facebook"} /-->
+                <!-- wp:social-link {"url":"https://www.youtube.com/@asociacion","service":"youtube"} /-->
             </ul>
             <!-- /wp:social-links -->
         </div>

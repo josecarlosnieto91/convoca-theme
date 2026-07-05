@@ -24,6 +24,11 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 * Meta markers en plantillas FSE: %%FECHA_INICIO%%, %%LUGAR%%, %%PRECIO%%
 * Datos estructurados JSON-LD (Event Schema)
 
+== Installation ==
+
+1. Sube la carpeta `convoca-theme` a `/wp-content/themes/`
+2. Activa el tema desde Apariencia > Temas
+
 == Changelog ==
 
 = 2.6.5 =
