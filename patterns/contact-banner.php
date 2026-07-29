@@ -13,7 +13,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             <!-- wp:paragraph {"align":"center"} -->
-            <p class="has-text-align-center">📧 <a href="mailto:info@asociacion.org">info@asociacion.org</a>
+            <p class="has-text-align-center">📧 <a href="mailto:{contact_email}">{contact_email}</a>
             </p>
             <!-- /wp:paragraph -->
         </div>
@@ -21,7 +21,7 @@
         <!-- wp:column -->
         <div class="wp-block-column">
             <!-- wp:paragraph {"align":"center"} -->
-            <p class="has-text-align-center">📧 <a href="mailto:voluntarios@asociacion.org">voluntarios@asociacion.org</a>
+            <p class="has-text-align-center">📧 <a href="mailto:{volunteer_email}">{volunteer_email}</a>
             </p>
             <!-- /wp:paragraph -->
         </div>
@@ -30,9 +30,9 @@
         <div class="wp-block-column">
             <!-- wp:social-links {"iconColor":"naranja","iconColorValue":"#ff8700","layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|10"}}}} -->
             <ul class="wp-block-social-links has-icon-color">
-                <!-- wp:social-link {"url":"https://www.instagram.com/asociacion","service":"instagram"} /-->
-                <!-- wp:social-link {"url":"https://www.facebook.com/asociacion","service":"facebook"} /-->
-                <!-- wp:social-link {"url":"https://www.youtube.com/@asociacion","service":"youtube"} /-->
+                <!-- wp:social-link {"url":"https://www.instagram.com/{social_handle}","service":"instagram"} /-->
+                <!-- wp:social-link {"url":"https://www.facebook.com/{social_handle}","service":"facebook"} /-->
+                <!-- wp:social-link {"url":"https://www.youtube.com/@{social_handle}","service":"youtube"} /-->
             </ul>
             <!-- /wp:social-links -->
         </div>

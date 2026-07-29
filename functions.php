@@ -807,3 +807,37 @@ add_filter('render_block', function ($html, $block) {
 add_action('wp_dashboard_setup', function () {
     remove_meta_box('dashboard_primary', 'dashboard', 'side');
 }, 999);
+
+/**
+ * Render Block Filter — Generic Placeholder Replacement
+ *
+ * Replaces placeholder tokens in rendered block content with dynamic values
+ * from WordPress settings. This allows the theme to be generic and configurable
+ * without hardcoding site-specific data.
+ *
+ * Supported tokens:
+ *   {admin_email}      → WordPress admin email
+ *   {volunteer_email}  → Filterable volunteer email (defaults to admin email)
+ *   {contact_email}    → WordPress admin email
+ *   {social_instagram} → Filterable Instagram handle
+ *   {social_facebook}  → Filterable Facebook handle
+ *   {social_youtube}   → Filterable YouTube URL
+ *   {lugg_url}         → Filterable URL (defaults to home URL)
+ *   {year}             → Current year (legacy support from mu-plugin)
+ *
+ * @since 2.7.0
+ */
+function convoca_theme_render_block($block_content, $block) {
+    $replacements = apply_filters('convoca_theme_footer_replacements', [
+        '{admin_email}'       => get_bloginfo('admin_email'),
+        '{volunteer_email}'   => apply_filters('convoca_theme_volunteer_email', get_bloginfo('admin_email')),
+        '{social_instagram}'  => apply_filters('convoca_theme_social_instagram', ''),
+        '{social_facebook}'   => apply_filters('convoca_theme_social_facebook', ''),
+        '{social_youtube}'    => apply_filters('convoca_theme_social_youtube', ''),
+        '{social_handle}'     => apply_filters('convoca_theme_social_handle', ''),
+        '{lugg_url}'          => apply_filters('convoca_theme_lugg_url', home_url('/')),
+        '{contact_email}'     => get_bloginfo('admin_email'),
+    ]);
+    return str_replace(array_keys($replacements), array_values($replacements), $block_content);
+}
+add_filter('render_block', 'convoca_theme_render_block', 10, 2);

@@ -79,7 +79,7 @@
                 <h3 class="wp-block-heading has-text-align-center">Acción Comunitaria</h3>
                 <!-- /wp:heading -->
                 <!-- wp:paragraph {"align":"center"} -->
-                <p class="has-text-align-center">Centro Social Los Lugg, voluntariado vecinal y redes de colaboración
+                <p class="has-text-align-center">Voluntariado vecinal, actividades comunitarias y redes de colaboración
                     con otras asociaciones.</p>
                 <!-- /wp:paragraph -->
             </div>

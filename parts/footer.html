@@ -11,14 +11,13 @@
                 style="font-style:normal;font-weight:700"><!-- wp:site-title /--></h3>
             <!-- /wp:heading -->
             <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.9rem"}}} -->
-            <p style="font-size:0.9rem">Asociación socioambiental asturiana. Sembrando conciencia y transformando el
-                mañana desde 2017.</p>
+            <p style="font-size:0.9rem">Trabajando por un futuro mejor desde {year}.</p>
             <!-- /wp:paragraph -->
             <!-- wp:social-links {"iconColor":"blanco","iconColorValue":"#ffffff","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|10","left":"var:preset|spacing|10"},"margin":{"top":"var:preset|spacing|20"}}}} -->
             <ul class="wp-block-social-links has-icon-color" style="margin-top:var(--wp--preset--spacing--20)">
-                <!-- wp:social-link {"url":"https://www.instagram.com/biodevas","service":"instagram"} /-->
-                <!-- wp:social-link {"url":"https://www.facebook.com/biodevas","service":"facebook"} /-->
-                <!-- wp:social-link {"url":"https://www.youtube.com/channel/UCfF80C0d0lFs7fXM9kNqyfQ","service":"youtube"} /-->
+                <!-- wp:social-link {"url":"https://www.instagram.com/{social_instagram}","service":"instagram"} /-->
+                <!-- wp:social-link {"url":"https://www.facebook.com/{social_facebook}","service":"facebook"} /-->
+                <!-- wp:social-link {"url":"{social_youtube}","service":"youtube"} /-->
             </ul>
             <!-- /wp:social-links -->
         </div>
@@ -52,7 +51,7 @@
                 <li><a href="/alta-socios/">Hazte Socio/a</a></li>
                 <li><a href="/voluntariado/">Voluntariado</a></li>
                 <li><a href="/donaciones/">Donaciones</a></li>
-                <li><a href="https://lugg.biodevas.org" target="_blank" rel="noopener">Centro Los Lugg</a></li>
+                <li><a href="{lugg_url}" target="_blank" rel="noopener">Centro Los Lugg</a></li>
             </ul>
             <!-- /wp:list -->
         </div>
@@ -66,8 +65,8 @@
             <!-- /wp:heading -->
             <!-- wp:list {"style":{"typography":{"fontSize":"0.92rem"},"spacing":{"blockGap":"0.4rem"}}} -->
             <ul style="font-size:0.92rem">
-                <li>📧 <a href="mailto:coordinacion@biodevas.org">coordinacion@biodevas.org</a></li>
-                <li>📧 <a href="mailto:voluntarios@biodevas.org">voluntarios@biodevas.org</a></li>
+                <li>📧 <a href="mailto:{admin_email}">{admin_email}</a></li>
+                <li>📧 <a href="mailto:{volunteer_email}">{volunteer_email}</a></li>
             </ul>
             <!-- /wp:list -->
         </div>
