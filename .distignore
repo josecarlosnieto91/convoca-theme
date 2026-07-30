@@ -1,0 +1,12 @@
+.git/
+.github/
+.gitignore
+.gitattributes
+.editorconfig
+node_modules/
+tests/
+vendor/
+*.md
+*.xml
+*.dist
+Makefile
