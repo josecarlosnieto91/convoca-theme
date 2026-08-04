@@ -6,7 +6,7 @@
 
 Convoca Theme es un tema de bloques moderno con soporte para edición completa del sitio (FSE). Incluye paleta de colores accesible (naranja #ff8700 como primario), tipografía optimizada (Outfit + Lato), modo oscuro nativo, y shortcodes para integración con los plugins Convoca.
 
-**Integración con biodevas.org / lugg.biodevas.org:** El theme puede coexistir con otros temas. Sus shortcodes son independientes del tema activo. Si se usa como tema principal, reemplaza la apariencia actual.
+**Integración en cualquier sitio:** El theme puede coexistir con otros temas. Sus shortcodes son independientes del tema activo. Si se usa como tema principal, reemplaza la apariencia actual.
 
 ## 2. Características
 
@@ -138,7 +138,7 @@ Esto restaura las plantillas a los archivos del tema. Solo puede hacerse una vez
 
 ## 8. Compatibilidad con otros temas
 
-Si biodevas.org o lugg.biodevas.org usan otros temas (Astra, Elementor), los shortcodes de Convoca Theme funcionan igualmente:
+Si el sitio usa otro tema (Astra, Elementor, etc.), los shortcodes de Convoca Theme funcionan igualmente:
 
 - Añade `[convoca_mi_perfil]` en cualquier página o widget
 - Añade `[convoca_verificar_socio]` en una página pública
