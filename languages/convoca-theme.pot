@@ -1,280 +1,410 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the convoca-theme package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Copyright (C) 2026 Jose Carlos Nieto Ramos
+# This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: convoca-theme 1.0\n"
-"Report-Msgid-Bugs-To: dev@getconvoca.app\n"
-"POT-Creation-Date: 2026-06-14 13:31+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Project-Id-Version: Convoca 2.6.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/convoca-theme\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-04T22:41:12+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: convoca\n"
 
-#: convoca-theme/includes/shortcodes.php:18
-msgid "Inicia sesión para ver tu perfil."
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:20
-msgid "Iniciar sesión"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:50
-msgid "Tu condición de socio/a"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:51
-msgid "Estado"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:54
-msgid "Plan"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:56
-msgid "Próxima renovación"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:65
-msgid "Aún no eres socio/a de Convoca."
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:67
-msgid "Hacerse socio/a"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:82
-msgid "Tus inscripciones activas"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:101
-msgid "Ver actividad"
-msgstr ""
-
-#: convoca-theme/includes/shortcodes.php:106
-msgid "No tienes inscripciones actives en este momento."
-msgstr ""
-
-#: convoca-theme/functions.php:109
+#. Theme Name of the theme
+#: style.css
 msgid "Convoca"
 msgstr ""
 
-#: convoca-theme/functions.php:110
-msgid "Patrones del theme Convoca."
+#. Theme URI of the theme
+#: style.css
+msgid "https://getconvoca.app"
 msgstr ""
 
-#: convoca-theme/functions.php:113
-msgid "Convoca — Layout"
+#. Description of the theme
+#: style.css
+msgid "FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive."
 msgstr ""
 
-#: convoca-theme/functions.php:114
-msgid "Secciones de página completas."
+#. Author of the theme
+#: style.css
+msgid "Jose Carlos Nieto Ramos"
 msgstr ""
 
-#: convoca-theme/functions.php:127
-msgid "Destacado (Lead)"
+#. Author URI of the theme
+#: style.css
+msgid "https://josecarlosnietoramos.com"
 msgstr ""
 
-#: convoca-theme/functions.php:133
+#: patterns/cards-3.php
+msgctxt "Pattern title"
+msgid "3 tarjetas de contenido"
+msgstr ""
+
+#: patterns/cards-3.php
+msgctxt "Pattern description"
+msgid "Grid de 3 tarjetas con icono, título y descripción."
+msgstr ""
+
+#: patterns/cards-grid.php
+msgctxt "Pattern title"
+msgid "Grid de tarjetas (3 columnas)"
+msgstr ""
+
+#: patterns/cards-grid.php
+msgctxt "Pattern description"
+msgid "Rejilla de 3 tarjetas con imagen, etiqueta, título, descripción y botón."
+msgstr ""
+
+#: patterns/cta-centered.php
+msgctxt "Pattern title"
+msgid "Llamada a acción centrada"
+msgstr ""
+
+#: patterns/cta-centered.php
+msgctxt "Pattern description"
+msgid "CTA centrada con fondo degradado oscuro, titular y dos botones."
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Llamada a la acción"
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern description"
+msgid "Sección CTA con título, subtítulo y botones sobre fondo oscuro."
+msgstr ""
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern title"
+msgid "Hero con degradado"
+msgstr ""
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern description"
+msgid "Sección hero con imagen destacada, overlay degradado atardecer, título y botones CTA."
+msgstr ""
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern title"
+msgid "Hero con imagen"
+msgstr ""
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern description"
+msgid "Hero con imagen de fondo personalizable, overlay degradado, título y botones CTA."
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Hero principal"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "Sección hero de portada con imagen destacada, degradado, título y botones CTA."
+msgstr ""
+
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern title"
+msgid "Sección de inscripción a actividad"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern description"
+msgid "Sección con formulario de inscripción (usa el shortcode dinámico para detectar la actividad actual)."
+msgstr ""
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern title"
+msgid "Grid de precios (membresías)"
+msgstr ""
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern description"
+msgid "Tres planes de membresía en grid con el plan central destacado."
+msgstr ""
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern title"
+msgid "Próximas actividades"
+msgstr ""
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern description"
+msgid "Grid de las próximas actividades del CPT actividad con metadatos."
+msgstr ""
+
+#: patterns/section-violeta.php
+msgctxt "Pattern title"
+msgid "Sección violeta oscuro"
+msgstr ""
+
+#: patterns/section-violeta.php
+msgctxt "Pattern description"
+msgid "Sección de ancho completo con fondo violeta oscuro y texto blanco."
+msgstr ""
+
+#: patterns/stats-bar.php
+msgctxt "Pattern title"
+msgid "Barra de estadísticas"
+msgstr ""
+
+#: patterns/stats-bar.php
+msgctxt "Pattern description"
+msgid "Barra de 4 estadísticas con fondo degradado oscuro y valores en amarillo."
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Contador de estadísticas"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid "Franja con 4 columnas de estadísticas sobre fondo oscuro."
+msgstr ""
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern title"
+msgid "Tabla de transparencia"
+msgstr ""
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern description"
+msgid "Tabla estilizada para datos de transparencia (ingresos, gastos, balance)."
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Naranja Energía"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Violeta Ocaso"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Granate Tierra"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Amarillo Luz"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Naranja Intenso"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Verde Biosfera"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Blanco"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Gris Piedra"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Gris Medio"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Antracita"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Atardecer Hero"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Oscuro Stats"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "CTA Oscuro"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Naranja Cálido"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Hero Claro"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Verde Natural"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Lato"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Pequeño"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Normal"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Grande"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Sección"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Impacto"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XS"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "S"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "M"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "L"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XXL"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
 msgid "Tarjeta"
 msgstr ""
 
-#: convoca-theme/functions.php:139
-msgid "Caja Coordinador"
+#: theme.json
+msgctxt "Shadow name"
+msgid "Tarjeta Hover"
 msgstr ""
 
-#: convoca-theme/functions.php:145
-msgid "Cristal Esmerilado"
-msgstr ""
-
-#: convoca-theme/functions.php:151
-msgid "Overlay Topográfico"
-msgstr ""
-
-#: convoca-theme/functions.php:157
-msgid "Tabla Convoca"
-msgstr ""
-
-#: convoca-theme/functions.php:163
-msgid "Secundario"
-msgstr ""
-
-#: convoca-theme/functions.php:169
+#: theme.json
+msgctxt "Shadow name"
 msgid "Elevada"
 msgstr ""
 
-#: convoca-theme/functions.php:254
-msgid "Ir al contenido"
+#: theme.json
+msgctxt "Template part name"
+msgid "Cabecera"
 msgstr ""
 
-#: convoca-theme/functions.php:291 convoca-theme/functions.php:292
-msgid "Ayuda Convoca"
+#: theme.json
+msgctxt "Template part name"
+msgid "Pie de página"
 msgstr ""
 
-#: convoca-theme/functions.php:312
-msgid "Configuración y Ayuda — Theme Convoca"
+#: theme.json
+msgctxt "Template part name"
+msgid "Barra lateral"
 msgstr ""
 
-#: convoca-theme/functions.php:316
-#, php-format
-msgid "Bienvenido a Convoca v%s"
+#: theme.json
+msgctxt "Template part name"
+msgid "Hero reutilizable"
 msgstr ""
 
-#: convoca-theme/functions.php:317
-msgid ""
-"Este es un theme FSE (Full Site Editing) optimizado para la Asociación "
-"Convoca. Aquí encontrarás una guía rápida de uso."
+#: theme.json
+msgctxt "Template part name"
+msgid "Llamada a acción"
 msgstr ""
 
-#: convoca-theme/functions.php:327
-msgid "Información del Theme"
+#: theme.json
+msgctxt "Template part name"
+msgid "Tarjeta actividad"
 msgstr ""
 
-#: convoca-theme/functions.php:330
-msgid "Versión:"
+#: theme.json
+msgctxt "Template part name"
+msgid "Tarjeta proyecto"
 msgstr ""
 
-#: convoca-theme/functions.php:331
-msgid "Autor:"
+#: theme.json
+msgctxt "Template part name"
+msgid "Metadatos actividad"
 msgstr ""
 
-#: convoca-theme/functions.php:332
-msgid "Documentación:"
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single Actividad"
 msgstr ""
 
-#: convoca-theme/functions.php:332
-msgid "Ver Wiki en GitHub"
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive Actividad"
 msgstr ""
 
-#: convoca-theme/functions.php:335
-msgid "Abrir Editor de Sitios (FSE)"
-msgstr ""
-
-#: convoca-theme/functions.php:342 convoca-theme/functions.php:355
-msgid "Estado de Inscripciones"
-msgstr ""
-
-#: convoca-theme/functions.php:344
-msgid "Resumen de participación actual (Convoca Enroll):"
-msgstr ""
-
-#: convoca-theme/functions.php:346
-msgid "Confirmadas:"
-msgstr ""
-
-#: convoca-theme/functions.php:347 convoca-theme/functions.php:370
-msgid "Pendientes:"
-msgstr ""
-
-#: convoca-theme/functions.php:348
-msgid "Canceladas:"
-msgstr ""
-
-#: convoca-theme/functions.php:350
-msgid "Gestionar Inscripciones"
-msgstr ""
-
-#: convoca-theme/functions.php:357
-msgid "El plugin Convoca Enroll no está activo."
-msgstr ""
-
-#: convoca-theme/functions.php:365 convoca-theme/functions.php:377
-msgid "Estado de Socios/Miembros"
-msgstr ""
-
-#: convoca-theme/functions.php:367
-msgid "Resumen de la comunidad (Convoca Members):"
-msgstr ""
-
-#: convoca-theme/functions.php:369
-msgid "Activos:"
-msgstr ""
-
-#: convoca-theme/functions.php:372
-msgid "Ver Miembros"
-msgstr ""
-
-#: convoca-theme/functions.php:379
-msgid "El plugin Convoca Members no está activo."
-msgstr ""
-
-#: convoca-theme/functions.php:390
-msgid "Guía de Plantillas y Páginas"
-msgstr ""
-
-#: convoca-theme/functions.php:392
-msgid "Página de Actividad"
-msgstr ""
-
-#: convoca-theme/functions.php:393
-msgid ""
-"Usa la plantilla \"Página de Actividad\" para las páginas que describen una "
-"actividad específica. Incluye automáticamente el formulario de inscripción."
-msgstr ""
-
-#: convoca-theme/functions.php:395
+#: theme.json
+msgctxt "Custom template name"
 msgid "Página de Proyecto"
 msgstr ""
 
-#: convoca-theme/functions.php:396
-msgid ""
-"Usa la plantilla \"Página de Proyecto\" para secciones de proyectos de largo "
-"recorrido. Incluye metadatos específicos del proyecto."
+#: theme.json
+msgctxt "Custom template name"
+msgid "Página de Actividad"
 msgstr ""
 
-#: convoca-theme/functions.php:399
-msgid "Nota:"
+#: theme.json
+msgctxt "Custom template name"
+msgid "Página Institucional"
 msgstr ""
 
-#: convoca-theme/functions.php:399
-msgid ""
-"Si las plantillas no se visualizan correctamente, puedes intentar "
-"reiniciarlas."
-msgstr ""
-
-#: convoca-theme/functions.php:400
-msgid ""
-"¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el "
-"Editor de Sitios y volverá a los archivos del theme."
-msgstr ""
-
-#: convoca-theme/functions.php:400
-msgid "Reiniciar Plantillas a valores de fábrica"
-msgstr ""
-
-#: convoca-theme/functions.php:406
-msgid "Patrones Convoca"
-msgstr ""
-
-#: convoca-theme/functions.php:408
-msgid ""
-"Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > "
-"Convoca:"
-msgstr ""
-
-#: convoca-theme/functions.php:410
-msgid "Cabecera principal con texto."
-msgstr ""
-
-#: convoca-theme/functions.php:411
-msgid "Cuadrícula de actividades o noticias."
-msgstr ""
-
-#: convoca-theme/functions.php:412
-msgid "Barra de estadísticas animada."
-msgstr ""
-
-#: convoca-theme/functions.php:413
-msgid "Formulario de inscripción integrado."
-msgstr ""
-
-#: convoca-theme/functions.php:510
-msgid ""
-"💡 Este shortcode solo funciona en la página de una actividad individual."
+#: theme.json
+msgctxt "Custom template name"
+msgid "Landing Page"
 msgstr ""
