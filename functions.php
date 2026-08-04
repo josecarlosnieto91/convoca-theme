@@ -655,8 +655,8 @@ function convoca_actividad_schema(): void
 		'description' => wp_strip_all_tags(get_the_excerpt($post_id)),
 		'startDate'   => $start_iso,
 		'endDate'     => $end_iso,
-		'eventStatus' => 'https://schema.org/EventScheduled',
-		'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+		'eventStatus' => __( 'https://schema.org/EventScheduled', 'convoca-theme' ),
+		'eventAttendanceMode' => __( 'https://schema.org/OfflineEventAttendanceMode', 'convoca-theme' ),
 		'location'    => [
 			'@type' => 'Place',
 			'name'  => $location,
