@@ -91,6 +91,8 @@ add_action('admin_init', function () {
  */
 function convoca_setup(): void
 {
+	load_theme_textdomain( 'convoca-theme', get_template_directory() . '/languages' );
+
 	add_theme_support('wp-block-styles');
 	add_theme_support('editor-styles');
 	add_theme_support('responsive-embeds');
