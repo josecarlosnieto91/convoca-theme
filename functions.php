@@ -81,7 +81,7 @@ add_action('admin_init', function () {
 
 		update_option($reset_key, time());
 		add_action('admin_notices', function () use ($deleted) {
-			echo '<div class="notice notice-success"><p><strong>Convoca:</strong> Se han reiniciado ' . $deleted . ' plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.</p></div>';
+			echo '<div class="notice notice-success"><p><strong>Convoca:</strong> ' . sprintf( esc_html__( 'Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.', 'convoca-theme' ), $deleted ) . '</p></div>';
 		});
 	}
 });
@@ -665,9 +665,9 @@ function convoca_actividad_schema(): void
 			'address' => [
 				'@type' => 'PostalAddress',
 				'streetAddress' => $location,
-				'addressLocality' => 'Asturias',
-				'addressRegion' => 'Asturias',
-				'addressCountry' => 'ES'
+				'addressLocality' => apply_filters( 'convoca_theme_schema_locality', '' ),
+				'addressRegion' => apply_filters( 'convoca_theme_schema_region', '' ),
+				'addressCountry' => apply_filters( 'convoca_theme_schema_country', 'ES' )
 			]
 		],
 		'image'       => [
@@ -698,7 +698,7 @@ add_action('wp_head', 'convoca_actividad_schema');
 add_shortcode('convoca_calendario', function () {
     $activities = \Convoca\Enroll\CPT_Actividad::get_upcoming(20);
     if (empty($activities)) {
-        return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 No hay actividades programadas próximamente. Vuelve pronto.</p></div>';
+        return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 ' . esc_html__( 'No hay actividades programadas próximamente. Vuelve pronto.', 'convoca-theme' ) . '</p></div>';
     }
     $html = '<div class="conv-calendario-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin:30px 0;">';
     foreach ($activities as $a) {
@@ -824,7 +824,8 @@ add_action('wp_dashboard_setup', function () {
  *   {social_instagram} → Filterable Instagram handle
  *   {social_facebook}  → Filterable Facebook handle
  *   {social_youtube}   → Filterable YouTube URL
- *   {lugg_url}         → Filterable URL (defaults to home URL)
+ *   {lugg_url}         → Filterable URL (deprecated alias, defaults to home URL)
+ *   {community_url}    → Filterable community/social URL (defaults to home URL)
  *   {year}             → Current year (legacy support from mu-plugin)
  *
  * @since 2.7.0
@@ -838,8 +839,120 @@ function convoca_theme_render_block($block_content, $block) {
         '{social_youtube}'    => apply_filters('convoca_theme_social_youtube', ''),
         '{social_handle}'     => apply_filters('convoca_theme_social_handle', ''),
         '{lugg_url}'          => apply_filters('convoca_theme_lugg_url', home_url('/')),
+        '{community_url}'     => apply_filters('convoca_theme_community_url', home_url('/')),
         '{contact_email}'     => get_bloginfo('admin_email'),
     ]);
     return str_replace(array_keys($replacements), array_values($replacements), $block_content);
 }
 add_filter('render_block', 'convoca_theme_render_block', 10, 2);
+
+/**
+ * Language Switcher — añade selector de idioma al menú si hay más de un idioma activo.
+ *
+ * Compatible con WPML (icl_get_languages) y Polylang (pll_the_languages).
+ * Se muestra solo cuando hay ≥2 idiomas activos.
+ *
+ * Soporta dos vías:
+ * 1. Menús clásicos → wp_nav_menu_items (añade <li> al final).
+ * 2. Themes FSE → render_block (inyecta el selector dentro del <nav> del bloque
+ *    de navegación, antes del cierre).
+ */
+function convoca_theme_lang_languages(): array
+{
+    $languages = array();
+
+    if (function_exists('icl_get_languages')) {
+        $raw = icl_get_languages('skip_missing=0&orderby=code');
+        if (!empty($raw)) {
+            foreach ($raw as $lang) {
+                $languages[] = array(
+                    'code'  => $lang['language_code'],
+                    'name'  => $lang['native_name'] ?: $lang['translated_name'],
+                    'url'   => $lang['url'],
+                    'is_current' => !empty($lang['active']),
+                );
+            }
+        }
+    } elseif (function_exists('pll_the_languages')) {
+        // Polylang fallback.
+        $pll = pll_the_languages(array('raw' => 1, 'hide_current' => 0));
+        if (is_array($pll)) {
+            foreach ($pll as $lang) {
+                $languages[] = array(
+                    'code'  => $lang['slug'],
+                    'name'  => $lang['name'],
+                    'url'   => $lang['url'],
+                    'is_current' => !empty($lang['current_lang']),
+                );
+            }
+        }
+    }
+
+    return $languages;
+}
+
+function convoca_theme_lang_switcher_html(): string
+{
+    $languages = convoca_theme_lang_languages();
+    if (count($languages) < 2) {
+        return '';
+    }
+
+    $html = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher">';
+    $html .= '<span class="convoca-lang-switcher__label" aria-hidden="true">🌐</span>';
+    $html .= '<span class="convoca-lang-switcher__list">';
+    foreach ($languages as $i => $lang) {
+        $cls = $lang['is_current'] ? 'convoca-lang-switcher__link is-active' : 'convoca-lang-switcher__link';
+        $sep = $i < count($languages) - 1 ? ' / ' : '';
+        $html .= '<a class="' . esc_attr($cls) . '" href="' . esc_url($lang['url']) . '" hreflang="' . esc_attr($lang['code']) . '" lang="' . esc_attr($lang['code']) . '">' . esc_html($lang['name']) . '</a>' . $sep;
+    }
+    $html .= '</span></li>';
+
+    return $html;
+}
+
+function convoca_theme_language_switcher($items, $args)
+{
+    if (!function_exists('icl_get_languages') && !function_exists('pll_the_languages')) {
+        return $items;
+    }
+
+    return $items . convoca_theme_lang_switcher_html();
+}
+add_filter('wp_nav_menu_items', 'convoca_theme_language_switcher', 20, 2);
+
+/**
+ * FSE: inyecta el selector en los bloques de navegación (core/navigation).
+ */
+function convoca_theme_lang_switcher_block($block_content, $block)
+{
+    if (empty($block['blockName']) || $block['blockName'] !== 'core/navigation') {
+        return $block_content;
+    }
+    $switcher = convoca_theme_lang_switcher_html();
+    if ($switcher === '') {
+        return $block_content;
+    }
+    // Insertar antes del cierre del <nav> o del contenedor del bloque.
+    if (preg_match('#(</nav>)#', $block_content, $m, PREG_OFFSET_CAPTURE)) {
+        $pos = $m[1][1];
+        return substr($block_content, 0, $pos) . $switcher . substr($block_content, $pos);
+    }
+    return $block_content . $switcher;
+}
+add_filter('render_block', 'convoca_theme_lang_switcher_block', 20, 2);
+
+/**
+ * Estilos del selector de idioma (inline para no depender de assets compilados).
+ */
+function convoca_theme_lang_switcher_styles(): void
+{
+    echo '<style>
+    .convoca-lang-switcher { display:inline-flex; align-items:center; gap:6px; padding:0 12px; }
+    .convoca-lang-switcher__label { font-size:15px; }
+    .convoca-lang-switcher__list { display:inline-flex; align-items:center; gap:4px; }
+    .convoca-lang-switcher__link { font-weight:600; text-decoration:none; opacity:.6; }
+    .convoca-lang-switcher__link.is-active { opacity:1; text-decoration:underline; }
+    </style>';
+}
+add_action('wp_head', 'convoca_theme_lang_switcher_styles', 99);

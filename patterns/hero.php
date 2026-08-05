@@ -36,8 +36,8 @@
                 style="letter-spacing:-0.02em">Sembrando conciencia, transformando el mañana</h1>
             <!-- /wp:heading -->
             <!-- wp:paragraph {"style":{"typography":{"fontSize":"1.2rem"},"color":{"text":"rgba(255,255,255,0.9)"}}} -->
-            <p style="color:rgba(255,255,255,0.9);font-size:1.2rem">Asociación socioambiental asturiana. Educación,
-                conservación y acción comunitaria desde 2017.</p>
+            <p style="color:rgba(255,255,255,0.9);font-size:1.2rem">Asociación socioambiental. Educación,
+                conservación y acción comunitaria.</p>
             <!-- /wp:paragraph -->
             <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
             <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">

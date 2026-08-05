@@ -62,7 +62,7 @@
                 <!-- /wp:heading -->
                 <!-- wp:paragraph {"align":"center"} -->
                 <p class="has-text-align-center">Proyectos de restauración, limpieza de espacios naturales y protección
-                    de la biodiversidad asturiana.</p>
+                    de la biodiversidad local.</p>
                 <!-- /wp:paragraph -->
             </div>
             <!-- /wp:group -->
