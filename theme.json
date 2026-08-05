@@ -21,13 +21,13 @@
         },
         {
           "slug": "violeta",
-          "color": "#320028",
+          "color": "#2A0A1E",
           "name": "Violeta Ocaso"
         },
         {
           "slug": "granate",
-          "color": "#7d0032",
-          "name": "Granate Tierra"
+          "color": "#2A0A1E",
+          "name": "Ciruela Oscura"
         },
         {
           "slug": "amarillo",
@@ -36,7 +36,7 @@
         },
         {
           "slug": "naranja-intenso",
-          "color": "#ff500a",
+          "color": "#FF6B00",
           "name": "Naranja Intenso"
         },
         {
@@ -73,17 +73,17 @@
         },
         {
           "slug": "stats-dark",
-          "gradient": "linear-gradient(135deg, #320028, #1a0014)",
+          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
           "name": "Oscuro Stats"
         },
         {
           "slug": "cta-dark",
-          "gradient": "linear-gradient(135deg, #320028, #1a0014)",
+          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
           "name": "CTA Oscuro"
         },
         {
           "slug": "naranja-warm",
-          "gradient": "linear-gradient(135deg, #ff8700, #ff500a)",
+          "gradient": "linear-gradient(135deg, #ff8700, #FF6B00)",
           "name": "Naranja Cálido"
         },
         {
@@ -379,12 +379,12 @@
           "fontSize": "1.6rem"
         },
         "color": {
-          "text": "#2d2d3a"
+          "text": "#1A1D24"
         },
         "elements": {
           "link": {
             "color": {
-              "text": "#2d2d3a"
+              "text": "#1A1D24"
             },
             "typography": {
               "textDecoration": "none"
