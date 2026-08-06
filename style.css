@@ -681,10 +681,26 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     min-height: 100dvh !important;
 }
 
+/* Full-width menu items on mobile: the UL stretches across the overlay */
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container,
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-page-list,
+.wp-block-navigation__responsive-container.is-menu-open > ul {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
     padding: 0.75rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     width: 100%;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+    display: block;
+    width: 100%;
+    font-size: 1.05rem;
+    font-weight: 600;
 }
 
 .wp-block-navigation__responsive-container-close {
@@ -1360,7 +1376,8 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     }
 
     .dark-mode .site-header > .wp-block-group > .wp-block-group.is-nowrap,
-    .site-header > .wp-block-group > .wp-block-group.is-nowrap {
+    .site-header > .wp-block-group > .wp-block-group.is-nowrap,
+    .site-header > .wp-block-group.is-content-justification-space-between > .wp-block-group.is-nowrap {
         padding: 0 !important;
         margin: 0 0 0 0.75rem !important;
         gap: 0.5rem !important;
@@ -1381,6 +1398,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         min-width: 0 !important;
         flex-wrap: nowrap !important;
         gap: 0.25rem !important;
+    }
+
+    /* Let the language dropdown escape the header (group has overflow:hidden) */
+    .site-header > .wp-block-group > .wp-block-group.is-layout-flex {
+        overflow: visible !important;
+    }
+    .site-header .wp-block-navigation {
+        overflow: visible !important;
     }
 
     /* Language switcher: compact dropdown toggle in mobile bar */
