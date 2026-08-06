@@ -602,7 +602,8 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 /* Desktop: header en una sola fila compacta */
 @media (min-width: 782px) {
     .site-header > .wp-block-group,
-    .site-header .is-content-justification-space-between {
+    .site-header .is-content-justification-space-between,
+    .site-header .is-content-justification-space-between > .wp-block-group.is-layout-flex {
         flex-wrap: nowrap !important;
         gap: 1.5rem !important;
     }
