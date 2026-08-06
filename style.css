@@ -91,7 +91,7 @@ a:focus-visible {
     --dark-card-hover: rgba(35, 38, 46, 0.75);
     --dark-text: #F4F6F8;
     --dark-text-secondary: #A8B0BC;
-    --dark-text-muted: #6B7280;
+    --dark-text-muted: #8A93A3;
     --dark-border: rgba(255, 135, 0, 0.06);
     --dark-amber: #FFAB00;
     --dark-orange: #FF8700;
@@ -147,7 +147,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     padding: 0.85rem 1rem !important;
 }
 .dark-mode .wp-block-search__input::placeholder {
-    color: #6B7280 !important;
+    color: #8A93A3 !important;
 }
 .dark-mode .wp-block-search__button {
     background: transparent !important;
