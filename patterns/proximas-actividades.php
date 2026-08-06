@@ -27,13 +27,13 @@
 <div class="wp-block-group"
     style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 
-    <!-- wp:heading {"textAlign":"center","textColor":"violeta","fontFamily":"display","fontSize":"x-large","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
-    <h2 class="wp-block-heading has-text-align-center has-violeta-color has-text-color has-display-font-family has-x-large-font-size"
+    <!-- wp:heading {"textAlign":"center","textColor":"naranja","fontFamily":"display","fontSize":"x-large","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
+    <h2 class="wp-block-heading has-text-align-center has-naranja-color has-text-color has-display-font-family has-x-large-font-size"
         style="margin-bottom:var(--wp--preset--spacing--20)">Próximas actividades</h2>
     <!-- /wp:heading -->
 
-    <!-- wp:paragraph {"align":"center","style":{"color":{"text":"#555555"},"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-    <p class="has-text-align-center" style="color:#555555;margin-bottom:var(--wp--preset--spacing--40)">Talleres,
+    <!-- wp:paragraph {"align":"center","className":"convoca-section-subtitle","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
+    <p class="has-text-align-center convoca-section-subtitle" style="margin-bottom:var(--wp--preset--spacing--40)">Talleres,
         voluntariados y salidas para conectar con la naturaleza.</p>
     <!-- /wp:paragraph -->
 

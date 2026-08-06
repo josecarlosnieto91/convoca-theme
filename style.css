@@ -471,6 +471,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode .site-footer a:hover { color: var(--dark-amber) !important; }
 .dark-mode .site-footer p { color: rgba(255, 255, 255, 0.6) !important; font-size: 0.8rem; }
 
+/* Section subtitle: readable in both modes */
+.convoca-section-subtitle {
+    color: #555555;
+}
+.dark-mode .convoca-section-subtitle {
+    color: #C7CBD1;
+}
+
 /* ── CITAS, SEPARADORES, METADATOS ── */
 .dark-mode .wp-block-quote {
     border-left: 2px solid rgba(255, 171, 0, 0.15);
