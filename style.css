@@ -637,6 +637,9 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         padding: 0.4rem 0.8rem !important;
         font-size: 0.85rem !important;
     }
+    .site-header .convoca-lang-switcher {
+        display: none !important;
+    }
 }
 
 .site-header.scrolled {
