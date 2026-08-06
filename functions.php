@@ -841,6 +841,7 @@ function convoca_theme_render_block($block_content, $block) {
         '{lugg_url}'          => apply_filters('convoca_theme_lugg_url', home_url('/')),
         '{community_url}'     => apply_filters('convoca_theme_community_url', home_url('/')),
         '{contact_email}'     => get_bloginfo('admin_email'),
+        '{year}'              => (string) gmdate('Y'),
     ]);
     return str_replace(array_keys($replacements), array_values($replacements), $block_content);
 }

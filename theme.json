@@ -20,14 +20,9 @@
           "name": "Naranja Energía"
         },
         {
-          "slug": "violeta",
-          "color": "#2A0A1E",
-          "name": "Violeta Ocaso"
-        },
-        {
-          "slug": "granate",
-          "color": "#2A0A1E",
-          "name": "Ciruela Oscura"
+          "slug": "fondo",
+          "color": "#0F1115",
+          "name": "Fondo Oscuro"
         },
         {
           "slug": "amarillo",
@@ -73,12 +68,12 @@
         },
         {
           "slug": "stats-dark",
-          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
+          "gradient": "linear-gradient(135deg, #1A1D24, #0F1115)",
           "name": "Oscuro Stats"
         },
         {
           "slug": "cta-dark",
-          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
+          "gradient": "linear-gradient(135deg, #1A1D24, #0F1115)",
           "name": "CTA Oscuro"
         },
         {
@@ -267,7 +262,7 @@
           "fontWeight": "700"
         },
         "color": {
-          "text": "var(--wp--preset--color--violeta)"
+          "text": "var(--wp--preset--color--naranja)"
         }
       },
       "h4": {

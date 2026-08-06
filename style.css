@@ -457,7 +457,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 /* ── FOOTER: minimalista, premium ── */
 .dark-mode .site-footer {
     border-top: 1px solid var(--dark-border) !important;
-    background: linear-gradient(180deg, #0F1115 0%, #181216 100%) !important;
+    background: linear-gradient(180deg, #0F1115 0%, #1A1D24 100%) !important;
     padding-block: 3rem !important;
 }
 .dark-mode .site-footer h3 {
@@ -467,9 +467,9 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
-.dark-mode .site-footer a { color: var(--dark-text-muted); font-size: 0.85rem; transition: color 0.25s ease; }
-.dark-mode .site-footer a:hover { color: var(--dark-amber); }
-.dark-mode .site-footer p { color: #7A6E66; font-size: 0.8rem; }
+.dark-mode .site-footer a { color: rgba(255, 255, 255, 0.75) !important; font-size: 0.85rem; transition: color 0.25s ease; }
+.dark-mode .site-footer a:hover { color: var(--dark-amber) !important; }
+.dark-mode .site-footer p { color: rgba(255, 255, 255, 0.6) !important; font-size: 0.8rem; }
 
 /* ── CITAS, SEPARADORES, METADATOS ── */
 .dark-mode .wp-block-quote {
@@ -637,8 +637,16 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         padding: 0.4rem 0.8rem !important;
         font-size: 0.85rem !important;
     }
+    /* Language switcher visible on desktop (compact) */
     .site-header .convoca-lang-switcher {
-        display: none !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 6px;
+        padding: 0 6px;
+        font-size: 0.78rem;
+    }
+    .site-header .convoca-lang-switcher .convoca-lang-switcher__link {
+        font-size: 0.78rem;
     }
 }
 
@@ -1191,10 +1199,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     position: relative;
     border-top: 3px solid transparent;
     border-image: linear-gradient(90deg, #ff8700, #ffa94d, #ffc680) 1;
+    color: rgba(255, 255, 255, 0.85) !important;
 }
 
 .site-footer a {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     transition: color var(--wp--custom--transition);
 }
@@ -1211,6 +1220,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 
 .site-footer li {
     padding: 0.3rem 0;
+}
+
+.site-footer li a {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.site-footer p {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 /* ---------- Animations ---------- */
@@ -1345,9 +1362,28 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         gap: 0.25rem !important;
     }
 
-    /* Hide language switcher from mobile bar (it stays inside the nav overlay) */
+    /* Language switcher: compact pill in mobile bar */
     .site-header .convoca-lang-switcher {
-        display: none !important;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 6px;
+        font-size: 0.72rem;
+        background: rgba(255, 135, 0, 0.12);
+        border-radius: 20px;
+        order: 3;
+    }
+    .site-header .convoca-lang-switcher .convoca-lang-switcher__label {
+        display: none;
+    }
+    .site-header .convoca-lang-switcher .convoca-lang-switcher__link {
+        font-size: 0.72rem;
+        color: #F4F6F8;
+        opacity: 0.6;
+    }
+    .site-header .convoca-lang-switcher .convoca-lang-switcher__link.is-active {
+        opacity: 1;
+        color: #FF8700;
     }
 
     /* Compact header row on mobile: tighter gap, full-width background */
@@ -1389,6 +1425,18 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .wp-block-navigation__responsive-container-open svg {
         width: 18px !important;
         height: 18px !important;
+    }
+
+    /* Hamburger button pushed to the right edge of the header */
+    .site-header .wp-block-navigation__responsive-container-open {
+        order: 99 !important;
+        margin-left: auto !important;
+    }
+    .site-header .header-cta {
+        order: 1 !important;
+    }
+    .site-header [data-wp-context*="convoca_dark"] {
+        order: 2 !important;
     }
 
     .header-cta .wp-block-button__link {
