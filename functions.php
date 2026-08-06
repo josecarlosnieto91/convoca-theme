@@ -905,15 +905,30 @@ function convoca_theme_lang_switcher_html(): string
         return '';
     }
 
-    $html = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher">';
-    $html .= '<span class="convoca-lang-switcher__label" aria-hidden="true">🌐</span>';
-    $html .= '<span class="convoca-lang-switcher__list">';
-    foreach ($languages as $i => $lang) {
-        $cls = $lang['is_current'] ? 'convoca-lang-switcher__link is-active' : 'convoca-lang-switcher__link';
-        $sep = $i < count($languages) - 1 ? ' / ' : '';
-        $html .= '<a class="' . esc_attr($cls) . '" href="' . esc_url($lang['url']) . '" hreflang="' . esc_attr($lang['code']) . '" lang="' . esc_attr($lang['code']) . '">' . esc_html($lang['name']) . '</a>' . $sep;
+    $current_code = 'EN';
+    foreach ($languages as $lang) {
+        if (!empty($lang['is_current'])) {
+            $current_code = strtoupper($lang['code']);
+            break;
+        }
     }
-    $html .= '</span></li>';
+
+    $id = 'convoca-lang-' . wp_unique_id();
+
+    $html = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher convoca-lang-switcher--dropdown">';
+    $html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-expanded="false" aria-controls="' . esc_attr($id) . '">';
+    $html .= '<span class="convoca-lang-switcher__globe" aria-hidden="true">🌐</span>';
+    $html .= '<span class="convoca-lang-switcher__code">' . esc_html($current_code) . '</span>';
+    $html .= '<span class="convoca-lang-switcher__caret" aria-hidden="true">▾</span>';
+    $html .= '</button>';
+    $html .= '<ul class="convoca-lang-switcher__dropdown" id="' . esc_attr($id) . '">';
+    foreach ($languages as $lang) {
+        $cls = $lang['is_current'] ? 'convoca-lang-switcher__link is-active' : 'convoca-lang-switcher__link';
+        $html .= '<li class="convoca-lang-switcher__item">';
+        $html .= '<a class="' . esc_attr($cls) . '" href="' . esc_url($lang['url']) . '" hreflang="' . esc_attr($lang['code']) . '" lang="' . esc_attr($lang['code']) . '">' . esc_html($lang['name']) . '</a>';
+        $html .= '</li>';
+    }
+    $html .= '</ul></li>';
 
     return $html;
 }
@@ -955,11 +970,37 @@ add_filter('render_block', 'convoca_theme_lang_switcher_block', 20, 2);
 function convoca_theme_lang_switcher_styles(): void
 {
     echo '<style>
-    .convoca-lang-switcher { display:inline-flex; align-items:center; gap:6px; padding:0 12px; }
-    .convoca-lang-switcher__label { font-size:15px; }
-    .convoca-lang-switcher__list { display:inline-flex; align-items:center; gap:4px; }
-    .convoca-lang-switcher__link { font-weight:600; text-decoration:none; opacity:.6; }
-    .convoca-lang-switcher__link.is-active { opacity:1; text-decoration:underline; }
-    </style>';
+    .convoca-lang-switcher { position:relative; display:inline-flex; align-items:center; }
+    .convoca-lang-switcher__toggle { display:inline-flex; align-items:center; gap:4px; padding:4px 10px; border:1px solid rgba(255,135,0,0.25); border-radius:20px; background:rgba(255,135,0,0.08); cursor:pointer; font-size:0.75rem; font-weight:700; line-height:1; color:inherit; transition:background 0.2s ease, border-color 0.2s ease; }
+    .convoca-lang-switcher__toggle:hover { background:rgba(255,135,0,0.16); border-color:rgba(255,135,0,0.45); }
+    .convoca-lang-switcher__globe { font-size:0.8rem; }
+    .convoca-lang-switcher__code { letter-spacing:0.04em; }
+    .convoca-lang-switcher__caret { font-size:0.6rem; opacity:0.7; }
+    .convoca-lang-switcher__dropdown { display:none; position:absolute; top:calc(100% + 6px); right:0; z-index:999; min-width:130px; margin:0; padding:6px; list-style:none; background:#1A0B16; border:1px solid rgba(255,135,0,0.18); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.45); }
+    .convoca-lang-switcher--dropdown.is-open .convoca-lang-switcher__dropdown { display:block; }
+    .convoca-lang-switcher__item { margin:0; padding:0; }
+    .convoca-lang-switcher__link { display:block; padding:7px 12px; font-size:0.8rem; font-weight:600; text-decoration:none; opacity:0.75; border-radius:6px; white-space:nowrap; }
+    .convoca-lang-switcher__link:hover { opacity:1; background:rgba(255,135,0,0.12); }
+    .convoca-lang-switcher__link.is-active { opacity:1; color:#FF8700; }
+    </style>
+    <script>
+    (function () {
+        document.addEventListener("click", function (e) {
+            var toggle = e.target.closest(".convoca-lang-switcher__toggle");
+            document.querySelectorAll(".convoca-lang-switcher--dropdown.is-open").forEach(function (li) {
+                if (!toggle || !li.contains(toggle)) {
+                    li.classList.remove("is-open");
+                    var b = li.querySelector(".convoca-lang-switcher__toggle");
+                    if (b) b.setAttribute("aria-expanded", "false");
+                }
+            });
+            if (toggle) {
+                var li = toggle.closest(".convoca-lang-switcher--dropdown");
+                var open = li.classList.toggle("is-open");
+                toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            }
+        });
+    })();
+    </script>';
 }
 add_action('wp_head', 'convoca_theme_lang_switcher_styles', 99);

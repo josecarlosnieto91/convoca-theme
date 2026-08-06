@@ -83,12 +83,12 @@ a:focus-visible {
    =================================================================== */
 
 :root {
-    --dark-bg: #0F1115;
-    --dark-surface: #1A1D24;
-    --dark-elevated: #23262E;
-    --dark-elevated-2: #2B2F38;
-    --dark-card: rgba(26, 29, 36, 0.58);
-    --dark-card-hover: rgba(35, 38, 46, 0.75);
+    --dark-bg: #1A0B16;
+    --dark-surface: #241019;
+    --dark-elevated: #2E1520;
+    --dark-elevated-2: #381A28;
+    --dark-card: rgba(36, 16, 25, 0.58);
+    --dark-card-hover: rgba(46, 21, 32, 0.75);
     --dark-text: #F4F6F8;
     --dark-text-secondary: #A8B0BC;
     --dark-text-muted: #8A93A3;
@@ -271,7 +271,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 /* Override the Cover block's built-in gradient background span */
 .dark-mode .hero-topographic .wp-block-cover__background {
-    background: linear-gradient(145deg, #0F1115 0%, #1A1D24 40%, #23262E 70%, #0F1115 100%) !important;
+    background: linear-gradient(145deg, #1A0B16 0%, #2E1520 40%, #381A28 70%, #1A0B16 100%) !important;
     opacity: 1 !important;
 }
 /* Add a subtle warm glow overlay on top */
@@ -457,7 +457,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 /* ── FOOTER: minimalista, premium ── */
 .dark-mode .site-footer {
     border-top: 1px solid var(--dark-border) !important;
-    background: linear-gradient(180deg, #2A0A1E 0%, #0F1115 100%) !important;
+    background: linear-gradient(180deg, #3D1530 0%, #1A0B16 100%) !important;
     padding-block: 3rem !important;
 }
 .dark-mode .site-footer h3 {
@@ -1375,29 +1375,22 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         gap: 0.25rem !important;
     }
 
-    /* Language switcher: compact pill in mobile bar */
+    /* Language switcher: compact dropdown toggle in mobile bar */
     .site-header .convoca-lang-switcher {
         display: inline-flex !important;
         align-items: center;
-        gap: 4px;
-        padding: 3px 8px;
+        order: 1;
+    }
+    .site-header .convoca-lang-switcher__toggle {
+        font-size: 0.68rem;
+        padding: 4px 8px;
+    }
+    .site-header .convoca-lang-switcher__globe {
         font-size: 0.72rem;
-        background: rgba(255, 135, 0, 0.12);
-        border-radius: 20px;
-        order: 0;
-        white-space: nowrap;
     }
-    .site-header .convoca-lang-switcher .convoca-lang-switcher__label {
-        display: none;
-    }
-    .site-header .convoca-lang-switcher .convoca-lang-switcher__link {
-        font-size: 0.72rem;
-        color: #F4F6F8;
-        opacity: 0.6;
-    }
-    .site-header .convoca-lang-switcher .convoca-lang-switcher__link.is-active {
-        opacity: 1;
-        color: #FF8700;
+    .site-header .convoca-lang-switcher__dropdown {
+        top: calc(100% + 6px);
+        right: 0;
     }
 
     /* Compact header row on mobile: tighter gap, full-width background */
