@@ -318,13 +318,6 @@ add_action('admin_menu', 'convoca_admin_menu');
 function convoca_help_page_html(): void
 {
 	$theme = wp_get_theme();
-	
-	// Protección contra ausencia de plugins: Verificar existencia de CPTs antes de contar
-	$has_enroll = post_type_exists('inscripcion');
-	$inscripciones_count = $has_enroll ? wp_count_posts('inscripcion') : (object)[];
-	
-	$has_members = post_type_exists('miembro');
-	$miembros_count = $has_members ? wp_count_posts('miembro') : (object)[];
 	?>
 	<div class="wrap convoca-admin-page">
 		<h1><?php echo esc_html__('Configuración y Ayuda — Theme Convoca', 'convoca-theme'); ?></h1>
@@ -353,58 +346,6 @@ function convoca_help_page_html(): void
 							<a href="<?php echo admin_url('site-editor.php'); ?>" class="button button-primary"><?php echo esc_html__('Abrir Editor de Sitios (FSE)', 'convoca-theme'); ?></a>
 						</div>
 					</div>
-
-					<!-- Estado de Inscripciones -->
-					<?php if ($has_enroll) : ?>
-					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
-						<div class="inside">
-							<p><?php echo esc_html__('Resumen de participación actual (Convoca Enroll):', 'convoca-theme'); ?></p>
-							<ul>
-								<li><strong><?php echo esc_html__('Confirmadas:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->publish ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->pending ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('Canceladas:', 'convoca-theme'); ?></strong> <?php echo esc_html($inscripciones_count->trash ?? 0); ?></li>
-							</ul>
-							<a href="<?php echo esc_url(admin_url('edit.php?post_type=inscripcion')); ?>" class="button"><?php echo esc_html__('Gestionar Inscripciones', 'convoca-theme'); ?></a>
-						</div>
-					</div>
-					<?php else : ?>
-					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('Estado de Inscripciones', 'convoca-theme'); ?></span></h2>
-						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Convoca Enroll no está activo.', 'convoca-theme'); ?></p></div>
-						</div>
-					</div>
-					<?php endif; ?>
-
-					<!-- Estado de Miembros -->
-					<?php if ($has_members) : ?>
-					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
-						<div class="inside">
-							<p><?php echo esc_html__('Resumen de la comunidad (Convoca Members):', 'convoca-theme'); ?></p>
-							<ul>
-								<li><strong><?php echo esc_html__('Activos:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->publish ?? 0); ?></li>
-								<li><strong><?php echo esc_html__('Pendientes:', 'convoca-theme'); ?></strong> <?php echo esc_html($miembros_count->pending ?? 0); ?></li>
-							</ul>
-							<a href="<?php echo esc_url(admin_url('edit.php?post_type=miembro')); ?>" class="button"><?php echo esc_html__('Ver Miembros', 'convoca-theme'); ?></a>
-						</div>
-					</div>
-					<?php else : ?>
-					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__('Estado de Socios/Miembros', 'convoca-theme'); ?></span></h2>
-						<div class="inside">
-							<div class="notice notice-warning inline" style="margin: 0;"><p><?php echo esc_html__('El plugin Convoca Members no está activo.', 'convoca-theme'); ?></p></div>
-						</div>
-					</div>
-					<?php endif; ?>
-
-				</div>
-
-				<div id="postbox-container-2" class="postbox-container">
-					
-					<!-- Guía de Plantillas -->
-					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__('Guía de Plantillas y Páginas', 'convoca-theme'); ?></span></h2>
 						<div class="inside">
 							<h4><?php echo esc_html__('Página de Actividad', 'convoca-theme'); ?></h4>
