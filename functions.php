@@ -985,20 +985,47 @@ function convoca_theme_lang_switcher_styles(): void
     </style>
     <script>
     (function () {
-        document.addEventListener("click", function (e) {
-            var toggle = e.target.closest(".convoca-lang-switcher__toggle");
+        function positionDropdown(li) {
+            var dd = li.querySelector(".convoca-lang-switcher__dropdown");
+            var toggle = li.querySelector(".convoca-lang-switcher__toggle");
+            if (!dd || !toggle) return;
+            var tr = toggle.getBoundingClientRect();
+            // Fixed positioning escapes the sticky header stacking context.
+            dd.style.position = "fixed";
+            dd.style.top = (tr.bottom + 6) + "px";
+            dd.style.right = (window.innerWidth - tr.right) + "px";
+            dd.style.left = "auto";
+        }
+        function closeAll(except) {
             document.querySelectorAll(".convoca-lang-switcher--dropdown.is-open").forEach(function (li) {
-                if (!toggle || !li.contains(toggle)) {
+                if (li !== except) {
                     li.classList.remove("is-open");
                     var b = li.querySelector(".convoca-lang-switcher__toggle");
                     if (b) b.setAttribute("aria-expanded", "false");
                 }
             });
-            if (toggle) {
-                var li = toggle.closest(".convoca-lang-switcher--dropdown");
-                var open = li.classList.toggle("is-open");
-                toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+        document.addEventListener("click", function (e) {
+            var toggle = e.target.closest(".convoca-lang-switcher__toggle");
+            if (!toggle) {
+                closeAll(null);
+                return;
             }
+            var li = toggle.closest(".convoca-lang-switcher--dropdown");
+            var wasOpen = li.classList.contains("is-open");
+            closeAll(li);
+            var open = !wasOpen;
+            li.classList.toggle("is-open", open);
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+            if (open) positionDropdown(li);
+        });
+        window.addEventListener("resize", function () {
+            var open = document.querySelector(".convoca-lang-switcher--dropdown.is-open");
+            if (open) positionDropdown(open);
+        });
+        window.addEventListener("scroll", function () {
+            var open = document.querySelector(".convoca-lang-switcher--dropdown.is-open");
+            if (open) positionDropdown(open);
         });
     })();
     </script>';

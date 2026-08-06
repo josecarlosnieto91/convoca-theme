@@ -355,7 +355,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 
 /* ── GRUPOS GENÉRICOS: transparentes siempre ── */
 .dark-mode .wp-block-columns .wp-block-column > .wp-block-group,
-.dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.convoca-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover) {
+.dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.convoca-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover):not(main) {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -429,6 +429,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode a:not(.wp-block-button__link):hover {
     color: var(--dark-orange);
     border-bottom-color: rgba(255, 135, 0, 0.2);
+}
+/* Menu links in the open overlay: keep only the item separator, not the underline */
+.wp-block-navigation__responsive-container.is-menu-open a.wp-block-navigation-item__content,
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-page-list a {
+    border-bottom: none !important;
 }
 
 /* ── MÉTRICAS: minimalistas, enormes, aire ── */
