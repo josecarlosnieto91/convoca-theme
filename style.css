@@ -1202,14 +1202,27 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     color: rgba(255, 255, 255, 0.85) !important;
 }
 
+/* Storefront sets ul,ol { margin-left: 3em } — neutralize for FSE structures */
+.wp-block-post-template,
+.wp-block-navigation ul,
+.wp-block-navigation .wp-block-navigation__container,
+.wp-block-navigation .wp-block-page-list,
+.wp-block-navigation__responsive-container ul,
+.wp-block-navigation__responsive-container .wp-block-navigation__container,
+.wp-block-navigation__responsive-container .wp-block-page-list,
+.wp-block-navigation__responsive-container-content ul,
+.wp-block-navigation .wp-block-navigation__responsive-container-content ul {
+    margin-left: 0 !important;
+}
+
 .site-footer a {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
     text-decoration: none;
     transition: color var(--wp--custom--transition);
 }
 
 .site-footer a:hover {
-    color: #ff8700;
+    color: #ff8700 !important;
 }
 
 .site-footer ul {
@@ -1223,11 +1236,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 .site-footer li a {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .site-footer p {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6) !important;
 }
 
 /* ---------- Animations ---------- */
@@ -1431,9 +1444,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     /* Hamburger button pushed to the right edge of the header */
     .site-header .wp-block-navigation {
         margin-left: auto !important;
+        order: 99 !important;
     }
+    /* Inside the nav: hamburger last, language switcher before it */
     .site-header .wp-block-navigation__responsive-container-open {
         order: 99 !important;
+    }
+    .site-header .wp-block-navigation .convoca-lang-switcher {
+        order: 1 !important;
     }
     .site-header .header-cta {
         order: 1 !important;
