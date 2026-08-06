@@ -80,9 +80,7 @@
                 <!-- /wp:group -->
                 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
                 <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
-                    <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small"} -->
-                    <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="/actividades/">Más información</a></div>
-                    <!-- /wp:button -->
+                    <!-- wp:read-more {"content":"Más información","className":"wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size"} /-->
                 </div>
                 <!-- /wp:buttons -->
             </div>

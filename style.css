@@ -1367,11 +1367,12 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         display: inline-flex !important;
         align-items: center;
         gap: 4px;
-        padding: 3px 6px;
+        padding: 3px 8px;
         font-size: 0.72rem;
         background: rgba(255, 135, 0, 0.12);
         border-radius: 20px;
-        order: 3;
+        order: 0;
+        white-space: nowrap;
     }
     .site-header .convoca-lang-switcher .convoca-lang-switcher__label {
         display: none;
@@ -1428,9 +1429,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     }
 
     /* Hamburger button pushed to the right edge of the header */
+    .site-header .wp-block-navigation {
+        margin-left: auto !important;
+    }
     .site-header .wp-block-navigation__responsive-container-open {
         order: 99 !important;
-        margin-left: auto !important;
     }
     .site-header .header-cta {
         order: 1 !important;

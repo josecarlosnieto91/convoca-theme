@@ -843,7 +843,13 @@ function convoca_theme_render_block($block_content, $block) {
         '{contact_email}'     => get_bloginfo('admin_email'),
         '{year}'              => (string) gmdate('Y'),
     ]);
-    return str_replace(array_keys($replacements), array_values($replacements), $block_content);
+    $block_content = str_replace(array_keys($replacements), array_values($replacements), $block_content);
+
+    // Resolve shortcodes inside FSE patterns (do_blocks does not run them).
+    if (strpos($block_content, '[') !== false) {
+        $block_content = do_shortcode($block_content);
+    }
+    return $block_content;
 }
 add_filter('render_block', 'convoca_theme_render_block', 10, 2);
 
