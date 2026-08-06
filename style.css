@@ -484,6 +484,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     color: #C7CBD1;
 }
 
+/* Card metadata (fecha, lugar, plazas): readable in both modes */
+.convoca-card-meta {
+    color: #666666;
+}
+.dark-mode .convoca-card-meta {
+    color: #C7CBD1;
+}
+
 /* ── CITAS, SEPARADORES, METADATOS ── */
 .dark-mode .wp-block-quote {
     border-left: 2px solid rgba(255, 171, 0, 0.15);

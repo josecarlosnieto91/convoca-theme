@@ -56,8 +56,8 @@
                         <!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_fecha_inicio","type":"date"} /-->
                     </p>
                     <!-- /wp:paragraph -->
-                    <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","color":{"text":"#666666"}}} -->
-                    <p class="has-custom-font-size" style="color:#666666;font-size:0.85rem">
+                    <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.85rem","color":{"text":"#666666"}}}} -->
+                    <p class="has-custom-font-size convoca-card-meta" style="font-size:0.85rem">
                         <span class="dashicons dashicons-location" style="vertical-align:middle"></span>
                         <!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_ubicacion"} /-->
                     </p>
@@ -71,8 +71,8 @@
                         <!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_precio_general","type":"price"} /-->
                     </p>
                     <!-- /wp:paragraph -->
-                    <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8rem","color":{"text":"#888888"}}} -->
-                    <p style="color:#888888;font-size:0.8rem">
+                    <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8rem","color":{"text":"#888888"}}}} -->
+                    <p class="convoca-card-meta" style="font-size:0.8rem">
                         <!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_plazas_disponibles"} /--> plazas
                     </p>
                     <!-- /wp:paragraph -->
@@ -91,7 +91,7 @@
 
         <!-- wp:query-no-results -->
         <!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"1rem"},"color":{"text":"#777777"}}} -->
-        <p class="has-text-align-center" style="color:#777777;font-size:1rem">No hay actividades programadas en este
+        <p class="has-text-align-center convoca-card-meta" style="font-size:1rem">No hay actividades programadas en este
             momento. ¡Vuelve pronto!</p>
         <!-- /wp:paragraph -->
         <!-- /wp:query-no-results -->
