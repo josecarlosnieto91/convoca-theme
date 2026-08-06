@@ -1316,6 +1316,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .site-header {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
+        margin-bottom: 0 !important;
     }
     .wp-site-blocks > .wp-block-template-part {
         margin-top: 0 !important;
