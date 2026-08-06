@@ -1302,6 +1302,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         gap: 0.25rem !important;
     }
 
+    /* Hide language switcher from mobile bar (it stays inside the nav overlay) */
+    .site-header .convoca-lang-switcher {
+        display: none !important;
+    }
+
     /* Compact header row on mobile: tighter gap, full-width background */
     .site-header > .wp-block-group {
         gap: 0.5rem !important;
