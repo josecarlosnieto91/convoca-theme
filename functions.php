@@ -593,7 +593,7 @@ function convoca_theme_lang_switcher_html(): string
     $id = 'convoca-lang-' . wp_unique_id();
 
     $html = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher convoca-lang-switcher--dropdown">';
-    $html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-expanded="false" aria-controls="' . esc_attr($id) . '">';
+    $html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-label="' . esc_attr__('Cambiar idioma', 'convoca-theme') . '" aria-expanded="false" aria-controls="' . esc_attr($id) . '">';
     $html .= '<span class="convoca-lang-switcher__globe" aria-hidden="true">🌐</span>';
     $html .= '<span class="convoca-lang-switcher__code">' . esc_html($current_code) . '</span>';
     $html .= '<span class="convoca-lang-switcher__caret" aria-hidden="true">▾</span>';
