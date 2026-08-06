@@ -20,9 +20,14 @@
           "name": "Naranja Energía"
         },
         {
-          "slug": "fondo",
-          "color": "#0F1115",
-          "name": "Fondo Oscuro"
+          "slug": "violeta",
+          "color": "#2A0A1E",
+          "name": "Violeta Ocaso"
+        },
+        {
+          "slug": "granate",
+          "color": "#2A0A1E",
+          "name": "Ciruela Oscura"
         },
         {
           "slug": "amarillo",
@@ -68,12 +73,12 @@
         },
         {
           "slug": "stats-dark",
-          "gradient": "linear-gradient(135deg, #1A1D24, #0F1115)",
+          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
           "name": "Oscuro Stats"
         },
         {
           "slug": "cta-dark",
-          "gradient": "linear-gradient(135deg, #1A1D24, #0F1115)",
+          "gradient": "linear-gradient(135deg, #2A0A1E, #0F1115)",
           "name": "CTA Oscuro"
         },
         {
