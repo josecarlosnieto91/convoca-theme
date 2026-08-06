@@ -607,6 +607,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         flex-wrap: nowrap !important;
         gap: 1.5rem !important;
         align-items: center !important;
+        overflow: visible !important;
     }
     .site-header .wp-block-navigation__container,
     .site-header .wp-block-navigation__responsive-container-content,
@@ -618,6 +619,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         flex: 1 1 auto !important;
         gap: 0.75rem !important;
         flex-wrap: nowrap !important;
+        min-width: 0 !important;
     }
     .site-header .wp-block-navigation .wp-block-navigation-item {
         margin: 0 !important;
