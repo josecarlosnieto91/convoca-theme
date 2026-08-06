@@ -708,3 +708,22 @@ function convoca_theme_lang_switcher_styles(): void
     </script>';
 }
 add_action('wp_head', 'convoca_theme_lang_switcher_styles', 99);
+
+/**
+ * Excluir páginas de traducción EN (slugs terminados en -2) del bloque
+ * wp:page-list del header. WPML las registra como páginas publicadas y el
+ * page-list las listaría duplicadas junto a la versión ES.
+ */
+add_filter('wp_list_pages_excludes', function ($excludes) {
+    $pages = get_posts(array(
+        'post_type'   => 'page',
+        'post_status' => 'publish',
+        'numberposts' => -1,
+    ));
+    foreach ($pages as $p) {
+        if (preg_match('/-2$/', $p->post_name)) {
+            $excludes[] = $p->ID;
+        }
+    }
+    return $excludes;
+});
