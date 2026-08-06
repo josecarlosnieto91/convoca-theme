@@ -694,53 +694,6 @@ function convoca_actividad_schema(): void
 }
 add_action('wp_head', 'convoca_actividad_schema');
 
-// ─── Register convoca_calendario shortcode for activities list ───
-add_shortcode('convoca_calendario', function () {
-    $activities = \Convoca\Enroll\CPT_Actividad::get_upcoming(20);
-    if (empty($activities)) {
-        return '<div class="convoca-alert convoca-alert--info" style="display:block;padding:20px;margin:20px 0;border-radius:12px;"><p style="margin:0;font-size:1.1rem;">🔭 ' . esc_html__( 'No hay actividades programadas próximamente. Vuelve pronto.', 'convoca-theme' ) . '</p></div>';
-    }
-    $html = '<div class="conv-calendario-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;margin:30px 0;">';
-    foreach ($activities as $a) {
-        $id = $a->ID;
-        $title = esc_html(get_the_title($id));
-        $excerpt = esc_html(get_the_excerpt($id) ?: wp_trim_words(strip_tags(get_post_field('post_content', $id)), 30));
-        $fecha = get_post_meta($id, '_convoca_fecha_inicio', true);
-        $fecha_fin = get_post_meta($id, '_convoca_fecha_fin', true);
-        $lugar = get_post_meta($id, '_convoca_lugar', true) ?: get_post_meta($id, '_convoca_ubicacion', true);
-        $precio = get_post_meta($id, '_convoca_precio', true);
-        $plazas_disp = (int) get_post_meta($id, '_convoca_plazas_disponibles', true);
-        $plazas_total = (int) get_post_meta($id, '_convoca_plazas_totales', true);
-        $requires_payment = get_post_meta($id, '_convoca_requires_payment', true);
-        $permalink = esc_url(get_permalink($id));
-        
-        $fecha_str = '';
-        if ($fecha) {
-            $ts = strtotime($fecha);
-            $fecha_str = date_i18n('j \d\e F \d\e\l Y', $ts);
-            if ($fecha_fin) {
-                $fecha_str .= ' — ' . date_i18n('j \d\e F \d\e\l Y', strtotime($fecha_fin));
-            }
-        }
-        
-        $precio_str = $requires_payment && $precio > 0 ? number_format($precio, 2, ',', '.') . ' €' : 'Gratis';
-        $plazas_str = $plazas_disp . ' / ' . $plazas_total;
-        
-        $html .= '<div class="activitat-card" style="background:#fff;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.06);transition:box-shadow 0.3s;">';
-        $html .= '<div style="padding:20px;">';
-        $html .= '<h3 style="margin:0 0 10px;font-size:1.1rem;line-height:1.3;"><a href="' . $permalink . '" style="color:#1a1a1a;text-decoration:none;">' . $title . '</a></h3>';
-        if ($fecha_str) $html .= '<p style="margin:0 0 6px;color:#64748b;font-size:0.9rem;">📅 ' . $fecha_str . '</p>';
-        if ($lugar) $html .= '<p style="margin:0 0 6px;color:#64748b;font-size:0.9rem;">📍 ' . esc_html($lugar) . '</p>';
-        $html .= '<p style="margin:0 0 6px;color:#64748b;font-size:0.9rem;">👥 Plazas: ' . $plazas_str . '</p>';
-        $html .= '<p style="margin:0 0 12px;color:var(--wp--preset--color--naranja, #ff8700);font-weight:700;font-size:1rem;">💰 ' . $precio_str . '</p>';
-        $html .= '<p style="margin:0 0 15px;color:#555;font-size:0.9rem;line-height:1.5;">' . $excerpt . '</p>';
-        $html .= '<a href="' . $permalink . '" class="wp-block-button__link has-naranja-background-color has-background" style="padding:8px 20px;font-size:0.85rem;border-radius:50px;text-decoration:none;display:inline-block;">Ver detalles →</a>';
-        $html .= '</div></div>';
-    }
-    $html .= '</div>';
-    return $html;
-});
-
 // ─── Register actividad meta keys for FSE block visibility ───
 add_action('init', function () {
     $keys = ['fecha_inicio', 'fecha_fin', 'lugar', 'precio', 'plazas_disponibles', 'plazas_totales', 'difultad', 'requires_payment'];
@@ -755,6 +708,24 @@ add_action('init', function () {
     }
 });
 // ─── Process shortcodes in rendered blocks (FSE compatibility) ───
+
+/**
+ * core/read-more appends the post title after content ("Más información : Título").
+ * Keep only the explicit label on the activity cards.
+ */
+add_filter('render_block_core/read-more', function ($block_content, $block) {
+    if (strpos($block_content, 'wp-block-read-more') === false) {
+        return $block_content;
+    }
+    // Replace the whole inner text with the configured content label.
+    $label = !empty($block['attrs']['content']) ? $block['attrs']['content'] : 'Más información';
+    return preg_replace(
+        '#(<a[^>]*wp-block-read-more[^>]*>).*?(</a>)#s',
+        '$1' . esc_html($label) . '$2',
+        $block_content,
+        1
+    );
+}, 10, 2);
 
 // ─── Inject actividad meta data into archive template markers ───
 add_filter('render_block_core/post-template', function ($block_content, $block) {
