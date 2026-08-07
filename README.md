@@ -32,6 +32,13 @@ se persiste en localStorage y respeta la preferencia del sistema
 > `[convoca_assistant]`, etc.) pertenecen a los plugins y funcionan con cualquier
 > tema activo. Consulta el manual de cada plugin.
 
+
+## 📖 Documentación
+
+La documentación completa (manual de usuario, API REST, hooks, instalación) vive en la wiki:
+
+👉 **[Convoca Theme](https://docs.getconvoca.app/plugins/convoca-theme/)**
+
 ## Dependencies
 
 WordPress 6.4+, PHP 8.0+
