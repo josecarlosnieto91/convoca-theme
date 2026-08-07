@@ -8,11 +8,11 @@ Stable tag: 2.7.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Tema FSE oscuro con modo oscuro, block patterns y shortcodes para Convoca.
+Tema FSE con modo oscuro y block patterns para el ecosistema Convoca.
 
 == Description ==
 
-Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo, 15+ block patterns, estilos de bloque personalizados y shortcodes para integrar funcionalidades de los plugins Convoca.
+Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo, 15+ block patterns y estilos de bloque personalizados. El tema es 100% presentacional: la funcionalidad (shortcodes, CPTs, REST) vive en los plugins de Convoca.
 
 * Full Site Editing — edita cabecera, pie y plantillas desde el editor de bloques
 * Modo oscuro nativo con toggle manual y persistencia
@@ -20,9 +20,8 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 * Tipografía Outfit + Lato con Google Fonts
 * 15+ Block Patterns: hero, cards, pricing, CTA, estadísticas, contacto
 * 8 estilos de bloque personalizados
-* Shortcodes: [convoca_mi_perfil], [convoca_inscripcion_actual], [convoca_calendario], [convoca_verificar_socio], [convoca_verificar_certificado]
-* Meta markers en plantillas FSE: %%FECHA_INICIO%%, %%LUGAR%%, %%PRECIO%%
-* Datos estructurados JSON-LD (Event Schema)
+* Shortcode de interfaz: [convoca_dark_mode_toggle]
+* Los shortcodes de negocio ([convoca_mi_area], [convoca_inscripcion_page], [convoca_calendario], [convoca_pago]…) pertenecen a los plugins y funcionan con cualquier tema
 
 == Installation ==
 
@@ -30,6 +29,10 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 2. Activa el tema desde Apariencia > Temas
 
 == Changelog ==
+
+= 2.7.0 =
+* Refactor: eliminada lógica de negocio del theme (migrada a plugins)
+* Fix: selector de idioma, menú móvil, contraste dark
 
 = 2.6.5 =
 * Nuevo: Tests de estructura del tema — 10 tests, 19 aserciones

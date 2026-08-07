@@ -1,6 +1,6 @@
 # Convoca Theme
 
-Tema hijo (FSE) para la Asociación Convoca.
+Tema (FSE) para el ecosistema Convoca.
 
 ## Requirements
 
@@ -10,33 +10,16 @@ Tema hijo (FSE) para la Asociación Convoca.
 ## Main Features
 
 - Diseño responsive con Full Site Editing
-- Shortcodes de perfil de socio y frontend
-- Plantillas de email
-- Integración con plugins Convoca
-- Full Site Editing con theme.json
+- Theme 100% presentacional (sin lógica de negocio: los shortcodes/CPTs/REST viven en los plugins)
 - Modo claro/oscuro automático y manual
 - Tipografía: Outfit (títulos) + Lato (cuerpo)
+- Full Site Editing con theme.json
+- 15+ block patterns
+- WCAG 2.2 AA
 
-## Shortcodes del Tema
+## Shortcode del tema
 
-### `[convoca_mi_perfil]`
-
-Muestra el perfil del socio o voluntario logueado: nombre, email, estado de
-membresía, inscripciones activas y horas de voluntariado. Si el usuario no ha
-iniciado sesión, muestra un formulario de login (email + código de acceso).
-
-### `[convoca_inscripcion_actual]`
-
-Detecta automáticamente la página de actividad actual (por el slug o ID del
-post) e incrusta el formulario de inscripción. Ideal para usar en la plantilla
-de una actividad (single-actividad.php). Acepta el atributo opcional `id` para
-especificar una actividad concreta.
-
-### `[convoca_actividad_meta field="ubicacion"]`
-
-Muestra un metadato específico de la actividad actual. Campos disponibles:
-`fecha_inicio`, `fecha_fin`, `ubicacion`, `plazas_totales`, `plazas_disponibles`,
-`precio_socio`, `precio_general`. Requiere estar en una página de actividad.
+El theme registra únicamente un shortcode de interfaz:
 
 ### `[convoca_dark_mode_toggle]`
 
@@ -44,18 +27,10 @@ Botón o enlace que alterna entre modo claro y oscuro en el frontend. El cambio
 se persiste en localStorage y respeta la preferencia del sistema
 (prefers-color-scheme) como valor inicial.
 
-### `[convoca_verificar_socio]`
-
-Página pública de verificación de membresía. El usuario introduce el código
-del socio (recibido por email) y el sistema muestra el estado actual de su
-membresía (activo, pendiente, expirado, etc.) sin necesidad de iniciar sesión.
-
-### `[convoca_verificar_certificado]`
-
-Página pública de verificación de certificados de voluntariado. Introduce el
-ID único del certificado (formato `VOL-AAAA-XXXXX`) y el sistema muestra:
-nombre del voluntario, horas totales, fecha de emisión y estado del
-certificado (válido o revocado).
+> **Nota:** los shortcodes de negocio (`[convoca_mi_area]`, `[convoca_renovar]`,
+> `[convoca_inscripcion_page]`, `[convoca_calendario]`, `[convoca_pago]`,
+> `[convoca_assistant]`, etc.) pertenecen a los plugins y funcionan con cualquier
+> tema activo. Consulta el manual de cada plugin.
 
 ## Dependencies
 
@@ -63,9 +38,15 @@ WordPress 6.4+, PHP 8.0+
 
 ## Version
 
-2.5.0
+2.7.0
 
 ## Changelog
+
+### 2.7.0
+- Refactor: eliminada lógica de negocio (shortcodes de actividad, hooks, JSON-LD) — migrada a plugins
+- Fix: selector de idioma con aria-label y dropdown completo
+- Fix: menú móvil full-width sin duplicados
+- Fix: contraste de metadatos en modo oscuro (`.convoca-card-meta`)
 
 ### 2.5.1
 - docs: add MANUAL_USUARIO.md with FSE + shortcodes guide

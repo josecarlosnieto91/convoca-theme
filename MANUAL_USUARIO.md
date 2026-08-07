@@ -1,12 +1,14 @@
-# MANUAL_USUARIO.md — Convoca Theme v2.6.5
+# MANUAL_USUARIO.md — Convoca Theme v2.7.0
 
-> Tema hijo FSE (Full Site Editing) para la Asociación Convoca.
+> Tema FSE (Full Site Editing) para el ecosistema Convoca.
 
 ## 1. Introducción
 
-Convoca Theme es un tema de bloques moderno con soporte para edición completa del sitio (FSE). Incluye paleta de colores accesible (naranja #ff8700 como primario), tipografía optimizada (Outfit + Lato), modo oscuro nativo, y shortcodes para integración con los plugins Convoca.
+Convoca Theme es un tema de bloques moderno con soporte para edición completa del sitio (FSE). Incluye paleta de colores accesible (naranja #ff8700 como primario), tipografía optimizada (Outfit + Lato), modo oscuro nativo y patrones de bloque para integrar el contenido de los plugins Convoca.
 
-**Integración en cualquier sitio:** El theme puede coexistir con otros temas. Sus shortcodes son independientes del tema activo. Si se usa como tema principal, reemplaza la apariencia actual.
+**Arquitectura (v2.7.0):** el theme es **100% presentacional**. No registra shortcodes de negocio, CPTs, endpoints REST ni hooks de datos — toda la funcionalidad vive en los plugins (enroll, members, shifts, gateway, assistant). Cambiar de tema no pierde ninguna funcionalidad.
+
+**Integración en cualquier sitio:** los shortcodes que uses en páginas (`[convoca_mi_area]`, `[convoca_inscripcion_page]`, etc.) son de los **plugins**, no del theme, y funcionan con cualquier tema activo. Convoca Theme solo aporta la capa visual.
 
 ## 2. Características
 
@@ -17,40 +19,19 @@ Convoca Theme es un tema de bloques moderno con soporte para edición completa d
 - 📱 **Responsive** — menú móvil full-screen con overlay, header sticky con backdrop-filter, diseño mobile-first
 - 🧩 **15+ Block Patterns** — secciones predefinidas para hero, cards, pricing, CTA, estadísticas
 - 🎨 **Estilos de bloque personalizados** — Tarjeta, Cristal Esmerilado, Overlay Topográfico, Tabla Convoca, Botón Secundario, Imagen Elevada, Caja Coordinador
-- 🔗 **Meta markers en plantillas FSE** — `%%FECHA_INICIO%%`, `%%LUGAR%%`, `%%PRECIO%%`, `%%PLAZAS%%` para mostrar datos de actividad en plantillas de archivo
 - ⚡ **Rendimiento** — CSS crítico inline, emoji scripts eliminados, lazy loading nativo, defer en JS
-- 📍 **Footer dinámico** — Año actualizado automáticamente vía JavaScript (`document.write`), enlaces a privacidad, cookies y aviso legal
-- 🔍 **SEO** — Datos estructurados JSON-LD (Event Schema) para actividades
+- 📍 **Footer dinámico** — Año actualizado automáticamente vía JavaScript, enlaces a privacidad, cookies y aviso legal
+- 🏗️ **Sin lógica de negocio** — los datos de actividad/membresía se consumen de los plugins vía sus shortcodes y bloques
 
-## 3. Shortcodes del tema
+## 3. Shortcode del tema
 
-### `[convoca_mi_perfil]`
-
-Muestra el perfil del socio logueado: nombre, email, estado de membresía, inscripciones activas y horas de voluntariado. Si no ha iniciado sesión, muestra formulario de login.
-
-### `[convoca_inscripcion_actual]`
-
-Detecta automáticamente la actividad actual y muestra el formulario de inscripción. Ideal para usar en la plantilla de actividad. Atributo opcional `id` para especificar una actividad concreta.
-
-### `[convoca_actividad_meta field="ubicacion"]`
-
-Muestra un metadato de la actividad actual. Campos disponibles: `fecha_inicio`, `fecha_fin`, `ubicacion`, `lugar`, `plazas_totales`, `plazas_disponibles`, `precio_socio`, `precio_general`, `precio`, `requires_payment`. Los campos `fecha_*` se formatean como fecha legible; `precio` muestra "Gratis" si es 0.
+El theme registra un **único** shortcode, puramente de interfaz:
 
 ### `[convoca_dark_mode_toggle]`
 
 Botón con iconos SVG (sol/luna) para alternar modo claro/oscuro. Persiste en localStorage. Incluido por defecto en el header del tema.
 
-### `[convoca_calendario]`
-
-Grid de actividades próximas (hasta 20) con tarjetas visuales que incluyen fecha, lugar, precio, plazas disponibles y enlace a detalle. Los datos se obtienen de `Convoca\Enroll\CPT_Actividad::get_upcoming()` si el plugin Convoca Enroll está activo.
-
-### `[convoca_verificar_socio]`
-
-Formulario de verificación pública de membresía.
-
-### `[convoca_verificar_certificado]`
-
-Formulario de verificación pública de certificados de voluntariado (código `VOL-AAAA-XXXXX`).
+> **Nota:** los shortcodes de negocio (`[convoca_mi_area]`, `[convoca_mi_perfil]`, `[convoca_renovar]`, `[convoca_inscripcion_page]`, `[convoca_calendario]`, `[convoca_pago]`, `[convoca_assistant]`, etc.) pertenecen a los **plugins** correspondientes. Consulta el manual de cada plugin.
 
 ## 4. Block Patterns incluidos
 
@@ -138,12 +119,10 @@ Esto restaura las plantillas a los archivos del tema. Solo puede hacerse una vez
 
 ## 8. Compatibilidad con otros temas
 
-Si el sitio usa otro tema (Astra, Elementor, etc.), los shortcodes de Convoca Theme funcionan igualmente:
+Los shortcodes de los **plugins** (`[convoca_mi_area]`, `[convoca_renovar]`, `[convoca_inscripcion_page]`, `[convoca_calendario]`, `[convoca_pago]`, etc.) funcionan con cualquier tema activo, incluido Convoca Theme.
 
-- Añade `[convoca_mi_perfil]` en cualquier página o widget
-- Añade `[convoca_verificar_socio]` en una página pública
 - El modo oscuro y los block patterns solo funcionan con Convoca Theme activo
-- El shortcode `[convoca_calendario]` funciona independientemente del tema activo
+- Los patrones de actividades (`proximas-actividades.php`) usan los datos de los plugins vía bloques dinámicos
 
 ## 9. Problemas comunes
 
@@ -154,3 +133,4 @@ Si el sitio usa otro tema (Astra, Elementor, etc.), los shortcodes de Convoca Th
 | **Las actividades no aparecen** | Asegúrate de que Convoca Enroll está activo y hay actividades publicadas |
 | **Footer muestra año incorrecto** | El año se genera dinámicamente con JavaScript; si JS está desactivado, se muestra el año actual del servidor |
 | **Google Fonts no cargan** | Verifica que `wp_remote_get` funciona; las fuentes tienen fallback a system fonts |
+| **Un shortcode no funciona** | Confirma que el plugin correspondiente está activo: `[convoca_mi_area]` → Members, `[convoca_calendario]` → Shifts, `[convoca_pago]` → Gateway |
