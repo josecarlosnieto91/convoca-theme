@@ -501,13 +501,18 @@ add_action('wp_dashboard_setup', function () {
  *   {social_instagram} → Filterable Instagram handle
  *   {social_facebook}  → Filterable Facebook handle
  *   {social_youtube}   → Filterable YouTube URL
- *   {lugg_url}         → Filterable URL (deprecated alias, defaults to home URL)
+ *   {centro_url}      → Filterable center URL (defaults to home URL)
  *   {community_url}    → Filterable community/social URL (defaults to home URL)
  *   {year}             → Current year (legacy support from mu-plugin)
  *
  * @since 2.7.0
  */
 function convoca_theme_render_block($block_content, $block) {
+    // Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0).
+    $centro_url = apply_filters('convoca_theme_centro_url', home_url('/'));
+    if (has_filter('convoca_theme_lugg_url')) {
+        $centro_url = apply_filters_deprecated('convoca_theme_lugg_url', [$centro_url], '2.7.0', 'convoca_theme_centro_url');
+    }
     $replacements = apply_filters('convoca_theme_footer_replacements', [
         '{admin_email}'       => get_bloginfo('admin_email'),
         '{volunteer_email}'   => apply_filters('convoca_theme_volunteer_email', get_bloginfo('admin_email')),
@@ -515,7 +520,8 @@ function convoca_theme_render_block($block_content, $block) {
         '{social_facebook}'   => apply_filters('convoca_theme_social_facebook', ''),
         '{social_youtube}'    => apply_filters('convoca_theme_social_youtube', ''),
         '{social_handle}'     => apply_filters('convoca_theme_social_handle', ''),
-        '{lugg_url}'          => apply_filters('convoca_theme_lugg_url', home_url('/')),
+        '{centro_url}'        => $centro_url,
+        '{lugg_url}'          => $centro_url, // deprecated token, kept for templates existentes.
         '{community_url}'     => apply_filters('convoca_theme_community_url', home_url('/')),
         '{contact_email}'     => get_bloginfo('admin_email'),
         '{year}'              => (string) gmdate('Y'),
