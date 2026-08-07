@@ -1,5 +1,12 @@
 # Changelog - Convoca Theme
 
+## 2.7.0 (2026-08-07)
+- **Refactor:** Eliminada toda la lógica de negocio (shortcodes de actividad, hooks de datos, JSON-LD) — migrada a los plugins. El theme queda 100% presentacional
+- **Fix:** Selector de idioma con aria-label y dropdown completo (sin cortes)
+- **Fix:** Menú móvil full-width sin duplicados (nav con links explícitos)
+- **Fix:** Contraste de metadatos en modo oscuro (`.convoca-card-meta`)
+- **A11y:** aria-label en el toggle de idioma
+
 ## 2.6.5
 - **Fix:** Footer año dinámico — reemplazado `{{year}}` estático por `document.write(new Date().getFullYear())` vía JavaScript
 - **Docs:** Añadidos CODE_OF_CONDUCT.md, LICENSE (GPL v2+), SECURITY.md, SUPPORT.md, CONTRIBUTING.md
