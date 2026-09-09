@@ -31,8 +31,56 @@ jobs:
       - name: PHP lint
         run: find . -name '*.php' -not -path './vendor/*' -exec php -l {} \;
 
-      - name: PHPStan
-        run: vendor/bin/phpstan analyse --memory-limit=2G --no-progress || true
-
       - name: PHPUnit
-        run: vendor/bin/phpunit --no-coverage || true
+        run: vendor/bin/phpunit --no-coverage
+
+  theme-check:
+    name: Theme Check (WordPress.org)
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2, wp-cli
+
+      - name: Build clean theme dir (as published)
+        run: |
+          mkdir -p build-dir
+          rsync -a --exclude-from=.distignore ./ build-dir/convoca-theme/
+          ls build-dir/convoca-theme/
+
+      - name: Install WordPress + Theme Check plugin
+        run: |
+          mkdir -p wp-test
+          wp core download --path=wp-test --allow-root
+          wp config create --path=wp-test --dbname=wordpress --dbuser=root \
+            --dbpass=root --dbhost=127.0.0.1 --allow-root
+          wp core install --path=wp-test --url=http://localhost:8080 \
+            --title="Theme Check" --admin_user=admin --admin_password=admin \
+            --admin_email=admin@example.com --skip-email --allow-root
+          wp plugin install theme-check --activate --path=wp-test --allow-root
+          sudo cp -r build-dir/convoca-theme wp-test/wp-content/themes/
+          echo "WP + theme-check ready"
+
+      - name: Run Theme Check
+        run: |
+          cd wp-test
+          # Falla el job si hay REQUERIDOS o errores (exit != 0).
+          wp theme-check run convoca-theme --format=table --allow-root
