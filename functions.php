@@ -323,7 +323,7 @@ function convoca_help_page_html(): void
 		<h1><?php echo esc_html__('Configuración y Ayuda — Theme Convoca', 'convoca-theme'); ?></h1>
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
-			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo get_template_directory_uri(); ?>/assets/images/admin-banner.png'); background-size: cover; background-position: center; color: #fff;">
+			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/admin-banner.png' ); ?>'); background-size: cover; background-position: center; color: #fff;">
 				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf(__('Bienvenido a Convoca v%s', 'convoca-theme'), $theme->get('Version')); ?></h2>
 				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__('Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso.', 'convoca-theme'); ?></p>
 			</div>
@@ -447,19 +447,7 @@ function convoca_dark_mode_inline_init(): void {
 add_action('wp_head', 'convoca_dark_mode_inline_init', 1);
 
 /**
- * 10. Shortcode for Dark Mode Toggle
- * Uso: [convoca_dark_mode_toggle]
- */
-add_shortcode('convoca_dark_mode_toggle', function() {
-	return '
-	<button class="dark-mode-toggle" aria-label="Cambiar modo de color" type="button">
-		<svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-		<svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
-	</button>';
-});
-
-/**
- * 12. SEO: JSON-LD Structured Data for Activities (Event Schema)
+ * 10. SEO: JSON-LD Structured Data for Activities (Event Schema)
  */
 
 // ─── Process shortcodes in rendered blocks (FSE compatibility) ───
