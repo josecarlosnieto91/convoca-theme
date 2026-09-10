@@ -12,7 +12,7 @@ Only the latest version of each Convoca plugin receives security updates.
 | convoca-gateway      | 2.6.x  | ✅ |
 | convoca-shifts       | 2.5.x  | ✅ |
 | convoca-publisher    | 1.3.x  | ✅ |
-| convoca-theme        | 2.6.x  | ✅ |
+| convoca-theme        | 2.7.x  | ✅ |
 
 Older versions are not maintained and may contain unpatched vulnerabilities.
 

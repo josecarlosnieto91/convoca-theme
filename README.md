@@ -5,7 +5,7 @@ Tema (FSE) para el ecosistema Convoca.
 ## Requirements
 
 - WordPress 6.4+
-- PHP 8.0+
+- PHP 8.1+
 
 ## Main Features
 
@@ -41,7 +41,7 @@ La documentación completa (manual de usuario, API REST, hooks, instalación) vi
 
 ## Dependencies
 
-WordPress 6.4+, PHP 8.0+
+WordPress 6.4+, PHP 8.1+
 
 ## Version
 
