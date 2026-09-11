@@ -1,3 +1,28 @@
+<?php
+
+/**
+ * Convoca Theme
+ *
+ * @package    Convoca\Theme
+ * @subpackage Patterns
+ *
+ * @copyright  Copyright (C) 2026 Jose Carlos Nieto Ramos
+ * @license    GPL-2.0-or-later
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ */
+
+/**
+ * Title: Banda de contacto
+ * Slug: convoca/contact-banner
+ * Categories: convoca, convoca-layout
+ * Description: Banda de contacto con datos de la entidad y botones.
+ * Keywords: contacto, banda, email, redes
+ */
+?>
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f8f6f2"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide has-background" style="background-color:#f8f6f2;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
     <!-- wp:heading {"textAlign":"center","level":2} -->
