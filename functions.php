@@ -229,7 +229,12 @@ function convoca_critical_css(): void
 		body { margin: 0; font-family: 'Lato', sans-serif; background: var(--wp--preset--color--blanco); color: var(--wp--preset--color--antracita); overflow-x: hidden; }
 		.site-header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px) saturate(180%); border-bottom: 1px solid rgba(0, 0, 0, 0.06); transition: box-shadow var(--wp--custom--transition); padding: var(--wp--preset--spacing--20) 0; }
 		.wp-block-group { box-sizing: border-box; }
-		.site-header .wp-block-group { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+		/* Solo la fila DIRECTA de la cabecera es contenedor: si se aplica a todos
+		   los grupos anidados, con un menú largo el grupo interior se queda en
+		   1200px y desborda la página (scroll horizontal). */
+		.site-header > .wp-block-group { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--wp--preset--spacing--20); max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
+		.site-header .wp-block-navigation { min-width: 0; max-width: 100%; }
+		.site-header .wp-block-buttons { flex-shrink: 0; }
 		.wp-block-site-title { font-size: 1.6rem; font-weight: 700; margin: 0; font-family: 'Outfit', sans-serif; }
 		.wp-block-site-title a { text-decoration: none; color: #2d2d3a; }
 		.hero-topographic { min-height: 40vh; display: flex; align-items: center; justify-content: center; position: relative; background: #ff8700; color: #fff; text-align: center; }

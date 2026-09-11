@@ -628,7 +628,9 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .site-header > .wp-block-group,
     .site-header .is-content-justification-space-between,
     .site-header .is-content-justification-space-between > .wp-block-group.is-layout-flex {
-        flex-wrap: nowrap !important;
+        /* Se permite envolver: un menú largo (p. ej. 30+ elementos) en nowrap
+           empujaba la página y generaba scroll horizontal. */
+        flex-wrap: wrap !important;
         gap: 1rem !important;
         align-items: center !important;
         overflow: visible !important;
@@ -636,13 +638,13 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .site-header .wp-block-navigation__container,
     .site-header .wp-block-navigation__responsive-container-content,
     .site-header .wp-block-navigation .wp-block-page-list {
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important;
         gap: 0.75rem !important;
     }
     .site-header .wp-block-navigation {
         flex: 1 1 auto !important;
         gap: 0.75rem !important;
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important;
         min-width: 0 !important;
     }
     .site-header .wp-block-navigation .wp-block-navigation-item {
