@@ -513,8 +513,42 @@ function convoca_theme_render_block($block_content, $block) {
         '{community_url}'     => apply_filters('convoca_theme_community_url', home_url('/')),
         '{contact_email}'     => get_bloginfo('admin_email'),
         '{year}'              => (string) gmdate('Y'),
+        '{site_tagline}'      => get_bloginfo('description'),
+        '{cta_url}'           => convoca_theme_get_cta_url(),
+        '{cta_label}'         => convoca_theme_get_cta_label(),
+        '{copyright_extra}'   => apply_filters('convoca_theme_copyright_extra', ''),
+        '{cta_heading}'       => (string) apply_filters('convoca_theme_cta_heading', __('¿Quieres ser parte del cambio?', 'convoca-theme')),
+        '{cta_text}'          => (string) apply_filters('convoca_theme_cta_text', __('Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta.', 'convoca-theme')),
     ]);
+
+    foreach (convoca_theme_get_site_links() as $link_key => $link_url) {
+        $replacements['{' . $link_key . '_url}'] = $link_url;
+    }
+    foreach (convoca_theme_get_link_labels() as $link_key => $link_label) {
+        $replacements['{' . $link_key . '_label}'] = $link_label;
+    }
+
+    // ¿Traía este bloque tokens de enlace que pueden quedarse sin resolver?
+    $had_link_tokens = (bool) preg_match('/\{[a-z0-9_]+_(?:url|label)\}/', $block_content);
+
     $block_content = str_replace(array_keys($replacements), array_values($replacements), $block_content);
+
+    if ($had_link_tokens) {
+        // Un enlace sin URL configurada no se muestra (ni elementos vacíos).
+        // Nota: delimitador `~` (los patrones contienen `#` para href="#...").
+        $patterns = array(
+            '~<li[^>]*>\s*<a[^>]*href="(?:\s*|#)"[^>]*>.*?</a>\s*</li>~is',
+            '~<li[^>]*wp-social-link[^>]*>\s*<a[^>]*href="(?:\s*|#)"[^>]*>.*?</a>\s*</li>~is',
+            '~<div class="wp-block-button(?:\s[^"]*)?">\s*<a[^>]*href="(?:\s*|#)"[^>]*>.*?</a>\s*</div>~is',
+            '~<div class="wp-block-buttons[^"]*">\s*</div>~is',
+        );
+        foreach ($patterns as $pattern) {
+            $cleaned = preg_replace($pattern, '', $block_content);
+            if (null !== $cleaned) {
+                $block_content = $cleaned;
+            }
+        }
+    }
 
     // Resolve shortcodes inside FSE patterns (do_blocks does not run them).
     if (strpos($block_content, '[') !== false) {
@@ -523,6 +557,190 @@ function convoca_theme_render_block($block_content, $block) {
     return $block_content;
 }
 add_filter('render_block', 'convoca_theme_render_block', 10, 2);
+
+/**
+ * Enlaces del sitio usados por el pie y las llamadas a la acción.
+ *
+ * Vacíos por defecto: cada instalación (o su theme hijo) declara sus URLs
+ * reales. Un enlace sin URL no se pinta, así el theme no arrastra rutas de
+ * otra instalación.
+ *
+ * @since 2.8.0
+ * @return array<string,string> clave => URL absoluta.
+ */
+function convoca_theme_get_site_links(): array
+{
+    return apply_filters('convoca_theme_site_links', array(
+        'about'        => '',
+        'transparency' => '',
+        'projects'     => '',
+        'alliances'    => '',
+        'activities'   => '',
+        'membership'   => '',
+        'volunteer'    => '',
+        'donations'    => '',
+        'centro'       => '',
+        'privacy'      => '',
+        'cookies'      => '',
+        'legal'        => '',
+    ));
+}
+
+/**
+ * Etiquetas de los enlaces del sitio.
+ *
+ * @since 2.8.0
+ * @return array<string,string> clave => texto visible.
+ */
+function convoca_theme_get_link_labels(): array
+{
+    return apply_filters('convoca_theme_link_labels', array(
+        'about'        => __('¿Quiénes somos?', 'convoca-theme'),
+        'transparency' => __('Transparencia', 'convoca-theme'),
+        'projects'     => __('Proyectos', 'convoca-theme'),
+        'alliances'    => __('Alianzas', 'convoca-theme'),
+        'activities'   => __('Actividades', 'convoca-theme'),
+        'membership'   => __('Hazte socio/a', 'convoca-theme'),
+        'volunteer'    => __('Voluntariado', 'convoca-theme'),
+        'donations'    => __('Donaciones', 'convoca-theme'),
+        'centro'       => __('Centro', 'convoca-theme'),
+        'privacy'      => __('Privacidad', 'convoca-theme'),
+        'cookies'      => __('Cookies', 'convoca-theme'),
+        'legal'        => __('Aviso legal', 'convoca-theme'),
+    ));
+}
+
+/**
+ * URL del CTA de cabecera. Sin URL, el botón no se muestra.
+ *
+ * @since 2.8.0
+ */
+function convoca_theme_get_cta_url(): string
+{
+    $url = (string) apply_filters('convoca_theme_cta_url', '');
+    if ('' === $url) {
+        $links = convoca_theme_get_site_links();
+        $url   = $links['membership'] ?? '';
+    }
+    return $url;
+}
+
+/**
+ * Etiqueta del CTA de cabecera.
+ *
+ * @since 2.8.0
+ */
+function convoca_theme_get_cta_label(): string
+{
+    return (string) apply_filters('convoca_theme_cta_label', __('Asóciate', 'convoca-theme'));
+}
+
+/**
+ * Redes sociales del theme: shortcode [convoca_socials].
+ *
+ * Los enlaces llegan por filtros (convoca_theme_social_instagram, etc.). No se
+ * pueden poner como placeholder dentro del atributo `url` de un bloque: los
+ * atributos se resuelven al analizar el bloque, antes de `render_block`. Por eso
+ * el theme construye el bloque en PHP y lo renderiza él mismo.
+ *
+ * @since 2.8.0
+ */
+function convoca_theme_socials_html(): string
+{
+	static $busy = false;
+	if ( $busy ) {
+		return '';
+	}
+
+	$socials = array_filter(
+		array(
+			'instagram' => (string) apply_filters('convoca_theme_social_instagram', ''),
+			'facebook'  => (string) apply_filters('convoca_theme_social_facebook', ''),
+			'youtube'   => (string) apply_filters('convoca_theme_social_youtube', ''),
+		),
+		fn( $url ) => '' !== trim( $url )
+	);
+
+	if ( empty( $socials ) ) {
+		return '';
+	}
+
+	$inner = '';
+	foreach ( $socials as $service => $url ) {
+		$inner .= sprintf(
+			'<!-- wp:social-link {"url":"%s","service":"%s"} /-->',
+			esc_url_raw( $url ),
+			esc_attr( $service )
+		);
+	}
+
+	$markup = sprintf(
+		'<!-- wp:social-links {"iconColor":"blanco","iconColorValue":"#ffffff"} --><ul class="wp-block-social-links has-icon-color">%s</ul><!-- /wp:social-links -->',
+		$inner
+	);
+
+	$busy = true;
+	$html = do_blocks( $markup );
+	$busy = false;
+
+	return $html;
+}
+add_shortcode('convoca_socials', 'convoca_theme_socials_html');
+
+/**
+ * Cifras reales de la instalación para la franja de estadísticas.
+ *
+ * Sin números fijos: cada cifra sale de datos reales y se puede sobrescribir
+ * con el filtro `convoca_theme_stats`. Si no hay ningún dato, devuelve [] y el
+ * patrón convoca/stats no se pinta.
+ *
+ * @since 2.8.0
+ * @return array<string,array{value:string,label:string}>
+ */
+function convoca_theme_get_stats(): array
+{
+    $stats = array();
+    $year  = (int) gmdate('Y');
+
+    $published = (int) wp_count_posts('post')->publish;
+    if ($published > 0) {
+        $stats['publicaciones'] = array(
+            'value' => '+' . number_format_i18n($published),
+            'label' => __('Publicaciones', 'convoca-theme'),
+        );
+    }
+
+    $this_year = new WP_Query(array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+        'date_query'     => array(array('year' => $year)),
+    ));
+    if ($this_year->found_posts > 0) {
+        $stats['este_ano'] = array(
+            'value' => (string) number_format_i18n($this_year->found_posts),
+            'label' => sprintf(__('Publicaciones en %s', 'convoca-theme'), $year),
+        );
+    }
+
+    $oldest = get_posts(array(
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => 1,
+        'order'          => 'ASC',
+        'orderby'        => 'date',
+    ));
+    if (!empty($oldest)) {
+        $years = max(1, $year - (int) get_the_date('Y', $oldest[0]));
+        $stats['anos'] = array(
+            'value' => (string) number_format_i18n($years),
+            'label' => __('Años de trayectoria', 'convoca-theme'),
+        );
+    }
+
+    return apply_filters('convoca_theme_stats', $stats);
+}
 
 /**
  * Language Switcher — añade selector de idioma al menú si hay más de un idioma activo.

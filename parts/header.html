@@ -12,7 +12,12 @@
 
         <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
         <div class="wp-block-group">
-            <!-- wp:navigation {"ref":74,"overlayMenu":"mobile","overlayBackgroundColor":"blanco","overlayTextColor":"antracita","layout":{"type":"flex","setCascadingProperties":true}} /-->
+            <!--
+                Navegación: SIN `ref` fijo. El bloque usa el menú propio del sitio
+                (menú clásico de la ubicación principal, o el que se cree en el
+                Editor de Sitios). Así el theme no arrastra menús de otra instalación.
+            -->
+            <!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"blanco","overlayTextColor":"antracita","layout":{"type":"flex","setCascadingProperties":true}} /-->
 
             <!-- wp:html -->
             <button class="dark-mode-toggle" aria-label="Cambiar modo de color" type="button">
@@ -21,10 +26,15 @@
             </button>
             <!-- /wp:html -->
 
+            <!--
+                CTA de cabecera: destino y etiqueta vienen de filtros del theme
+                (convoca_theme_cta_url / convoca_theme_cta_label). Si no hay URL
+                configurada, el bloque no se muestra (no hay rutas heredadas).
+            -->
             <!-- wp:buttons {"className":"header-cta"} -->
             <div class="wp-block-buttons header-cta">
                 <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small","style":{"border":{"radius":"50px"}}} -->
-                <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="/alta-socios/" style="border-radius:50px">Asóciate</a></div>
+                <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="{cta_url}" style="border-radius:50px">{cta_label}</a></div>
                 <!-- /wp:button -->
             </div>
             <!-- /wp:buttons -->

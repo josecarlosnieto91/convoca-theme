@@ -16,51 +16,48 @@
  */
 
 /**
- * Title: Contador de estadísticas
+ * Title: Cifras de la comunidad (dinámicas)
  * Slug: convoca/stats
  * Categories: convoca, convoca-layout
- * Description: Franja con 4 columnas de estadísticas sobre fondo oscuro.
+ * Description: Franja con cifras REALES de la instalación (no valores fijos). Cada cifra se puede sobrescribir con el filtro convoca_theme_stats; las que no tengan dato se omiten.
  * Keywords: stats, estadísticas, cifras, números
+ *
+ * Este patrón NO lleva números hardcodeados: los obtiene en PHP de los datos
+ * reales del sitio (entradas publicadas, antigüedad, páginas hijas...) y admite
+ * sobrescritura por filtro:
+ *
+ *     add_filter( 'convoca_theme_stats', function ( $stats ) {
+ *         $stats['socios'] = 210; // sólo si existe un dato real
+ *         return $stats;
+ *     } );
+ *
+ * @since 2.8.0
  */
+
+$convoca_stats = function_exists( 'convoca_theme_get_stats' ) ? convoca_theme_get_stats() : array();
+
+if ( empty( $convoca_stats ) ) {
+	return; // Sin datos reales no se pinta una franja vacía.
+}
+
+$convoca_cols = count( $convoca_stats );
 ?>
 <!-- wp:group {"gradient":"stats-dark","textColor":"blanco","className":"convoca-stats","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
 <div class="wp-block-group convoca-stats has-stats-dark-gradient-background has-background has-blanco-color has-text-color"
-    style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
-    <!-- wp:columns {"isStackedOnMobile":true} -->
-    <div class="wp-block-columns is-stacked-on-mobile">
-        <!-- wp:column {"width":"25%"} -->
-        <div class="wp-block-column" style="flex-basis:25%">
-            <!-- wp:paragraph {"align":"center","className":"stat-value"} -->
-            <p class="has-text-align-center stat-value">+200</p><!-- /wp:paragraph -->
-            <!-- wp:paragraph {"align":"center","className":"stat-label"} -->
-            <p class="has-text-align-center stat-label">Socios/as activos</p><!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:column -->
-        <!-- wp:column {"width":"25%"} -->
-        <div class="wp-block-column" style="flex-basis:25%">
-            <!-- wp:paragraph {"align":"center","className":"stat-value"} -->
-            <p class="has-text-align-center stat-value">+50</p><!-- /wp:paragraph -->
-            <!-- wp:paragraph {"align":"center","className":"stat-label"} -->
-            <p class="has-text-align-center stat-label">Actividades/año</p><!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:column -->
-        <!-- wp:column {"width":"25%"} -->
-        <div class="wp-block-column" style="flex-basis:25%">
-            <!-- wp:paragraph {"align":"center","className":"stat-value"} -->
-            <p class="has-text-align-center stat-value">8</p><!-- /wp:paragraph -->
-            <!-- wp:paragraph {"align":"center","className":"stat-label"} -->
-            <p class="has-text-align-center stat-label">Años de historia</p><!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:column -->
-        <!-- wp:column {"width":"25%"} -->
-        <div class="wp-block-column" style="flex-basis:25%">
-            <!-- wp:paragraph {"align":"center","className":"stat-value"} -->
-            <p class="has-text-align-center stat-value">3</p><!-- /wp:paragraph -->
-            <!-- wp:paragraph {"align":"center","className":"stat-label"} -->
-            <p class="has-text-align-center stat-label">Proyectos activos</p><!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:column -->
-    </div>
-    <!-- /wp:columns -->
+	style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
+	<!-- wp:columns {"isStackedOnMobile":true} -->
+	<div class="wp-block-columns is-stacked-on-mobile">
+		<?php foreach ( $convoca_stats as $convoca_key => $convoca_stat ) : ?>
+		<!-- wp:column {"width":"<?php echo esc_attr( round( 100 / $convoca_cols, 4 ) ); ?>%"} -->
+		<div class="wp-block-column" style="flex-basis:<?php echo esc_attr( round( 100 / $convoca_cols, 4 ) ); ?>%">
+			<!-- wp:paragraph {"align":"center","className":"stat-value"} -->
+			<p class="has-text-align-center stat-value"><?php echo esc_html( $convoca_stat['value'] ); ?></p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"align":"center","className":"stat-label"} -->
+			<p class="has-text-align-center stat-label"><?php echo esc_html( $convoca_stat['label'] ); ?></p><!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:column -->
+		<?php endforeach; ?>
+	</div>
+	<!-- /wp:columns -->
 </div>
 <!-- /wp:group -->
