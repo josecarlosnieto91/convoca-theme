@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Sección de inscripción a actividad
+ * Title: Activity registration section
  * Slug: convoca/inscripcion-actividad
  * Categories: convoca
- * Description: Sección con formulario de inscripción (usa el shortcode dinámico para detectar la actividad actual).
- * Keywords: inscripción, actividad, formulario, plugin
+ * Description: Section with a registration form (uses the dynamic shortcode to detect the current activity).
+ * Keywords: registration, activity, form, plugin
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"gris-piedra","layout":{"type":"constrained"}} -->
@@ -32,17 +32,17 @@
 		<!-- wp:column {"width":"55%"} -->
 		<div class="wp-block-column" style="flex-basis:55%">
 			<!-- wp:heading {"fontSize":"x-large","textColor":"violeta"} -->
-			<h2 class="wp-block-heading has-x-large-font-size has-violeta-color has-text-color">Información de la actividad</h2>
+			<h2 class="wp-block-heading has-x-large-font-size has-violeta-color has-text-color">Activity information</h2>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"style":{"color":{"text":"#555555"}}} -->
-			<p style="color:#555555">Completa el formulario para inscribirte en esta actividad. Si eres socio/a, el descuento se aplicará automáticamente.</p>
+			<p style="color:#555555">Fill in the form to sign up for this activity. If you are a member, the discount is applied automatically.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:list {"style":{"color":{"text":"#666666"}}} -->
 			<ul style="color:#666666">
-				<li><strong>📅 Fecha:</strong> [convoca_actividad_meta field="fecha_inicio"]</li>
-				<li><strong>📍 Ubicación:</strong> [convoca_actividad_meta field="ubicacion"]</li>
-				<li><strong>👥 Plazas:</strong> [convoca_actividad_meta field="plazas_disponibles"] disponibles de [convoca_actividad_meta field="plazas_totales"]</li>
-				<li><strong>💰 Precio:</strong> [convoca_actividad_meta field="precio_general"]€ (socio/a: [convoca_actividad_meta field="precio_socio"]€)</li>
+				<li><strong>📅 Date:</strong> [convoca_actividad_meta field="fecha_inicio"]</li>
+				<li><strong>📍 Location:</strong> [convoca_actividad_meta field="ubicacion"]</li>
+				<li><strong>👥 Spots:</strong> [convoca_actividad_meta field="plazas_disponibles"] available out of [convoca_actividad_meta field="plazas_totales"]</li>
+				<li><strong>💰 Price:</strong> [convoca_actividad_meta field="precio_general"]€ (member: [convoca_actividad_meta field="precio_socio"]€)</li>
 			</ul>
 			<!-- /wp:list -->
 		</div>
@@ -54,7 +54,7 @@
 			<div class="wp-block-group convoca-form has-blanco-background-color has-background has-border-color has-naranja-border-color"
 				style="border-color:var(--wp--preset--color--naranja);border-width:2px;border-radius:12px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 				<!-- wp:heading {"level":3,"textColor":"naranja","fontFamily":"display"} -->
-				<h3 class="wp-block-heading has-naranja-color has-text-color has-display-font-family">Inscripción</h3>
+				<h3 class="wp-block-heading has-naranja-color has-text-color has-display-font-family">Registration</h3>
 				<!-- /wp:heading -->
 				<!-- wp:shortcode -->
 				[convoca_inscripcion_actual]

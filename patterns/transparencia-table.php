@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Tabla de transparencia
+ * Title: Transparency table
  * Slug: convoca/transparencia-table
  * Categories: convoca
- * Description: Tabla estilizada para datos de transparencia (ingresos, gastos, balance).
- * Keywords: tabla, transparencia, finanzas
+ * Description: Styled table for transparency data (income, expenses, balance).
+ * Keywords: table, transparency, finances
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->

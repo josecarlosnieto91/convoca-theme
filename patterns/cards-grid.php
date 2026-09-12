@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Grid de tarjetas (3 columnas)
+ * Title: Cards grid (3 columns)
  * Slug: convoca/cards-grid
  * Categories: convoca
- * Description: Rejilla de 3 tarjetas con imagen, etiqueta, título, descripción y botón.
- * Keywords: tarjetas, grid, cards, proyectos
+ * Description: Grid of 3 cards with image, label, title, description and button.
+ * Keywords: cards, grid, projects
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->

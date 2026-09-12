@@ -1,0 +1,1366 @@
+# Copyright (C) 2026 Jose Carlos Nieto Ramos
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Convoca 2.8.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/convoca-theme\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-12T20:55:34+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: convoca\n"
+
+#. Theme Name of the theme
+#: style.css
+#: build-dir/convoca/functions.php:150
+#: functions.php:152
+msgid "Convoca"
+msgstr ""
+
+#. Theme URI of the theme
+#: style.css
+msgid "https://getconvoca.app"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "Jose Carlos Nieto Ramos"
+msgstr ""
+
+#. Author URI of the theme
+#: style.css
+msgid "https://josecarlosnietoramos.com"
+msgstr ""
+
+#. translators: %d: número de plantillas y partes de plantilla reiniciadas.
+#: build-dir/convoca/functions.php:96
+#, php-format
+msgid "Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema."
+msgstr ""
+
+#: build-dir/convoca/functions.php:151
+msgid "Patrones del theme Convoca."
+msgstr ""
+
+#: build-dir/convoca/functions.php:157
+#: functions.php:159
+msgid "Convoca — Layout"
+msgstr ""
+
+#: build-dir/convoca/functions.php:158
+msgid "Secciones de página completas."
+msgstr ""
+
+#: build-dir/convoca/functions.php:173
+msgid "Destacado (Lead)"
+msgstr ""
+
+#: build-dir/convoca/functions.php:182
+msgid "Tarjeta"
+msgstr ""
+
+#: build-dir/convoca/functions.php:191
+msgid "Caja Coordinador"
+msgstr ""
+
+#: build-dir/convoca/functions.php:200
+msgid "Cristal Esmerilado"
+msgstr ""
+
+#: build-dir/convoca/functions.php:209
+msgid "Overlay Topográfico"
+msgstr ""
+
+#: build-dir/convoca/functions.php:218
+msgid "Tabla Convoca"
+msgstr ""
+
+#: build-dir/convoca/functions.php:227
+msgid "Secundario"
+msgstr ""
+
+#: build-dir/convoca/functions.php:236
+msgid "Elevada"
+msgstr ""
+
+#: build-dir/convoca/functions.php:336
+msgid "Ir al contenido"
+msgstr ""
+
+#: build-dir/convoca/functions.php:382
+#: build-dir/convoca/functions.php:383
+msgid "Ayuda Convoca"
+msgstr ""
+
+#: build-dir/convoca/functions.php:398
+msgid "Configuración y Ayuda — Theme Convoca"
+msgstr ""
+
+#. translators: %s: versión del theme instalada.
+#: build-dir/convoca/functions.php:402
+#, php-format
+msgid "Bienvenido a Convoca v%s"
+msgstr ""
+
+#. translators: %s: versión del theme instalada.
+#: build-dir/convoca/functions.php:403
+msgid "Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso."
+msgstr ""
+
+#: build-dir/convoca/functions.php:413
+msgid "Información del Theme"
+msgstr ""
+
+#: build-dir/convoca/functions.php:416
+msgid "Versión:"
+msgstr ""
+
+#: build-dir/convoca/functions.php:417
+msgid "Autor:"
+msgstr ""
+
+#: build-dir/convoca/functions.php:418
+msgid "Documentación:"
+msgstr ""
+
+#: build-dir/convoca/functions.php:418
+msgid "Ver Wiki en GitHub"
+msgstr ""
+
+#: build-dir/convoca/functions.php:421
+msgid "Abrir Editor de Sitios (FSE)"
+msgstr ""
+
+#: build-dir/convoca/functions.php:424
+msgid "Guía de Plantillas y Páginas"
+msgstr ""
+
+#: build-dir/convoca/functions.php:426
+msgid "Página de Actividad"
+msgstr ""
+
+#: build-dir/convoca/functions.php:427
+msgid "Usa la plantilla \"Página de Actividad\" para las páginas que describen una actividad específica. Incluye automáticamente el formulario de inscripción."
+msgstr ""
+
+#: build-dir/convoca/functions.php:429
+msgid "Página de Proyecto"
+msgstr ""
+
+#: build-dir/convoca/functions.php:430
+msgid "Usa la plantilla \"Página de Proyecto\" para secciones de proyectos de largo recorrido. Incluye metadatos específicos del proyecto."
+msgstr ""
+
+#: build-dir/convoca/functions.php:433
+msgid "Nota:"
+msgstr ""
+
+#: build-dir/convoca/functions.php:433
+msgid "Si las plantillas no se visualizan correctamente, puedes intentar reiniciarlas."
+msgstr ""
+
+#: build-dir/convoca/functions.php:434
+msgid "¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme."
+msgstr ""
+
+#: build-dir/convoca/functions.php:434
+msgid "Reiniciar Plantillas a valores de fábrica"
+msgstr ""
+
+#: build-dir/convoca/functions.php:440
+msgid "Patrones Convoca"
+msgstr ""
+
+#: build-dir/convoca/functions.php:442
+msgid "Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Convoca:"
+msgstr ""
+
+#: build-dir/convoca/functions.php:444
+msgid "Cabecera principal con texto."
+msgstr ""
+
+#: build-dir/convoca/functions.php:445
+msgid "Cuadrícula de actividades o noticias."
+msgstr ""
+
+#: build-dir/convoca/functions.php:446
+msgid "Barra de estadísticas animada."
+msgstr ""
+
+#: build-dir/convoca/functions.php:447
+msgid "Formulario de inscripción integrado."
+msgstr ""
+
+#: build-dir/convoca/functions.php:614
+msgid "¿Quieres ser parte del cambio?"
+msgstr ""
+
+#: build-dir/convoca/functions.php:615
+msgid "Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta."
+msgstr ""
+
+#: build-dir/convoca/functions.php:723
+msgid "¿Quiénes somos?"
+msgstr ""
+
+#: build-dir/convoca/functions.php:724
+msgid "Transparencia"
+msgstr ""
+
+#: build-dir/convoca/functions.php:725
+msgid "Proyectos"
+msgstr ""
+
+#: build-dir/convoca/functions.php:726
+msgid "Alianzas"
+msgstr ""
+
+#: build-dir/convoca/functions.php:727
+msgid "Actividades"
+msgstr ""
+
+#: build-dir/convoca/functions.php:728
+msgid "Hazte socio/a"
+msgstr ""
+
+#: build-dir/convoca/functions.php:729
+msgid "Voluntariado"
+msgstr ""
+
+#: build-dir/convoca/functions.php:730
+msgid "Donaciones"
+msgstr ""
+
+#: build-dir/convoca/functions.php:731
+msgid "Centro"
+msgstr ""
+
+#: build-dir/convoca/functions.php:732
+msgid "Privacidad"
+msgstr ""
+
+#: build-dir/convoca/functions.php:733
+#: functions.php:764
+msgid "Cookies"
+msgstr ""
+
+#: build-dir/convoca/functions.php:734
+msgid "Aviso legal"
+msgstr ""
+
+#: build-dir/convoca/functions.php:759
+msgid "Asóciate"
+msgstr ""
+
+#: build-dir/convoca/functions.php:792
+msgid "Publicaciones"
+msgstr ""
+
+#. translators: %s: año del archivo.
+#: build-dir/convoca/functions.php:808
+#, php-format
+msgid "Publicaciones en %s"
+msgstr ""
+
+#: build-dir/convoca/functions.php:825
+msgid "Años de trayectoria"
+msgstr ""
+
+#: build-dir/convoca/functions.php:917
+msgid "Cambiar idioma"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1759
+msgid "Banda naranja"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1760
+msgid "Bloque carbón"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1761
+msgid "Marco editorial"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1762
+msgid "Botón fantasma"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1763
+msgid "Cita destacada"
+msgstr ""
+
+#: build-dir/convoca/functions.php:1764
+msgid "Título con regla"
+msgstr ""
+
+#. translators: %d: number of templates and template parts reset.
+#: functions.php:96
+#, php-format
+msgid "Reset %d templates and template parts. They will now be read directly from the theme files."
+msgstr ""
+
+#: functions.php:153
+msgid "Convoca theme patterns."
+msgstr ""
+
+#: functions.php:160
+msgid "Full-page sections."
+msgstr ""
+
+#: functions.php:175
+msgid "Lead"
+msgstr ""
+
+#: functions.php:184
+msgid "Card"
+msgstr ""
+
+#: functions.php:193
+msgid "Coordinator box"
+msgstr ""
+
+#: functions.php:202
+msgid "Frosted glass"
+msgstr ""
+
+#: functions.php:211
+msgid "Topographic overlay"
+msgstr ""
+
+#: functions.php:220
+msgid "Convoca table"
+msgstr ""
+
+#: functions.php:229
+msgid "Secondary"
+msgstr ""
+
+#: functions.php:238
+msgid "Elevated"
+msgstr ""
+
+#: functions.php:338
+msgid "Skip to content"
+msgstr ""
+
+#: functions.php:384
+#: functions.php:385
+msgid "Convoca Help"
+msgstr ""
+
+#: functions.php:400
+msgid "Settings & Help — Convoca Theme"
+msgstr ""
+
+#. translators: %s: version of the installed theme.
+#: functions.php:404
+#, php-format
+msgid "Welcome to Convoca v%s"
+msgstr ""
+
+#. translators: %s: version of the installed theme.
+#: functions.php:405
+msgid "This is an FSE (Full Site Editing) theme for associations and community groups. Here you will find a quick start guide."
+msgstr ""
+
+#: functions.php:415
+msgid "Theme information"
+msgstr ""
+
+#: functions.php:418
+msgid "Version:"
+msgstr ""
+
+#: functions.php:419
+msgid "Author:"
+msgstr ""
+
+#: functions.php:420
+msgid "Documentation:"
+msgstr ""
+
+#: functions.php:420
+msgid "View the GitHub wiki"
+msgstr ""
+
+#: functions.php:423
+msgid "Open Site Editor (FSE)"
+msgstr ""
+
+#: functions.php:428
+msgid "Templates & Pages Guide"
+msgstr ""
+
+#: functions.php:430
+msgid "Activity Page"
+msgstr ""
+
+#: functions.php:431
+msgid "Use the \"Activity Page\" template for pages that describe a specific activity. It automatically includes the registration form."
+msgstr ""
+
+#: functions.php:433
+msgid "Project Page"
+msgstr ""
+
+#: functions.php:434
+msgid "Use the \"Project Page\" template for long-running project sections. It includes project-specific metadata."
+msgstr ""
+
+#: functions.php:437
+msgid "Note:"
+msgstr ""
+
+#: functions.php:437
+msgid "If the templates do not display correctly, you can try resetting them."
+msgstr ""
+
+#: functions.php:438
+msgid "Are you sure? This will delete any customization you made in the Site Editor and revert to the theme files."
+msgstr ""
+
+#: functions.php:438
+msgid "Reset templates to factory defaults"
+msgstr ""
+
+#: functions.php:444
+msgid "Convoca patterns"
+msgstr ""
+
+#: functions.php:446
+msgid "You can insert these pre-designed blocks from the editor (+) > Patterns > Convoca:"
+msgstr ""
+
+#: functions.php:448
+msgid "Main header with text."
+msgstr ""
+
+#: functions.php:449
+msgid "Grid of activities or news."
+msgstr ""
+
+#: functions.php:450
+msgid "Animated stats bar."
+msgstr ""
+
+#: functions.php:451
+msgid "Built-in registration form."
+msgstr ""
+
+#: functions.php:521
+msgid "Switch to dark mode"
+msgstr ""
+
+#: functions.php:522
+msgid "Switch to light mode"
+msgstr ""
+
+#: functions.php:639
+msgid "A non-profit association dedicated to environmental education and citizen participation."
+msgstr ""
+
+#: functions.php:640
+msgid "Want to be part of the change?"
+msgstr ""
+
+#: functions.php:641
+msgid "Join as a member, volunteer, or just come and meet us. Every action counts."
+msgstr ""
+
+#: functions.php:754
+msgid "Who we are"
+msgstr ""
+
+#: functions.php:755
+msgid "Transparency"
+msgstr ""
+
+#: functions.php:756
+msgid "Projects"
+msgstr ""
+
+#: functions.php:757
+msgid "Alliances"
+msgstr ""
+
+#: functions.php:758
+msgid "Activities"
+msgstr ""
+
+#: functions.php:759
+msgid "Become a member"
+msgstr ""
+
+#: functions.php:760
+msgid "Volunteering"
+msgstr ""
+
+#: functions.php:761
+msgid "Donations"
+msgstr ""
+
+#: functions.php:762
+msgid "Community centre"
+msgstr ""
+
+#: functions.php:763
+msgid "Privacy"
+msgstr ""
+
+#: functions.php:765
+msgid "Legal notice"
+msgstr ""
+
+#: functions.php:790
+msgid "Join us"
+msgstr ""
+
+#: functions.php:823
+msgid "Posts"
+msgstr ""
+
+#. translators: %s: year of the archive.
+#: functions.php:839
+#, php-format
+msgid "Posts in %s"
+msgstr ""
+
+#: functions.php:856
+msgid "Years of work"
+msgstr ""
+
+#: functions.php:948
+msgid "Change language"
+msgstr ""
+
+#: functions.php:1802
+msgid "Orange band"
+msgstr ""
+
+#: functions.php:1803
+msgid "Charcoal block"
+msgstr ""
+
+#: functions.php:1804
+msgid "Editorial frame"
+msgstr ""
+
+#: functions.php:1805
+msgid "Ghost button"
+msgstr ""
+
+#: functions.php:1806
+msgid "Featured quote"
+msgstr ""
+
+#: functions.php:1807
+msgid "Heading with rule"
+msgstr ""
+
+#: patterns/cards-3.php
+msgctxt "Pattern title"
+msgid "3 content cards"
+msgstr ""
+
+#: patterns/cards-3.php
+msgctxt "Pattern description"
+msgid "Grid of 3 cards with icon, title and description."
+msgstr ""
+
+#: patterns/cards-grid.php
+msgctxt "Pattern title"
+msgid "Cards grid (3 columns)"
+msgstr ""
+
+#: patterns/cards-grid.php
+msgctxt "Pattern description"
+msgid "Grid of 3 cards with image, label, title, description and button."
+msgstr ""
+
+#: patterns/contact-banner.php
+msgctxt "Pattern title"
+msgid "Contact banner"
+msgstr ""
+
+#: patterns/contact-banner.php
+msgctxt "Pattern description"
+msgid "Contact banner with organisation details and buttons."
+msgstr ""
+
+#: patterns/cta-centered.php
+msgctxt "Pattern title"
+msgid "Centered call to action"
+msgstr ""
+
+#: patterns/cta-centered.php
+msgctxt "Pattern description"
+msgid "Centered CTA with a dark gradient background, heading and two buttons."
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern description"
+msgid "CTA section with title, subtitle and buttons on a dark background."
+msgstr ""
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern title"
+msgid "Hero with gradient"
+msgstr ""
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern description"
+msgid "Hero section with featured image, sunset gradient overlay, title and CTA buttons."
+msgstr ""
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern title"
+msgid "Hero with image"
+msgstr ""
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern description"
+msgid "Hero with customisable background image, gradient overlay, title and CTA buttons."
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Main hero"
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid "Front-page hero section with featured image, gradient, title and CTA buttons."
+msgstr ""
+
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern title"
+msgid "Activity registration section"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern description"
+msgid "Section with a registration form (uses the dynamic shortcode to detect the current activity)."
+msgstr ""
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern title"
+msgid "Pricing grid (memberships)"
+msgstr ""
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern description"
+msgid "Three membership plans in a grid with the middle plan highlighted."
+msgstr ""
+
+#: patterns/pricing-grid.php:73
+msgid "Popular"
+msgstr ""
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern title"
+msgid "Upcoming activities"
+msgstr ""
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern description"
+msgid "Grid of upcoming activities from the activity CPT with metadata."
+msgstr ""
+
+#: patterns/section-violeta.php
+msgctxt "Pattern title"
+msgid "Dark violet section"
+msgstr ""
+
+#: patterns/section-violeta.php
+msgctxt "Pattern description"
+msgid "Full-width section with a dark violet background and white text."
+msgstr ""
+
+#: patterns/stats-bar.php
+msgctxt "Pattern title"
+msgid "Stats bar"
+msgstr ""
+
+#: patterns/stats-bar.php
+msgctxt "Pattern description"
+msgid "Bar of 4 stats with a dark gradient background and values in yellow."
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Community figures (dynamic)"
+msgstr ""
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid "Strip with REAL figures from the installation (no fixed values). Each figure can be overridden with the convoca_theme_stats filter; those without data are omitted."
+msgstr ""
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern title"
+msgid "Transparency table"
+msgstr ""
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern description"
+msgid "Styled table for transparency data (income, expenses, balance)."
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Naranja"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Violeta"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Ciruela Oscura"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Amarillo"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Naranja Intenso"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Verde bosque"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Blanco"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Gris piedra"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Gris medio"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Antracita"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Naranja oscuro (texto)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Naranja tenue (fondo)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Ámbar"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Naranja rojo (interacción)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Magenta profundo (pie)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Uva (superficie oscura)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Carbón"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Gris texto"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Gris borde"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Hueso (base)"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Arena"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Verde profundo"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Verde claro"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Tierra"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Color name"
+msgid "Azul titular"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Atardecer Hero"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Oscuro Stats"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "CTA Oscuro"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Naranja Cálido"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Hero Claro"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Verde Natural"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Velo para foto"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Naranja suave"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Gradient name"
+msgid "Bosque"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Font family name"
+msgid "Lato"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Pequeño"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Cuerpo"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Entradilla"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Título pequeño"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Título"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Metadatos"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Font size name"
+msgid "Titular grande"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "XS"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "S"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "M"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "L"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "XL"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Space size name"
+msgid "XXL"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Shadow name"
+msgid "Tarjeta"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Shadow name"
+msgid "Tarjeta Hover"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Shadow name"
+msgid "Elevada"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Shadow name"
+msgid "Sombra suave"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Shadow name"
+msgid "Sombra elevada"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Cabecera"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Pie de página"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Barra lateral"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Hero reutilizable"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Llamada a acción"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Tarjeta actividad"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Tarjeta proyecto"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Template part name"
+msgid "Metadatos actividad"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Custom template name"
+msgid "Single Actividad"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Custom template name"
+msgid "Archive Actividad"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Custom template name"
+msgid "Página de Proyecto"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Custom template name"
+msgid "Página de Actividad"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+msgctxt "Custom template name"
+msgid "Página Institucional"
+msgstr ""
+
+#: build-dir/convoca/theme.json
+#: theme.json
+msgctxt "Custom template name"
+msgid "Landing Page"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Violet"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark plum"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Yellow"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Intense orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Forest green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Stone grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Mid grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Anthracite"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark orange (text)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Soft orange (background)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Amber"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red-orange (interaction)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Deep magenta (footer)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Grape (dark surface)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Charcoal"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border grey"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bone (base)"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Sand"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Deep green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light green"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Earth"
+msgstr ""
+
+#: theme.json
+msgctxt "Color name"
+msgid "Heading blue"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Sunset Hero"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Dark stats"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Dark CTA"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Warm orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Light hero"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Natural green"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Photo veil"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Soft orange"
+msgstr ""
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Forest"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Body"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Lead"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Metadata"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large heading"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card hover"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Elevated"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Soft shadow"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Elevated shadow"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Reusable hero"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Call to action"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Activity card"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Project card"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Activity metadata"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single Activity"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive Activity"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Project Page"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Activity Page"
+msgstr ""
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Institutional Page"
+msgstr ""

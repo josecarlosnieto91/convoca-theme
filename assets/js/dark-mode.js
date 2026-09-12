@@ -22,8 +22,12 @@
     // El estado del boton tiene que estar expuesto desde el primer pintado, no solo
     // despues de pulsarlo: quien use lector de pantalla necesita saber como esta.
     function reflejarEstado(mode) {
+        var textos = window.convocaModoOscuro || {
+            etiquetaOscuro: 'Switch to dark mode',
+            etiquetaClaro:  'Switch to light mode'
+        };
         toggles.forEach(function(toggle) {
-            toggle.setAttribute('aria-label', mode === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+            toggle.setAttribute('aria-label', mode === 'dark' ? textos.etiquetaClaro : textos.etiquetaOscuro);
             toggle.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
         });
     }

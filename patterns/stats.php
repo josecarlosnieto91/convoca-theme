@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Cifras de la comunidad (dinámicas)
+ * Title: Community figures (dynamic)
  * Slug: convoca/stats
  * Categories: convoca, convoca-layout
- * Description: Franja con cifras REALES de la instalación (no valores fijos). Cada cifra se puede sobrescribir con el filtro convoca_theme_stats; las que no tengan dato se omiten.
- * Keywords: stats, estadísticas, cifras, números
+ * Description: Strip with REAL figures from the installation (no fixed values). Each figure can be overridden with the convoca_theme_stats filter; those without data are omitted.
+ * Keywords: stats, figures, numbers
  *
  * Este patrón NO lleva números hardcodeados: los obtiene en PHP de los datos
  * reales del sitio (entradas publicadas, antigüedad, páginas hijas...) y admite

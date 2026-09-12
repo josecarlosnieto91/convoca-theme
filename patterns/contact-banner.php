@@ -15,21 +15,21 @@
  */
 
 /**
- * Title: Banda de contacto
+ * Title: Contact banner
  * Slug: convoca/contact-banner
  * Categories: convoca, convoca-layout
- * Description: Banda de contacto con datos de la entidad y botones.
- * Keywords: contacto, banda, email, redes
+ * Description: Contact banner with organisation details and buttons.
+ * Keywords: contact, banner, email, social
  */
 ?>
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}},"color":{"background":"#f8f6f2"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide has-background" style="background-color:#f8f6f2;margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)">
 	<!-- wp:heading {"textAlign":"center","level":2} -->
-	<h2 class="wp-block-heading has-text-align-center">Contacto</h2>
+	<h2 class="wp-block-heading has-text-align-center">Contact</h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"align":"center"} -->
-	<p class="has-text-align-center">¿Tienes dudas o quieres colaborar? Escríbenos o síguenos en redes sociales.</p>
+	<p class="has-text-align-center">Have questions or want to get involved? Write to us or follow us on social media.</p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"left":"var:preset|spacing|30"}}}} -->

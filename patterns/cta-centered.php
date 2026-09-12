@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Llamada a acción centrada
+ * Title: Centered call to action
  * Slug: convoca/cta-centered
  * Categories: convoca
- * Description: CTA centrada con fondo degradado oscuro, titular y dos botones.
- * Keywords: cta, llamada, acción, botones
+ * Description: Centered CTA with a dark gradient background, heading and two buttons.
+ * Keywords: cta, call to action, buttons
  */
 ?>
 <!-- wp:group {"gradient":"cta-dark","textColor":"blanco","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"600px"}} -->

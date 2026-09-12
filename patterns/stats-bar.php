@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Barra de estadísticas
+ * Title: Stats bar
  * Slug: convoca/stats-bar
  * Categories: convoca
- * Description: Barra de 4 estadísticas con fondo degradado oscuro y valores en amarillo.
- * Keywords: estadísticas, números, stats, datos
+ * Description: Bar of 4 stats with a dark gradient background and values in yellow.
+ * Keywords: stats, numbers, data
  */
 ?>
 <!-- wp:group {"gradient":"stats-dark","textColor":"blanco","className":"convoca-stats","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->

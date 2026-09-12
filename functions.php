@@ -56,7 +56,7 @@ add_action(
 				add_action(
 					'admin_notices',
 					function () {
-						echo '<div class="notice notice-warning"><p><strong>Convoca:</strong> El reinicio de plantillas solo puede hacerse una vez por hora. Espera unos minutos.</p></div>';
+						echo '<div class="notice notice-warning"><p><strong>Convoca:</strong> Templates can only be reset once per hour. Please wait a few minutes.</p></div>';
 					}
 				);
 				return;
@@ -92,8 +92,8 @@ add_action(
 				'admin_notices',
 				function () use ( $deleted ) {
 					$aviso = sprintf(
-						/* translators: %d: número de plantillas y partes de plantilla reiniciadas. */
-						esc_html__( 'Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.', 'convoca' ),
+						/* translators: %d: number of templates and template parts reset. */
+						esc_html__( 'Reset %d templates and template parts. They will now be read directly from the theme files.', 'convoca' ),
 						$deleted
 					);
 					echo wp_kses_post( '<div class="notice notice-success"><p><strong>Convoca:</strong> ' . $aviso . '</p></div>' );
@@ -107,6 +107,8 @@ add_action(
  * 1. Theme Setup
  */
 function convoca_setup(): void {
+	// WordPress recibe la RAIZ del tema y añade el /languages el solo. Pasandole ya
+	// /languages buscaba en .../languages/languages/ y no cargaba nunca la traduccion.
 	load_theme_textdomain( 'convoca', get_template_directory() . '/languages' );
 
 	add_theme_support( 'wp-block-styles' );
@@ -148,14 +150,14 @@ function convoca_register_pattern_categories(): void {
 		'convoca',
 		[
 			'label'       => __( 'Convoca', 'convoca' ),
-			'description' => __( 'Patrones del theme Convoca.', 'convoca' ),
+			'description' => __( 'Convoca theme patterns.', 'convoca' ),
 		]
 	);
 	register_block_pattern_category(
 		'convoca-layout',
 		[
 			'label'       => __( 'Convoca — Layout', 'convoca' ),
-			'description' => __( 'Secciones de página completas.', 'convoca' ),
+			'description' => __( 'Full-page sections.', 'convoca' ),
 		]
 	);
 }
@@ -170,7 +172,7 @@ function convoca_register_block_styles(): void {
 		'core/paragraph',
 		[
 			'name'  => 'lead',
-			'label' => __( 'Destacado (Lead)', 'convoca' ),
+			'label' => __( 'Lead', 'convoca' ),
 		]
 	);
 
@@ -179,7 +181,7 @@ function convoca_register_block_styles(): void {
 		'core/group',
 		[
 			'name'  => 'card',
-			'label' => __( 'Tarjeta', 'convoca' ),
+			'label' => __( 'Card', 'convoca' ),
 		]
 	);
 
@@ -188,7 +190,7 @@ function convoca_register_block_styles(): void {
 		'core/group',
 		[
 			'name'  => 'coordinator',
-			'label' => __( 'Caja Coordinador', 'convoca' ),
+			'label' => __( 'Coordinator box', 'convoca' ),
 		]
 	);
 
@@ -197,7 +199,7 @@ function convoca_register_block_styles(): void {
 		'core/group',
 		[
 			'name'  => 'glass',
-			'label' => __( 'Cristal Esmerilado', 'convoca' ),
+			'label' => __( 'Frosted glass', 'convoca' ),
 		]
 	);
 
@@ -206,7 +208,7 @@ function convoca_register_block_styles(): void {
 		'core/cover',
 		[
 			'name'  => 'topographic',
-			'label' => __( 'Overlay Topográfico', 'convoca' ),
+			'label' => __( 'Topographic overlay', 'convoca' ),
 		]
 	);
 
@@ -215,7 +217,7 @@ function convoca_register_block_styles(): void {
 		'core/table',
 		[
 			'name'  => 'convoca',
-			'label' => __( 'Tabla Convoca', 'convoca' ),
+			'label' => __( 'Convoca table', 'convoca' ),
 		]
 	);
 
@@ -224,7 +226,7 @@ function convoca_register_block_styles(): void {
 		'core/button',
 		[
 			'name'  => 'secondary',
-			'label' => __( 'Secundario', 'convoca' ),
+			'label' => __( 'Secondary', 'convoca' ),
 		]
 	);
 
@@ -233,7 +235,7 @@ function convoca_register_block_styles(): void {
 		'core/image',
 		[
 			'name'  => 'elevated',
-			'label' => __( 'Elevada', 'convoca' ),
+			'label' => __( 'Elevated', 'convoca' ),
 		]
 	);
 }
@@ -333,7 +335,7 @@ add_filter(
  */
 function convoca_skip_link(): void {
 	echo '<a class="skip-link screen-reader-text" href="#main-content">' .
-		esc_html__( 'Ir al contenido', 'convoca' ) . '</a>';
+		esc_html__( 'Skip to content', 'convoca' ) . '</a>';
 }
 add_action( 'wp_body_open', 'convoca_skip_link' );
 
@@ -379,8 +381,8 @@ add_action( 'wp_enqueue_scripts', 'convoca_theme_scripts' );
  */
 function convoca_admin_menu(): void {
 	add_theme_page(
-		__( 'Ayuda Convoca', 'convoca' ),
-		__( 'Ayuda Convoca', 'convoca' ),
+		__( 'Convoca Help', 'convoca' ),
+		__( 'Convoca Help', 'convoca' ),
 		'edit_theme_options',
 		'convoca-help',
 		'convoca_help_page_html'
@@ -395,12 +397,12 @@ function convoca_help_page_html(): void {
 	$theme = wp_get_theme();
 	?>
 	<div class="wrap convoca-admin-page">
-		<h1><?php echo esc_html__( 'Configuración y Ayuda — Theme Convoca', 'convoca' ); ?></h1>
+		<h1><?php echo esc_html__( 'Settings & Help — Convoca Theme', 'convoca' ); ?></h1>
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
 			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/admin-banner.png' ); ?>'); background-size: cover; background-position: center; color: #fff;">
-				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf( /* translators: %s: versión del theme instalada. */ esc_html__( 'Bienvenido a Convoca v%s', 'convoca' ), esc_html( (string) $theme->get( 'Version' ) ) ); ?></h2>
-				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__( 'Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso.', 'convoca' ); ?></p>
+				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf( /* translators: %s: version of the installed theme. */ esc_html__( 'Welcome to Convoca v%s', 'convoca' ), esc_html( (string) $theme->get( 'Version' ) ) ); ?></h2>
+				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__( 'This is an FSE (Full Site Editing) theme for associations and community groups. Here you will find a quick start guide.', 'convoca' ); ?></p>
 			</div>
 		</div>
 
@@ -408,45 +410,45 @@ function convoca_help_page_html(): void {
 			<div id="dashboard-widgets" class="metabox-holder">
 				<div id="postbox-container-1" class="postbox-container">
 					
-					<!-- Información del Theme -->
+					<!-- Theme Information -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__( 'Información del Theme', 'convoca' ); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__( 'Theme information', 'convoca' ); ?></span></h2>
 						<div class="inside">
 							<ul>
-								<li><strong><?php echo esc_html__( 'Versión:', 'convoca' ); ?></strong> <?php echo esc_html( $theme->get( 'Version' ) ); ?></li>
-								<li><strong><?php echo esc_html__( 'Autor:', 'convoca' ); ?></strong> <a href="<?php echo esc_url( $theme->get( 'AuthorURI' ) ); ?>" target="_blank"><?php echo esc_html( $theme->get( 'Author' ) ); ?></a></li>
-								<li><strong><?php echo esc_html__( 'Documentación:', 'convoca' ); ?></strong> <a href="https://github.com/josecarlosnieto91/convoca-theme/wiki" target="_blank"><?php echo esc_html__( 'Ver Wiki en GitHub', 'convoca' ); ?></a></li>
+								<li><strong><?php echo esc_html__( 'Version:', 'convoca' ); ?></strong> <?php echo esc_html( $theme->get( 'Version' ) ); ?></li>
+								<li><strong><?php echo esc_html__( 'Author:', 'convoca' ); ?></strong> <a href="<?php echo esc_url( $theme->get( 'AuthorURI' ) ); ?>" target="_blank"><?php echo esc_html( $theme->get( 'Author' ) ); ?></a></li>
+								<li><strong><?php echo esc_html__( 'Documentation:', 'convoca' ); ?></strong> <a href="https://github.com/josecarlosnieto91/convoca-theme/wiki" target="_blank"><?php echo esc_html__( 'View the GitHub wiki', 'convoca' ); ?></a></li>
 							</ul>
 							<hr>
-							<a href="<?php echo esc_url( admin_url( 'site-editor.php' ) ); ?>" class="button button-primary"><?php echo esc_html__( 'Abrir Editor de Sitios (FSE)', 'convoca' ); ?></a>
+							<a href="<?php echo esc_url( admin_url( 'site-editor.php' ) ); ?>" class="button button-primary"><?php echo esc_html__( 'Open Site Editor (FSE)', 'convoca' ); ?></a>
 						</div>
 
-					<!-- Guía de Plantillas y Páginas -->
+					<!-- Templates & Pages Guide -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__( 'Guía de Plantillas y Páginas', 'convoca' ); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__( 'Templates & Pages Guide', 'convoca' ); ?></span></h2>
 						<div class="inside">
-							<h4><?php echo esc_html__( 'Página de Actividad', 'convoca' ); ?></h4>
-							<p><?php echo esc_html__( 'Usa la plantilla "Página de Actividad" para las páginas que describen una actividad específica. Incluye automáticamente el formulario de inscripción.', 'convoca' ); ?></p>
+							<h4><?php echo esc_html__( 'Activity Page', 'convoca' ); ?></h4>
+							<p><?php echo esc_html__( 'Use the "Activity Page" template for pages that describe a specific activity. It automatically includes the registration form.', 'convoca' ); ?></p>
 							
-							<h4><?php echo esc_html__( 'Página de Proyecto', 'convoca' ); ?></h4>
-							<p><?php echo esc_html__( 'Usa la plantilla "Página de Proyecto" para secciones de proyectos de largo recorrido. Incluye metadatos específicos del proyecto.', 'convoca' ); ?></p>
+							<h4><?php echo esc_html__( 'Project Page', 'convoca' ); ?></h4>
+							<p><?php echo esc_html__( 'Use the "Project Page" template for long-running project sections. It includes project-specific metadata.', 'convoca' ); ?></p>
 							
 							<hr>
-							<p><strong><?php echo esc_html__( 'Nota:', 'convoca' ); ?></strong> <?php echo esc_html__( 'Si las plantillas no se visualizan correctamente, puedes intentar reiniciarlas.', 'convoca' ); ?></p>
-							<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'themes.php?page=convoca-help&convoca_reset_templates=1' ), 'convoca_reset_templates' ) ); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js( __( '¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme.', 'convoca' ) ); ?>');"><?php echo esc_html__( 'Reiniciar Plantillas a valores de fábrica', 'convoca' ); ?></a>
+							<p><strong><?php echo esc_html__( 'Note:', 'convoca' ); ?></strong> <?php echo esc_html__( 'If the templates do not display correctly, you can try resetting them.', 'convoca' ); ?></p>
+							<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'themes.php?page=convoca-help&convoca_reset_templates=1' ), 'convoca_reset_templates' ) ); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This will delete any customization you made in the Site Editor and revert to the theme files.', 'convoca' ) ); ?>');"><?php echo esc_html__( 'Reset templates to factory defaults', 'convoca' ); ?></a>
 						</div>
 					</div>
 
-					<!-- Patrones Recomendados -->
+					<!-- Recommended Patterns -->
 					<div class="postbox">
-						<h2 class="hndle"><span><?php echo esc_html__( 'Patrones Convoca', 'convoca' ); ?></span></h2>
+						<h2 class="hndle"><span><?php echo esc_html__( 'Convoca patterns', 'convoca' ); ?></span></h2>
 						<div class="inside">
-							<p><?php echo esc_html__( 'Puedes insertar estos bloques pre-diseñados desde el editor (+) > Patrones > Convoca:', 'convoca' ); ?></p>
+							<p><?php echo esc_html__( 'You can insert these pre-designed blocks from the editor (+) > Patterns > Convoca:', 'convoca' ); ?></p>
 							<ul style="list-style: disc; padding-left: 20px;">
-								<li><code>convoca/hero</code>: <?php echo esc_html__( 'Cabecera principal con texto.', 'convoca' ); ?></li>
-								<li><code>convoca/cards-grid</code>: <?php echo esc_html__( 'Cuadrícula de actividades o noticias.', 'convoca' ); ?></li>
-								<li><code>convoca/stats-bar</code>: <?php echo esc_html__( 'Barra de estadísticas animada.', 'convoca' ); ?></li>
-								<li><code>convoca/inscripcion-actividad</code>: <?php echo esc_html__( 'Formulario de inscripción integrado.', 'convoca' ); ?></li>
+								<li><code>convoca/hero</code>: <?php echo esc_html__( 'Main header with text.', 'convoca' ); ?></li>
+								<li><code>convoca/cards-grid</code>: <?php echo esc_html__( 'Grid of activities or news.', 'convoca' ); ?></li>
+								<li><code>convoca/stats-bar</code>: <?php echo esc_html__( 'Animated stats bar.', 'convoca' ); ?></li>
+								<li><code>convoca/inscripcion-actividad</code>: <?php echo esc_html__( 'Built-in registration form.', 'convoca' ); ?></li>
 							</ul>
 						</div>
 					</div>
@@ -509,6 +511,17 @@ function convoca_enqueue_scripts(): void {
 			'in_footer' => true,
 		]
 	);
+
+	// Las etiquetas del boton las oye un lector de pantalla, asi que son texto de verdad y
+	// viven en PHP, que es donde se traduce. El JavaScript solo las pinta.
+	wp_localize_script(
+		'convoca-dark-mode',
+		'convocaModoOscuro',
+		[
+			'etiquetaOscuro' => __( 'Switch to dark mode', 'convoca' ),
+			'etiquetaClaro'  => __( 'Switch to light mode', 'convoca' ),
+		]
+	);
 }
 add_action( 'wp_enqueue_scripts', 'convoca_enqueue_scripts' );
 
@@ -546,7 +559,7 @@ add_filter(
 			return $block_content;
 		}
 		// Replace the whole inner text with the configured content label.
-		$label = ! empty( $block['attrs']['content'] ) ? $block['attrs']['content'] : 'Más información';
+		$label = ! empty( $block['attrs']['content'] ) ? $block['attrs']['content'] : 'More information';
 		return preg_replace(
 			'#(<a[^>]*wp-block-read-more[^>]*>).*?(</a>)#s',
 			'$1' . esc_html( $label ) . '$2',
@@ -623,9 +636,9 @@ function convoca_theme_render_block( $block_content, $block ) {
 			'{copyright_extra}'  => apply_filters( 'convoca_theme_copyright_extra', '' ),
 			// Texto de muestra del lateral: la instalación lo sustituye por el suyo con el
 			// filtro de reemplazos, y quien no lo haga ve una presentación neutra.
-			'{sidebar_description}' => __( 'Asociación sin ánimo de lucro dedicada a la educación ambiental y a la participación ciudadana.', 'convoca' ),
-			'{cta_heading}'      => (string) apply_filters( 'convoca_theme_cta_heading', __( '¿Quieres ser parte del cambio?', 'convoca' ) ),
-			'{cta_text}'         => (string) apply_filters( 'convoca_theme_cta_text', __( 'Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta.', 'convoca' ) ),
+			'{sidebar_description}' => __( 'A non-profit association dedicated to environmental education and citizen participation.', 'convoca' ),
+			'{cta_heading}'      => (string) apply_filters( 'convoca_theme_cta_heading', __( 'Want to be part of the change?', 'convoca' ) ),
+			'{cta_text}'         => (string) apply_filters( 'convoca_theme_cta_text', __( 'Join as a member, volunteer, or just come and meet us. Every action counts.', 'convoca' ) ),
 		]
 	);
 
@@ -721,6 +734,9 @@ function convoca_theme_get_site_links(): array {
 			'legal'        => '',
 			'contact'      => '',
 			'featured'     => '',
+			'news'         => '',
+			'library'      => '',
+			'links'        => '',
 		)
 	);
 }
@@ -735,18 +751,18 @@ function convoca_theme_get_link_labels(): array {
 	return apply_filters(
 		'convoca_theme_link_labels',
 		array(
-			'about'        => __( '¿Quiénes somos?', 'convoca' ),
-			'transparency' => __( 'Transparencia', 'convoca' ),
-			'projects'     => __( 'Proyectos', 'convoca' ),
-			'alliances'    => __( 'Alianzas', 'convoca' ),
-			'activities'   => __( 'Actividades', 'convoca' ),
-			'membership'   => __( 'Hazte socio/a', 'convoca' ),
-			'volunteer'    => __( 'Voluntariado', 'convoca' ),
-			'donations'    => __( 'Donaciones', 'convoca' ),
-			'centro'       => __( 'Centro', 'convoca' ),
-			'privacy'      => __( 'Privacidad', 'convoca' ),
+			'about'        => __( 'Who we are', 'convoca' ),
+			'transparency' => __( 'Transparency', 'convoca' ),
+			'projects'     => __( 'Projects', 'convoca' ),
+			'alliances'    => __( 'Alliances', 'convoca' ),
+			'activities'   => __( 'Activities', 'convoca' ),
+			'membership'   => __( 'Become a member', 'convoca' ),
+			'volunteer'    => __( 'Volunteering', 'convoca' ),
+			'donations'    => __( 'Donations', 'convoca' ),
+			'centro'       => __( 'Community centre', 'convoca' ),
+			'privacy'      => __( 'Privacy', 'convoca' ),
 			'cookies'      => __( 'Cookies', 'convoca' ),
-			'legal'        => __( 'Aviso legal', 'convoca' ),
+			'legal'        => __( 'Legal notice', 'convoca' ),
 		)
 	);
 }
@@ -771,7 +787,7 @@ function convoca_theme_get_cta_url(): string {
  * @since 2.8.0
  */
 function convoca_theme_get_cta_label(): string {
-	return (string) apply_filters( 'convoca_theme_cta_label', __( 'Asóciate', 'convoca' ) );
+	return (string) apply_filters( 'convoca_theme_cta_label', __( 'Join us', 'convoca' ) );
 }
 
 /**
@@ -804,7 +820,7 @@ function convoca_theme_get_stats(): array {
 	if ( $published > 0 ) {
 		$stats['publicaciones'] = array(
 			'value' => '+' . number_format_i18n( $published ),
-			'label' => __( 'Publicaciones', 'convoca' ),
+			'label' => __( 'Posts', 'convoca' ),
 		);
 	}
 
@@ -820,7 +836,7 @@ function convoca_theme_get_stats(): array {
 	if ( $this_year->found_posts > 0 ) {
 		$stats['este_ano'] = array(
 			'value' => (string) number_format_i18n( $this_year->found_posts ),
-			'label' => sprintf( /* translators: %s: año del archivo. */ __( 'Publicaciones en %s', 'convoca' ), $year ),
+			'label' => sprintf( /* translators: %s: year of the archive. */ __( 'Posts in %s', 'convoca' ), $year ),
 		);
 	}
 
@@ -837,7 +853,7 @@ function convoca_theme_get_stats(): array {
 		$years         = max( 1, $year - (int) get_the_date( 'Y', $oldest[0] ) );
 		$stats['anos'] = array(
 			'value' => (string) number_format_i18n( $years ),
-			'label' => __( 'Años de trayectoria', 'convoca' ),
+			'label' => __( 'Years of work', 'convoca' ),
 		);
 	}
 
@@ -929,7 +945,7 @@ function convoca_theme_lang_switcher_html(): string {
 	$id = 'convoca-lang-' . wp_unique_id();
 
 	$html  = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher convoca-lang-switcher--dropdown">';
-	$html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-label="' . esc_attr__( 'Cambiar idioma', 'convoca' ) . '" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '">';
+	$html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-label="' . esc_attr__( 'Change language', 'convoca' ) . '" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '">';
 	$html .= '<span class="convoca-lang-switcher__globe" aria-hidden="true">🌐</span>';
 	$html .= '<span class="convoca-lang-switcher__code">' . esc_html( $current_code ) . '</span>';
 	$html .= '<span class="convoca-lang-switcher__caret" aria-hidden="true">▾</span>';
@@ -1111,10 +1127,10 @@ add_action(
 	function (): void {
 		register_nav_menus(
 			array(
-				'primary' => 'Navegación principal',
-				'top'     => 'Navegación superior (barra fina)',
-				'socials' => 'Redes sociales',
-				'footer'  => 'Navegación del pie',
+				'primary' => 'Primary navigation',
+				'top'     => 'Top navigation (thin bar)',
+				'socials' => 'Social networks',
+				'footer'  => 'Footer navigation',
 			)
 		);
 	},
@@ -1168,7 +1184,7 @@ function convoca_get_event_meta( int $post_id, string $new_key ): string {
 function convoca_event_meta_box(): void {
 	add_meta_box(
 		'convoca_event_meta',
-		'Evento',
+		'Event',
 		'convoca_event_meta_box_callback',
 		'post',
 		'side',
@@ -1196,26 +1212,26 @@ function convoca_event_meta_box_callback( $post ): void {
 	<p>
 		<label for="convoca_has_event">
 			<input type="checkbox" id="convoca_has_event" name="convoca_has_event" value="1" <?php checked( $has_event, '1' ); ?>>
-			Este contenido es un evento
+			This content is an event
 		</label>
 	</p>
 	<p>
-		<label for="convoca_event_start_date">Fecha y hora de inicio</label>
+		<label for="convoca_event_start_date">Start date and time</label>
 		<input type="datetime-local" id="convoca_event_start_date" name="convoca_event_start_date"
 			value="<?php echo esc_attr( $start_date ); ?>" style="width:100%">
 	</p>
 	<p>
-		<label for="convoca_event_end_date">Fecha y hora de fin</label>
+		<label for="convoca_event_end_date">End date and time</label>
 		<input type="datetime-local" id="convoca_event_end_date" name="convoca_event_end_date"
 			value="<?php echo esc_attr( $end_date ); ?>" style="width:100%">
 	</p>
 	<p>
-		<label for="convoca_event_address">Dirección / lugar</label>
+		<label for="convoca_event_address">Address / location</label>
 		<input type="text" id="convoca_event_address" name="convoca_event_address"
-			value="<?php echo esc_attr( $address ); ?>" placeholder="Ej: Playa de Rodiles, Villaviciosa, Asturias" style="width:100%">
+			value="<?php echo esc_attr( $address ); ?>" placeholder="e.g. Main Street 1, Your Town, Spain" style="width:100%">
 	</p>
 	<p style="color:#666;font-size:12px;margin-top:8px;">
-		Rellena estos campos solo si quieres que Google indexe este contenido como evento con datos estructurados.
+		Fill in these fields only if you want Google to index this content as an event with structured data.
 	</p>
 	<?php
 }
@@ -1351,6 +1367,26 @@ function convoca_event_schema(): void {
 	$end_date = convoca_get_event_meta( $post_id, '_convoca_event_end_date' );
 	$iso_end  = convoca_theme_iso_datetime( (string) $end_date );
 
+	// La region y el pais no se dan por sabidos: los declara el sitio con sus filtros. Si no
+	// los declara, el schema no los lleva, en vez de inventarse unos.
+	$region  = (string) apply_filters( 'convoca_theme_event_region', '' );
+	$country = (string) apply_filters( 'convoca_theme_event_country', '' );
+
+	$lugar = array(
+		'@type' => 'Place',
+		'name'  => ( '' !== $location_address ) ? $location_address : get_bloginfo( 'name' ),
+	);
+	$direccion = array( '@type' => 'PostalAddress' );
+	if ( '' !== $region ) {
+		$direccion['addressRegion'] = $region;
+	}
+	if ( '' !== $country ) {
+		$direccion['addressCountry'] = $country;
+	}
+	if ( count( $direccion ) > 1 ) {
+		$lugar['address'] = $direccion;
+	}
+
 	$data = array(
 		'@context'            => 'https://schema.org',
 		'@type'               => 'Event',
@@ -1359,15 +1395,7 @@ function convoca_event_schema(): void {
 		'url'                 => get_permalink(),
 		'startDate'           => $iso_start,
 		'image'               => (string) get_the_post_thumbnail_url( get_post(), 'large' ),
-		'location'            => array(
-			'@type'   => 'Place',
-			'name'    => ( '' !== $location_address ) ? $location_address : 'Asturias',
-			'address' => array(
-				'@type'          => 'PostalAddress',
-				'addressRegion'  => 'Asturias',
-				'addressCountry' => 'ES',
-			),
-		),
+		'location'            => $lugar,
 		'organizer'           => array(
 			'@type' => 'Organization',
 			'name'  => get_bloginfo( 'name' ),
@@ -1771,12 +1799,12 @@ function convoca_fse_evento_cuando(): string {
  */
 function convoca_register_site_block_styles(): void {
 	$estilos = array(
-		array( 'core/group', 'convoca-banda-naranja', __( 'Banda naranja', 'convoca' ) ),
-		array( 'core/group', 'convoca-bloque-carbon', __( 'Bloque carbón', 'convoca' ) ),
-		array( 'core/image', 'convoca-marco', __( 'Marco editorial', 'convoca' ) ),
-		array( 'core/button', 'convoca-fantasma', __( 'Botón fantasma', 'convoca' ) ),
-		array( 'core/quote', 'convoca-cita', __( 'Cita destacada', 'convoca' ) ),
-		array( 'core/heading', 'convoca-regla', __( 'Título con regla', 'convoca' ) ),
+		array( 'core/group', 'convoca-banda-naranja', __( 'Orange band', 'convoca' ) ),
+		array( 'core/group', 'convoca-bloque-carbon', __( 'Charcoal block', 'convoca' ) ),
+		array( 'core/image', 'convoca-marco', __( 'Editorial frame', 'convoca' ) ),
+		array( 'core/button', 'convoca-fantasma', __( 'Ghost button', 'convoca' ) ),
+		array( 'core/quote', 'convoca-cita', __( 'Featured quote', 'convoca' ) ),
+		array( 'core/heading', 'convoca-regla', __( 'Heading with rule', 'convoca' ) ),
 	);
 
 	foreach ( $estilos as $estilo ) {

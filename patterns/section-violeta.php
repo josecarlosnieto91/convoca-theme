@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Sección violeta oscuro
+ * Title: Dark violet section
  * Slug: convoca/section-violeta
  * Categories: convoca
- * Description: Sección de ancho completo con fondo violeta oscuro y texto blanco.
- * Keywords: sección, violeta, oscuro
+ * Description: Full-width section with a dark violet background and white text.
+ * Keywords: section, violet, dark
  */
 ?>
 <!-- wp:group {"backgroundColor":"violeta","textColor":"blanco","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
