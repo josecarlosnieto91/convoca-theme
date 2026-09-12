@@ -1319,7 +1319,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 /* ---------- Mobile Responsive ---------- */
-@media (max-width: 781px) {
+@media (max-width: 1199px) {
 
     .convoca-card img,
     .is-style-card>.wp-block-post-featured-image img {
@@ -3773,9 +3773,39 @@ body .convoca-topnav ul {
    con «order»), el menú abría ya bajado 1.979 px y parecía cortado. Ya está
    resuelto en el orden del DOM; aquí se remata el comportamiento.
 */
+/*
+ * Solo con el menú abierto. El selector del atributo de la Interactivity API
+ * ([data-wp-class--is-menu-open]) NO vale aquí: ese atributo está siempre en el marcado
+ * (es la directiva, no el estado), así que la regla se aplicaba en toda ventana por
+ * debajo de 1200 px aunque el menú estuviera cerrado, y dejaba la página en blanco bajo
+ * un panel a pantalla completa. El estado sí lo marca la clase `is-menu-open`.
+ */
 @media (max-width: 1199px) {
-	.wp-block-navigation__responsive-container.is-menu-open,
-	.wp-block-navigation__responsive-container[data-wp-class--is-menu-open] {
+	/*
+	 * Por debajo de 1200 el menú va plegado tras la hamburguesa. Con 34 enlaces más
+	 * submenús no cabe en la fila de la cabecera: el panel se desbordaba sobre el
+	 * contenido y la página parecía vacía. WordPress solo enseña su botón en su propio
+	 * punto de corte (600 px), así que aquí se enseña hasta 1199 y se pliega el panel.
+	 */
+	.site-header .wp-block-navigation__responsive-container:not(.is-menu-open) {
+		display: none !important;
+	}
+
+	.site-header .wp-block-navigation__responsive-container-open {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 44px !important;
+		height: 44px !important;
+		flex-shrink: 0 !important;
+	}
+
+	.site-header .wp-block-navigation__responsive-container-open svg {
+		width: 20px !important;
+		height: 20px !important;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open {
 		position: fixed;
 		inset: 0;
 		width: 100%;
