@@ -40,10 +40,10 @@
 			<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
 			<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
 				<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-				<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="/actividades/">Ver actividades</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">Ver actividades</a></div>
 				<!-- /wp:button -->
 				<!-- wp:button {"className":"is-style-outline","textColor":"blanco","style":{"border":{"color":"rgba(255,255,255,0.5)","width":"2px"}}} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="/quienes-somos/" style="border-color:rgba(255,255,255,0.5);border-width:2px">Conócenos</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{about_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px">Conócenos</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

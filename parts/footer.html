@@ -17,10 +17,10 @@
         <div class="wp-block-group convoca-footer__marca">
             <!-- wp:site-title {"level":0} /-->
             <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.94rem"}}} -->
-            <p style="font-size:0.94rem">Asociación socioambiental asturiana. Educación ambiental, conservación y participación ciudadana para que la naturaleza siga teniendo quien la defienda.</p>
+            <p style="font-size:0.94rem">{site_description}</p>
             <!-- /wp:paragraph -->
             <!-- wp:paragraph {"style":{"typography":{"fontSize":"0.94rem"}}} -->
-            <p style="font-size:0.94rem"><strong>Escríbenos</strong><br><a href="mailto:{contact_email}">{contact_email}</a><br><a href="tel:+34621366648">621 366 648</a></p>
+            <p style="font-size:0.94rem"><strong>Escríbenos</strong><br><a href="mailto:{contact_email}">{contact_email}</a><br><a href="{phone_url}">{phone_label}</a></p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
@@ -32,11 +32,11 @@
             <!-- /wp:heading -->
             <!-- wp:list -->
             <ul>
-                <li><a href="/secciones/actividades/">Actividades</a></li>
-                <li><a href="/la-escuela/">La Escuela</a></li>
-                <li><a href="/voluntariado/">Voluntariado</a></li>
+                <li><a href="{activities_url}">{activities_label}</a></li>
+                <li><a href="{projects_url}">{projects_label}</a></li>
+                <li><a href="{volunteer_url}">{volunteer_label}</a></li>
                 <li><a href="/secciones/noticias/">Noticias</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
+                <li><a href="{contact_url}">{contact_label}</a></li>
             </ul>
             <!-- /wp:list -->
         </div>

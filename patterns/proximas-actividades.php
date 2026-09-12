@@ -101,7 +101,7 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
 	<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
 		<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="/actividades/">Ver todas las actividades</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">Ver todas las actividades</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

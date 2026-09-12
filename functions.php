@@ -608,9 +608,18 @@ function convoca_theme_render_block( $block_content, $block ) {
 			'{year}'             => (string) gmdate( 'Y' ),
 			'{site_name}'        => get_bloginfo( 'name' ),
 			'{site_tagline}'     => get_bloginfo( 'description' ),
+			// Descripción larga del sitio y datos de contacto: el tema trae un valor por
+			// defecto razonable (la descripción del sitio) y vacío donde no puede saberlo,
+			// y la instalación los rellena con su filtro. Un token sin valor no deja enlace.
+			'{site_description}' => get_bloginfo( 'description' ),
+			'{phone_url}'        => '',
+			'{phone_label}'      => '',
 			'{cta_url}'          => convoca_theme_get_cta_url(),
 			'{cta_label}'        => convoca_theme_get_cta_label(),
 			'{copyright_extra}'  => apply_filters( 'convoca_theme_copyright_extra', '' ),
+			// Texto de muestra del lateral: la instalación lo sustituye por el suyo con el
+			// filtro de reemplazos, y quien no lo haga ve una presentación neutra.
+			'{sidebar_description}' => __( 'Asociación sin ánimo de lucro dedicada a la educación ambiental y a la participación ciudadana.', 'convoca' ),
 			'{cta_heading}'      => (string) apply_filters( 'convoca_theme_cta_heading', __( '¿Quieres ser parte del cambio?', 'convoca' ) ),
 			'{cta_text}'         => (string) apply_filters( 'convoca_theme_cta_text', __( 'Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta.', 'convoca' ) ),
 		]
@@ -706,6 +715,8 @@ function convoca_theme_get_site_links(): array {
 			'privacy'      => '',
 			'cookies'      => '',
 			'legal'        => '',
+			'contact'      => '',
+			'featured'     => '',
 		)
 	);
 }
