@@ -66,8 +66,8 @@ jobs:
       - name: Build clean theme dir (as published)
         run: |
           mkdir -p build-dir
-          rsync -a --exclude-from=.distignore ./ build-dir/convoca-theme/
-          ls build-dir/convoca-theme/
+          rsync -a --exclude-from=.distignore ./ build-dir/convoca/
+          ls build-dir/convoca/
 
       - name: Install WordPress + Theme Check plugin
         run: |
@@ -79,11 +79,11 @@ jobs:
             --title="Theme Check" --admin_user=admin --admin_password=admin \
             --admin_email=admin@example.com --skip-email --allow-root
           wp plugin install theme-check --activate --path=wp-test --allow-root
-          sudo cp -r build-dir/convoca-theme wp-test/wp-content/themes/
+          sudo cp -r build-dir/convoca wp-test/wp-content/themes/
           echo "WP + theme-check ready"
 
       - name: Run Theme Check
         run: |
           cd wp-test
           # Falla el job si hay REQUERIDOS o errores (exit != 0).
-          wp theme-check run convoca-theme --format=table --allow-root
+          wp theme-check run convoca --format=table --allow-root

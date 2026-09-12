@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Hero con degradado
+ * Title: Hero with gradient
  * Slug: convoca/hero-gradient
  * Categories: convoca
- * Description: Sección hero con imagen destacada, overlay degradado atardecer, título y botones CTA.
- * Keywords: hero, portada, banner
+ * Description: Hero section with featured image, sunset gradient overlay, title and CTA buttons.
+ * Keywords: hero, cover, banner
  */
 ?>
 <!-- wp:cover {"useFeaturedImage":true,"dimRatio":70,"minHeight":85,"minHeightUnit":"vh","isDark":true,"gradient":"sunset-hero","className":"is-style-topographic hero-topographic","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}}} -->

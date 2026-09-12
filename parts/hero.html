@@ -1,7 +1,7 @@
 <!--
     Hero genérico: titulares y llamadas a la acción salen de datos del sitio y
     de los filtros del theme. Sin textos ni rutas de otra instalación:
-      {site_title}   → nombre del sitio
+      {site_name}   → nombre del sitio
       {site_tagline} → descripción corta (Ajustes → General)
       {activities_url} / {about_url} → enlaces del sitio (convoca_theme_site_links)
 -->
@@ -16,7 +16,7 @@
         <div class="wp-block-group">
             <!-- wp:heading {"level":1,"textColor":"blanco","fontSize":"xx-large","style":{"typography":{"letterSpacing":"-0.02em"}}} -->
             <h1 class="wp-block-heading has-blanco-color has-text-color has-xx-large-font-size"
-                style="letter-spacing:-0.02em">{site_title}</h1>
+                style="letter-spacing:-0.02em">{site_name}</h1>
             <!-- /wp:heading -->
             <!-- wp:paragraph {"style":{"typography":{"fontSize":"1.2rem"},"color":{"text":"rgba(255,255,255,0.9)"}}} -->
             <p style="color:rgba(255,255,255,0.9);font-size:1.2rem">{site_tagline}</p>
@@ -24,10 +24,10 @@
             <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
             <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
                 <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-                <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">Ver actividades</a></div>
+                <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">View activities</a></div>
                 <!-- /wp:button -->
                 <!-- wp:button {"className":"is-style-outline","textColor":"blanco","style":{"border":{"color":"rgba(255,255,255,0.5)","width":"2px"}}} -->
-                <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{about_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px">Conócenos</a></div>
+                <div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{about_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px">About us</a></div>
                 <!-- /wp:button -->
             </div>
             <!-- /wp:buttons -->

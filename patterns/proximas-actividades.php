@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Próximas actividades
+ * Title: Upcoming activities
  * Slug: convoca/proximas-actividades
  * Categories: convoca, convoca-layout
- * Description: Grid de las próximas actividades del CPT actividad con metadatos.
- * Keywords: actividades, agenda, eventos
+ * Description: Grid of upcoming activities from the activity CPT with metadata.
+ * Keywords: activities, agenda, events
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
@@ -28,12 +28,11 @@
 
 	<!-- wp:heading {"textAlign":"center","textColor":"naranja","fontFamily":"display","fontSize":"x-large","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 	<h2 class="wp-block-heading has-text-align-center has-naranja-color has-text-color has-display-font-family has-x-large-font-size"
-		style="margin-bottom:var(--wp--preset--spacing--20)">Próximas actividades</h2>
+		style="margin-bottom:var(--wp--preset--spacing--20)">Upcoming activities</h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"align":"center","className":"convoca-section-subtitle","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-	<p class="has-text-align-center convoca-section-subtitle" style="margin-bottom:var(--wp--preset--spacing--40)">Talleres,
-		voluntariados y salidas para conectar con la naturaleza.</p>
+	<p class="has-text-align-center convoca-section-subtitle" style="margin-bottom:var(--wp--preset--spacing--40)">Workshops, volunteering and outings to connect with nature.</p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:query {"queryId":10,"query":{"perPage":6,"pages":1,"offset":0,"postType":"actividad","order":"asc","orderBy":"meta_value","metaKey":"_convoca_fecha_inicio","inherit":false}} -->
@@ -72,14 +71,14 @@
 					<!-- /wp:paragraph -->
 					<!-- wp:paragraph {"style":{"typography":{"fontSize":"0.8rem","color":{"text":"#888888"}}}} -->
 					<p class="convoca-card-meta" style="font-size:0.8rem">
-						<!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_plazas_disponibles"} /--> plazas
+						<!-- wp:convoca-common/post-meta-field {"metaField":"_convoca_plazas_disponibles"} /--> spots
 					</p>
 					<!-- /wp:paragraph -->
 				</div>
 				<!-- /wp:group -->
 				<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|10"}}}} -->
 				<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--10)">
-					<!-- wp:read-more {"content":"Más información","className":"wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size"} /-->
+					<!-- wp:read-more {"content":"More information","className":"wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size"} /-->
 				</div>
 				<!-- /wp:buttons -->
 			</div>
@@ -90,8 +89,7 @@
 
 		<!-- wp:query-no-results -->
 		<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"1rem"},"color":{"text":"#777777"}}} -->
-		<p class="has-text-align-center convoca-card-meta" style="font-size:1rem">No hay actividades programadas en este
-			momento. ¡Vuelve pronto!</p>
+		<p class="has-text-align-center convoca-card-meta" style="font-size:1rem">No activities are scheduled right now. Check back soon!</p>
 		<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 
@@ -101,7 +99,7 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
 	<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
 		<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="/actividades/">Ver todas las actividades</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">View all activities</a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

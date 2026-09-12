@@ -1,29 +1,86 @@
+<!--
+    Barra lateral derecha: reproduce los widgets que hoy salen en todas las
+    páginas del sitio (buscador, tarjetas y La Escuela,
+    y los bloques de Recursos y Enlaces), con su contenido real.
+-->
 <!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group">
 
-    <!-- wp:group {"className":"convoca-widget"} -->
+    <!-- wp:group {"className":"convoca-widget","layout":{"type":"constrained"}} -->
     <div class="wp-block-group convoca-widget">
-        <!-- wp:search {"label":"Buscar","buttonText":"Buscar","buttonPosition":"button-inside","buttonUseIcon":true} /-->
+        <!-- wp:heading {"level":2,"fontSize":"medium","fontFamily":"display"} -->
+        <h2 class="wp-block-heading has-display-font-family has-medium-font-size">Looking for something?</h2>
+        <!-- /wp:heading -->
+        <!-- wp:search {"placeholder":"Type here","buttonText":"Search","buttonPosition":"button-outside"} /-->
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:group {"className":"convoca-widget"} -->
-    <div class="wp-block-group convoca-widget">
-        <!-- wp:heading {"level":3,"fontSize":"medium","fontFamily":"display","textColor":"violeta"} -->
-        <h3 class="wp-block-heading has-violeta-color has-text-color has-display-font-family has-medium-font-size">
-            Últimas entradas</h3>
+    <!-- wp:group {"backgroundColor":"naranja","textColor":"blanco","style":{"border":{"radius":"10px"},"spacing":{"padding":{"top":"22px","right":"22px","bottom":"22px","left":"22px"}}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group has-blanco-color has-naranja-background-color has-text-color has-background"
+        style="border-radius:10px;padding-top:22px;padding-right:22px;padding-bottom:22px;padding-left:22px">
+        <!-- wp:heading {"level":3,"fontSize":"large","textColor":"blanco"} -->
+        <h3 class="wp-block-heading has-blanco-color has-text-color has-large-font-size">🎓 School</h3>
         <!-- /wp:heading -->
-        <!-- wp:latest-posts {"postsToShow":5,"displayPostDate":true} /-->
+        <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px"}}} -->
+        <p style="font-size:16px">{sidebar_description}</p>
+        <!-- /wp:paragraph -->
+        <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+        <div class="wp-block-buttons">
+            <!-- wp:button {"backgroundColor":"blanco","textColor":"naranja","fontSize":"small","style":{"border":{"radius":"5px"}}} -->
+            <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-naranja-color has-blanco-background-color has-text-color has-background has-small-font-size wp-element-button" href="{featured_url}" style="border-radius:5px">{featured_label}</a></div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:group {"className":"convoca-widget"} -->
-    <div class="wp-block-group convoca-widget">
-        <!-- wp:heading {"level":3,"fontSize":"medium","fontFamily":"display","textColor":"violeta"} -->
-        <h3 class="wp-block-heading has-violeta-color has-text-color has-display-font-family has-medium-font-size">
-            Categorías</h3>
+    <!-- wp:group {"backgroundColor":"verde-claro","style":{"border":{"radius":"10px"},"spacing":{"padding":{"top":"22px","right":"22px","bottom":"22px","left":"22px"}}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group has-verde-claro-background-color has-background"
+        style="border-radius:10px;padding-top:22px;padding-right:22px;padding-bottom:22px;padding-left:22px">
+        <!-- wp:heading {"level":3,"fontSize":"large"} -->
+        <h3 class="wp-block-heading has-large-font-size">🌿 {site_name}</h3>
         <!-- /wp:heading -->
-        <!-- wp:categories /-->
+        <!-- wp:paragraph {"style":{"typography":{"fontSize":"16px"}}} -->
+        <p style="font-size:16px">{site_description}</p>
+        <!-- /wp:paragraph -->
+        <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+        <div class="wp-block-buttons">
+            <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small","style":{"border":{"radius":"5px"}}} -->
+            <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="{membership_url}" style="border-radius:5px">{membership_label} →</a></div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"convoca-widget","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group convoca-widget">
+        <!-- wp:heading {"level":2,"fontSize":"medium","fontFamily":"display"} -->
+        <h2 class="wp-block-heading has-display-font-family has-medium-font-size">Resources</h2>
+        <!-- /wp:heading -->
+        <!-- wp:list {"style":{"spacing":{"blockGap":"0.4rem"}}} -->
+        <ul style="font-size:0.95rem">
+            <li><a href="{library_url}">Library</a></li>
+            <li><a href="{alliances_url}">Alliances</a></li>
+            <li><a href="{links_url}">Links of interest</a></li>
+        </ul>
+        <!-- /wp:list -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"convoca-widget","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group convoca-widget">
+        <!-- wp:heading {"level":2,"fontSize":"medium","fontFamily":"display"} -->
+        <h2 class="wp-block-heading has-display-font-family has-medium-font-size">Links</h2>
+        <!-- /wp:heading -->
+        <!-- wp:list {"style":{"spacing":{"blockGap":"0.4rem"}}} -->
+        <ul style="font-size:0.95rem">
+            <li><a href="{transparency_url}">Transparency</a></li>
+            <li><a href="{legal_url}">Legal notice</a></li>
+            <li><a href="{privacy_url}">Privacy policy</a></li>
+            <li><a href="{cookies_url}">Cookie policy</a></li>
+        </ul>
+        <!-- /wp:list -->
     </div>
     <!-- /wp:group -->
 

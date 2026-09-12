@@ -1,32 +1,31 @@
+<!-- Página no encontrada: útil, con el lenguaje visual de la casa y salidas reales. -->
+
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
 
-<!-- wp:group {"tagName":"main","anchor":"main-content","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"900px"}} -->
-<main id="main-content" class="wp-block-group"
-    style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
+<!-- wp:group {"tagName":"main","anchor":"main-content","className":"convoca-seccion","layout":{"type":"constrained","contentSize":"46rem"}} -->
+<main id="main-content" class="wp-block-group convoca-seccion">
 
-    <!-- wp:heading {"textAlign":"center","level":1,"fontSize":"xx-large","style":{"typography":{"letterSpacing":"-0.02em"}}} -->
-    <h1 class="wp-block-heading has-text-align-center has-xx-large-font-size" style="letter-spacing:-0.02em">404</h1>
-    <!-- /wp:heading -->
-
-    <!-- wp:paragraph {"align":"center","className":"is-style-lead"} -->
-    <p class="has-text-align-center is-style-lead">Esta página no existe o ha sido movida. Prueba a buscar o vuelve al
-        inicio.</p>
+    <!-- wp:paragraph {"className":"convoca-eyebrow"} -->
+    <p class="convoca-eyebrow">Error 404</p>
     <!-- /wp:paragraph -->
 
-    <!-- wp:spacer {"height":"var:preset|spacing|20"} -->
-    <div style="height:var(--wp--preset--spacing--20)" aria-hidden="true" class="wp-block-spacer"></div>
-    <!-- /wp:spacer -->
+    <!-- wp:heading {"level":1} -->
+    <h1 class="wp-block-heading">This page is not here (or it wandered off)</h1>
+    <!-- /wp:heading -->
 
-    <!-- wp:search {"label":"","placeholder":"Buscar…","buttonText":"Buscar","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"border":{"radius":"50px"}}} /-->
+    <!-- wp:paragraph {"className":"convoca-hero__intro"} -->
+    <p class="convoca-hero__intro">The link may be misspelled or the content may have moved. Try searching for it or start here:</p>
+    <!-- /wp:paragraph -->
 
-    <!-- wp:spacer {"height":"var:preset|spacing|30"} -->
-    <div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
-    <!-- /wp:spacer -->
+    <!-- wp:search {"label":"Search the site","showLabel":false,"placeholder":"Search…","buttonText":"Search"} /-->
 
-    <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
-    <div class="wp-block-buttons">
-        <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-        <div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="/">Volver al inicio</a></div>
+    <!-- wp:buttons {"className":"convoca-hero__acciones"} -->
+    <div class="wp-block-buttons convoca-hero__acciones">
+        <!-- wp:button {"className":"convoca-btn-primario"} -->
+        <div class="wp-block-button convoca-btn-primario"><a class="wp-block-button__link wp-element-button" href="{activities_url}">View activities</a></div>
+        <!-- /wp:button -->
+        <!-- wp:button {"className":"convoca-btn-secundario"} -->
+        <div class="wp-block-button convoca-btn-secundario"><a class="wp-block-button__link wp-element-button" href="/">Go to the homepage</a></div>
         <!-- /wp:button -->
     </div>
     <!-- /wp:buttons -->

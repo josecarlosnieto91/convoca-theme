@@ -8,3 +8,6 @@
 # Translation files (user-generated)
 *.po
 *.mo
+
+# Paquete de compilación (lo genera el CI y el script de empaquetado)
+build-dir/

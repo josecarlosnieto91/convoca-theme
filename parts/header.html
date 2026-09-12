@@ -1,47 +1,77 @@
-<!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained","contentSize":"1500px"}} -->
-<header class="wp-block-group site-header" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)">
-    <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
-    <div class="wp-block-group">
+<!--
+    Cabecera: UNA sola pieza de navegación.
+    - Franja superior (carbón): menú "Superior" real + botón de modo + CTA.
+    - Fila principal: marca + navegación principal (menú "Principal" real).
+    Nada de rutas inventadas: los enlaces salen de los menús de WordPress, y el
+    CTA de los filtros del theme hijo ({cta_url} / {cta_label}).
+-->
+<!-- wp:group {"tagName":"header","className":"site-header convoca-header","layout":{"type":"default"}} -->
+<header class="wp-block-group site-header convoca-header">
 
-        <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|10"}}} -->
-        <div class="wp-block-group">
-            <!-- wp:site-logo {"width":48} /-->
-            <!-- wp:site-title {"level":0} /-->
+    <!-- wp:group {"className":"convoca-topbar","backgroundColor":"uva","textColor":"blanco","layout":{"type":"default"}} -->
+    <div class="wp-block-group convoca-topbar has-blanco-color has-uva-background-color has-text-color has-background">
+        <!-- wp:group {"className":"convoca-topbar__interior","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+        <div class="wp-block-group convoca-topbar__interior">
+
+            <!-- wp:shortcode -->
+            [convoca_menu location="top" class="convoca-topnav"]
+            <!-- /wp:shortcode -->
+
+            <!-- wp:group {"className":"convoca-topbar__acciones","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+            <div class="wp-block-group convoca-topbar__acciones">
+                <!-- wp:html -->
+                <button class="dark-mode-toggle" aria-label="Switch color mode" aria-pressed="false" type="button">
+                    <svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
+                    <svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+                </button>
+                <!-- /wp:html -->
+
+                <!-- wp:buttons {"className":"header-cta"} -->
+                <div class="wp-block-buttons header-cta">
+                    <!-- wp:button -->
+                    <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="{cta_url}">{cta_label}</a></div>
+                    <!-- /wp:button -->
+                </div>
+                <!-- /wp:buttons -->
+            </div>
+            <!-- /wp:group -->
+
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"convoca-fila","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+    <div class="wp-block-group convoca-fila">
+
+        <!-- wp:group {"className":"convoca-marca","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group convoca-marca">
+            <!-- wp:site-logo {"width":64} /-->
+            <!-- wp:group {"layout":{"type":"default"}} -->
+            <div class="wp-block-group">
+                <!-- wp:site-title {"level":0} /-->
+                <!-- wp:site-tagline /-->
+            </div>
+            <!-- /wp:group -->
         </div>
         <!-- /wp:group -->
 
-        <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}}} -->
-        <div class="wp-block-group">
-            <!--
-                Navegación: SIN `ref` fijo. El bloque usa el menú propio del sitio
-                (menú clásico de la ubicación principal, o el que se cree en el
-                Editor de Sitios). Así el theme no arrastra menús de otra instalación.
-            -->
-            <!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"blanco","overlayTextColor":"antracita","layout":{"type":"flex","setCascadingProperties":true}} /-->
-
+        <!-- wp:group {"className":"convoca-nav","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group convoca-nav">
             <!-- wp:html -->
-            <button class="dark-mode-toggle" aria-label="Cambiar modo de color" type="button">
-                <svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
-                <svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+            <button class="dark-mode-toggle convoca-toggle-fila" aria-label="Switch color mode" aria-pressed="false" type="button">
+                <svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
+                <svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
             </button>
             <!-- /wp:html -->
 
-            <!--
-                CTA de cabecera: destino y etiqueta vienen de filtros del theme
-                (convoca_theme_cta_url / convoca_theme_cta_label). Si no hay URL
-                configurada, el bloque no se muestra (no hay rutas heredadas).
-            -->
-            <!-- wp:buttons {"className":"header-cta"} -->
-            <div class="wp-block-buttons header-cta">
-                <!-- wp:button {"backgroundColor":"naranja","textColor":"blanco","fontSize":"small","style":{"border":{"radius":"50px"}}} -->
-                <div class="wp-block-button has-custom-font-size has-small-font-size"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background has-small-font-size wp-element-button" href="{cta_url}" style="border-radius:50px">{cta_label}</a></div>
-                <!-- /wp:button -->
-            </div>
-            <!-- /wp:buttons -->
+
+            <!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"hueso","overlayTextColor":"carbon","layout":{"type":"flex","setCascadingProperties":true}} /-->
         </div>
         <!-- /wp:group -->
 
     </div>
     <!-- /wp:group -->
+
 </header>
 <!-- /wp:group -->

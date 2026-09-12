@@ -15,11 +15,11 @@
  */
 
 /**
- * Title: Grid de precios (membresías)
+ * Title: Pricing grid (memberships)
  * Slug: convoca/pricing-grid
  * Categories: convoca
- * Description: Tres planes de membresía en grid con el plan central destacado.
- * Keywords: precios, membresía, socios, pricing
+ * Description: Three membership plans in a grid with the middle plan highlighted.
+ * Keywords: pricing, membership, members
  */
 ?>
 <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained","contentSize":"1000px"}} -->
@@ -70,7 +70,7 @@
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:group {"className":"convoca-price-card featured","layout":{"type":"constrained"}} -->
-			<div class="wp-block-group convoca-price-card featured">
+			<div class="wp-block-group convoca-price-card featured" data-distintivo="<?php esc_attr_e( 'Popular', 'convoca' ); ?>">
 				<!-- wp:heading {"level":3,"textAlign":"center"} -->
 				<h3 class="wp-block-heading has-text-align-center"></h3><!-- /wp:heading -->
 				<!-- wp:paragraph {"align":"center","className":"price-amount"} -->
