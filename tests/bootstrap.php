@@ -2,19 +2,19 @@
 /**
  * Bootstrap for Convoca Theme unit tests.
  */
-// Load composer autoload
+// Load composer autoload.
 $autoload = dirname( __DIR__ ) . '/vendor/autoload.php';
 if ( file_exists( $autoload ) ) {
 	require_once $autoload;
 }
 
-// Define ABSPATH for theme files
+// Define ABSPATH for theme files.
 if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', dirname( __DIR__ ) . '/' ); }
 if ( ! defined( 'WP_DEBUG' ) ) {
 	define( 'WP_DEBUG', true ); }
 
-// Mock WP functions needed by theme
+// Mock WP functions needed by theme.
 if ( ! function_exists( '__' ) ) {
 	function __( $t, $d = 'default' ) {
 		return $t; } }

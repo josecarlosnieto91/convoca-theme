@@ -45,11 +45,11 @@ add_action(
 		if (
 		! empty( $_GET['convoca_reset_templates'] )
 		&& current_user_can( 'manage_options' )
-		&& wp_verify_nonce( $_GET['_wpnonce'] ?? '', 'convoca_reset_templates' )
+		&& wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ?? '' ) ), 'convoca_reset_templates' )
 		&& is_admin()
 		&& wp_doing_ajax() === false
 		) {
-			// Rate limit: only once per hour
+			// Rate limit: only once per hour.
 			$reset_key  = 'convoca_templates_reset_time';
 			$last_reset = get_option( $reset_key, 0 );
 			if ( time() - $last_reset < HOUR_IN_SECONDS ) {
@@ -91,7 +91,12 @@ add_action(
 			add_action(
 				'admin_notices',
 				function () use ( $deleted ) {
-					echo '<div class="notice notice-success"><p><strong>Convoca:</strong> ' . sprintf( esc_html__( 'Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.', 'convoca-theme' ), $deleted ) . '</p></div>';
+					$aviso = sprintf(
+						/* translators: %d: número de plantillas y partes de plantilla reiniciadas. */
+						esc_html__( 'Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema.', 'convoca-theme' ),
+						$deleted
+					);
+					echo wp_kses_post( '<div class="notice notice-success"><p><strong>Convoca:</strong> ' . $aviso . '</p></div>' );
 				}
 			);
 		}
@@ -236,6 +241,10 @@ add_action( 'init', 'convoca_register_block_styles' );
 
 /**
  * 4. Resource Hints & Performance
+ *
+ * @param array  $urls     URLs de resource hints actuales.
+ * @param string $relation Tipo de relación (preconnect, dns-prefetch...).
+ * @return array URLs modificadas.
  */
 function convoca_resource_hints( array $urls, string $relation ): array {
 	if ( 'preconnect' === $relation || 'dns-prefetch' === $relation ) {
@@ -251,10 +260,15 @@ add_filter( 'wp_resource_hints', 'convoca_resource_hints', 10, 2 );
 
 /**
  * 5. Preload Google Fonts Stylesheet
+ *
+ * @param string $tag    Etiqueta <link> generada por WordPress.
+ * @param string $handle Identificador del estilo.
+ * @return string Etiqueta modificada.
  */
 function convoca_style_loader_tag( string $tag, string $handle ): string {
 	if ( 'convoca-google-fonts' === $handle ) {
 		return str_replace( "rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $tag ) .
+			// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- Fallback <noscript> del preload de fuentes; no se puede encolar con wp_enqueue_style().
 			'<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap"></noscript>';
 	}
 	return $tag;
@@ -303,8 +317,8 @@ add_action( 'init', 'convoca_performance_tweaks' );
 add_filter(
 	'wp_get_attachment_image_attributes',
 	function ( $attr, $attachment, $size ) {
-		// Skip lazy loading for images with fetchpriority="high" (first image/LCP)
-		if ( isset( $attr['fetchpriority'] ) && $attr['fetchpriority'] === 'high' ) {
+		// Skip lazy loading for images with fetchpriority="high" (first image/LCP).
+		if ( isset( $attr['fetchpriority'] ) && 'high' === $attr['fetchpriority'] ) {
 			return $attr;
 		}
 		$attr['loading'] = 'lazy';
@@ -337,7 +351,8 @@ add_action( 'after_setup_theme', 'convoca_image_sizes' );
  */
 function convoca_theme_scripts() {
 	// Google Fonts: Lato + Outfit.
-	$theme_version = wp_get_theme()->get( 'Version' ) ?: '1.0';
+	$version_theme = wp_get_theme()->get( 'Version' );
+	$theme_version = $version_theme ? $version_theme : '1.0';
 	wp_enqueue_style(
 		'convoca-google-fonts',
 		'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap',
@@ -362,6 +377,9 @@ function convoca_admin_menu(): void {
 }
 add_action( 'admin_menu', 'convoca_admin_menu' );
 
+/**
+ * Pinta la página de ayuda del theme en el escritorio de WordPress.
+ */
 function convoca_help_page_html(): void {
 	$theme = wp_get_theme();
 	?>
@@ -370,7 +388,7 @@ function convoca_help_page_html(): void {
 		
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
 			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/admin-banner.png' ); ?>'); background-size: cover; background-position: center; color: #fff;">
-				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf( __( 'Bienvenido a Convoca v%s', 'convoca-theme' ), $theme->get( 'Version' ) ); ?></h2>
+				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf( /* translators: %s: versión del theme instalada. */ esc_html__( 'Bienvenido a Convoca v%s', 'convoca-theme' ), esc_html( (string) $theme->get( 'Version' ) ) ); ?></h2>
 				<p class="about-description" style="color: rgba(255,255,255,0.9); font-size: 1.2em; max-width: 600px; margin-top: 10px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><?php echo esc_html__( 'Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso.', 'convoca-theme' ); ?></p>
 			</div>
 		</div>
@@ -389,7 +407,7 @@ function convoca_help_page_html(): void {
 								<li><strong><?php echo esc_html__( 'Documentación:', 'convoca-theme' ); ?></strong> <a href="https://github.com/josecarlosnieto91/convoca-theme/wiki" target="_blank"><?php echo esc_html__( 'Ver Wiki en GitHub', 'convoca-theme' ); ?></a></li>
 							</ul>
 							<hr>
-							<a href="<?php echo admin_url( 'site-editor.php' ); ?>" class="button button-primary"><?php echo esc_html__( 'Abrir Editor de Sitios (FSE)', 'convoca-theme' ); ?></a>
+							<a href="<?php echo esc_url( admin_url( 'site-editor.php' ) ); ?>" class="button button-primary"><?php echo esc_html__( 'Abrir Editor de Sitios (FSE)', 'convoca-theme' ); ?></a>
 						</div>
 					</div>
 						<h2 class="hndle"><span><?php echo esc_html__( 'Guía de Plantillas y Páginas', 'convoca-theme' ); ?></span></h2>
@@ -503,7 +521,7 @@ add_action( 'wp_head', 'convoca_dark_mode_inline_init', 1 );
 // ─── Process shortcodes in rendered blocks (FSE compatibility) ───
 
 /**
- * core/read-more appends the post title after content ("Más información : Título").
+ * Core/read-more appends the post title after content ("Más información : Título").
  * Keep only the explicit label on the activity cards.
  */
 add_filter(
@@ -553,6 +571,9 @@ add_action(
  *   {year}             → Current year (legacy support from mu-plugin)
  *
  * @since 2.7.0
+ * @param string $block_content Contenido HTML del bloque ya renderizado.
+ * @param array  $block         Bloque completo (nombre, atributos...).
+ * @return string Contenido con los tokens sustituidos.
  */
 function convoca_theme_render_block( $block_content, $block ) {
 	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0).
@@ -784,7 +805,7 @@ function convoca_theme_get_stats(): array {
 	if ( $this_year->found_posts > 0 ) {
 		$stats['este_ano'] = array(
 			'value' => (string) number_format_i18n( $this_year->found_posts ),
-			'label' => sprintf( __( 'Publicaciones en %s', 'convoca-theme' ), $year ),
+			'label' => sprintf( /* translators: %s: año del archivo. */ __( 'Publicaciones en %s', 'convoca-theme' ), $year ),
 		);
 	}
 
@@ -828,7 +849,7 @@ function convoca_theme_lang_languages(): array {
 			foreach ( $raw as $lang ) {
 				$languages[] = array(
 					'code'       => $lang['language_code'],
-					'name'       => $lang['native_name'] ?: $lang['translated_name'],
+					'name'       => $lang['native_name'] ? $lang['native_name'] : $lang['translated_name'],
 					'url'        => $lang['url'],
 					'is_current' => ! empty( $lang['active'] ),
 				);
@@ -857,6 +878,11 @@ function convoca_theme_lang_languages(): array {
 	return $languages;
 }
 
+/**
+ * Devuelve el HTML del selector de idioma, o cadena vacía si sólo hay un idioma.
+ *
+ * @return string HTML del selector.
+ */
 function convoca_theme_lang_switcher_html(): string {
 	$languages = convoca_theme_lang_languages();
 	if ( count( $languages ) < 2 ) {
@@ -891,6 +917,13 @@ function convoca_theme_lang_switcher_html(): string {
 	return $html;
 }
 
+/**
+ * Añade el selector de idioma al final del menú clásico.
+ *
+ * @param string $items HTML de los elementos del menú.
+ * @param object $args  Objeto con los argumentos del menú.
+ * @return string Elementos del menú, con el selector añadido.
+ */
 function convoca_theme_language_switcher( $items, $args ) {
 	if ( ! function_exists( 'icl_get_languages' ) && ! function_exists( 'pll_the_languages' ) ) {
 		return $items;
@@ -902,13 +935,17 @@ add_filter( 'wp_nav_menu_items', 'convoca_theme_language_switcher', 20, 2 );
 
 /**
  * FSE: inyecta el selector en los bloques de navegación (core/navigation).
+ *
+ * @param string $block_content Contenido HTML del bloque de navegación.
+ * @param array  $block         Bloque completo (nombre, atributos...).
+ * @return string Contenido con el selector añadido.
  */
 function convoca_theme_lang_switcher_block( $block_content, $block ) {
-	if ( empty( $block['blockName'] ) || $block['blockName'] !== 'core/navigation' ) {
+	if ( empty( $block['blockName'] ) || 'core/navigation' !== $block['blockName'] ) {
 		return $block_content;
 	}
 	$switcher = convoca_theme_lang_switcher_html();
-	if ( $switcher === '' ) {
+	if ( '' === $switcher ) {
 		return $block_content;
 	}
 	// Insertar antes del cierre del <nav> o del contenedor del bloque.

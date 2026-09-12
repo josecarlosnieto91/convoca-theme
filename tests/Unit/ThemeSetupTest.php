@@ -22,7 +22,8 @@ class ThemeSetupTest extends TestCase {
 
 	public function test_functions_php_loads_without_fatal(): void {
 		$result = require dirname( __DIR__, 2 ) . '/functions.php';
-		$this->assertTrue( $result || $result === 1 || true, 'functions.php loaded' );
+		// La aserción comprueba algo real: que el fichero define sus funciones.
+		$this->assertTrue( function_exists( 'convoca_theme_lang_switcher_html' ), 'functions.php define sus funciones' );
 	}
 
 	public function test_template_parts_exist(): void {

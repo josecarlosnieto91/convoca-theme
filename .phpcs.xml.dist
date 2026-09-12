@@ -23,4 +23,24 @@
 	<rule ref="Universal.Arrays.DisallowShortArraySyntax">
 		<severity>0</severity>
 	</rule>
+
+	<!-- Los tests no se distribuyen con el theme y siguen las convenciones de PHPUnit:
+	     el fichero debe llamarse como la clase (ThemeSetupTest.php) y los métodos de prueba
+	     se documentan con el propio nombre del test, no con docblocks. El resto de sniffs
+	     (seguridad, escapado, sanitizado, i18n) sí se aplican también aquí. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FunctionComment">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.ClassComment">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting.FileComment">
+		<exclude-pattern>tests/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.DateTime.RestrictedFunctions">
+		<exclude-pattern>tests/bootstrap.php</exclude-pattern>
+	</rule>
 </ruleset>
