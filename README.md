@@ -149,3 +149,28 @@ lists avoid `transition: all` so the browser only watches the properties that ch
 GPL-2.0-or-later. See `LICENSE`.
 
 Copyright (C) 2026 Jose Carlos Nieto Ramos.
+
+## Translations
+
+The theme ships its source strings in English:
+
+- `languages/convoca.pot` — template for translators (291 strings: PHP, JavaScript and
+  `theme.json`).
+- `languages/convoca-es_ES.po` / `.mo` — the Spanish translation, included so a Spanish site
+  works out of the box.
+
+Where WordPress looks for them matters, and it is not where you would expect: the theme's own
+`languages/` folder is registered by `load_theme_textdomain()`, but modern WordPress resolves
+theme translations from the site instead, at:
+
+```
+wp-content/languages/themes/convoca-<locale>.mo
+```
+
+Copy the `.mo` there (or install the language pack from the dashboard) and the theme speaks
+that language. That is also how translations delivered through wordpress.org arrive.
+
+**Templates and template parts are different.** WordPress does not reliably translate prose
+that lives in the `.html` block templates, so a site that needs different wording saves its own
+version of the template in the Site Editor — the site's copy always wins over the theme's. This
+is standard block-theme practice, and it is how the bundled demo site keeps its own language.
