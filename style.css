@@ -1712,22 +1712,22 @@ Text Domain: convoca-fse
 
 .convoca-site,
 :root {
-	--convoca-naranja: #ff8700;
-	--convoca-ambar: #ffab00;          /* 9,5:1 sobre uva · acentos en superficies oscuras */
-	--convoca-naranja-rojo: #ff500a;   /* interacción: hover del botón principal */
-	--convoca-magenta: #7d0032;        /* superficie profunda: el pie (blanco encima: 10,9:1) */
-	--convoca-uva: #320028;            /* superficie más oscura: franja superior y bandas */
-	--convoca-naranja-oscuro: #b05500;
-	--convoca-naranja-tenue: #fff2e0;
-	--convoca-carbon: #16181b;
-	--convoca-antracita: #22262b;
-	--convoca-gris-texto: #59616a;
-	--convoca-gris-borde: #e3ded6;
-	--convoca-hueso: #fdfbf8;
-	--convoca-arena: #f6f1e9;
-	--convoca-verde: #2f5d3a;
-	--convoca-verde-oscuro: #1d3b25;
-	--convoca-verde-claro: #e8f0e6;
+	--convoca-naranja: var(--wp--preset--color--naranja); /* era #ff8700 */
+	--convoca-ambar: var(--wp--preset--color--ambar); /* era #ffab00 */          /* 9,5:1 sobre uva · acentos en superficies oscuras */
+	--convoca-naranja-rojo: var(--wp--preset--color--naranja-rojo); /* era #ff500a */   /* interacción: hover del botón principal */
+	--convoca-magenta: var(--wp--preset--color--magenta); /* era #7d0032 */        /* superficie profunda: el pie (blanco encima: 10,9:1) */
+	--convoca-uva: var(--wp--preset--color--uva); /* era #320028 */            /* superficie más oscura: franja superior y bandas */
+	--convoca-naranja-oscuro: var(--wp--preset--color--naranja-oscuro); /* era #b05500 */
+	--convoca-naranja-tenue: var(--wp--preset--color--naranja-tenue); /* era #fff2e0 */
+	--convoca-carbon: var(--wp--preset--color--carbon); /* era #16181b */
+	--convoca-antracita: var(--wp--preset--color--antracita); /* era #22262b */
+	--convoca-gris-texto: var(--wp--preset--color--gris-texto); /* era #59616a */
+	--convoca-gris-borde: var(--wp--preset--color--gris-borde); /* era #e3ded6 */
+	--convoca-hueso: var(--wp--preset--color--hueso); /* era #fdfbf8 */
+	--convoca-arena: var(--wp--preset--color--arena); /* era #f6f1e9 */
+	--convoca-verde: var(--wp--preset--color--verde); /* era #2f5d3a */
+	--convoca-verde-oscuro: var(--wp--preset--color--verde-oscuro); /* era #1d3b25 */
+	--convoca-verde-claro: var(--wp--preset--color--verde-claro); /* era #e8f0e6 */
 
 	--convoca-gutter: clamp(1rem, 4vw, 2.5rem);
 	--convoca-ancho: 85rem;
