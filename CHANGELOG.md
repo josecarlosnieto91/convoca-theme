@@ -28,15 +28,15 @@
 
 ## 2.6.2
 - **Seguridad:** Hardening de seguridad, auditorías de producción aplicadas
-- **Fix:** Eliminadas todas las referencias a Biodevas, avisos de privacidad GDPR, nombre de sitio dinámico
+- **Fix:** Eliminadas todas las referencias del sitio anterior, avisos de privacidad GDPR, nombre de sitio dinámico
 - **Limpieza:** Eliminados archivos temporales gitignore
 - **Infra:** uninstall.php con keep-data, traducciones .pot, hardening de seguridad
 
 ## 2.6.1
-- **Refactor:** Renombrados todos los prefijos `biodevas_*` → `convoca_*` (shortcodes, funciones, hooks, textdomains, patrones)
+- **Refactor:** Renombrados todos los prefijos antiguos → `convoca_*` (shortcodes, funciones, hooks, textdomains, patrones)
 - **Refactor:** Renombrados namespaces CSS/JS `bdv-` → `conv-`
 - **Refactor:** Renombrados prefijos en opciones y metadatos
-- **Fix:** Hook `biodevas_dark_mode_inline_init` → `convoca_dark_mode_inline_init`
+- **Fix:** Hook del modo oscuro renombrado al prefijo del tema
 - **Compatibilidad:** Actualizado composer.lock tras rename de paquetes
 
 ## 2.6.0

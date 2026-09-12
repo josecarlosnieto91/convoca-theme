@@ -1,0 +1,13 @@
+# Configuración de PHPStan para el theme.
+# Incluye los stubs de WordPress: sin ellos el análisis es ruido (cada función
+# del core salía como "not found") y no medía nada real.
+includes:
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+
+parameters:
+    level: 5
+    paths:
+        - functions.php
+        - patterns
+    excludePaths:
+        - vendor
