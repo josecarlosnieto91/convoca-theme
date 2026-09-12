@@ -1684,3 +1684,2399 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode .wp-block-query-pagination-numbers .page-numbers:hover:not(.current) {
     background: var(--wp--preset--color--gris-medio, #2B2F38);
 }
+
+/* =========================================================================
+   DISEÑO DEL SITIO — integrado desde el antiguo theme hijo (fase 2, paso 1)
+   -------------------------------------------------------------------------
+   Aquí va el sistema visual que vivía en `biodevas-fse`, ya renombrado a
+   `convoca-`. PENDIENTE DE INTEGRACIÓN: por debajo siguen quedando reglas del
+   theme padre que estas sobrescriben, y parches que existían solo por tener el
+   diseño en dos capas (min-height de la cabecera, recorte del titular, relleno
+   de #main-content, impresión). Se van quitando en los pasos siguientes,
+   midiendo en la demo entre paso y paso.
+   ========================================================================= */
+/*
+Theme Name: Biodevas FSE
+Theme URI: https://biodevas.org
+Description: Identidad visual de Biodevas sobre el theme FSE Convoca. Naranja Biodevas como color de acción, verde como secundario, composición editorial con fotografía protagonista. Theme presentacional: no añade lógica de negocio.
+Author: Jose Carlos Nieto Ramos
+Template: convoca
+Version: 2.0.0
+License: GPL-2.0-or-later
+Text Domain: convoca-fse
+*/
+
+/* =========================================================================
+   1. SISTEMA — tokens que no dependen del Site Editor
+   ========================================================================= */
+
+.convoca-site,
+:root {
+	--convoca-naranja: #ff8700;
+	--convoca-ambar: #ffab00;          /* 9,5:1 sobre uva · acentos en superficies oscuras */
+	--convoca-naranja-rojo: #ff500a;   /* interacción: hover del botón principal */
+	--convoca-magenta: #7d0032;        /* superficie profunda: el pie (blanco encima: 10,9:1) */
+	--convoca-uva: #320028;            /* superficie más oscura: franja superior y bandas */
+	--convoca-naranja-oscuro: #b05500;
+	--convoca-naranja-tenue: #fff2e0;
+	--convoca-carbon: #16181b;
+	--convoca-antracita: #22262b;
+	--convoca-gris-texto: #59616a;
+	--convoca-gris-borde: #e3ded6;
+	--convoca-hueso: #fdfbf8;
+	--convoca-arena: #f6f1e9;
+	--convoca-verde: #2f5d3a;
+	--convoca-verde-oscuro: #1d3b25;
+	--convoca-verde-claro: #e8f0e6;
+
+	--convoca-gutter: clamp(1rem, 4vw, 2.5rem);
+	--convoca-ancho: 85rem;
+	--convoca-contenido: 46rem;
+	--convoca-seccion-y: clamp(3.5rem, 7vw, 6.5rem);
+	--convoca-radio: 0.5rem;
+
+	--convoca-sombra-suave: 0 18px 40px -28px rgba(22, 24, 27, 0.35);
+}
+
+/* Contenedor propio: se usa en patrones y plantillas. */
+.convoca-wrap {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin-inline: auto;
+}
+
+.convoca-contenido {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-contenido));
+	margin-inline: auto;
+}
+
+.convoca-seccion {
+	padding-block: var(--convoca-seccion-y);
+}
+
+.convoca-seccion--arena { background-color: var(--convoca-arena); }
+.convoca-seccion--hueso { background-color: var(--convoca-hueso); }
+.convoca-seccion--carbon { background-color: var(--convoca-uva); color: #fff; }
+.convoca-seccion--verde { background-color: var(--convoca-verde-oscuro); color: #fff; }
+.convoca-seccion--naranja { background-color: var(--convoca-naranja); color: var(--convoca-carbon); }
+
+.convoca-linea {
+	border: 0;
+	border-top: 1px solid var(--convoca-gris-borde);
+	margin: 0;
+}
+
+/* Etiqueta pequeña de sección: da jerarquía sin convertir todo en titular. */
+.convoca-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--convoca-naranja-oscuro);
+}
+
+.convoca-card__meta,
+.convoca-actividad__fecha,
+.wp-block-post-terms.taxonomy-category {
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--convoca-naranja-oscuro);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem 0.85rem;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.convoca-card__meta a,
+.wp-block-post-terms.taxonomy-category a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.convoca-card__meta a:hover { text-decoration: underline; }
+
+/* Línea de datos reales del evento (cuándo / dónde). */
+.convoca-dato-evento {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 0.4rem;
+	font-size: 0.92rem;
+	color: var(--convoca-gris-texto);
+}
+
+.convoca-dato-evento--cuando::before { content: "\1F4C5"; font-size: 0.85rem; }
+.convoca-dato-evento--donde::before { content: "\1F4CD"; font-size: 0.85rem; }
+
+/* Rejillas: sin viñetas ni sangrías heredadas de las listas del bloque de consulta. */
+.convoca-grid-actividades,
+.convoca-archivo__grid,
+.convoca-destacada-lista,
+.convoca-lista-historias,
+.wp-block-post-template {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.convoca-grid-actividades > li,
+.convoca-archivo__grid > li,
+.convoca-lista-historias > li { margin: 0; }
+
+.convoca-eyebrow::before {
+	content: "";
+	width: 2rem;
+	height: 2px;
+	background-color: var(--convoca-naranja);
+}
+
+.convoca-seccion--carbon .convoca-eyebrow,
+.convoca-seccion--verde .convoca-eyebrow,
+.convoca-seccion--naranja .convoca-eyebrow {
+	color: inherit;
+}
+
+.convoca-seccion--carbon .convoca-eyebrow::before,
+.convoca-seccion--verde .convoca-card__meta,
+.convoca-actividad__fecha,
+.wp-block-post-terms.taxonomy-category {
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--convoca-naranja-oscuro);
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem 0.85rem;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.convoca-card__meta a,
+.wp-block-post-terms.taxonomy-category a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.convoca-card__meta a:hover { text-decoration: underline; }
+
+
+/* Cabecera de sección: título grande + enlace a la derecha, con línea. */
+.convoca-cabecera {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--convoca-gutter);
+	margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+.convoca-cabecera__texto {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75rem;
+	max-width: 44rem;
+}
+
+.convoca-cabecera h2,
+.convoca-cabecera .wp-block-heading {
+	margin: 0;
+}
+
+.convoca-cabecera__entrada {
+	margin: 0;
+	font-size: 1.05rem;
+	color: var(--convoca-gris-texto);
+}
+
+.convoca-seccion--carbon .convoca-cabecera__entrada,
+.convoca-seccion--verde .convoca-cabecera__entrada {
+	color: rgba(255, 255, 255, 0.78);
+}
+
+.convoca-vermas {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.95rem;
+	text-decoration: none;
+	color: var(--convoca-naranja-oscuro);
+}
+
+.convoca-vermas::after {
+	content: "→";
+	transition: transform 0.18s ease;
+}
+
+.convoca-vermas:hover { color: var(--convoca-carbon); }
+.convoca-vermas:hover::after { transform: translateX(4px); }
+
+.convoca-seccion--carbon .convoca-vermas,
+.convoca-seccion--verde .convoca-vermas { color: #fff; }
+
+/* =========================================================================
+   2. CABECERA — una sola pieza de navegación, no dos barras ajenas
+   ========================================================================= */
+
+.site-header.convoca-header {
+	position: sticky;
+	top: 0;
+	z-index: 80;
+	background-color: var(--convoca-hueso);
+	border-bottom: 1px solid var(--convoca-gris-borde);
+	padding: 0;
+	max-width: none;
+}
+
+.site-header.convoca-header > * {
+	max-width: none;
+	padding-inline: 0;
+}
+
+.convoca-topbar {
+	background-color: var(--convoca-uva);
+	color: #fff;
+	max-width: none;
+	padding-inline: var(--convoca-gutter);
+}
+
+.convoca-topbar__interior {
+	width: min(100%, var(--convoca-ancho));
+	margin-inline: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1.5rem;
+}
+
+.convoca-topnav ul {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	gap: 1.25rem;
+}
+
+.convoca-topnav a {
+	color: rgba(255, 255, 255, 0.78);
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.convoca-topnav a:hover,
+.convoca-topnav a:focus-visible {
+	color: var(--convoca-naranja);
+}
+
+.convoca-topbar__acciones {
+	display: flex;
+	align-items: center;
+	gap: 0.85rem;
+}
+
+.convoca-fila {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1.5rem;
+	width: min(100%, var(--convoca-ancho));
+	margin-inline: auto;
+	padding: clamp(0.75rem, 1.4vw, 1.15rem) var(--convoca-gutter);
+}
+
+.convoca-marca {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+}
+
+.convoca-marca .wp-block-site-logo img {
+	max-height: 3.25rem;
+	width: auto;
+}
+
+.convoca-marca .wp-block-site-title,
+.convoca-marca .wp-block-site-title a {
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.35rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--convoca-carbon);
+	text-decoration: none;
+	line-height: 1;
+	margin: 0;
+}
+
+.convoca-marca .wp-block-site-tagline {
+	margin: 0.25rem 0 0;
+	font-size: 0.72rem;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--convoca-gris-texto);
+}
+
+/* Navegación principal: un solo sistema visual con el resto. */
+.site-header .wp-block-navigation__container {
+	gap: clamp(0.5rem, 1.4vw, 1.35rem);
+	align-items: center;
+}
+
+.site-header .wp-block-navigation-item__content {
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--convoca-carbon);
+	text-decoration: none;
+	padding-block: 0.35rem;
+	border-bottom: 2px solid transparent;
+}
+
+.site-header .wp-block-navigation-item__content:hover,
+.site-header .wp-block-navigation-item__content:focus-visible {
+	color: var(--convoca-naranja-oscuro);
+	border-bottom-color: var(--convoca-naranja);
+}
+
+.site-header .wp-block-navigation-item.current-menu-item > .wp-block-navigation-item__content,
+.site-header .wp-block-navigation-item.current_page_item > .wp-block-navigation-item__content {
+	border-bottom-color: var(--convoca-naranja);
+}
+
+/* CTA de cabecera: mismo sistema de botones que el resto de la web. */
+.header-cta .wp-block-button__link,
+.convoca-btn-primario .wp-block-button__link {
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+	border: 2px solid var(--convoca-naranja);
+	border-radius: 999px;
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.9rem;
+	padding: 0.6rem 1.25rem;
+	text-decoration: none;
+}
+
+.header-cta .wp-block-button__link:hover,
+.convoca-btn-primario .wp-block-button__link:hover {
+	background-color: var(--convoca-carbon);
+	border-color: var(--convoca-carbon);
+	color: #fff;
+}
+
+.convoca-btn-secundario .wp-block-button__link {
+	background-color: transparent;
+	color: var(--convoca-carbon);
+	border: 2px solid var(--convoca-carbon);
+	border-radius: 999px;
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.9rem;
+	padding: 0.6rem 1.25rem;
+	text-decoration: none;
+}
+
+.convoca-btn-secundario .wp-block-button__link:hover {
+	background-color: var(--convoca-carbon);
+	color: #fff;
+}
+
+.convoca-seccion--carbon .convoca-btn-secundario .wp-block-button__link,
+.convoca-seccion--verde .convoca-btn-secundario .wp-block-button__link {
+	border-color: rgba(255, 255, 255, 0.55);
+	color: #fff;
+}
+
+.convoca-seccion--carbon .convoca-btn-secundario .wp-block-button__link:hover {
+	background-color: #fff;
+	border-color: #fff;
+	color: var(--convoca-carbon);
+}
+
+.convoca-seccion--naranja .convoca-btn-secundario .wp-block-button__link {
+	border-color: var(--convoca-carbon);
+}
+
+.convoca-btn-grande .wp-block-button__link {
+	font-size: 1.05rem;
+	padding: 0.95rem 1.9rem;
+}
+
+/* El toggle de modo oscuro: discreto, dentro del sistema. */
+.dark-mode-toggle {
+	background: rgba(255, 255, 255, 0.12);
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	color: #fff;
+	width: 2.15rem;
+	height: 2.15rem;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.dark-mode-toggle:hover { background: var(--convoca-naranja); color: var(--convoca-carbon); }
+
+/* =========================================================================
+   3. HERO — fotografía con presencia, texto sobre fondo claro
+   La foto y el texto van en columnas separadas: así la imagen conserva su
+   integridad (nada la tapa ni la recorta un cuadro encima) y el texto siempre
+   tiene contraste garantizado sobre el hueso de fondo.
+   ========================================================================= */
+
+.convoca-hero {
+	background-color: var(--convoca-hueso);
+	padding-block: clamp(1.5rem, 3vw, 3rem) var(--convoca-seccion-y);
+}
+
+.convoca-hero__contenido {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin-inline: auto;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr);
+	gap: clamp(1.25rem, 2.6vw, 2.5rem);
+	align-items: center;
+}
+
+.convoca-hero__titular {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.85rem;
+}
+
+.convoca-hero__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin: 0;
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--convoca-naranja-oscuro);
+}
+
+.convoca-hero__titular .wp-block-site-title,
+.convoca-hero__titular .wp-block-site-title a {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(2.3rem, 4.6vw, 3.9rem);
+	font-weight: 800;
+	line-height: 0.96;
+	letter-spacing: -0.045em;
+	text-transform: uppercase;
+	margin: 0;
+	color: var(--convoca-carbon);
+	text-decoration: none;
+}
+
+.convoca-hero__claim,
+.convoca-hero__titular .wp-block-site-tagline {
+	margin: 0;
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(1.1rem, 1.7vw, 1.5rem);
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	color: var(--convoca-gris-texto);
+	max-width: 30rem;
+}
+
+.convoca-hero__intro {
+	margin: 0.35rem 0 0.5rem;
+	font-size: 1.075rem;
+	line-height: 1.7;
+	color: var(--convoca-carbon);
+	max-width: 34rem;
+}
+
+.convoca-hero__acciones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.convoca-hero__foto {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-hero__foto img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 4 / 3;
+	height: auto;
+	object-fit: cover;
+	object-position: center 45%;
+}
+
+/* =========================================================================
+   4. ACTIVIDADES — editorial: destacada grande + grid con carteles
+   ========================================================================= */
+
+.convoca-actividades {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: clamp(1.5rem, 3vw, 3rem);
+	align-items: start;
+}
+
+.convoca-actividad-destacada {
+	display: grid;
+	grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+	gap: clamp(1rem, 2vw, 1.75rem);
+	text-decoration: none;
+	color: inherit;
+}
+
+.convoca-actividad-destacada__media {
+	position: relative;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-actividad-destacada__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+}
+
+.convoca-actividad-destacada__texto {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+	justify-content: center;
+}
+
+.convoca-actividad-destacada h3,
+.convoca-actividad-destacada .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+	font-weight: 700;
+	line-height: 1.06;
+	letter-spacing: -0.02em;
+	margin: 0;
+	color: var(--convoca-carbon);
+}
+
+.convoca-actividad-destacada:hover h3 { color: var(--convoca-naranja-oscuro); }
+
+.convoca-actividad__lugar {
+	display: block;
+	font-size: 0.95rem;
+	color: var(--convoca-gris-texto);
+}
+
+.convoca-grid-actividades {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(1.25rem, 2.4vw, 2rem);
+}
+
+.convoca-card {
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.convoca-card__media {
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+	transition: transform 0.35s ease;
+}
+
+.convoca-card:hover .convoca-card__media img { transform: scale(1.03); }
+
+.convoca-card h3,
+.convoca-card .wp-block-post-title {
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.12rem;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: -0.01em;
+	margin: 0;
+	color: var(--convoca-carbon);
+}
+
+.convoca-card:hover h3 { color: var(--convoca-naranja-oscuro); }
+
+.convoca-card__fecha {
+	font-size: 0.78rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--convoca-gris-texto);
+}
+
+/* =========================================================================
+   5. TRES CAMINOS — tres unidades diferenciadas, no tres cajas iguales
+   ========================================================================= */
+
+.convoca-caminos {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: clamp(1.25rem, 2.4vw, 2rem);
+}
+
+.convoca-camino {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	text-decoration: none;
+	color: inherit;
+}
+
+.convoca-camino--ancho { grid-column: span 6; }
+.convoca-camino--medio { grid-column: span 3; }
+
+.convoca-camino__media {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-camino--ancho .convoca-camino__media { aspect-ratio: 16 / 11; }
+.convoca-camino--medio .convoca-camino__media { aspect-ratio: 3 / 4; }
+
+.convoca-camino__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.4s ease;
+}
+
+.convoca-camino:hover .convoca-camino__media img { transform: scale(1.04); }
+
+.convoca-camino__etiqueta {
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.convoca-camino--actividades .convoca-camino__etiqueta { color: var(--convoca-naranja-oscuro); }
+.convoca-camino--escuela .convoca-camino__etiqueta { color: var(--convoca-verde); }
+.convoca-camino--voluntariado .convoca-camino__etiqueta { color: var(--convoca-gris-texto); }
+
+.convoca-camino h3,
+.convoca-camino .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(1.35rem, 2vw, 1.85rem);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1.08;
+	margin: 0;
+	color: var(--convoca-carbon);
+}
+
+.convoca-camino p {
+	margin: 0;
+	color: var(--convoca-gris-texto);
+	font-size: 0.98rem;
+	line-height: 1.6;
+}
+
+.convoca-camino__flecha {
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.92rem;
+	color: var(--convoca-naranja-oscuro);
+	margin-top: auto;
+}
+
+.convoca-camino:hover .convoca-camino__flecha { color: var(--convoca-carbon); }
+
+/* =========================================================================
+   6. HISTORIAS / ACTUALIDAD — una principal grande, el resto en lista
+   ========================================================================= */
+
+.convoca-historias {
+	display: grid;
+	grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+	gap: clamp(1.75rem, 4vw, 4rem);
+	align-items: start;
+}
+
+.convoca-historia-principal { display: block; text-decoration: none; color: inherit; }
+
+.convoca-historia-principal__media {
+	aspect-ratio: 16 / 10;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+	margin-bottom: 1.25rem;
+}
+
+.convoca-historia-principal__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.4s ease;
+}
+
+.convoca-historia-principal:hover .convoca-historia-principal__media img { transform: scale(1.02); }
+
+.convoca-historia-principal h3,
+.convoca-historia-principal .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+	font-weight: 700;
+	line-height: 1.05;
+	letter-spacing: -0.025em;
+	margin: 0 0 0.75rem;
+	color: var(--convoca-carbon);
+}
+
+.convoca-historia-principal:hover h3 { color: var(--convoca-naranja-oscuro); }
+
+.convoca-historia-principal p,
+.convoca-historia-principal .wp-block-post-excerpt__excerpt {
+	margin: 0;
+	color: var(--convoca-gris-texto);
+	font-size: 1.02rem;
+	line-height: 1.65;
+}
+
+.convoca-lista-historias {
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--convoca-gris-borde);
+}
+
+.convoca-historia-secundaria {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+	padding: 1.15rem 0;
+	border-bottom: 1px solid var(--convoca-gris-borde);
+	text-decoration: none;
+	color: inherit;
+}
+
+.convoca-historia-secundaria h3,
+.convoca-historia-secundaria .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.08rem;
+	font-weight: 700;
+	line-height: 1.25;
+	margin: 0;
+	color: var(--convoca-carbon);
+}
+
+.convoca-historia-secundaria:hover h3 { color: var(--convoca-naranja-oscuro); }
+
+/* =========================================================================
+   7. QUIÉNES SOMOS y PARTICIPA
+   ========================================================================= */
+
+.convoca-quienes {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+	gap: clamp(1.75rem, 4vw, 4rem);
+	align-items: center;
+}
+
+.convoca-quienes__media {
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-quienes__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.convoca-quienes__texto { display: flex; flex-direction: column; gap: 1.15rem; }
+
+.convoca-quienes__texto p { margin: 0; color: var(--convoca-gris-texto); line-height: 1.7; }
+
+.convoca-quienes__lista {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 0.85rem 1.5rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.convoca-quienes__lista li {
+	display: flex;
+	gap: 0.6rem;
+	align-items: baseline;
+	font-size: 0.98rem;
+	color: var(--convoca-carbon);
+}
+
+.convoca-quienes__lista li::before {
+	content: "";
+	flex: 0 0 auto;
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 999px;
+	background-color: var(--convoca-naranja);
+	transform: translateY(-0.15rem);
+}
+
+/* Participa: el momento más fuerte de la portada. */
+.convoca-participa {
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+	padding-block: clamp(3rem, 6vw, 5.5rem);
+}
+
+.convoca-participa__interior {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin-inline: auto;
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+	gap: clamp(1.5rem, 4vw, 3.5rem);
+	align-items: center;
+}
+
+.convoca-participa h2,
+.convoca-participa .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(2rem, 4.2vw, 3.4rem);
+	font-weight: 800;
+	line-height: 1.02;
+	letter-spacing: -0.03em;
+	margin: 0 0 1rem;
+	color: var(--convoca-carbon);
+}
+
+.convoca-participa p { margin: 0 0 1.75rem; font-size: 1.075rem; line-height: 1.65; max-width: 38rem; }
+
+.convoca-participa__acciones { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+.convoca-participa__via {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+	padding: 1rem 0;
+	border-top: 2px solid rgba(22, 24, 27, 0.25);
+	text-decoration: none;
+	color: var(--convoca-carbon);
+}
+
+.convoca-participa__via strong {
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.15rem;
+	font-weight: 700;
+}
+
+.convoca-participa__via span { font-size: 0.92rem; color: rgba(22, 24, 27, 0.75); }
+
+.convoca-participa__via:hover strong { text-decoration: underline; }
+
+/* =========================================================================
+   8. PIE
+   ========================================================================= */
+
+.site-footer.convoca-footer {
+	background-color: var(--convoca-magenta);
+	color: rgba(255, 255, 255, 0.82);
+	padding: 0;
+}
+
+.convoca-footer__interior {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin-inline: auto;
+	display: grid;
+	grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr));
+	gap: clamp(1.5rem, 3vw, 3rem);
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.convoca-footer h3,
+.convoca-footer .wp-block-heading {
+	font-family: 'Outfit', sans-serif;
+	font-size: 0.82rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--convoca-naranja);
+	margin: 0 0 1rem;
+}
+
+.convoca-footer p,
+.convoca-footer li { font-size: 0.94rem; line-height: 1.6; }
+
+.convoca-footer a { color: rgba(255, 255, 255, 0.82); text-decoration: none; }
+.convoca-footer a:hover { color: var(--convoca-naranja); text-decoration: underline; }
+
+.convoca-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+
+.convoca-footer__marca .wp-block-site-title,
+.convoca-footer__marca .wp-block-site-title a {
+	font-family: 'Outfit', sans-serif;
+	font-size: 1.5rem;
+	font-weight: 800;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #fff;
+	text-decoration: none;
+	margin: 0;
+}
+
+.convoca-footer__legal {
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.convoca-footer__legal-interior {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin-inline: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem 1.5rem;
+	padding-block: 1.15rem;
+	font-size: 0.82rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+
+.convoca-footer__legal a { color: rgba(255, 255, 255, 0.75); }
+
+/* =========================================================================
+   9. ARCHIVOS — crecer a cientos de entradas sin romperse
+   ========================================================================= */
+
+.convoca-archivo__cabecera {
+	background-color: var(--convoca-arena);
+	border-bottom: 1px solid var(--convoca-gris-borde);
+	padding-block: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.convoca-archivo__cabecera h1,
+.convoca-archivo__cabecera .wp-block-query-title {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(2.2rem, 5vw, 3.75rem);
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.035em;
+	margin: 0;
+	color: var(--convoca-carbon);
+}
+
+.convoca-archivo__descripcion {
+	margin: 1rem 0 0;
+	max-width: 46rem;
+	color: var(--convoca-gris-texto);
+	font-size: 1.05rem;
+	line-height: 1.7;
+}
+
+.convoca-archivo__grid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: clamp(1.25rem, 2.4vw, 2.25rem);
+}
+
+.convoca-paginacion {
+	margin-top: clamp(2rem, 4vw, 3.5rem);
+	display: flex;
+	justify-content: center;
+}
+
+.convoca-paginacion .wp-block-query-pagination-numbers .page-numbers {
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	text-decoration: none;
+	color: var(--convoca-carbon);
+	padding: 0.35rem 0.5rem;
+}
+
+.convoca-paginacion .page-numbers.current {
+	color: var(--convoca-naranja-oscuro);
+	border-bottom: 2px solid var(--convoca-naranja);
+}
+
+/* Buscador secundario y discreto: no debe dominar el archivo. */
+.convoca-buscador-secundario {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.convoca-buscador-secundario .wp-block-search {
+	width: min(100%, 26rem);
+}
+
+.convoca-buscador-secundario .wp-block-search__inside-wrapper {
+	border: 1px solid var(--convoca-gris-borde);
+	border-radius: 999px;
+	background-color: #fff;
+	padding: 0.25rem 0.25rem 0.25rem 1rem;
+}
+
+.convoca-buscador-secundario .wp-block-search__input {
+	border: 0;
+	background: transparent;
+	font-size: 0.95rem;
+}
+
+.convoca-buscador-secundario .wp-block-search__button {
+	background-color: var(--convoca-carbon);
+	color: #fff;
+	border: 0;
+	border-radius: 999px;
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.85rem;
+	padding: 0.55rem 1.1rem;
+}
+
+/* =========================================================================
+   10. ENTRADA INDIVIDUAL — lectura cómoda, imágenes grandes
+   ========================================================================= */
+
+.convoca-single__cabecera { padding-block: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem); }
+
+.convoca-single__cabecera h1,
+.convoca-single__cabecera .wp-block-post-title {
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(2.1rem, 4.6vw, 3.6rem);
+	font-weight: 800;
+	line-height: 1.02;
+	letter-spacing: -0.035em;
+	margin: 0 0 1.25rem;
+	color: var(--convoca-carbon);
+}
+
+.convoca-single__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.75rem 1.25rem;
+	color: var(--convoca-gris-texto);
+}
+
+.convoca-single__imagen {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
+	margin: 0 auto clamp(1.75rem, 3vw, 3rem);
+}
+
+.convoca-single__imagen img {
+	width: 100%;
+	height: auto;
+	max-height: 40rem;
+	object-fit: cover;
+	border-radius: var(--convoca-radio);
+	display: block;
+}
+
+.convoca-single__cuerpo {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-contenido));
+	margin-inline: auto;
+	font-size: 1.055rem;
+	line-height: 1.75;
+}
+
+.convoca-single__cuerpo .wp-block-image img { border-radius: var(--convoca-radio); }
+
+.convoca-single__cuerpo h2 { margin-top: 2.25rem; }
+.convoca-single__cuerpo h3 { margin-top: 1.85rem; }
+
+.convoca-single__cuerpo ul,
+.convoca-single__cuerpo ol { padding-left: 1.25rem; }
+
+.convoca-single__cuerpo li { margin-bottom: 0.45rem; }
+
+.convoca-single__cuerpo blockquote {
+	margin: 2rem 0;
+	padding: 0.25rem 0 0.25rem 1.5rem;
+	border-left: 4px solid var(--convoca-naranja);
+	font-family: 'Outfit', sans-serif;
+	font-size: clamp(1.25rem, 2vw, 1.65rem);
+	font-weight: 500;
+	line-height: 1.35;
+	color: var(--convoca-carbon);
+}
+
+.convoca-single__cuerpo table { width: 100%; border-collapse: collapse; font-size: 0.98rem; }
+.convoca-single__cuerpo th,
+.convoca-single__cuerpo td { border-bottom: 1px solid var(--convoca-gris-borde); padding: 0.6rem 0.5rem; text-align: left; }
+
+.convoca-single__acciones {
+	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-contenido));
+	margin: clamp(2rem, 4vw, 3rem) auto 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--convoca-gris-borde);
+}
+
+.convoca-relacionadas {
+	background-color: var(--convoca-arena);
+	border-top: 1px solid var(--convoca-gris-borde);
+	padding-block: var(--convoca-seccion-y);
+}
+
+/* =========================================================================
+   11. RESPONSIVE — de móvil a escritorio, no "encajar" el escritorio
+   ========================================================================= */
+
+@media (max-width: 1199px) {
+	.convoca-camino--ancho { grid-column: span 6; }
+	.convoca-camino--medio { grid-column: span 3; }
+	.convoca-archivo__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 1023px) {
+	.convoca-hero__contenido {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	.convoca-hero__foto { order: -1; }
+	.convoca-hero__foto img { aspect-ratio: 16 / 10; }
+	.convoca-actividades { grid-template-columns: minmax(0, 1fr); }
+	.convoca-caminos { grid-template-columns: minmax(0, 1fr); }
+	.convoca-camino--ancho,
+	.convoca-camino--medio { grid-column: auto; }
+	.convoca-camino--ancho .convoca-camino__media,
+	.convoca-camino--medio .convoca-camino__media { aspect-ratio: 16 / 10; }
+	.convoca-historias { grid-template-columns: minmax(0, 1fr); }
+	.convoca-quienes { grid-template-columns: minmax(0, 1fr); }
+	.convoca-participa__interior { grid-template-columns: minmax(0, 1fr); }
+	.convoca-footer__interior { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 767px) {
+	.convoca-archivo__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.convoca-grid-actividades { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.convoca-quienes__lista { grid-template-columns: minmax(0, 1fr); }
+	.convoca-fila { padding-block: 0.65rem; }
+}
+
+@media (max-width: 599px) {
+	.convoca-actividad-destacada { grid-template-columns: minmax(0, 1fr); }
+	.convoca-actividad-destacada__media { aspect-ratio: 3 / 4; }
+	.convoca-grid-actividades { grid-template-columns: minmax(0, 1fr); }
+	.convoca-archivo__grid { grid-template-columns: minmax(0, 1fr); }
+	.convoca-hero__foto img { height: 20rem; }
+	.convoca-hero__titular { padding-right: 0; }
+	.convoca-footer__interior { grid-template-columns: minmax(0, 1fr); }
+	.convoca-participa__acciones { flex-direction: column; align-items: stretch; }
+	.convoca-participa__acciones .wp-block-button,
+	.convoca-participa__acciones .wp-block-button__link { width: 100%; text-align: center; }
+}
+
+@media (max-width: 399px) {
+	.convoca-wrap,
+	.convoca-contenido,
+	.convoca-hero__contenido,
+	.convoca-fila,
+	.convoca-footer__interior,
+	.convoca-footer__legal-interior,
+	.convoca-participa__interior,
+	.convoca-single__imagen,
+	.convoca-single__cuerpo,
+	.convoca-single__acciones {
+		width: min(100% - (2 * 1rem), var(--convoca-ancho));
+	}
+	.convoca-hero__titular h1 { font-size: 2.1rem; }
+}
+
+/* =========================================================================
+   12. ACCESIBILIDAD — foco visible y contraste
+   ========================================================================= */
+
+.convoca-site a:focus-visible,
+.convoca-site button:focus-visible,
+.convoca-site input:focus-visible,
+.convoca-site textarea:focus-visible,
+.convoca-site select:focus-visible {
+	outline: 3px solid var(--convoca-carbon);
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+.convoca-seccion--carbon a:focus-visible,
+.convoca-footer a:focus-visible,
+.convoca-topbar a:focus-visible,
+.convoca-seccion--verde a:focus-visible {
+	outline-color: var(--convoca-naranja);
+}
+
+.convoca-skip-link,
+.skip-link:focus {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 200;
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+	padding: 0.75rem 1.25rem;
+	font-weight: 700;
+	border-radius: 0 0 var(--convoca-radio) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.convoca-site * {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+	}
+}
+
+/* Modo oscuro del theme padre: superficies y textos de esta identidad. */
+.dark-mode .site-header.convoca-header { background-color: var(--convoca-carbon); border-bottom-color: rgba(255, 255, 255, 0.14); }
+.dark-mode .convoca-hero,
+.dark-mode .convoca-hero__titular { background-color: var(--convoca-carbon); }
+.dark-mode .convoca-hero__titular h1 { color: #fff; }
+.dark-mode .convoca-marca .wp-block-site-title,
+.dark-mode .convoca-marca .wp-block-site-title a,
+.dark-mode .site-header .wp-block-navigation-item__content { color: #fff; }
+.dark-mode .convoca-seccion--arena { background-color: #1c1f23; }
+.dark-mode .convoca-archivo__cabecera { background-color: #1c1f23; border-bottom-color: rgba(255, 255, 255, 0.12); }
+.dark-mode .convoca-actividad-destacada h3,
+.dark-mode .convoca-card h3,
+.dark-mode .convoca-camino h3,
+.dark-mode .convoca-historia-principal h3,
+.dark-mode .convoca-historia-secundaria h3,
+.dark-mode .convoca-single__cabecera h1,
+.dark-mode .convoca-archivo__cabecera h1 { color: #fff; }
+
+/* =========================================================================
+   13. PIEZAS NUEVAS: relacionadas, navegación entre entradas y tarjeta enlazada
+   ========================================================================= */
+
+.convoca-relacionadas__lista { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.convoca-card__media {
+	display: block;
+	aspect-ratio: 4 / 5;
+	overflow: hidden;
+	border-radius: var(--convoca-radio);
+	background-color: var(--convoca-arena);
+}
+
+.convoca-card__media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: top center;
+	display: block;
+}
+
+.convoca-card__titulo a,
+.convoca-card h3 a { color: inherit; text-decoration: none; }
+
+.convoca-single__navegacion { font-size: 0.92rem; gap: 1.25rem; }
+
+.convoca-single__navegacion a {
+	color: var(--convoca-naranja-oscuro);
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.convoca-single__navegacion a:hover { text-decoration: underline; }
+
+.convoca-single__acciones .wp-block-post-terms { font-size: 0.82rem; }
+
+.convoca-relacionadas .convoca-cabecera { margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
+
+@media (max-width: 1023px) {
+	.convoca-relacionadas__lista { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 599px) {
+	.convoca-relacionadas__lista { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Actualidad de la portada: rejilla de tres, imágenes panorámicas. */
+.convoca-historias-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.convoca-card--historia .convoca-card__media,
+.convoca-card--historia .wp-block-post-featured-image img { aspect-ratio: 16 / 10; }
+
+.convoca-card__datos {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.4rem 1rem;
+}
+
+@media (max-width: 1023px) { .convoca-historias-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 599px) { .convoca-historias-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* En móvil el CTA tiene que seguir viéndose: es la acción principal del sitio.
+   El theme padre lo oculta por debajo de 782 px; aquí se recupera dentro de la
+   franja superior, con el mismo sistema de botones. */
+@media (max-width: 781px) {
+	/* El theme padre oculta el CTA con `display: none !important` por debajo de
+	   480 px: para recuperarlo hay que igualar esa prioridad. */
+	.convoca-topbar .header-cta,
+	.site-header .header-cta,
+	body .is-layout-flex.header-cta {
+		display: block !important;
+	}
+
+	.convoca-topbar .header-cta .wp-block-button__link,
+	.site-header .header-cta .wp-block-button__link {
+		font-size: 0.85rem;
+		padding: 0.5rem 1.05rem;
+	}
+
+	.convoca-topbar__interior {
+		gap: 0.5rem 0.75rem;
+		justify-content: space-between;
+	}
+
+	.convoca-topnav ul { gap: 0.75rem 1rem; }
+}
+
+/* =========================================================================
+   14. LISTADO DE LA PORTADA — las entradas de blog, con la primera destacada
+   ========================================================================= */
+
+/* La portada usa tres columnas (no cuatro): con la primera entrada a doble
+   columna, las cinco entradas de la página llenan exactamente dos filas. */
+.convoca-portada-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* La primera entrada ocupa dos columnas y se compone en horizontal (imagen +
+   texto). Se hace por CSS sobre el mismo listado: sin consultas duplicadas. */
+.convoca-portada-grid > li:first-child { grid-column: span 2; }
+
+.convoca-portada-grid > li:first-child .convoca-card {
+	display: grid;
+	grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+	gap: clamp(1rem, 2vw, 2rem);
+	align-items: center;
+}
+
+.convoca-portada-grid > li:first-child .convoca-card__cuerpo {
+	display: flex;
+	flex-direction: column;
+	gap: 0.7rem;
+}
+
+.convoca-portada-grid > li:first-child h3,
+.convoca-portada-grid > li:first-child .wp-block-post-title {
+	font-size: clamp(1.4rem, 2.3vw, 2.1rem);
+	line-height: 1.06;
+	letter-spacing: -0.02em;
+}
+
+.convoca-portada-grid .convoca-card__cuerpo {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+
+@media (max-width: 1023px) {
+	.convoca-portada-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+	.convoca-portada-grid > li:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 599px) {
+	.convoca-portada-grid > li:first-child { grid-column: auto; }
+	.convoca-portada-grid > li:first-child .convoca-card { display: flex; grid-template-columns: none; }
+}
+
+/* =========================================================================
+   14. CORRECCIONES DE LA CRÍTICA DE DISEÑO EXTERNA (visión)
+   =========================================================================
+   Cada regla responde a un defecto concreto observado en las capturas, no a
+   una preferencia: marca duplicada, título recortado, aire muerto y buscador
+   descolgado.
+*/
+
+/* 14.1 UNA sola marca. El logotipo ya dice «BIODEVAS», así que repetir el
+   título del sitio al lado duplicaba la marca. El título se oculta SÓLO a la
+   vista: el alt del logotipo está vacío (es decorativo), de modo que el nombre
+   accesible del sitio sigue siendo el del título. Sin logotipo, se muestra. */
+.convoca-marca:has(.wp-block-site-logo) .wp-block-site-title {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* 14.2 El título no se corta nunca con puntos suspensivos: el tema padre lo
+   recortaba a 40vw y en móvil aparecía «BIODEV…». */
+/* Ojo: el titular del hero es OTRO .wp-block-site-title (el del patrón de
+   portada), y la regla del padre apunta a la clase a secas. Si se limita a la
+   cabecera, el titular grande del hero sigue saliendo como «BIODEV…». */
+.convoca-site .wp-block-site-title,
+.convoca-header .wp-block-site-title,
+.convoca-marca .wp-block-site-title,
+.convoca-hero__titular .wp-block-site-title {
+	white-space: normal !important;
+	max-width: none !important;
+	overflow: visible !important;
+	text-overflow: clip !important;
+}
+
+/* 14.3 El hero deja de empujar el comienzo del listado fuera de la primera
+   pantalla en escritorio. */
+@media (min-width: 768px) {
+	.convoca-hero {
+		padding-block: clamp(1.5rem, 2.5vw, 2.5rem) clamp(2rem, 3.5vw, 3rem);
+	}
+}
+
+/* 14.4 Menos aire muerto entre la cabecera editorial y su contenido, y el
+   buscador separado del margen derecho. */
+.convoca-archivo__cabecera {
+	padding-block: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.convoca-buscador-secundario {
+	padding-right: clamp(0px, 2vw, 2rem);
+}
+
+/* 14.5 Los datos de la entrada (fecha, autor, lugar) en una sola línea
+   legible, sin que el texto se apelotone. */
+.convoca-single__meta {
+	row-gap: 0.35rem;
+	column-gap: 1rem;
+}
+
+/* 14.6 Reserva de espacio para el aviso fijo de demo, que en móvil tapaba el
+   pie del contenido. */
+body:has(.demo-aviso) {
+	padding-bottom: 1.9rem;
+}
+
+/* 14.7 La foto del hero no se come la primera pantalla: con 4/3 el listado
+   quedaba fuera y había que bajar para ver la primera actividad. */
+@media (min-width: 1024px) {
+	.convoca-hero__foto img {
+		aspect-ratio: 3 / 2;
+	}
+}
+
+/* =========================================================================
+   15. AJUSTES TIPOGRÁFICOS DE LA SEGUNDA PASADA DEL CRÍTICO
+   ========================================================================= */
+
+/* 15.1 Los titulares reparten sus líneas de forma equilibrada. El crítico vio
+   un titular con la primera línea muy larga y la segunda con dos palabras
+   sueltas; `text-wrap: balance` evita esa viuda sin tocar el texto. */
+h1, h2, h3,
+.wp-block-heading,
+.convoca-single__cabecera .wp-block-post-title,
+.convoca-archivo__cabecera h1,
+.convoca-card__titulo,
+.convoca-actividad-destacada h3 {
+	text-wrap: balance;
+}
+
+/* Párrafos: sin viudas de una palabra, pero sin romper párrafos largos. */
+.convoca-hero__intro,
+.convoca-single__cuerpo > p {
+	text-wrap: pretty;
+}
+
+/* 15.2 El lema gana presencia sin competir con el titular: peso, color de tinta
+   y una regla naranja de identidad encima. */
+.convoca-hero__titular .wp-block-site-tagline,
+.convoca-hero__claim {
+	font-weight: 600;
+	color: var(--convoca-carbon);
+	letter-spacing: 0.05em;
+	max-width: 27rem;
+	border-top: 3px solid var(--convoca-naranja);
+	padding-top: 0.85rem;
+	margin-top: 0.5rem;
+}
+
+.dark-mode .convoca-hero__titular .wp-block-site-tagline,
+.dark-mode .convoca-hero__claim {
+	color: #fff;
+}
+
+/* 15.3 El hero deja de meter un valle de aire antes del listado. */
+@media (min-width: 768px) {
+	.convoca-hero {
+		padding-bottom: clamp(1.5rem, 2.5vw, 2.25rem);
+	}
+}
+
+/* =========================================================================
+   16. PETICIONES DE JC Y ESTILOS DE BLOQUE
+   ========================================================================= */
+
+/* 16.1 Si hay logotipo, ni título ni subtítulo en la cabecera: el logotipo ya
+   dice BIODEVAS y «SEMBRANDO FUTURO» lo cuenta el hero. Evita la marca repetida. */
+.convoca-marca:has(.wp-block-site-logo) .wp-block-site-tagline {
+	display: none;
+}
+
+/* Si el logotipo no está (instalación nueva), todo vuelve a mostrarse: el
+   :has() de arriba deja de aplicar por sí solo. */
+
+/* 16.2 Estilos de bloque del theme (elegibles desde el editor). */
+.is-style-convoca-banda-naranja {
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+	padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem);
+	border-radius: var(--convoca-radio);
+}
+
+.is-style-convoca-banda-naranja a,
+.is-style-convoca-banda-naranja .wp-block-button__link {
+	color: var(--convoca-carbon);
+	text-decoration: underline;
+}
+
+.is-style-convoca-bloque-carbon {
+	background-color: var(--convoca-carbon);
+	color: var(--convoca-blanco);
+	padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 3rem);
+	border-radius: var(--convoca-radio);
+}
+
+.is-style-convoca-bloque-carbon a { color: var(--convoca-naranja); }
+
+.is-style-convoca-marco img {
+	border-radius: var(--convoca-radio);
+	box-shadow: 0 18px 40px -26px rgba(22, 24, 27, 0.5);
+}
+
+.is-style-convoca-fantasma .wp-block-button__link {
+	background-color: transparent;
+	color: var(--convoca-naranja-oscuro);
+	border: 2px solid currentColor;
+}
+
+.is-style-convoca-fantasma .wp-block-button__link:is(:hover, :focus-visible) {
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+	border-color: var(--convoca-naranja);
+}
+
+.is-style-convoca-cita {
+	border-left: 4px solid var(--convoca-naranja);
+	padding-left: clamp(1rem, 2.5vw, 1.75rem);
+	font-size: 1.15em;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.is-style-convoca-cita p:last-child { margin-bottom: 0; }
+
+.is-style-convoca-regla::after {
+	content: "";
+	display: block;
+	width: 3rem;
+	height: 3px;
+	margin-top: 0.6rem;
+	background-color: var(--convoca-naranja);
+}
+
+/* 16.3 Selección de texto en el naranja de identidad. */
+::selection {
+	background-color: var(--convoca-naranja);
+	color: var(--convoca-carbon);
+}
+
+/* 16.4 Impresión: las actividades se imprimen y se reparten en papel. Fuera
+   navegación, pie y adornos; tinta negra y las URLs a la vista. */
+@media print {
+	.site-header,
+	.convoca-footer,
+	.convoca-participa,
+	.convoca-relacionadas,
+	.wp-block-navigation,
+	.dark-mode-toggle,
+	.demo-aviso,
+	.convoca-single__navegacion {
+		display: none !important;
+	}
+
+	/* El fondo y el color del body los fija WordPress en sus estilos globales con
+	   !important dentro de una capa CSS, y por el orden de capas una declaración
+	   importante SIN capa (la mía) pierde. No se pelea contra eso: se pinta el
+	   contenedor, que no compite con nadie. */
+	body {
+		font-size: 12pt;
+	}
+
+	.wp-site-blocks,
+	.convoca-site .wp-site-blocks {
+		background-color: #fff !important;
+		color: #000 !important;
+	}
+
+	.convoca-site a {
+		text-decoration: underline !important;
+	}
+
+	.convoca-wrap,
+	.convoca-single__cuerpo {
+		max-width: none !important;
+		padding: 0 !important;
+	}
+
+	a {
+		color: #000 !important;
+		text-decoration: underline;
+	}
+
+	a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 0.85em;
+		word-break: break-all;
+	}
+
+	img {
+		max-width: 100% !important;
+		page-break-inside: avoid;
+	}
+}
+
+/* =========================================================================
+   17. FRANJA SUPERIOR: AIRE, Y EL MENÚ SUPERIOR DENTRO DEL MENÚ EN MÓVIL
+   ========================================================================= */
+
+/* 17.1 La franja respira: más alta, más aire entre el menú y las acciones, y el
+   botón naranja separado del borde en vez de pegado. */
+.convoca-topbar__interior {
+	padding-block: clamp(0.5rem, 0.9vw, 0.85rem);
+	gap: 0.9rem 2.5rem;
+}
+
+.convoca-topbar__acciones {
+	gap: 1.05rem;
+	padding-inline: 0.6rem;
+}
+
+/* El tema padre fija el padding de este botón con !important (y el grupo con
+   gap: 0), así que hay que ganarle con más especificidad, no con orden. */
+body .convoca-topbar .header-cta .wp-block-button__link {
+	padding: 0.72rem 1.5rem !important;
+}
+
+body .convoca-topbar .wp-block-buttons.header-cta {
+	gap: 0.5rem !important;
+}
+
+/* 17.2 Los enlaces de la franja, dentro del menú principal en móvil.
+   En escritorio no se ve nada de esto: el grupo inyectado vive dentro del
+   desplegable, que en escritorio no se usa. */
+.convoca-topnav-en-menu {
+	display: none;
+}
+
+@media (max-width: 1199px) {
+	/* Fuera de la franja: en un móvil no caben y su sitio es el menú. */
+	.convoca-topbar .convoca-topnav {
+		display: none;
+	}
+
+	.convoca-topnav-en-menu {
+		display: block;
+		width: 100%;
+		margin-top: 1.25rem;
+		padding-top: 1.25rem;
+		border-top: 1px solid var(--convoca-gris-borde);
+	}
+
+	.convoca-topnav-en-menu .convoca-topnav__list {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.convoca-topnav-en-menu a {
+		display: block;
+		padding: 0.55rem 0;
+		font-family: 'Outfit', sans-serif;
+		font-size: 0.92rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: var(--convoca-carbon);
+	}
+
+	.convoca-topnav-en-menu a:is(:hover, :focus-visible) {
+		color: var(--convoca-naranja-oscuro);
+		text-decoration: underline;
+	}
+}
+
+.dark-mode .convoca-topnav-en-menu a {
+	color: #fff;
+}
+
+/* =========================================================================
+   18. PALETA DE IDENTIDAD DE BIODEVAS — papeles por contraste
+   =========================================================================
+   Los cinco colores de la marca, cada uno donde se lee. Medido sobre los fondos
+   reales del theme:
+
+     color            sobre hueso   sobre uva   texto blanco encima
+     #ff8700 naranja      2,33 ✗      7,47 ✓       2,41 ✗
+     #ffab00 ámbar        1,84 ✗      9,50 ✓       1,90 ✗
+     #ff500a naranja rojo 3,17 △      5,49 ✓       3,28 △
+     #7d0032 magenta     10,60 ✓      1,64 ✗      10,95 ✓
+     #320028 uva         17,43 ✓      1,00 ✗      18,01 ✓
+
+   Conclusión: sobre claro sólo el magenta y la uva valen como texto; los naranjas
+   son rellenos, SIEMPRE con texto carbón encima (7,4:1). Sobre la uva, en cambio,
+   el ámbar y el naranja sí se leen.
+*/
+
+/* Sobre oscuro, los acentos van en ámbar (9,5:1 sobre uva). */
+.convoca-topnav a:hover,
+.convoca-topnav a:focus-visible {
+	color: var(--convoca-ambar);
+}
+
+.convoca-seccion--carbon .convoca-eyebrow::before {
+	background-color: var(--convoca-ambar);
+}
+
+/* El pie es magenta profundo: sus enlaces respiran en ámbar. */
+.convoca-footer a:hover,
+.convoca-footer a:focus-visible {
+	color: var(--convoca-ambar);
+}
+
+/* Hover del botón principal: naranja rojo con texto carbón (6,6:1), en lugar del
+   negro que rompía la identidad. */
+.header-cta .wp-block-button__link:hover,
+.header-cta .wp-block-button__link:focus-visible,
+.convoca-btn-primario .wp-block-button__link:hover,
+.convoca-btn-primario .wp-block-button__link:focus-visible {
+	background-color: var(--convoca-naranja-rojo);
+	border-color: var(--convoca-naranja-rojo);
+	color: var(--convoca-carbon);
+}
+
+/* Las etiquetas de sección sobre superficies oscuras, en ámbar. */
+.convoca-seccion--carbon .convoca-card__meta,
+.convoca-seccion--carbon .convoca-card__meta a,
+.convoca-footer .wp-block-heading {
+	color: var(--convoca-ambar);
+}
+
+/* El naranja tenue se queda para los fondos claros; el ámbar tenue acompaña. */
+.convoca-camino:hover,
+.convoca-card:hover {
+	box-shadow: 0 18px 40px -28px rgba(50, 0, 40, 0.28);
+}
+
+/* =========================================================================
+   19. REPASO DEL MÓVIL
+   =========================================================================
+   Lo que el crítico señaló en las capturas de 390 px, en orden de importancia:
+   la franja de demo tapaba contenido, había aire de más entre bloques, la foto
+   del hero se comía la primera pantalla, la hamburguesa era un objetivo táctil
+   pequeño y el enlace de las tarjetas se partía en dos líneas.
+*/
+
+/* 19.1 Separador de términos: se pinta con CSS y no como texto suelto, que es lo
+   que hacía aparecer «ACTIVIDADES , EDUCACIÓN AMBIENTAL». */
+.convoca-card__meta a:not(:last-child)::after,
+.convoca-tags a:not(:last-child)::after {
+	content: "·";
+	margin-inline: 0.5rem;
+	opacity: 0.5;
+}
+
+@media (max-width: 781px) {
+	/* 19.2 La franja de demo deja de ser fija: en un móvil fijo tapaba el
+	   contenido a cualquier altura de scroll. Pasa al final del flujo. */
+	.demo-aviso {
+		position: static !important;
+		display: block;
+		border-radius: 0 !important;
+		text-align: center;
+	}
+
+	body:has(.demo-aviso) {
+		padding-bottom: 0;
+	}
+
+	/* 19.3 Menos aire entre bloques: el ritmo de escritorio (hasta 6,5 rem) es
+	   demasiado en un móvil, obliga a desplazarse para ver lo siguiente. */
+	:root {
+		--convoca-seccion-y: clamp(2.25rem, 7vw, 3.25rem);
+	}
+
+	.convoca-archivo__cabecera {
+		padding-block: 1.75rem 1.25rem;
+	}
+
+	.convoca-buscador-secundario {
+		margin-top: 1rem;
+		padding-right: 0;
+	}
+
+	.convoca-single__cabecera {
+		padding-block: 1.75rem 1rem;
+	}
+
+	.convoca-single__imagen {
+		margin-top: 0.5rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.convoca-wrap > .convoca-cabecera,
+	.convoca-cabecera {
+		margin-bottom: 1.25rem;
+	}
+
+	/* 19.4 La foto del hero no se come la primera pantalla. */
+	.convoca-hero {
+		padding-block: 1rem 1.5rem;
+	}
+
+	.convoca-hero__foto img {
+		aspect-ratio: 16 / 10;
+		height: auto;
+		object-position: center 62%;
+	}
+
+	.convoca-hero__foto {
+		margin-bottom: 1.25rem;
+	}
+
+	/* 19.5 Objetivo táctil de la hamburguesa: 44x44 como mínimo recomendado. */
+	.wp-block-navigation__responsive-container-open,
+	.wp-block-navigation__responsive-container-close {
+		min-width: 44px;
+		min-height: 44px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+	}
+
+	.wp-block-navigation__responsive-container-open svg,
+	.wp-block-navigation__responsive-container-close svg {
+		width: 26px;
+		height: 26px;
+	}
+
+	/* 19.6 El enlace de las tarjetas: bloque propio y reparto equilibrado de
+	   líneas, para que no quede un «VER» suelto al final. */
+	.convoca-vermas,
+	.wp-block-read-more {
+		display: inline-block;
+		margin-top: 0.5rem;
+		text-wrap: balance;
+	}
+
+	/* 19.7 En el desplegable, los enlaces del menú superior con aire para el dedo. */
+	.convoca-topnav-en-menu a {
+		padding-block: 0.7rem;
+	}
+}
+
+/* 19.8 Ajustes finos del móvil: menos hueco entre título y buscador, etiquetas
+   con aire y una franja superior equilibrada. */
+@media (max-width: 781px) {
+	/* El buscador pertenece a la cabecera, no a la sección siguiente. */
+	.convoca-archivo__cabecera {
+		padding-block: 1.5rem 0.75rem;
+	}
+
+	.convoca-buscador-secundario {
+		margin-top: 0.35rem;
+	}
+
+	/* Cabecera de página institucional: el título y su texto van juntos. */
+	.convoca-wrap > .convoca-cabecera {
+		margin-bottom: 0.75rem;
+	}
+
+	.convoca-single__cabecera,
+	.convoca-page__cabecera {
+		padding-block: 1.5rem 0.5rem;
+	}
+
+	/* Etiquetas y términos: con aire para el dedo y sin pegarse al borde. */
+	.convoca-card__meta,
+	.convoca-tags,
+	.wp-block-post-terms {
+		padding-block: 0.35rem;
+	}
+
+	.convoca-card__meta a,
+	.convoca-tags a {
+		display: inline-block;
+		padding: 0.4rem 0;
+	}
+
+	/* La franja superior, equilibrada: el CTA y el botón de modo centrados en
+	   lugar de apelotonados en el extremo derecho con un vacío al lado. */
+	.convoca-topbar__interior {
+		justify-content: center;
+	}
+
+	.convoca-topbar__acciones {
+		width: 100%;
+		justify-content: center;
+	}
+}
+
+/* 19.9 El hueco entre la cabecera del archivo y el buscador no venía del buscador
+   sino del relleno de la sección y del espacio entre bloques del grupo. */
+@media (max-width: 781px) {
+	:root {
+		--convoca-seccion-y: clamp(1.75rem, 5vw, 2.5rem);
+	}
+
+	.convoca-seccion {
+		row-gap: 1rem;
+	}
+}
+
+/* 19.10 Ritmo vertical del móvil, forzado y medible.
+   La variable --convoca-seccion-y se lee bien en :root (clamp(1.75rem,...)) pero el
+   relleno computado seguía siendo el de escritorio (56 px con 1rem = 16 px, que
+   son 3.5rem). En lugar de seguir buscando la causa, se fija el valor con la
+   especificidad necesaria y se mide el resultado. */
+@media (max-width: 781px) {
+	main.convoca-seccion,
+	section.convoca-seccion,
+	.convoca-seccion {
+		padding-block: 1.75rem !important;
+	}
+}
+
+/* =========================================================================
+   20. LA CABECERA DE ESCRITORIO RESPIRA
+   =========================================================================
+   Medido antes: los enlaces del menú tenían 4 px × 6,4 px de relleno (el tema
+   padre los fija con !important) y la fila entera medía 52 px, con el logotipo
+   apretado en esa misma altura. Tres cosas:
+     1) los enlaces del menú, con aire y con respuesta al pasar por encima;
+     2) el logotipo, más grande y con la fila acorde;
+     3) la franja superior, con el mismo lenguaje que la navegación, para que se
+        lea como parte del mismo sistema y no como una banda ajena.
+*/
+
+/* 20.1 Enlaces del menú principal. Hay que ganarle al padre, que fija el relleno
+   con !important, así que se sube la especificidad con «body». */
+body .site-header .wp-block-navigation-item__content {
+	padding: 0.6rem 0.8rem !important;
+	font-size: 0.98rem !important;
+	border-radius: 999px;
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+body .site-header .wp-block-navigation-item__content:is(:hover, :focus-visible) {
+	background-color: var(--convoca-naranja-tenue);
+	color: var(--convoca-naranja-oscuro) !important;
+	border-bottom-color: transparent !important;
+}
+
+body .site-header .wp-block-navigation-submenu > .wp-block-navigation-item__content:is(:hover, :focus-visible),
+body .site-header .current-menu-item > .wp-block-navigation-item__content {
+	background-color: var(--convoca-naranja-tenue);
+}
+
+/* Separación entre grupos del menú, no sólo entre enlaces. */
+body .site-header .wp-block-navigation__container {
+	gap: 0.15rem 0.35rem;
+	align-items: center;
+}
+
+/* 20.2 El logotipo, más grande, y la fila a su medida. */
+body .site-header .convoca-marca .wp-block-site-logo img {
+	max-height: 66px !important;
+	width: auto !important;
+}
+
+body .site-header .convoca-fila {
+	padding-block: clamp(0.75rem, 1.4vw, 1.15rem);
+	align-items: center;
+	min-height: 84px;
+}
+
+/* 20.3 La franja superior entra en el mismo sistema de navegación: misma
+   tipografía, mismo relleno y misma respuesta al pasar por encima. */
+body .convoca-topnav a {
+	padding: 0.45rem 0.6rem;
+	border-radius: 999px;
+	font-size: 0.82rem;
+	transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+body .convoca-topnav a:is(:hover, :focus-visible) {
+	background-color: rgba(255, 171, 0, 0.14);
+	color: var(--convoca-ambar);
+}
+
+body .convoca-topnav ul {
+	gap: 0.35rem;
+}
+
+/* Y una línea fina que cose las dos bandas. */
+.convoca-topbar {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* =========================================================================
+   21. EL DESPLEGABLE MÓVIL, A PANTALLA COMPLETA Y DESPLAZABLE
+   =========================================================================
+   Se veía cortado a la mitad porque el bloque de navegación lleva el foco al
+   primer enlace del desplegable al abrirse, y el navegador desplazaba hasta él:
+   con el grupo del menú superior en primer lugar del DOM (aunque se pintara abajo
+   con «order»), el menú abría ya bajado 1.979 px y parecía cortado. Ya está
+   resuelto en el orden del DOM; aquí se remata el comportamiento.
+*/
+@media (max-width: 1199px) {
+	.wp-block-navigation__responsive-container.is-menu-open,
+	.wp-block-navigation__responsive-container[data-wp-class--is-menu-open] {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		height: 100dvh;
+		max-height: 100dvh;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Aire al final para que el último enlace no quede pegado al borde inferior,
+	   que es donde el pulgar no llega bien. */
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
+		padding-bottom: max(2.5rem, env(safe-area-inset-bottom, 0px));
+	}
+
+	/* Los enlaces del menú, con altura de dedo. */
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item__content {
+		padding-block: 0.7rem !important;
+	}
+}
+
+/* =========================================================================
+   22. MÓVIL: SIN FRANJA SUPERIOR, TOGGLE JUNTO AL MENÚ Y SUBMENÚS PLEGADOS
+   ========================================================================= */
+@media (max-width: 1199px) {
+	/* 22.1 La franja uva es de escritorio. En móvil estorbaba y su CTA competía
+	   con las acciones de la portada; los enlaces de esa franja siguen estando,
+	   dentro del desplegable (apartado 17.2). */
+	/* La franja se oculta en móvil. Con «display: none» a secas no bastaba: hay
+	   una regla del CSS crítico del tema padre (que se imprime en línea) que la
+	   deja en flex, así que se gana con especificidad y !important. */
+	body .site-header .convoca-topbar,
+	body .convoca-topbar {
+		display: none !important;
+	}
+
+	/* 22.2 El botón de modo, en la fila de marca y a la izquierda de la
+	   hamburguesa. El de la franja (oculto con ella) ya no se usa en móvil. */
+	.convoca-toggle-fila {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		margin-right: 0.25rem;
+		background: transparent;
+		border: 0;
+		color: var(--convoca-carbon);
+		cursor: pointer;
+		border-radius: 999px;
+	}
+
+	.convoca-toggle-fila:is(:hover, :focus-visible) {
+		background-color: var(--convoca-naranja-tenue);
+	}
+
+	.convoca-toggle-fila svg {
+		width: 22px;
+		height: 22px;
+		fill: currentColor;
+	}
+
+	body .convoca-nav {
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	/* 22.3 Submenús plegados. WordPress no marca estado en estos contenedores
+	   dentro del desplegable (comprobado: sin atributos data-wp-class y con
+	   display:flex por una regla suya), así que se pliegan aquí y se abren con el
+	   acordeón del apartado 22.4. */
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+		display: none !important;
+		position: static;
+		box-shadow: none;
+		background: transparent;
+		padding-left: 0.9rem;
+		border-left: 2px solid var(--convoca-gris-borde);
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > .wp-block-navigation__submenu-container {
+		display: block !important;
+	}
+
+	/* La flecha del desplegable, visible y en su sitio. */
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-icon {
+		display: inline-flex !important;
+		margin-left: 0.5rem;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > .wp-block-navigation-item__content .wp-block-navigation__submenu-icon svg,
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > button .wp-block-navigation__submenu-icon svg {
+		transform: rotate(180deg);
+	}
+}
+
+/* En escritorio este botón no pinta nada: está el de la franja. Va en un bloque
+   propio por ancho, y no detrás del bloque de móvil, porque si no la regla de
+   escritorio gana también en móvil (misma especificidad y va después). */
+@media (min-width: 1200px) {
+	.convoca-toggle-fila {
+		display: none;
+	}
+}
+
+/* =========================================================================
+   23. JERARQUÍA CLARA EN LOS SUBMENÚS DEL DESPLEGABLE
+   =========================================================================
+   Medido antes de tocar: los enlaces hijos salían con el mismo tamaño y el mismo
+   peso que su elemento padre (15,68 px y 600), sin sangría ni marca de apertura,
+   así que un submenú desplegado no se distinguía de la lista principal. Además la
+   sangría y el borde del contenedor no llegaban a aplicarse (los fija WordPress
+   con más especificidad), de ahí los !important.
+*/
+@media (max-width: 1199px) {
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container {
+		display: none !important;
+		position: static !important;
+		box-shadow: none !important;
+		background: transparent !important;
+		width: auto !important;
+		min-width: 0 !important;
+		margin: 0.25rem 0 0.5rem 1rem !important;
+		padding: 0.25rem 0 0.5rem !important;
+		border-left: 2px solid var(--convoca-naranja) !important;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > .wp-block-navigation__submenu-container {
+		display: block !important;
+	}
+
+	/* Los hijos, subordinados: menos tamaño, menos peso, tinta más suave. */
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+		font-size: 0.94rem !important;
+		font-weight: 500 !important;
+		color: #59616a !important;
+		padding: 0.55rem 0.5rem 0.55rem 1.1rem !important;
+		border-radius: 0 999px 999px 0;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content:is(:hover, :focus-visible) {
+		color: var(--convoca-naranja-oscuro) !important;
+		background-color: var(--convoca-naranja-tenue) !important;
+	}
+
+	/* El elemento abierto se nota, y su flecha gira. */
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > .wp-block-navigation-item__content,
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto > button {
+		/* Color literal, no variable: con var() la declaración se descartaba en
+		   este contexto y el elemento abierto no se resaltaba. */
+		color: #b05500 !important;
+		background-color: #fff2e0 !important;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open .convoca-sub-abierto .wp-block-navigation__submenu-icon svg {
+		transform: rotate(180deg) !important;
+	}
+
+	/* El grupo del menú superior, dentro del desplegable, también con su raya. */
+	.convoca-topnav-en-menu {
+		border-left: 0;
+	}
+}
+
+/* =========================================================================
+   24. LA FLECHA DEL DESPLEGABLE, A LA DERECHA Y TOCABLE
+   =========================================================================
+   Medido antes de tocar: el elemento padre va en columna (flex-direction:
+   column), así que la flecha caía a una segunda línea, debajo de la etiqueta; y
+   medía 8x8 px, imposible de acertar con el dedo. Ahora la fila va en horizontal,
+   la etiqueta ocupa el ancho disponible, la flecha se va a la derecha con 44x44
+   (el mismo objetivo táctil que la hamburguesa) y el submenú baja a línea
+   completa.
+*/
+@media (max-width: 1199px) {
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child {
+		display: flex !important;
+		flex-direction: row !important;
+		flex-wrap: wrap !important;
+		align-items: center !important;
+	}
+
+	/* Base cero, no automática: la etiqueta mide el ancho completo del elemento,
+	   y con flex-wrap el reparto se decide ANTES de encoger, así que con base
+	   automática la flecha se iba a la línea siguiente por muchos que fueran los
+	   flex-shrink. Con base cero comparten renglón y la etiqueta se queda con lo
+	   que sobra. */
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation-item__content {
+		flex: 1 1 0% !important;
+		width: auto !important;
+		max-width: 100%;
+		min-width: 0;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-icon,
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > button.wp-block-navigation-submenu__toggle {
+		flex: 0 0 auto;
+		display: inline-flex !important;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		margin: 0 0 0 auto !important;
+		border-radius: 999px;
+		cursor: pointer;
+		-webkit-tap-highlight-color: transparent;
+		touch-action: manipulation;
+	}
+
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-icon:is(:hover, :focus-visible, :active),
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > button.wp-block-navigation-submenu__toggle:is(:hover, :focus-visible, :active) {
+		background-color: #fff2e0;
+	}
+
+	/* El dibujo de la flecha vuelve a su tamaño: el SVG mide 12x12 por naturaleza y
+	   al agrandar el botón se estiraba con él hasta 44x44, que es lo que se veía
+	   enorme. El área táctil sigue siendo de 40x40; el trazo, pequeño. */
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-icon svg {
+		width: 12px;
+		height: 12px;
+	}
+
+	/* Y el submenú, a línea completa, debajo de la fila. */
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-container {
+		flex: 1 0 100%;
+		width: 100%;
+	}
+}
+
+/* =========================================================================
+   25. LA MARCA EN MÓVIL Y EN MODO OSCURO
+   =========================================================================
+   Dos cosas distintas que se ven juntas en el teléfono:
+
+   1) El corte. El logo tiene 480x120 y se pinta a 66 px de alto, pero la fila de
+      la cabecera mide 56: los 5 px de arriba y de abajo quedaban fuera del fondo
+      de la cabecera, así que la marca parecía cortada. Se le da aire a la fila.
+   2) El modo oscuro. El logo está hecho con la paleta de casa: naranja y uva
+      #320028 (medido: el 36 % de sus píxeles son uva). Sobre el carbón de la
+      cabecera, ese uva desaparece. El filtro de abajo es el invertido inteligente
+      (invierte la luz y devuelve el tono): los textos oscuros pasan a blanco
+      (#ffecff) y el naranja se queda naranja. Se hace por CSS, sin tocar el
+      fichero del logo.
+*/
+@media (max-width: 1199px) {
+	/* La fila pasa de 56 a 80 px: el logo se pinta a 60 px de alto y con la fila
+	   anterior los píxeles de arriba y de abajo caían fuera del fondo de la
+	   cabecera, que es el corte que se veía. Va a 88: el logo mantiene 18 px de aire
+	   arriba y 18 abajo a 390, y 14/15 en el ancho más justo (412), sin que la
+	   cabecera se coma media pantalla.
+	   El max-height del logo no se puede imponer (lo fija el theme.json con más
+	   fuerza), así que se le acota el ANCHO: con su proporción 4:1 son 56 px de
+	   alto, y así la marca, el botón de modo y la hamburguesa caben sin desbordar. */
+	/* OJO con la especificidad: la fila tiene una regla propia de la sección 20
+	   escrita como `.site-header .convoca-fila`, que pesa más que `.convoca-fila`.
+	   Con min-height a secas (aunque lleve !important) no subía de 56 px y el logo
+	   de 52 se salía por arriba. Aquí se iguala esa especificidad y se gana. */
+	body .site-header.convoca-header,
+	body .site-header .convoca-fila {
+		min-height: 88px !important;
+	}
+
+	body .site-header .convoca-marca {
+		height: auto !important;
+		min-height: 0 !important;
+		align-items: center !important;
+		max-width: 60%;
+	}
+
+	.convoca-marca .custom-logo {
+		max-width: 100%;
+		height: auto;
+		width: auto;
+		display: block;
+	}
+}
+
+/* El blanco puro deslumbraba. Este es el invertido con un punto menos de luz y
+   de saturación: el texto del logo queda en un malva empolvado (#e7c0e0) que
+   entona con la paleta oscura del tema (uvas #1a0b16 y #241019) y el naranja
+   sigue leyéndose naranja (#d97b11), no dorado. */
+.dark-mode .custom-logo,
+.dark-mode .convoca-marca img {
+	filter: invert(1) hue-rotate(180deg) saturate(0.85) brightness(0.92);
+}
+
+/* =========================================================================
+   26. LA FLECHA DE LOS SUBMENÚS, EN LA MISMA COLUMNA QUE LAS DE NIVEL 1
+   =========================================================================
+   Medido a 390 px: las flechas de primer nivel acababan en 374 (el borde del
+   panel, 16 px del borde de la pantalla) y las de dentro de un submenú en 390, o
+   sea 16 px MÁS a la derecha: justo la sangría de 1rem que lleva el submenú, porque
+   su ancho era el 100 % del elemento padre sin descontarla. De ahí que se vieran
+   pegadas al borde sin aire. Se descuenta la sangría y quedan en la misma columna.
+*/
+@media (max-width: 1199px) {
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-container {
+		width: calc(100% - 1rem) !important;
+		flex: 1 0 calc(100% - 1rem) !important;
+	}
+
+	/* Un pelín de aire a la derecha de la flecha, en ambos niveles, para que no
+	   toque el borde del panel. */
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > .wp-block-navigation__submenu-icon,
+	.wp-block-navigation__responsive-container.is-menu-open li.has-child > button.wp-block-navigation-submenu__toggle {
+		margin-right: 2px !important;
+	}
+}
