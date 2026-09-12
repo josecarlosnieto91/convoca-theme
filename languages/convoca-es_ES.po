@@ -1,0 +1,353 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Convoca 2.8.0\n"
+"Report-Msgid-Bugs-To: https://github.com/josecarlosnieto91/convoca-theme\n"
+"Language: es_ES\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "A non-profit association dedicated to environmental education and citizen participation."
+msgstr "Asociación sin ánimo de lucro dedicada a la educación ambiental y a la participación ciudadana."
+
+msgid "About us"
+msgstr "Conócenos"
+
+msgid "Activities"
+msgstr "Actividades"
+
+msgid "Activities, volunteering, environmental education and local nature, told from the inside."
+msgstr "Actividades, voluntariado, educación ambiental y naturaleza asturiana, contado desde dentro."
+
+msgid "Activity Page"
+msgstr "Página de Actividad"
+
+msgid "Activity information"
+msgstr "Información de la actividad"
+
+msgid "Address / location"
+msgstr "Dirección / lugar"
+
+msgid "Alliances"
+msgstr "Alianzas"
+
+msgid "Animated stats bar."
+msgstr "Barra de estadísticas animada."
+
+msgid "Are you sure? This will delete any customization you made in the Site Editor and revert to the theme files."
+msgstr "¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme."
+
+msgid "Become a member"
+msgstr "Hazte Socio/a"
+
+msgid "Built-in registration form."
+msgstr "Formulario de inscripción integrado."
+
+msgid "Card"
+msgstr "Tarjeta"
+
+msgid "Change language"
+msgstr "Cambiar idioma"
+
+msgid "Charcoal block"
+msgstr "Bloque carbón"
+
+msgid "Community"
+msgstr "¡Conciencia!"
+
+msgid "Community action"
+msgstr "Acción Comunitaria"
+
+msgid "Community centre"
+msgstr "Centro"
+
+msgid "Conservation"
+msgstr "Conservación"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Convoca Help"
+msgstr "Ayuda Convoca"
+
+msgid "Convoca patterns"
+msgstr "Patrones Convoca"
+
+msgid "Convoca table"
+msgstr "Tabla Convoca"
+
+msgid "Convoca theme patterns."
+msgstr "Patrones del theme Convoca."
+
+msgid "Cookie policy"
+msgstr "Política de cookies"
+
+msgid "Coordination"
+msgstr "Coordinación"
+
+msgid "Coordinator box"
+msgstr "Caja Coordinador"
+
+msgid "Creative Commons Attribution-NonCommercial 4.0 license"
+msgstr "Licencia Creative Commons Reconocimiento-NoComercial 4.0"
+
+msgid "DATE"
+msgstr "FECHA"
+
+msgid "Donations"
+msgstr "Donaciones"
+
+msgid "Editorial frame"
+msgstr "Marco editorial"
+
+msgid "Elevated"
+msgstr "Elevada"
+
+msgid "End date and time"
+msgstr "Fecha y hora de fin"
+
+msgid "Environmental education"
+msgstr "Educación Ambiental"
+
+msgid "Explore"
+msgstr "Explora"
+
+msgid "Featured quote"
+msgstr "Cita destacada"
+
+msgid "Fill in the form to sign up for this activity. If you are a member, the discount is applied automatically."
+msgstr "Completa el formulario para inscribirte en esta actividad. Si eres socio/a, el descuento se aplicará automáticamente."
+
+msgid "Fill in these fields only if you want Google to index this content as an event with structured data."
+msgstr "Rellena estos campos solo si quieres que Google indexe este contenido como evento con datos estructurados."
+
+msgid "Frosted glass"
+msgstr "Cristal Esmerilado"
+
+msgid "Full-page sections."
+msgstr "Secciones de página completas."
+
+msgid "Get involved"
+msgstr "Participa"
+
+msgid "Ghost button"
+msgstr "Botón fantasma"
+
+msgid "Go to the homepage"
+msgstr "Ir a la portada"
+
+msgid "Grid of activities or news."
+msgstr "Cuadrícula de actividades o noticias."
+
+msgid "Have questions or want to get involved? Write to us or follow us on social media."
+msgstr "¿Tienes dudas o quieres colaborar? Escríbenos o síguenos en redes sociales."
+
+msgid "Heading with rule"
+msgstr "Título con regla"
+
+msgid "Join as a member, volunteer, or just come and meet us. Every action counts."
+msgstr "Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta."
+
+msgid "Join us"
+msgstr "Asóciate"
+
+msgid "Keep reading"
+msgstr "Sigue leyendo"
+
+msgid "LOCATION"
+msgstr "UBICACIÓN"
+
+msgid "Latest"
+msgstr "Lo último"
+
+msgid "Latest posts"
+msgstr "Últimas entradas publicadas"
+
+msgid "Lead"
+msgstr "Destacado (Lead)"
+
+msgid "Legal notice"
+msgstr "Aviso legal"
+
+msgid "Library"
+msgstr "Biblioteca"
+
+msgid "Links"
+msgstr "Enlaces"
+
+msgid "Links of interest"
+msgstr "Enlaces de interés"
+
+msgid "Looking for something?"
+msgstr "¿No encuentras algo?"
+
+msgid "Main header with text."
+msgstr "Cabecera principal con texto."
+
+msgid "Neighbourhood volunteering, community activities and collaboration networks with other associations."
+msgstr "Voluntariado vecinal, actividades comunitarias y redes de colaboración"
+
+msgid "News"
+msgstr "Noticias"
+
+msgid "No activities are scheduled right now. Check back soon!"
+msgstr "No hay actividades programadas en este"
+
+msgid "No content has been published here yet."
+msgstr "Todavía no hay contenido publicado aquí."
+
+msgid "No posts have been published yet. When they are, they will appear here."
+msgstr "Aún no hay entradas publicadas. Cuando las haya, aparecerán aquí."
+
+msgid "Nothing was found for those terms. Try another word or check the activities and news ."
+msgstr "No se ha encontrado nada con esos términos. Prueba con otra palabra o revisa las actividades y noticias ."
+
+msgid "Open Site Editor (FSE)"
+msgstr "Abrir Editor de Sitios (FSE)"
+
+msgid "Orange band"
+msgstr "Banda naranja"
+
+msgid "Our areas of work"
+msgstr "Nuestras áreas de"
+
+msgid "PRICE"
+msgstr "PRECIO"
+
+msgid "Posts"
+msgstr "Publicaciones"
+
+msgid "Posts in %s"
+msgstr "Publicaciones en %s"
+
+msgid "Privacy"
+msgstr "Privacidad"
+
+msgid "Privacy policy"
+msgstr "Política de privacidad"
+
+msgid "Project Page"
+msgstr "Página de Proyecto"
+
+msgid "Projects"
+msgstr "Proyectos"
+
+msgid "Registration"
+msgstr "Inscripción"
+
+msgid "Related content"
+msgstr "Contenido relacionado"
+
+msgid "Reset %d templates and template parts. They will now be read directly from the theme files."
+msgstr "Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema."
+
+msgid "Resources"
+msgstr "Recursos"
+
+msgid "Restoration projects, clean-ups of natural spaces and protection of local biodiversity."
+msgstr "Proyectos de restauración, limpieza de espacios naturales y protección"
+
+msgid "SPOTS"
+msgstr "PLAZAS"
+
+msgid "Secondary"
+msgstr "Secundario"
+
+msgid "Settings & Help — Convoca Theme"
+msgstr "Configuración y Ayuda — Theme Convoca"
+
+msgid "Skip to content"
+msgstr "Ir al contenido"
+
+msgid "Start date and time"
+msgstr "Fecha y hora de inicio"
+
+msgid "Switch to dark mode"
+msgstr "Cambiar a modo oscuro"
+
+msgid "Switch to light mode"
+msgstr "Cambiar a modo claro"
+
+msgid "Templates & Pages Guide"
+msgstr "Guía de Plantillas y Páginas"
+
+msgid "Theme information"
+msgstr "Información del Theme"
+
+msgid "This content is an event"
+msgstr "Este contenido es un evento"
+
+msgid "This is an FSE (Full Site Editing) theme for associations and community groups. Here you will find a quick start guide."
+msgstr "Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso."
+
+msgid "This page is not here (or it wandered off)"
+msgstr "Esta página no está (o se fue de ruta)"
+
+msgid "Topographic overlay"
+msgstr "Overlay Topográfico"
+
+msgid "Transparency"
+msgstr "Transparencia"
+
+msgid "Use the \"Activity Page\" template for pages that describe a specific activity. It automatically includes the registration form."
+msgstr "Usa la plantilla \"Página de Actividad\" para las páginas que describen una actividad específica. Incluye automáticamente el formulario de inscripción."
+
+msgid "Use the \"Project Page\" template for long-running project sections. It includes project-specific metadata."
+msgstr "Usa la plantilla \"Página de Proyecto\" para secciones de proyectos de largo recorrido. Incluye metadatos específicos del proyecto."
+
+msgid "View activities"
+msgstr "Ver actividades"
+
+msgid "View all activities"
+msgstr "Ver todas las actividades"
+
+msgid "Volunteering"
+msgstr "Voluntariado"
+
+msgid "Want to be part of the change?"
+msgstr "¿Quieres ser parte del cambio?"
+
+msgid "Welcome to Convoca v%s"
+msgstr "Bienvenido a Convoca v%s"
+
+msgid "What we are publishing"
+msgstr "Lo que vamos publicando"
+
+msgid "Who we are"
+msgstr "¿Quiénes somos?"
+
+msgid "Workshops, talks and training activities to foster ecological awareness in the community."
+msgstr "Talleres, charlas y actividades formativas para fomentar la conciencia"
+
+msgid "Years of work"
+msgstr "Años de trayectoria"
+
+msgid "Your description here."
+msgstr "Tu descripción aquí."
+
+msgid "style=\"letter-spacing:-0.02em\">Sowing awareness, shaping tomorrow"
+msgstr "style=\"letter-spacing:-0.02em\">Sembrando conciencia, transformando el mañana"
+
+msgid "style=\"letter-spacing:-0.02em\">Your title here"
+msgstr "style=\"letter-spacing:-0.02em\">Tu título aquí"
+
+msgid "style=\"margin-bottom:var(--wp--preset--spacing--20)\">Upcoming activities"
+msgstr "style=\"margin-bottom:var(--wp--preset--spacing--20)\">Próximas actividades"
+
+msgid "value=\" \" placeholder=\"e.g. Main Street 1, Your Town, Spain\" style=\"width:100%\">"
+msgstr "value=\" \" placeholder=\"Ej: Playa de Rodiles, Villaviciosa, Asturias\" style=\"width:100%\">"
+
+msgid "🎓 School"
+msgstr "🎓 La Escuela"
+
+msgid "👥 Spots: [convoca_actividad_meta field=\"plazas_disponibles\"] available out of [convoca_actividad_meta field=\"plazas_totales\"]"
+msgstr "👥 Plazas: [convoca_actividad_meta field=\"plazas_disponibles\"] disponibles de [convoca_actividad_meta field=\"plazas_totales\"]"
+
+msgid "💰 Price: [convoca_actividad_meta field=\"precio_general\"]€ (member: [convoca_actividad_meta field=\"precio_socio\"]€)"
+msgstr "💰 Precio: [convoca_actividad_meta field=\"precio_general\"]€ (socio/a: [convoca_actividad_meta field=\"precio_socio\"]€)"
+
+msgid "📅 Date: [convoca_actividad_meta field=\"fecha_inicio\"]"
+msgstr "📅 Fecha: [convoca_actividad_meta field=\"fecha_inicio\"]"
+
+msgid "📍 Location: [convoca_actividad_meta field=\"ubicacion\"]"
+msgstr "📍 Ubicación: [convoca_actividad_meta field=\"ubicacion\"]"
