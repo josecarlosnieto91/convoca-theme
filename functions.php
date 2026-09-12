@@ -420,7 +420,9 @@ function convoca_help_page_html(): void {
 							<hr>
 							<a href="<?php echo esc_url( admin_url( 'site-editor.php' ) ); ?>" class="button button-primary"><?php echo esc_html__( 'Abrir Editor de Sitios (FSE)', 'convoca' ); ?></a>
 						</div>
-					</div>
+
+					<!-- Guía de Plantillas y Páginas -->
+					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__( 'Guía de Plantillas y Páginas', 'convoca' ); ?></span></h2>
 						<div class="inside">
 							<h4><?php echo esc_html__( 'Página de Actividad', 'convoca' ); ?></h4>
@@ -451,9 +453,11 @@ function convoca_help_page_html(): void {
 
 				</div>
 			</div>
-		</div>
+			</div>
+			</div>
 	</div>
-	<style>
+
+			<style>
 		.convoca-admin-page h1 { font-family: 'Outfit', sans-serif; font-weight: 700; margin-bottom: 20px; }
 		.convoca-admin-page .postbox .hndle { cursor: default; }
 		.convoca-admin-page .inside ul { margin-top: 10px; }

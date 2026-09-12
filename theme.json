@@ -370,13 +370,13 @@
         },
         "typography": {
           "fontWeight": "700",
-          "fontSize": "medium",
+          "fontSize": "var:preset|font-size|medium",
           "textTransform": "none"
         }
       },
       "core/navigation": {
         "typography": {
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       },
       "core/post-title": {
@@ -506,7 +506,7 @@
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--display)",
           "fontWeight": "700",
-          "fontSize": "medium",
+          "fontSize": "var:preset|font-size|medium",
           "textTransform": "none",
           "letterSpacing": "0",
           "textDecoration": "none"
@@ -627,7 +627,7 @@
         "typography": {
           "fontFamily": "var(--wp--preset--font-family--display)",
           "fontWeight": "700",
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       },
       "core/separator": {
@@ -693,7 +693,7 @@
       },
       "core/post-excerpt": {
         "typography": {
-          "fontSize": "medium",
+          "fontSize": "var:preset|font-size|medium",
           "lineHeight": "1.65"
         },
         "color": {
@@ -735,13 +735,13 @@
       },
       "core/post-navigation-link": {
         "typography": {
-          "fontSize": "small",
+          "fontSize": "var:preset|font-size|small",
           "fontWeight": "700"
         }
       },
       "core/search": {
         "typography": {
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       },
       "core/button": {
@@ -764,22 +764,22 @@
       },
       "core/tag-cloud": {
         "typography": {
-          "fontSize": "small"
+          "fontSize": "var:preset|font-size|small"
         }
       },
       "core/comments": {
         "typography": {
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       },
       "core/details": {
         "typography": {
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       },
       "core/table": {
         "typography": {
-          "fontSize": "medium"
+          "fontSize": "var:preset|font-size|medium"
         }
       }
     }
