@@ -1,39 +1,53 @@
+<!-- Índice del blog (fallback editorial). -->
+
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
 
-<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
-<main class="wp-block-group"
-    style="padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)">
+<!-- wp:group {"tagName":"section","className":"convoca-archivo__cabecera","layout":{"type":"default"}} -->
+<section class="wp-block-group convoca-archivo__cabecera">
+    <!-- wp:group {"className":"convoca-wrap","layout":{"type":"default"}} -->
+    <div class="wp-block-group convoca-wrap">
+        <!-- wp:paragraph {"className":"convoca-eyebrow"} -->
+        <p class="convoca-eyebrow">Actualidad</p>
+        <!-- /wp:paragraph -->
+        <!-- wp:heading {"level":1} -->
+        <h1 class="wp-block-heading">Lo que vamos publicando</h1>
+        <!-- /wp:heading -->
+        <!-- wp:paragraph {"className":"convoca-archivo__descripcion"} -->
+        <p class="convoca-archivo__descripcion">Actividades, voluntariado, educación ambiental y naturaleza asturiana, contado desde dentro.</p>
+        <!-- /wp:paragraph -->
+    </div>
+    <!-- /wp:group -->
+</section>
+<!-- /wp:group -->
 
-    <!-- wp:query {"queryId":1,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true}} -->
+<!-- wp:group {"tagName":"main","anchor":"main-content","className":"convoca-seccion","layout":{"type":"constrained","contentSize":"85rem"}} -->
+<main id="main-content" class="wp-block-group convoca-seccion">
+
+    <!-- wp:group {"className":"convoca-buscador-secundario","layout":{"type":"default"}} -->
+    <div class="wp-block-group convoca-buscador-secundario">
+        <!-- wp:search {"label":"Buscar en Biodevas","showLabel":false,"placeholder":"Buscar…","buttonText":"Buscar"} /-->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:query {"queryId":61,"query":{"perPage":12,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true},"layout":{"type":"default"}} -->
     <div class="wp-block-query">
-
-        <!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
-        <!-- wp:group {"className":"is-style-card","layout":{"type":"constrained"}} -->
-        <div class="wp-block-group is-style-card">
-            <!-- wp:post-featured-image {"isLink":true,"style":{"border":{"radius":"0px"}},"height":"200px"} /-->
-            <!-- wp:group {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","right":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group"
-                style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
-                <!-- wp:post-terms {"term":"category","className":"convoca-tag","style":{"typography":{"fontSize":"0.75rem"}}} /-->
-                <!-- wp:post-title {"level":3,"isLink":true} /-->
-                <!-- wp:post-excerpt {"moreText":"","excerptLength":20} /-->
-                <!-- wp:post-date {"style":{"typography":{"fontSize":"0.82rem"},"color":{"text":"#777777"}}} /-->
+        <!-- wp:post-template {"className":"convoca-archivo__grid","layout":{"type":"default"}} -->
+            <!-- wp:group {"className":"convoca-card","layout":{"type":"default"}} -->
+            <div class="wp-block-group convoca-card">
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"4/5","style":{"border":{"radius":"8px"}}} /-->
+                <!-- wp:post-terms {"term":"category","className":"convoca-card__meta","separator":""} /-->
+                                <!-- wp:post-date {"className":"convoca-card__fecha"} /-->
+                <!-- wp:post-title {"level":2,"isLink":true} /-->
+                <!-- wp:post-excerpt {"excerptLength":22,"moreText":""} /-->
+                <!-- wp:read-more {"content":"Ver más","className":"convoca-vermas"} /-->
             </div>
             <!-- /wp:group -->
-        </div>
-        <!-- /wp:group -->
         <!-- /wp:post-template -->
-
-        <!-- wp:spacer {"height":"var:preset|spacing|30"} -->
-        <div style="height:var(--wp--preset--spacing--30)" aria-hidden="true" class="wp-block-spacer"></div>
-        <!-- /wp:spacer -->
-
-        <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"}} -->
-        <!-- wp:query-pagination-previous {"label":"Anterior"} /-->
-        <!-- wp:query-pagination-numbers /-->
-        <!-- wp:query-pagination-next {"label":"Siguiente"} /-->
+        <!-- wp:query-pagination {"className":"convoca-paginacion","layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"}} -->
+            <!-- wp:query-pagination-previous {"label":"← Anteriores"} /-->
+            <!-- wp:query-pagination-numbers /-->
+            <!-- wp:query-pagination-next {"label":"Siguientes →"} /-->
         <!-- /wp:query-pagination -->
-
     </div>
     <!-- /wp:query -->
 
