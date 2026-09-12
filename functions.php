@@ -626,7 +626,26 @@ function convoca_theme_render_block( $block_content, $block ) {
 	// ¿Traía este bloque tokens de enlace que pueden quedarse sin resolver?
 	$had_link_tokens = (bool) preg_match( '/\{[a-z0-9_]+_(?:url|label)\}/', $block_content );
 
-	$block_content = str_replace( array_keys( $replacements ), array_values( $replacements ), $block_content );
+	// Los valores se escapan ANTES de entrar en el HTML, y segun para que sean: los que van
+	// a un atributo de enlace, como URL; el resto, como texto. Sustituir a ciegas dejaba que
+	// un valor con comillas rompiera el atributo donde cayera. Un token sin valor no se
+	// sustituye: se queda para que la limpieza de abajo retire el enlace entero.
+	$seguros = array();
+	foreach ( $replacements as $convoca_token => $convoca_valor ) {
+		$convoca_valor = (string) $convoca_valor;
+		if ( '' === $convoca_valor ) {
+			continue;
+		}
+		if ( '{copyright_extra}' === $convoca_token ) {
+			$seguros[ $convoca_token ] = wp_kses_post( $convoca_valor );
+		} elseif ( preg_match( '/_(?:url|instagram|facebook|youtube)$/', $convoca_token ) ) {
+			$seguros[ $convoca_token ] = esc_url( $convoca_valor );
+		} else {
+			$seguros[ $convoca_token ] = esc_html( $convoca_valor );
+		}
+	}
+
+	$block_content = str_replace( array_keys( $seguros ), array_values( $seguros ), $block_content );
 
 	if ( $had_link_tokens ) {
 		// Un enlace sin URL configurada no se muestra (ni elementos vacíos).
@@ -636,6 +655,10 @@ function convoca_theme_render_block( $block_content, $block ) {
 			'~<li[^>]*wp-social-link[^>]*>\s*<a[^>]*href="(?:\s*|#)"[^>]*>.*?</a>\s*</li>~is',
 			'~<div class="wp-block-button(?:\s[^"]*)?">\s*<a[^>]*href="(?:\s*|#)"[^>]*>.*?</a>\s*</div>~is',
 			'~<div class="wp-block-buttons[^"]*">\s*</div>~is',
+			// Un enlace cuyo token no se ha podido resolver tampoco se muestra: nunca debe
+			// quedar a la vista un href con llaves.
+			'~<li[^>]*>\s*<a[^>]*href="[^"]*\{[a-z0-9_]+\}[^"]*"[^>]*>.*?</a>\s*</li>~is',
+			'~<div class="wp-block-button(?:\s[^"]*)?">\s*<a[^>]*href="[^"]*\{[a-z0-9_]+\}[^"]*"[^>]*>.*?</a>\s*</div>~is',
 		);
 		foreach ( $patterns as $pattern ) {
 			$cleaned = preg_replace( $pattern, '', $block_content );
@@ -645,8 +668,12 @@ function convoca_theme_render_block( $block_content, $block ) {
 		}
 	}
 
-	// Resolve shortcodes inside FSE patterns (do_blocks does not run them).
-	if ( strpos( $block_content, '[' ) !== false ) {
+	// Resolve shortcodes inside FSE patterns (do_blocks does not run them). Solo en los
+	// bloques que pueden traerlos (patron sincronizado, patron y HTML): no se le da a todo
+	// el HTML renderizado la capacidad de ejecutar shortcodes de cualquier plugin.
+	$convoca_bloques_con_shortcodes = array( 'core/block', 'core/pattern', 'core/html' );
+	if ( in_array( $block['blockName'] ?? '', $convoca_bloques_con_shortcodes, true )
+		&& strpos( $block_content, '[' ) !== false ) {
 		$block_content = do_shortcode( $block_content );
 	}
 	return $block_content;
@@ -799,7 +826,21 @@ function convoca_theme_get_stats(): array {
 		);
 	}
 
-	return apply_filters( 'convoca_theme_stats', $stats );
+	/**
+	 * El sitio puede ajustar estas cifras con su filtro, así que pueden llegar con otra
+	 * forma. Se ensancha el tipo a propósito: lo que no venga bien formado se descarta aquí,
+	 * en la fuente, y quien las pinte puede darlas por buenas.
+	 *
+	 * @var array<string, mixed> $stats
+	 */
+	$stats = apply_filters( 'convoca_theme_stats', $stats );
+
+	return array_filter(
+		$stats,
+		static function ( $dato ): bool {
+			return is_array( $dato ) && isset( $dato['value'], $dato['label'] );
+		}
+	);
 }
 
 /**
@@ -1186,6 +1227,14 @@ function convoca_event_meta_save( $post_id ): void {
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
 	}
+	// El gancho save_post es global: hay que descartar lo que no es una entrada editable
+	// (revisiones, autoguardados y tipos de contenido donde el campo no se muestra).
+	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+	if ( 'post' !== get_post_type( $post_id ) ) {
+		return;
+	}
 
 	// Se escribe SIEMPRE la clave nueva (_convoca_event_*): la lectura ya cae a
 	// la antigua para el contenido histórico que aún no se ha re-editado.
@@ -1208,6 +1257,43 @@ function convoca_event_meta_save( $post_id ): void {
 	}
 }
 add_action( 'save_post', 'convoca_event_meta_save' );
+
+/**
+ * Convierte una fecha escrita por quien edita a ISO 8601 en UTC, o null si no es válida.
+ *
+ * Acepta el formato del campo `datetime-local` (sin zona horaria) y otros habituales. Un
+ * valor vacío o imposible de interpretar devuelve null, para que quien llama decida no
+ * publicar nada en vez de publicar una fecha falsa.
+ *
+ * @param string $valor Fecha tal como se guardó en la meta.
+ * @return string|null Fecha en ISO 8601 con zona UTC, o null.
+ */
+function convoca_theme_iso_datetime( string $valor ): ?string {
+	$valor = trim( $valor );
+	if ( '' === $valor ) {
+		return null;
+	}
+
+	$zona  = wp_timezone();
+	$fecha = false;
+
+	foreach ( array( 'Y-m-d\TH:i', 'Y-m-d H:i', 'Y-m-d\TH:i:s', 'Y-m-d H:i:s' ) as $formato ) {
+		$fecha = \DateTimeImmutable::createFromFormat( $formato, $valor, $zona );
+		if ( false !== $fecha ) {
+			break;
+		}
+	}
+
+	if ( false === $fecha ) {
+		$sello = strtotime( $valor );
+		if ( false === $sello ) {
+			return null;
+		}
+		$fecha = ( new \DateTimeImmutable( '@' . $sello ) )->setTimezone( $zona );
+	}
+
+	return $fecha->setTimezone( new \DateTimeZone( 'UTC' ) )->format( 'c' );
+}
 
 /**
  * JSON-LD de evento en la entrada (marcado manual o pertenencia a las
@@ -1235,9 +1321,20 @@ function convoca_event_schema(): void {
 	}
 
 	$location_address = convoca_get_event_meta( $post_id, '_convoca_event_address' );
-	$iso_start        = ! empty( $start_date ) ? gmdate( 'c', strtotime( $start_date ) ) : get_the_date( 'c' );
-	$end_date         = convoca_get_event_meta( $post_id, '_convoca_event_end_date' );
-	$iso_end          = ! empty( $end_date ) ? gmdate( 'c', strtotime( $end_date ) ) : null;
+
+	// Las fechas se validan antes de publicar el schema: un valor mal escrito por quien edita
+	// no puede acabar en datos estructurados. Y un valor de tipo `datetime-local` viene sin
+	// zona horaria, asi que se interpreta en la del sitio y se convierte a UTC al serializar;
+	// antes se interpretaba en la del servidor y se etiquetaba como UTC, con lo que la hora
+	// del evento salia desplazada.
+	$start_date = convoca_get_event_meta( $post_id, '_convoca_event_start_date' );
+	$iso_start  = convoca_theme_iso_datetime( (string) $start_date );
+	if ( null === $iso_start ) {
+		return;
+	}
+
+	$end_date = convoca_get_event_meta( $post_id, '_convoca_event_end_date' );
+	$iso_end  = convoca_theme_iso_datetime( (string) $end_date );
 
 	$data = array(
 		'@context'            => 'https://schema.org',
