@@ -34,6 +34,9 @@ jobs:
       - name: PHPUnit
         run: vendor/bin/phpunit --no-coverage
 
+      - name: PHPStan (análisis estático, bloquante)
+        run: vendor/bin/phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G
+
   theme-check:
     name: Theme Check (WordPress.org)
     runs-on: ubuntu-latest

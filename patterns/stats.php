@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Convoca Theme
  *
@@ -48,8 +47,8 @@ $convoca_cols = count( $convoca_stats );
 	<!-- wp:columns {"isStackedOnMobile":true} -->
 	<div class="wp-block-columns is-stacked-on-mobile">
 		<?php foreach ( $convoca_stats as $convoca_key => $convoca_stat ) : ?>
-		<!-- wp:column {"width":"<?php echo esc_attr( round( 100 / $convoca_cols, 4 ) ); ?>%"} -->
-		<div class="wp-block-column" style="flex-basis:<?php echo esc_attr( round( 100 / $convoca_cols, 4 ) ); ?>%">
+		<!-- wp:column {"width":"<?php echo esc_attr( (string) round( 100 / $convoca_cols, 4 ) ); ?>%"} -->
+		<div class="wp-block-column" style="flex-basis:<?php echo esc_attr( (string) round( 100 / $convoca_cols, 4 ) ); ?>%">
 			<!-- wp:paragraph {"align":"center","className":"stat-value"} -->
 			<p class="has-text-align-center stat-value"><?php echo esc_html( $convoca_stat['value'] ); ?></p><!-- /wp:paragraph -->
 			<!-- wp:paragraph {"align":"center","className":"stat-label"} -->
