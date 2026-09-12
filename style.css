@@ -1688,23 +1688,14 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 /* =========================================================================
    DISEÑO DEL SITIO — integrado desde el antiguo theme hijo (fase 2, paso 1)
    -------------------------------------------------------------------------
-   Aquí va el sistema visual que vivía en `biodevas-fse`, ya renombrado a
-   `convoca-`. PENDIENTE DE INTEGRACIÓN: por debajo siguen quedando reglas del
+   Aquí va el sistema visual del sitio, integrado desde el antiguo tema hijo y ya
+   renombrado a `convoca-`. PENDIENTE DE INTEGRACIÓN: por debajo siguen quedando reglas del
    theme padre que estas sobrescriben, y parches que existían solo por tener el
    diseño en dos capas (min-height de la cabecera, recorte del titular, relleno
    de #main-content, impresión). Se van quitando en los pasos siguientes,
    midiendo en la demo entre paso y paso.
    ========================================================================= */
-/*
-Theme Name: Biodevas FSE
-Theme URI: https://biodevas.org
-Description: Identidad visual de Biodevas sobre el theme FSE Convoca. Naranja Biodevas como color de acción, verde como secundario, composición editorial con fotografía protagonista. Theme presentacional: no añade lógica de negocio.
-Author: Jose Carlos Nieto Ramos
-Template: convoca
-Version: 2.0.0
-License: GPL-2.0-or-later
-Text Domain: convoca-fse
-*/
+
 
 /* =========================================================================
    1. SISTEMA — tokens que no dependen del Site Editor
@@ -3123,7 +3114,7 @@ Text Domain: convoca-fse
    descolgado.
 */
 
-/* 14.1 UNA sola marca. El logotipo ya dice «BIODEVAS», así que repetir el
+/* 14.1 UNA sola marca. El logotipo ya dice el nombre, así que repetir el
    título del sitio al lado duplicaba la marca. El título se oculta SÓLO a la
    vista: el alt del logotipo está vacío (es decorativo), de modo que el nombre
    accesible del sitio sigue siendo el del título. Sin logotipo, se muestra. */
@@ -3242,7 +3233,7 @@ h1, h2, h3,
    ========================================================================= */
 
 /* 16.1 Si hay logotipo, ni título ni subtítulo en la cabecera: el logotipo ya
-   dice BIODEVAS y «SEMBRANDO FUTURO» lo cuenta el hero. Evita la marca repetida. */
+   dice el nombre y el lema lo cuenta el hero. Evita la marca repetida. */
 .convoca-marca:has(.wp-block-site-logo) .wp-block-site-tagline {
 	display: none;
 }
@@ -3449,7 +3440,7 @@ body .convoca-topbar .wp-block-buttons.header-cta {
 }
 
 /* =========================================================================
-   18. PALETA DE IDENTIDAD DE BIODEVAS — papeles por contraste
+   18. PALETA DE IDENTIDAD DEL SITIO — papeles por contraste
    =========================================================================
    Los cinco colores de la marca, cada uno donde se lee. Medido sobre los fondos
    reales del theme:

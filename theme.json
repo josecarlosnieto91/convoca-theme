@@ -17,12 +17,12 @@
         {
           "slug": "naranja",
           "color": "#ff8700",
-          "name": "Naranja Energía"
+          "name": "Naranja Biodevas"
         },
         {
           "slug": "violeta",
-          "color": "#2A0A1E",
-          "name": "Violeta Ocaso"
+          "color": "#2a0a1e",
+          "name": "Violeta"
         },
         {
           "slug": "granate",
@@ -32,7 +32,7 @@
         {
           "slug": "amarillo",
           "color": "#ffab00",
-          "name": "Amarillo Luz"
+          "name": "Amarillo"
         },
         {
           "slug": "naranja-intenso",
@@ -41,8 +41,8 @@
         },
         {
           "slug": "verde",
-          "color": "#2d5a27",
-          "name": "Verde Biosfera"
+          "color": "#2f5d3a",
+          "name": "Verde bosque"
         },
         {
           "slug": "blanco",
@@ -51,18 +51,93 @@
         },
         {
           "slug": "gris-piedra",
-          "color": "#f4f4f4",
-          "name": "Gris Piedra"
+          "color": "#f4f2ee",
+          "name": "Gris piedra"
         },
         {
           "slug": "gris-medio",
           "color": "#e0e0e0",
-          "name": "Gris Medio"
+          "name": "Gris medio"
         },
         {
           "slug": "antracita",
-          "color": "#1a1a1a",
+          "color": "#22262b",
           "name": "Antracita"
+        },
+        {
+          "slug": "naranja-oscuro",
+          "color": "#b05500",
+          "name": "Naranja oscuro (texto)"
+        },
+        {
+          "slug": "naranja-tenue",
+          "color": "#fff2e0",
+          "name": "Naranja tenue (fondo)"
+        },
+        {
+          "slug": "ambar",
+          "color": "#ffab00",
+          "name": "Ámbar Biodevas"
+        },
+        {
+          "slug": "naranja-rojo",
+          "color": "#ff500a",
+          "name": "Naranja rojo (interacción)"
+        },
+        {
+          "slug": "magenta",
+          "color": "#7d0032",
+          "name": "Magenta profundo (pie)"
+        },
+        {
+          "slug": "uva",
+          "color": "#320028",
+          "name": "Uva (superficie oscura)"
+        },
+        {
+          "slug": "carbon",
+          "color": "#16181b",
+          "name": "Carbón"
+        },
+        {
+          "slug": "gris-texto",
+          "color": "#59616a",
+          "name": "Gris texto"
+        },
+        {
+          "slug": "gris-borde",
+          "color": "#e3ded6",
+          "name": "Gris borde"
+        },
+        {
+          "slug": "hueso",
+          "color": "#fdfbf8",
+          "name": "Hueso (base)"
+        },
+        {
+          "slug": "arena",
+          "color": "#f6f1e9",
+          "name": "Arena"
+        },
+        {
+          "slug": "verde-oscuro",
+          "color": "#1d3b25",
+          "name": "Verde profundo"
+        },
+        {
+          "slug": "verde-claro",
+          "color": "#e8f0e6",
+          "name": "Verde claro"
+        },
+        {
+          "slug": "tierra",
+          "color": "#8d6e63",
+          "name": "Tierra"
+        },
+        {
+          "slug": "azul-titular",
+          "color": "#1c4587",
+          "name": "Azul titular"
         }
       ],
       "gradients": [
@@ -95,6 +170,21 @@
           "slug": "verde-natural",
           "gradient": "linear-gradient(135deg, #2d5a27, #4a8f3f)",
           "name": "Verde Natural"
+        },
+        {
+          "slug": "foto-oscura",
+          "gradient": "linear-gradient(180deg, rgba(10,12,14,0) 38%, rgba(10,12,14,0.78) 100%)",
+          "name": "Velo para foto"
+        },
+        {
+          "slug": "naranja-suave",
+          "gradient": "linear-gradient(135deg, #fff2e0 0%, #fdfbf8 70%)",
+          "name": "Naranja suave"
+        },
+        {
+          "slug": "bosque",
+          "gradient": "linear-gradient(160deg, #1d3b25 0%, #2f5d3a 100%)",
+          "name": "Bosque"
         }
       ]
     },
@@ -102,14 +192,16 @@
       "customFontSize": true,
       "fontFamilies": [
         {
-          "fontFamily": "'Lato', sans-serif",
           "slug": "body",
-          "name": "Lato"
+          "name": "Lato",
+          "fontFamily": "'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          "fontFace": []
         },
         {
-          "fontFamily": "'Outfit', sans-serif",
           "slug": "display",
-          "name": "Outfit"
+          "name": "Outfit",
+          "fontFamily": "'Outfit', 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          "fontFace": []
         }
       ],
       "fontSizes": [
@@ -120,23 +212,33 @@
         },
         {
           "slug": "medium",
-          "size": "1rem",
-          "name": "Normal"
+          "size": "1.0625rem",
+          "name": "Cuerpo"
         },
         {
           "slug": "large",
-          "size": "1.25rem",
-          "name": "Grande"
+          "size": "clamp(1.15rem, 1.5vw, 1.4rem)",
+          "name": "Entradilla"
         },
         {
           "slug": "x-large",
-          "size": "clamp(1.8rem, 3.5vw, 2.6rem)",
-          "name": "Sección"
+          "size": "clamp(1.5rem, 2.4vw, 2.15rem)",
+          "name": "Título pequeño"
         },
         {
           "slug": "xx-large",
-          "size": "clamp(2.4rem, 5.5vw, 4.2rem)",
-          "name": "Impacto"
+          "size": "clamp(2rem, 4.2vw, 3.5rem)",
+          "name": "Título"
+        },
+        {
+          "slug": "meta",
+          "size": "0.8125rem",
+          "name": "Metadatos"
+        },
+        {
+          "slug": "display",
+          "size": "clamp(2.75rem, 7vw, 5.25rem)",
+          "name": "Titular grande"
         }
       ]
     },

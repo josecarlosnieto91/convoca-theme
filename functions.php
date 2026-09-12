@@ -269,7 +269,7 @@ function convoca_style_loader_tag( string $tag, string $handle ): string {
 	if ( 'convoca-google-fonts' === $handle ) {
 		return str_replace( "rel='stylesheet'", "rel='preload' as='style' onload=\"this.onload=null;this.rel='stylesheet'\"", $tag ) .
 			// phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet -- Fallback <noscript> del preload de fuentes; no se puede encolar con wp_enqueue_style().
-			'<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap"></noscript>';
+			'<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Outfit:wght@400..900&display=swap"></noscript>';
 	}
 	return $tag;
 }
@@ -355,11 +355,22 @@ function convoca_theme_scripts() {
 	$theme_version = $version_theme ? $version_theme : '1.0';
 	wp_enqueue_style(
 		'convoca-google-fonts',
-		'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap',
+		'https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Outfit:wght@400..900&display=swap',
 		array(),
 		$theme_version
 	);
-	wp_enqueue_style( 'convoca-theme-style', get_stylesheet_uri(), array( 'convoca-google-fonts' ), $theme_version );
+
+	// Versión = fecha de modificación del fichero. Con la versión del theme
+	// (fija), el navegador cachea la hoja y los cambios de CSS no llegan: se
+	// mide y se diagnostica sobre un estado viejo. Así cada edición invalida la
+	// caché sola.
+	$version_css = @filemtime( get_stylesheet_directory() . '/style.css' );
+	wp_enqueue_style(
+		'convoca-theme-style',
+		get_stylesheet_uri(),
+		array( 'convoca-google-fonts' ),
+		$version_css ? (string) $version_css : $theme_version
+	);
 }
 add_action( 'wp_enqueue_scripts', 'convoca_theme_scripts' );
 
@@ -1046,4 +1057,862 @@ add_filter(
 		}
 		return $excludes;
 	}
+);
+
+/*
+==========================================================================
+ * Diseño y comportamiento del sitio (integrado desde el antiguo theme hijo)
+ * ==========================================================================
+ *
+ * Capa de presentación que vivía en el theme hijo, ya renombrada a `convoca-*`
+ * e integrada aquí para dejar un único theme. Aquí NO hay valores concretos de
+ * una instalación: esos viven en el mu-plugin de sitio.
+ */
+
+/**
+ * Clase de identidad en <body>.
+ *
+ * La hoja de estilos del theme (foco visible, tipografía, superficies) se
+ * apoya en `.convoca-site` para no tocar el editor ni el escritorio.
+ */
+add_filter(
+	'body_class',
+	function ( array $clases ): array {
+		$clases[] = 'convoca-site';
+		return $clases;
+	}
+);
+
+/**
+ * Menús clásicos: se mantienen las mismas ubicaciones (Principal, Superior,
+ * Sociales y Pie) para no perder la gestión de menús del escritorio y para
+ * poder seguir usando los menús existentes desde FSE.
+ */
+add_action(
+	'after_setup_theme',
+	function (): void {
+		register_nav_menus(
+			array(
+				'primary' => 'Navegación principal',
+				'top'     => 'Navegación superior (barra fina)',
+				'socials' => 'Redes sociales',
+				'footer'  => 'Navegación del pie',
+			)
+		);
+	},
+	5
+);
+
+/**
+ * [convoca_menu location="top"] — pinta un menú clásico existente en una
+ * plantilla FSE (los .html de templates/parts no ejecutan PHP).
+ * Mantiene un único origen de datos: el menú real de WordPress.
+ */
+add_shortcode(
+	'convoca_menu',
+	function ( $atts ): string {
+		$atts = shortcode_atts(
+			array(
+				'location' => 'top',
+				'class'    => 'convoca-nav',
+			),
+			$atts,
+			'convoca_menu'
+		);
+
+		if ( ! has_nav_menu( $atts['location'] ) ) {
+			return '';
+		}
+
+		$html = wp_nav_menu(
+			array(
+				'theme_location'  => $atts['location'],
+				'container'       => 'nav',
+				'container_class' => $atts['class'],
+				'menu_class'      => $atts['class'] . '__list',
+				'depth'           => 2,
+				'echo'            => false,
+				'fallback_cb'     => false,
+			)
+		);
+
+		return $html ? $html : '';
+	}
+);
+
+/**
+ * Meta de evento — doble lectura (clave nueva → clave antigua).
+ *
+ * Este theme escribe las metas de evento con las claves `_convoca_event_*`.
+ * La base de datos de producción, sin embargo, conserva 306 entradas guardadas
+ * con las claves antiguas `_biodevas_event_*` (heredadas del theme hijo que se
+ * ha fusionado aquí). Para no perder esos datos se lee PRIMERO la clave nueva
+ * y, si está vacía, se cae a la antigua. Al guardar desde el metabox se escribe
+ * SIEMPRE la clave nueva, de modo que el dato se migra de forma natural la
+ * próxima vez que se edita la entrada.
+ *
+ * @param int    $post_id ID de la entrada.
+ * @param string $new_key Clave nueva (p. ej. '_convoca_event_start_date').
+ * @return string Valor de la meta, o cadena vacía si no hay dato.
+ */
+function convoca_get_event_meta( int $post_id, string $new_key ): string {
+	// Mapa de clave nueva → clave antigua (datos históricos de producción).
+	$legacy_keys = array(
+		'_convoca_event_start_date' => '_biodevas_event_start_date',
+		'_convoca_event_end_date'   => '_biodevas_event_end_date',
+		'_convoca_event_address'    => '_biodevas_event_address',
+		'_convoca_has_event'        => '_biodevas_has_event',
+	);
+
+	$value = get_post_meta( $post_id, $new_key, true );
+	if ( '' !== (string) $value ) {
+		return (string) $value;
+	}
+
+	if ( isset( $legacy_keys[ $new_key ] ) ) {
+		return (string) get_post_meta( $post_id, $legacy_keys[ $new_key ], true );
+	}
+
+	return '';
+}
+
+/**
+ * Metabox «Evento»: datos del evento (Schema.org) para las entradas.
+ */
+function convoca_event_meta_box(): void {
+	add_meta_box(
+		'convoca_event_meta',
+		'Evento',
+		'convoca_event_meta_box_callback',
+		'post',
+		'side',
+		'default'
+	);
+}
+add_action( 'add_meta_boxes', 'convoca_event_meta_box' );
+
+/**
+ * Pinta el bloque de evento en la ficha de edición.
+ *
+ * Lee con la doble lectura de metas, así que funciona igual con los datos
+ * históricos de producción que con los nuevos.
+ *
+ * @param \WP_Post $post Entrada que se está editando.
+ * @return void
+ */
+function convoca_event_meta_box_callback( $post ): void {
+	wp_nonce_field( 'convoca_event_meta', 'convoca_event_meta_nonce' );
+	$start_date = convoca_get_event_meta( $post->ID, '_convoca_event_start_date' );
+	$end_date   = convoca_get_event_meta( $post->ID, '_convoca_event_end_date' );
+	$address    = convoca_get_event_meta( $post->ID, '_convoca_event_address' );
+	$has_event  = convoca_get_event_meta( $post->ID, '_convoca_has_event' );
+	?>
+	<p>
+		<label for="convoca_has_event">
+			<input type="checkbox" id="convoca_has_event" name="convoca_has_event" value="1" <?php checked( $has_event, '1' ); ?>>
+			Este contenido es un evento
+		</label>
+	</p>
+	<p>
+		<label for="convoca_event_start_date">Fecha y hora de inicio</label>
+		<input type="datetime-local" id="convoca_event_start_date" name="convoca_event_start_date"
+			value="<?php echo esc_attr( $start_date ); ?>" style="width:100%">
+	</p>
+	<p>
+		<label for="convoca_event_end_date">Fecha y hora de fin</label>
+		<input type="datetime-local" id="convoca_event_end_date" name="convoca_event_end_date"
+			value="<?php echo esc_attr( $end_date ); ?>" style="width:100%">
+	</p>
+	<p>
+		<label for="convoca_event_address">Dirección / lugar</label>
+		<input type="text" id="convoca_event_address" name="convoca_event_address"
+			value="<?php echo esc_attr( $address ); ?>" placeholder="Ej: Playa de Rodiles, Villaviciosa, Asturias" style="width:100%">
+	</p>
+	<p style="color:#666;font-size:12px;margin-top:8px;">
+		Rellena estos campos solo si quieres que Google indexe este contenido como evento con datos estructurados.
+	</p>
+	<?php
+}
+
+/**
+ * Guarda los datos del evento.
+ *
+ * Escribe SIEMPRE las claves nuevas (_convoca_event_*). Las antiguas se siguen
+ * leyendo mientras dure la migración de los datos de producción.
+ *
+ * @param int $post_id Identificador de la entrada.
+ * @return void
+ */
+function convoca_event_meta_save( $post_id ): void {
+	if ( ! isset( $_POST['convoca_event_meta_nonce'] ) ) {
+		return;
+	}
+	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['convoca_event_meta_nonce'] ) ), 'convoca_event_meta' ) ) {
+		return;
+	}
+	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+		return;
+	}
+	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+		return;
+	}
+
+	// Se escribe SIEMPRE la clave nueva (_convoca_event_*): la lectura ya cae a
+	// la antigua para el contenido histórico que aún no se ha re-editado.
+	update_post_meta( $post_id, '_convoca_has_event', isset( $_POST['convoca_has_event'] ) ? '1' : '0' );
+
+	foreach ( array(
+		'convoca_event_start_date' => '_convoca_event_start_date',
+		'convoca_event_end_date'   => '_convoca_event_end_date',
+		'convoca_event_address'    => '_convoca_event_address',
+	) as $field => $meta_key ) {
+		if ( ! isset( $_POST[ $field ] ) ) {
+			continue;
+		}
+		$value = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
+		if ( '' !== $value ) {
+			update_post_meta( $post_id, $meta_key, $value );
+		} else {
+			delete_post_meta( $post_id, $meta_key );
+		}
+	}
+}
+add_action( 'save_post', 'convoca_event_meta_save' );
+
+/**
+ * JSON-LD de evento en la entrada (marcado manual o pertenencia a las
+ * categorías de actividad).
+ */
+function convoca_event_schema(): void {
+	if ( ! is_single() ) {
+		return;
+	}
+
+	$post_id    = get_the_ID();
+	$has_event  = convoca_get_event_meta( $post_id, '_convoca_has_event' );
+	$start_date = convoca_get_event_meta( $post_id, '_convoca_event_start_date' );
+
+	$in_event_cat = false;
+	foreach ( array( 'actividades', 'local' ) as $cat_slug ) {
+		if ( has_category( $cat_slug ) ) {
+			$in_event_cat = true;
+			break;
+		}
+	}
+
+	if ( '1' !== $has_event && ! $in_event_cat ) {
+		return;
+	}
+
+	$location_address = convoca_get_event_meta( $post_id, '_convoca_event_address' );
+	$iso_start        = ! empty( $start_date ) ? gmdate( 'c', strtotime( $start_date ) ) : get_the_date( 'c' );
+	$end_date         = convoca_get_event_meta( $post_id, '_convoca_event_end_date' );
+	$iso_end          = ! empty( $end_date ) ? gmdate( 'c', strtotime( $end_date ) ) : null;
+
+	$data = array(
+		'@context'            => 'https://schema.org',
+		'@type'               => 'Event',
+		'name'                => get_the_title(),
+		'description'         => wp_trim_words( wp_strip_all_tags( get_the_content() ), 35 ),
+		'url'                 => get_permalink(),
+		'startDate'           => $iso_start,
+		'image'               => (string) get_the_post_thumbnail_url( get_post(), 'large' ),
+		'location'            => array(
+			'@type'   => 'Place',
+			'name'    => ( '' !== $location_address ) ? $location_address : 'Asturias',
+			'address' => array(
+				'@type'          => 'PostalAddress',
+				'addressRegion'  => 'Asturias',
+				'addressCountry' => 'ES',
+			),
+		),
+		'organizer'           => array(
+			'@type' => 'Organization',
+			'name'  => 'Biodevas',
+			'url'   => home_url( '/' ),
+		),
+		'performer'           => array(
+			'@type' => 'Organization',
+			'name'  => 'Biodevas',
+			'url'   => home_url( '/' ),
+		),
+		'offers'              => array(
+			'@type'         => 'Offer',
+			'price'         => '0',
+			'priceCurrency' => 'EUR',
+			'availability'  => 'https://schema.org/InStock',
+			'validFrom'     => get_the_date( 'c' ),
+		),
+		'eventStatus'         => 'https://schema.org/EventScheduled',
+		'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+	);
+
+	if ( $iso_end ) {
+		$data['endDate'] = $iso_end;
+	}
+
+	echo '<script type="application/ld+json">' . "\n";
+	echo wp_json_encode( $data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
+	echo "\n" . '</script>' . "\n";
+}
+add_action( 'wp_head', 'convoca_event_schema', 20 );
+
+/**
+ * Seguimiento de clics en formularios externos (GA4). Si no hay GA cargado, el
+ * script no hace nada.
+ */
+add_action(
+	'wp_head',
+	function (): void {
+		?>
+	<script>
+	(function() {
+		if (typeof gtag === "undefined") return;
+		document.addEventListener("DOMContentLoaded", function() {
+			var fp = /forms\.gle|docs\.google\.com\/forms|google\.com\/forms/i;
+			document.querySelectorAll("a").forEach(function(el) {
+				if (fp.test(el.href)) {
+					el.addEventListener("click", function() {
+						gtag("event", "form_click", {
+							form_url: el.href,
+							page_location: window.location.href
+						});
+					});
+				}
+			});
+		});
+	})();
+	</script>
+		<?php
+	},
+	99
+);
+
+/**
+ * Ocultar la versión de WordPress (endurecimiento heredado del theme clásico).
+ */
+remove_action( 'wp_head', 'wp_generator' );
+add_filter( 'the_generator', '__return_empty_string' );
+add_filter( 'style_loader_src', 'convoca_fse_remove_version', 9999 );
+add_filter( 'script_loader_src', 'convoca_fse_remove_version', 9999 );
+
+/**
+ * Sella los assets con su fecha de modificación y oculta la versión del core.
+ *
+ * @param mixed $src URL del recurso; la traen los filtros de WordPress y no siempre
+ *                    es una cadena (puede llegar vacío o como arreglo).
+ * @return mixed URL con la versión sellada.
+ */
+function convoca_fse_remove_version( $src ) {
+	if ( ! is_string( $src ) || '' === $src ) {
+		return $src;
+	}
+
+	// Las hojas del PROPIO theme se sellan con la FECHA DEL FICHERO, sin importar
+	// quién las encole. Sin esto la URL del CSS no cambia nunca, el navegador
+	// sirve una copia vieja y se acaba midiendo y diagnosticando sobre un estado
+	// que no es el del fichero.
+	if ( false !== strpos( $src, '/themes/' ) ) {
+		$sin_version = strtok( $src, '?' );
+		$en_disco    = str_replace(
+			array( get_template_directory_uri(), get_stylesheet_directory_uri() ),
+			array( get_template_directory(), get_stylesheet_directory() ),
+			$sin_version
+		);
+
+		if ( is_readable( $en_disco ) ) {
+			return add_query_arg( 'ver', (string) filemtime( $en_disco ), $sin_version );
+		}
+
+		return $sin_version;
+	}
+
+	// Core y plugins: se sigue ocultando la versión de WordPress.
+	if ( false !== strpos( $src, '?ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
+	}
+
+	return $src;
+}
+
+/**
+ * Presentación de los datos de evento que YA existen en la instalación.
+ *
+ * Los metas `_convoca_event_start_date` y `_convoca_event_address` los gestiona
+ * el metabox de este mismo theme. Aquí sólo se FORMATEAN para mostrarlos: no se
+ * escribe ni se inventa ningún dato, y si un contenido no tiene fecha de evento
+ * se cae a la fecha de publicación.
+ */
+function convoca_fse_evento_donde(): string {
+	$id = get_the_ID();
+	if ( ! $id ) {
+		return '';
+	}
+	$dir = (string) convoca_get_event_meta( $id, '_convoca_event_address' );
+	$dir = trim( preg_replace( '/\s+/', ' ', $dir ) );
+	// Se muestra sólo el municipio/lugar: lo que va tras la primera coma suele
+	// ser la dirección postal completa, que no aporta en una tarjeta.
+	if ( strlen( $dir ) > 60 ) {
+		$partes = explode( ',', $dir );
+		$dir    = trim( $partes[0] );
+	}
+	return $dir;
+}
+
+add_shortcode(
+	'convoca_cuando',
+	function (): string {
+		$texto = convoca_fse_evento_cuando();
+		if ( '' === $texto ) {
+			return '';
+		}
+		// <time datetime> con el ISO real del evento: es la fecha legible para una
+		// persona y la que leen los buscadores y los calendarios. Al retirar la
+		// fecha de publicación no se puede perder la semántica de la fecha.
+		$id  = get_the_ID();
+		$iso = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_start_date' ) : '';
+
+		return sprintf(
+			'<span class="convoca-dato-evento convoca-dato-evento--cuando"><time datetime="%1$s">%2$s</time></span>',
+			esc_attr( $iso ),
+			esc_html( $texto )
+		);
+	}
+);
+
+add_shortcode(
+	'convoca_donde',
+	function (): string {
+		$texto = convoca_fse_evento_donde();
+		return $texto ? '<span class="convoca-dato-evento convoca-dato-evento--donde">' . esc_html( $texto ) . '</span>' : '';
+	}
+);
+
+/**
+ * Una sola fecha por entrada: la que informa.
+ *
+ * En una actividad, la fecha de publicación es ruido al lado de la fecha de la
+ * actividad. Si el contenido tiene fecha de evento, se retira el bloque de
+ * fecha de publicación y queda el dato del evento, que sale por [convoca_cuando].
+ */
+add_filter(
+	'render_block_core/post-date',
+	function ( $block_content ) {
+		if ( ! is_singular() ) {
+			return $block_content;
+		}
+		$cuando = convoca_get_event_meta( get_the_ID(), '_convoca_event_start_date' );
+		return $cuando ? '' : $block_content;
+	}
+);
+
+/**
+ * Etiquetas del menú sin emojis.
+ *
+ * Los emojis de los elementos de menú son contenido (los puso quien editó el
+ * menú), así que NO se tocan: se limpian al pintarlos. Por eso funciona igual
+ * el día que se migre, y si algún día se quieren recuperar, siguen estando en
+ * el menú.
+ *
+ * @param string $texto Texto de entrada.
+ * @return string Texto sin emojis.
+ */
+function convoca_fse_sin_emojis( string $texto ): string {
+	// Emojis + modificadores + caracteres invisibles que se cuelan con ellos
+	// (espacio de ancho cero, espacios finos, marca de dirección...).
+	$emoji = '/[\x{1F000}-\x{1FAFF}\x{1F1E6}-\x{1F1FF}\x{2190}-\x{21FF}\x{2300}-\x{27BF}'
+		. '\x{2B00}-\x{2BFF}\x{FE0E}\x{FE0F}\x{200B}-\x{200F}\x{2000}-\x{200A}'
+		. '\x{2060}\x{200D}\x{E0000}-\x{E007F}]+/u';
+
+	$limpio = preg_replace( $emoji, '', $texto );
+	if ( null === $limpio ) {
+		return $texto;
+	}
+
+	return trim( preg_replace( '/\s{2,}/', ' ', $limpio ) );
+}
+
+/**
+ * El bloque de navegación NO pasa por los filtros del menú clásico: pinta cada
+ * elemento con su propio bloque, así que la etiqueta hay que limpiarla aquí.
+ * Se limpia el texto de cada enlace (y de los submenús, que van anidados).
+ *
+ * @param string $html Texto de entrada.
+ * @return string Texto sin emojis.
+ */
+function convoca_fse_limpiar_emojis_enlaces( string $html ): string {
+	$limpio = preg_replace_callback(
+		'/(<a\b[^>]*>)(.*?)(<\/a>)/s',
+		function ( $m ) {
+			return $m[1] . convoca_fse_sin_emojis( $m[2] ) . $m[3];
+		},
+		$html
+	);
+
+	return null === $limpio ? $html : $limpio;
+}
+
+add_filter(
+	'render_block_core/navigation-link',
+	function ( $block_content ) {
+		return convoca_fse_limpiar_emojis_enlaces( (string) $block_content );
+	}
+);
+
+add_filter(
+	'render_block_core/navigation-submenu',
+	function ( $block_content ) {
+		return convoca_fse_limpiar_emojis_enlaces( (string) $block_content );
+	}
+);
+
+// Cubre las dos vías: el menú clásico por wp_nav_menu y el bloque de navegación
+// cuando lee el menú clásico (los dos pasan por wp_setup_nav_menu_item).
+add_filter(
+	'wp_setup_nav_menu_item',
+	function ( $item ) {
+		if ( isset( $item->title ) ) {
+			$item->title = convoca_fse_sin_emojis( (string) $item->title );
+		}
+		return $item;
+	}
+);
+
+add_filter(
+	'nav_menu_item_title',
+	function ( $titulo ) {
+		return convoca_fse_sin_emojis( (string) $titulo );
+	}
+);
+
+/**
+ * En móvil, el menú «Superior» viaja dentro del menú principal.
+ *
+ * En una pantalla de móvil la franja oscura es un apretón de enlaces: se
+ * esconden y se añaden dentro del desplegable del menú principal, en un grupo
+ * propio y separado. En escritorio no cambia nada, porque el bloque inyectado
+ * sólo se muestra dentro del desplegable.
+ */
+add_filter(
+	'render_block_core/navigation',
+	function ( $block_content, $block ) {
+		if ( ! is_string( $block_content ) || false === strpos( $block_content, 'wp-block-navigation__responsive-container-content' ) ) {
+			return $block_content;
+		}
+
+		$enlaces = do_shortcode( '[convoca_menu location="top" class="convoca-topnav"]' );
+		if ( '' === $enlaces ) {
+			return $block_content;
+		}
+
+		$grupo = '<div class="convoca-topnav-en-menu">' . $enlaces . '</div>';
+
+		// Se inserta al FINAL del contenido del desplegable, no al principio: el
+		// bloque de navegación lleva el foco al primer enlace, y si el grupo va
+		// primero el menú abre desplazado hasta él y parece cortado.
+		$apertura = 'wp-block-navigation__responsive-container-content';
+		$pos      = strpos( $block_content, $apertura );
+		if ( false === $pos ) {
+			return $block_content;
+		}
+
+		$desde = strpos( $block_content, '>', $pos ) + 1;
+		$nivel = 1;
+		$i     = $desde;
+		$largo = strlen( $block_content );
+
+		while ( $i < $largo && $nivel > 0 ) {
+			$abre   = strpos( $block_content, '<div', $i );
+			$cierra = strpos( $block_content, '</div>', $i );
+
+			if ( false === $cierra ) {
+				break;
+			}
+
+			if ( false !== $abre && $abre < $cierra ) {
+				++$nivel;
+				$i = $abre + 4;
+			} else {
+				--$nivel;
+				$i = $cierra + 6;
+			}
+		}
+
+		if ( 0 !== $nivel ) {
+			return $block_content;
+		}
+
+		$cierre_contenedor = $i - 6;
+
+		return substr( $block_content, 0, $cierre_contenedor ) . $grupo . substr( $block_content, $cierre_contenedor );
+	},
+	10,
+	2
+);
+
+/**
+ * En la entrada, fuera la imagen destacada.
+ *
+ * La destacada se usa recortada en las rejillas (4/5), y en una entrada a ancho
+ * completo se ve pequeña y borrosa. El contenido ya trae su imagen a tamaño
+ * completo, así que en la vista individual sobra: se retira SOLO si el contenido
+ * tiene alguna imagen, para no dejar sin ilustración a una entrada que no la
+ * lleve dentro.
+ */
+add_filter(
+	'render_block_core/post-featured-image',
+	function ( $block_content, $block ) {
+		if ( ! is_singular( 'post' ) ) {
+			return $block_content;
+		}
+		$id           = get_the_ID();
+		$contenido    = $id ? (string) get_post_field( 'post_content', $id ) : '';
+		$tiene_imagen = ( false !== strpos( $contenido, 'wp:image' ) ) || ( false !== strpos( $contenido, '<img' ) );
+
+		return $tiene_imagen ? '' : $block_content;
+	},
+	10,
+	2
+);
+
+/**
+ * Ninguna fecha de publicación: sólo fechas de actividad.
+ *
+ * Una fecha de publicación junto a la fecha del evento se lee como duplicada, y
+ * la de publicación no le sirve a nadie en una actividad. Regla:
+ *   - en la entrada y las páginas, no se pinta;
+ *   - en las rejillas, se pinta la fecha DEL EVENTO si el contenido la tiene, y
+ *     si no la tiene, no se pinta nada (nada de caer a la de publicación).
+ */
+add_filter(
+	'render_block_core/post-date',
+	function ( $block_content, $block ) {
+		// Dentro de una rejilla, get_the_ID() NO devuelve la entrada de la tarjeta:
+		// el dato fiable es el contexto del bloque.
+		$id = isset( $block['context']['postId'] ) ? (int) $block['context']['postId'] : (int) get_the_ID();
+
+		if ( is_singular() ) {
+			return '';
+		}
+
+		$inicio = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_start_date' ) : '';
+		if ( '' === $inicio ) {
+			return '';
+		}
+
+		$ts = strtotime( $inicio );
+		if ( ! $ts ) {
+			return '';
+		}
+
+		$clase = isset( $block['attrs']['className'] ) ? $block['attrs']['className'] : '';
+		return sprintf(
+			'<div class="wp-block-post-date convoca-fecha-evento %1$s"><span class="convoca-dato-evento convoca-dato-evento--cuando"><time datetime="%2$s">%3$s</time></span></div>',
+			esc_attr( $clase ),
+			esc_attr( $inicio ),
+			esc_html( date_i18n( 'j \\d\\e F', $ts ) )
+		);
+	},
+	10,
+	2
+);
+
+/**
+ * La fecha del evento nunca cae a la de publicación.
+ *
+ * Antes, un contenido sin fecha de evento mostraba su fecha de publicación
+ * disfrazada de fecha de actividad. Ahora, sin fecha de evento, no hay fecha.
+ */
+function convoca_fse_evento_cuando(): string {
+	$id  = get_the_ID();
+	$ini = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_start_date' ) : '';
+	$fin = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_end_date' ) : '';
+
+	if ( '' === $ini ) {
+		return '';
+	}
+
+	$ts   = strtotime( $ini );
+	$text = $ts ? date_i18n( 'j \\d\\e F, H:i', $ts ) : $ini;
+
+	if ( '' !== $fin && substr( $fin, 0, 10 ) !== substr( $ini, 0, 10 ) ) {
+		$tsf  = strtotime( $fin );
+		$text = sprintf( '%s – %s', $text, $tsf ? date_i18n( 'j \\d\\e F', $tsf ) : $fin );
+	}
+
+	return $text;
+}
+
+/**
+ * Contenido relacionado: entradas de la MISMA categoría que la actual.
+ *
+ * Se resuelve en PHP porque el bloque de consulta no puede leer las categorías
+ * de la entrada que se está viendo. Es sólo presentación: no crea ni modifica
+ * contenido, y si no hay relacionadas no pinta nada.
+ */
+add_shortcode(
+	'convoca_relacionadas',
+	function (): string {
+		$id = get_the_ID();
+		if ( ! $id ) {
+			return '';
+		}
+
+		$cats = wp_get_post_categories( $id );
+		$q    = new WP_Query(
+			array(
+				'post_type'           => 'post',
+				'post_status'         => 'publish',
+				'posts_per_page'      => 3,
+				'post__not_in'        => array( $id ),
+				'ignore_sticky_posts' => true,
+				'category__in'        => $cats ? $cats : array(),
+			)
+		);
+
+		if ( ! $q->have_posts() ) {
+			wp_reset_postdata();
+			return '';
+		}
+
+		$salida = '<ul class="convoca-grid-actividades convoca-relacionadas__lista">';
+		while ( $q->have_posts() ) {
+			$q->the_post();
+			$salida .= '<li class="convoca-card">';
+			if ( has_post_thumbnail() ) {
+				$salida .= '<a class="convoca-card__media" href="' . esc_url( get_permalink() ) . '" tabindex="-1" aria-hidden="true">'
+				. get_the_post_thumbnail( null, 'medium_large', array( 'loading' => 'lazy' ) ) . '</a>';
+			}
+			$salida .= '<h3 class="convoca-card__titulo"><a href="' . esc_url( get_permalink() ) . '">' . esc_html( get_the_title() ) . '</a></h3>';
+			$salida .= '<span class="convoca-card__fecha">' . esc_html( get_the_date( 'j \\d\\e F, Y' ) ) . '</span>';
+			$salida .= '</li>';
+		}
+		$salida .= '</ul>';
+		wp_reset_postdata();
+
+		return $salida;
+	}
+);
+
+/**
+ * Estilos de bloque propios del diseño del sitio.
+ *
+ * Lo que en un theme clásico pedía un plugin o CSS a mano, en FSE se ofrece como
+ * estilo de bloque: quien edita elige «Banda naranja» o «Marco editorial» en el
+ * panel de estilos y no tiene que escribir una clase.
+ */
+function convoca_register_site_block_styles(): void {
+	$estilos = array(
+		array( 'core/group', 'convoca-banda-naranja', __( 'Banda naranja (Biodevas)', 'convoca-theme' ) ),
+		array( 'core/group', 'convoca-bloque-carbon', __( 'Bloque carbón (Biodevas)', 'convoca-theme' ) ),
+		array( 'core/image', 'convoca-marco', __( 'Marco editorial', 'convoca-theme' ) ),
+		array( 'core/button', 'convoca-fantasma', __( 'Botón fantasma', 'convoca-theme' ) ),
+		array( 'core/quote', 'convoca-cita', __( 'Cita destacada', 'convoca-theme' ) ),
+		array( 'core/heading', 'convoca-regla', __( 'Título con regla', 'convoca-theme' ) ),
+	);
+
+	foreach ( $estilos as $estilo ) {
+		register_block_style(
+			$estilo[0],
+			array(
+				'name'  => $estilo[1],
+				'label' => $estilo[2],
+			)
+		);
+	}
+}
+add_action( 'init', 'convoca_register_site_block_styles' );
+
+/**
+ * Acordeón de los submenús del desplegable móvil.
+ *
+ * WordPress no marca estado en los submenús dentro del desplegable (comprobado
+ * en el DOM: sin atributos data-wp-class y con display:flex por una regla suya),
+ * así que se pliegan por CSS y se abren aquí, al tocar la flecha. En escritorio
+ * no se toca nada: el desplegable de ratón sigue siendo el del bloque.
+ */
+add_action(
+	'wp_footer',
+	function () {
+		if ( is_admin() ) {
+			return;
+		}
+		?>
+	<script>
+	document.addEventListener( 'click', function ( evento ) {
+		var flecha = evento.target.closest( '.wp-block-navigation__submenu-icon, .wp-block-navigation-submenu__toggle' );
+		if ( ! flecha ) {
+			return;
+		}
+
+		var item = flecha.closest( '.has-child' );
+		var desplegable = item ? item.closest( '.wp-block-navigation__responsive-container.is-menu-open' ) : null;
+		if ( ! item || ! desplegable ) {
+			return;
+		}
+
+		evento.preventDefault();
+		item.classList.toggle( 'convoca-sub-abierto' );
+
+		var control = item.querySelector( 'button[aria-expanded]' );
+		if ( control ) {
+			control.setAttribute( 'aria-expanded', item.classList.contains( 'convoca-sub-abierto' ) ? 'true' : 'false' );
+		}
+	} );
+	</script>
+		<?php
+	},
+	20
+);
+
+/**
+ * Una sola categoría en las tarjetas.
+ *
+ * Con varias categorías asignadas, la línea de metadatos se estiraba hasta
+ * ocupar varios renglones (en la portada hay una tarjeta con seis). En las
+ * tarjetas se queda la primera y el resto se ve al entrar en la entrada, que
+ * sigue pintando el bloque completo. Se filtra el HTML ya renderizado del
+ * bloque, nunca el contenido: no se toca ninguna entrada ni sus categorías.
+ */
+add_filter(
+	'render_block_core/post-terms',
+	function ( $html, $block ) {
+		if ( 'category' !== ( $block['attrs']['term'] ?? '' ) || is_singular() ) {
+			return $html;
+		}
+
+		// La etiqueta es la CATEGORÍA PRINCIPAL elegida en la entrada (Yoast), no
+		// la primera que devuelva WordPress: es la que el equipo marca a mano para
+		// cada contenido. Si no hay principal, se cae a la primera asignada.
+		$term    = null;
+		$post_id = function_exists( 'get_the_ID' ) ? get_the_ID() : 0;
+		if ( $post_id ) {
+			$principal = (int) get_post_meta( $post_id, '_yoast_wpseo_primary_category', true );
+			if ( $principal ) {
+				$term = get_term( $principal, 'category' );
+			}
+		}
+		if ( ! $term || is_wp_error( $term ) ) {
+			if ( ! preg_match( '~<a\b[^>]*href="([^"]+)"~', $html, $m ) ) {
+				return $html;
+			}
+			$term = get_term_by( 'slug', basename( (string) wp_parse_url( $m[1], PHP_URL_PATH ) ), 'category' );
+		}
+		if ( ! $term ) {
+			return $html;
+		}
+
+		// Se conserva el contenedor tal cual y dentro va un único enlace.
+		if ( ! preg_match( '~^(<div\b[^>]*>).*(</div>)$~s', $html, $caja ) ) {
+			return $html;
+		}
+
+		return $caja[1] . sprintf(
+			'<a href="%s" rel="tag">%s</a>',
+			esc_url( (string) get_term_link( $term ) ),
+			esc_html( $term->name )
+		) . $caja[2];
+	},
+	10,
+	2
 );
