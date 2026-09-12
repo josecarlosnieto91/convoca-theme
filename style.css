@@ -1484,18 +1484,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         overflow: hidden !important;
     }
 
-    /* Compact nav items on mobile */
-    .wp-block-navigation__responsive-container-open {
-        width: 26px !important;
-        height: 26px !important;
-        flex-shrink: 0 !important;
-    }
-
-    .wp-block-navigation__responsive-container-open svg {
-        width: 18px !important;
-        height: 18px !important;
-    }
-
     /* Hamburger button pushed to the right edge of the header */
     .site-header .wp-block-navigation {
         margin-left: auto !important;
