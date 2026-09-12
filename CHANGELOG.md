@@ -1,5 +1,39 @@
 # Changelog - Convoca Theme
 
+## 2.8.0 (2026-09-12)
+
+**The theme is now generic and sellable.** No data from any particular installation is left
+inside it: texts, links, phone numbers and figures arrive through filters.
+
+- **Removed:** content and paths from the site the theme was built for, in 10 files (footer,
+  sidebar, five patterns, three templates). Everything now comes from installation filters.
+- **Changed:** the front page, footer and sidebar shipped with the theme are generic samples.
+  The templates a site edits itself live in its own database, as WordPress intends.
+- **Removed:** three templates bound to a post type the theme does not register
+  (`archive-actividad`, `single-actividad`, `page-actividad`): unverifiable and dead weight.
+- **Fixed:** event JSON-LD. Dates are validated before publishing and read in the site's
+  timezone; an unreadable date no longer becomes 1970.
+- **Fixed:** the event meta box no longer runs on revisions, autosaves or other post types.
+- **Fixed:** the block filter escapes values according to where they land (URL, text or
+  allowed HTML), and a placeholder with no value is removed with its link instead of being
+  printed.
+- **Fixed:** community figures are validated at the source, so a filtered structure cannot
+  break the pattern.
+- **Fixed:** the dark mode toggle exposes `aria-pressed` from the first paint, not only after
+  being used.
+- **Fixed:** `{site_title}` in `parts/hero.html` was never declared and would have printed
+  literally. Now uses `{site_name}`.
+- **Added:** `contact` and `featured` as link keys so the theme's own parts reference nothing
+  outside the theme.
+- **Accessibility:** the site logo, icon and custom logo are no longer rounded.
+- **Performance:** no `transition: all` left; the browser only watches the properties that
+  change.
+- **i18n:** source strings in English, text domain `convoca`, `.pot` included. The price card
+  badge moved out of the CSS into a translatable attribute.
+- **Docs:** README rewritten for buyers: what it offers, how to configure it, every filter and
+  every placeholder, with examples. Version header fixed (`convoca-theme` → `convoca`).
+- **Repo:** the build folder is no longer versioned.
+
 ## 2.7.0 (2026-08-07)
 - **Refactor:** Eliminada toda la lógica de negocio (shortcodes de actividad, hooks de datos, JSON-LD) — migrada a los plugins. El theme queda 100% presentacional
 - **Fix:** Selector de idioma con aria-label y dropdown completo (sin cortes)
