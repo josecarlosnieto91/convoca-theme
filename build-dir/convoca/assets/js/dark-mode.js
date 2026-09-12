@@ -16,6 +16,12 @@
             html.classList.remove('dark-mode');
         }
         try { localStorage.setItem(storageKey, mode); } catch(e) {}
+        reflejarEstado(mode);
+    }
+
+    // El estado del boton tiene que estar expuesto desde el primer pintado, no solo
+    // despues de pulsarlo: quien use lector de pantalla necesita saber como esta.
+    function reflejarEstado(mode) {
         toggles.forEach(function(toggle) {
             toggle.setAttribute('aria-label', mode === 'dark' ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
             toggle.setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
@@ -31,6 +37,7 @@
     if (initialMode === 'dark') {
         html.classList.add('dark-mode');
     }
+    reflejarEstado(initialMode);
 
     toggles.forEach(function(toggle) {
         toggle.addEventListener('click', function() {
