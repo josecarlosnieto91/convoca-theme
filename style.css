@@ -808,13 +808,24 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 /* ---------- Cards ---------- */
+/* La tarjeta sobre fondo blanco: lo que la hacía leer apretada no era el color de
+   fondo (ya era blanco) sino el halo cálido del preset de sombra y el texto pegado al
+   borde (medido: 0 px). Sin halo, el blanco manda y el conjunto respira. El relleno
+   interior da aire al texto; la imagen destacada sangra hasta el borde para no cambiar
+   las tarjetas con foto. */
 .convoca-card,
 .is-style-card {
     background: var(--wp--preset--color--blanco);
     border-radius: var(--wp--custom--radius--default);
     overflow: hidden;
-    box-shadow: var(--wp--preset--shadow--card);
+    padding: 1.15rem;
+    box-shadow: none;
     transition: transform var(--wp--custom--transition), box-shadow var(--wp--custom--transition);
+}
+
+.convoca-card>.wp-block-post-featured-image,
+.is-style-card>.wp-block-post-featured-image {
+    margin: -1.15rem -1.15rem 0;
 }
 
 .convoca-card:hover,
