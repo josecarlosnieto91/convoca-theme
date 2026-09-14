@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.8.1
+Version: 2.8.2
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -4180,4 +4180,21 @@ body .convoca-topnav ul {
 .dark-mode .convoca-participa__acciones .wp-block-button__link {
     background: rgba(255, 135, 0, 0.85) !important;
     color: #0f1115 !important;
+}
+
+/* ── BOTONES DE LA BANDA «PARTICIPA» EN MODO OSCURO (medido por píxeles, 2026-09-13) ──────
+   El tema pinta los botones en oscuro con un naranja translúcido (`rgba(255,135,0,0.85)`), que
+   sobre la superficie oscura de esta banda se queda en un marrón apagado: medido, el primer CTA
+   daba fondo rgb(101,64,23) con tinta rgb(19,21,25) = 2,0:1, por debajo del mínimo de 3:1 para
+   un botón. El otro salía a 6,04:1 por tener el fondo opaco, así que los dos CTA ni siquiera se
+   veían iguales. Aquí el naranja va opaco, como en modo claro: mismo aspecto y misma lectura. */
+.dark-mode .convoca-participa__acciones .wp-block-button__link {
+    background-color: var(--dark-orange) !important;
+    border-color: var(--dark-orange) !important;
+    color: #0F1115 !important;
+}
+.dark-mode .convoca-participa__acciones .wp-block-button__link:hover {
+    background-color: var(--dark-amber) !important;
+    border-color: var(--dark-amber) !important;
+    color: #0F1115 !important;
 }
