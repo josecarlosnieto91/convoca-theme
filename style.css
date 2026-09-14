@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.5
+Version: 2.9.6
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -2680,14 +2680,28 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .convoca-footer__legal-interior {
 	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-ancho));
 	margin-inline: auto;
+	/* Las redes encima y el texto debajo, los dos pegados a la izquierda. */
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 0.75rem 1.5rem;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	gap: 0.85rem;
 	padding-block: 1.15rem;
 	font-size: 0.82rem;
 	color: rgba(255, 255, 255, 0.6);
+}
+
+/* En línea: que el bloque de redes no se encoja (medía 23 px, lo que es un icono) ni
+   parta la fila. Es lo que las apilaba en columna. */
+.convoca-footer__legal-interior .wp-block-social-links {
+	/* El sitio trae este bloque como rejilla de una columna (estilos globales), y así los
+	   iconos salían apilados en vertical midiendo 23 px de ancho, lo que es un icono. */
+	display: flex;
+	flex-wrap: nowrap;
+	flex: 0 0 auto;
+	width: auto;
+	margin: 0;
+	gap: 0.6rem;
 }
 
 .convoca-footer__legal a { color: rgba(255, 255, 255, 0.75); }
@@ -3115,15 +3129,17 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
    columna, las cinco entradas de la página llenan exactamente dos filas. */
 .convoca-portada-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-/* La primera entrada ocupa dos columnas y se compone en horizontal (imagen +
-   texto). Se hace por CSS sobre el mismo listado: sin consultas duplicadas. */
+/* La primera entrada ocupa dos columnas del listado, pero se compone como las demás:
+   imagen a todo el ancho del cuadro arriba y texto debajo. Antes se partía en dos
+   columnas (imagen 0.72fr + texto 1fr) y la imagen solo ocupaba 353 px de los 819 del
+   cuadro, así que parecía recortada al lado de las otras. */
 .convoca-portada-grid > li:first-child { grid-column: span 2; }
 
 .convoca-portada-grid > li:first-child .convoca-card {
-	display: grid;
-	grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
-	gap: clamp(1rem, 2vw, 2rem);
-	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: 0.85rem;
+	align-items: stretch;
 }
 
 .convoca-portada-grid > li:first-child .convoca-card__cuerpo {
