@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.8.2
+Version: 2.8.3
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -148,14 +148,12 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode .wp-block-search__inside-wrapper {
     background: rgba(35, 38, 46, 0.5) !important;
     border: 1px solid rgba(255, 135, 0, 0.08) !important;
-    border-radius: 12px !important;
     overflow: hidden;
 }
 .dark-mode .wp-block-search__input {
     background: transparent !important;
     color: #F4F6F8 !important;
     border: none !important;
-    padding: 0.85rem 1rem !important;
 }
 .dark-mode .wp-block-search__input::placeholder {
     color: #8A93A3 !important;
@@ -164,8 +162,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     background: transparent !important;
     color: var(--dark-amber) !important;
     border: none !important;
-    padding: 0.85rem 1.2rem !important;
-    font-weight: 450 !important;
     transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .dark-mode .wp-block-search__button:hover {
@@ -239,30 +235,31 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     background: rgba(36, 22, 29, 0.35) !important;
 }
 
-/* ── TIPOGRAFÍA EDITORIAL ── */
+/* ── TIPOGRAFÍA ────────────────────────────────────────────────────────────────
+   Sólo color. Antes esta sección cambiaba en modo oscuro el peso, el espaciado
+   entre letras y la altura de línea (p y li a 1.8, h1 1.05, h2 1.15), así que al
+   alternar de modo se movía todo: medido en una tarjeta, el interlineado pasaba de
+   31,478 a 34,3397 px y el bloque crecía 62 px. Regla: el modo oscuro cambia el
+   color, nunca las medidas. */
 .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4 {
-    letter-spacing: -0.025em;
     color: #F4F6F8;
 }
-.dark-mode h1 { font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; }
-.dark-mode h2 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.15; }
-.dark-mode h3 { font-weight: 600; letter-spacing: -0.01em; }
-.dark-mode h4 { font-weight: 500; color: var(--dark-amber); }
+.dark-mode h4 { color: var(--dark-amber); }
 .dark-mode h5, .dark-mode h6 { color: #F4F6F8; }
 .dark-mode p, .dark-mode li {
     color: var(--dark-text-secondary);
-    line-height: 1.8;
-    font-weight: inherit;
 }
 
 /* ── HEADER: translúcido premium ── */
+/* La línea inferior va como sombra interior: un borde de 1px desplazaba la cabecera
+   (y con ella toda la página) al alternar de modo. */
 .dark-mode .site-header {
     background: rgba(31, 23, 27, 0.72) !important;
     backdrop-filter: blur(32px) saturate(110%);
     -webkit-backdrop-filter: blur(32px) saturate(110%);
-    border-bottom: 1px solid var(--dark-border);
+    box-shadow: inset 0 -1px 0 var(--dark-border);
 }
-.dark-mode .site-header .wp-block-navigation-item__content { color: var(--dark-text-muted) !important; font-weight: 450; }
+.dark-mode .site-header .wp-block-navigation-item__content { color: var(--dark-text-muted) !important; }
 .dark-mode .site-header .wp-block-navigation-item__content:hover,
 .dark-mode .site-header .current-menu-item .wp-block-navigation-item__content {
     color: var(--dark-amber) !important;
@@ -301,14 +298,9 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode .hero-topographic .wp-block-cover__inner-container { position: relative; z-index: 1; }
 .dark-mode .hero-topographic h1 {
     color: #F4F6F8 !important;
-    max-width: 1000px;
-    font-size: clamp(2.8rem, 6vw, 4.5rem) !important;
-    line-height: 1.05 !important;
 }
 .dark-mode .hero-topographic p {
     color: var(--dark-text-muted) !important;
-    max-width: 680px;
-    font-size: 1.15rem !important;
 }
 /* Buttons in hero: amber outline, not orange */
 .dark-mode .hero-topographic .wp-block-button:not(.is-style-outline) .wp-block-button__link {
@@ -328,17 +320,18 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 /* ── CARDS: GLASSMORPHISM PREMIUM ──
-     Fondo translúcido con blur, borde apenas visible,
-     sombra ambiental cálida. Sin bloque sólido.
-   ── */
+     Fondo translúcido con blur, sombra ambiental cálida. Sin bloque sólido.
+
+     OJO con las medidas: aquí había relleno de 2.5rem, borde de 1px y redondeo de
+     24px, y en modo claro la misma tarjeta lleva 1.15rem y 12px. Resultado medido: la
+     tarjeta de actividades pasaba de 18,4 a 40 px de relleno, su imagen de 369 a 321 px
+     y el bloque crecía 60 px. El modo oscuro sólo cambia el color: las medidas (relleno,
+     borde, redondeo) las pone la tarjeta, iguales en los dos modos. */
 .dark-mode .convoca-card,
 .dark-mode .is-style-card {
     background: var(--dark-card) !important;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border: 1px solid var(--dark-border);
-    border-radius: 24px;
-    padding: 2.5rem;
     box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
     transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -350,13 +343,15 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     transform: translateY(-4px);
 }
 
+/* Sólo color de fondo. Antes esta regla añadía en modo oscuro relleno de 2.5rem,
+   borde de 1 px y redondeo de 24px a TODAS las entradas, incluidas las tarjetas que
+   ya traen su propio marco: la tarjeta de actividades pasaba de 18,4 a 40 px de
+   relleno, su imagen de 369 a 321 px y el bloque crecía 60 px. Se veía como un marco
+   de texto más estrecho que en claro. Las medidas las pone cada tarjeta, no el modo. */
 .dark-mode .wp-block-post {
     background: var(--dark-card) !important;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    border-radius: 24px;
-    border: 1px solid var(--dark-border);
-    padding: 2.5rem;
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
 .dark-mode .wp-block-post:hover {
@@ -368,22 +363,21 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode .wp-block-columns .wp-block-column > .wp-block-group,
 .dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.convoca-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover):not(.convoca-participa):not(main) {
     background: transparent !important;
-    border: none !important;
+    border-color: var(--dark-border) !important;
     box-shadow: none !important;
-    padding: 0 !important;
 }
 
 /* ── BOTONES: NARANJA SOLO COMO ACENTO ──
      Sin abusar. Brilla en la oscuridad como una brasa.
      Solo para CTAs principales, hover states, interacción.
    ── */
+/* Solo color. El peso, el espaciado entre letras y el redondeo los pone el botón y son
+   iguales en los dos modos: con ellos aquí, el botón medía 4 px más en oscuro y arrastraba
+   la altura de la tarjeta que lo contiene. */
 .dark-mode .wp-block-button__link {
     background: rgba(255, 135, 0, 0.85) !important;
     color: #0F1115 !important;
-    font-weight: 500;
-    letter-spacing: 0.02em;
     box-shadow: 0 4px 24px rgba(255, 135, 0, 0.06);
-    border-radius: 14px;
     transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 .dark-mode .wp-block-button__link:hover {
@@ -410,9 +404,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     backdrop-filter: blur(8px);
     border: 1px solid var(--dark-border) !important;
     color: #F4F6F8 !important;
-    border-radius: 14px;
-    padding: 1rem 1.2rem;
-    font-size: 0.95rem;
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .dark-mode input:focus, .dark-mode textarea:focus, .dark-mode select:focus {
@@ -426,20 +417,40 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .dark-mode th {
     background: var(--dark-elevated) !important;
     color: #F4F6F8;
-    font-weight: 450;
 }
 .dark-mode td { border-color: rgba(255, 235, 220, 0.03) !important; }
 
 /* ── ENLACES: sutiles, sin naranja agresivo ── */
+/* En claro la línea de los enlaces es un SUBRAYADO, que no ocupa sitio; en oscuro estaba
+   hecha con un borde de 1px y un borde sí ocupa: cada enlace medía 1 px más y las tarjetas
+   que los contienen crecían 3 px al pasar a oscuro. Aquí se usan las mismas herramientas
+   que en claro y sólo se cambia el color. */
 .dark-mode a:not(.wp-block-button__link) {
     color: var(--dark-amber);
     text-decoration: none;
-    border-bottom: 1px solid rgba(255, 171, 0, 0.1);
-    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    transition: color 0.25s ease;
+}
+/* Donde en claro hay borde inferior (el menú y los botones de la banda Participa llevan 2 px),
+   en oscuro se conserva el grosor y sólo cambia el color: si se quitara, la cabecera menguaba
+   2 px al pasar a oscuro. */
+.dark-mode .wp-block-navigation a,
+.dark-mode .convoca-participa a {
+    border-bottom-color: rgba(255, 171, 0, 0.25);
+}
+.dark-mode .wp-block-navigation a:hover,
+.dark-mode .convoca-participa a:hover {
+    border-bottom-color: rgba(255, 135, 0, 0.5);
 }
 .dark-mode a:not(.wp-block-button__link):hover {
     color: var(--dark-orange);
-    border-bottom-color: rgba(255, 135, 0, 0.2);
+}
+/* Donde en claro hay subrayado (los enlaces de las tarjetas), en oscuro también. */
+.dark-mode .convoca-card a:not(.wp-block-button__link),
+.dark-mode .convoca-single__cuerpo a,
+.dark-mode .wp-block-post-content a {
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 171, 0, 0.45);
+    text-underline-offset: 2px;
 }
 /* Menu links in the open overlay: keep only the item separator, not the underline */
 .wp-block-navigation__responsive-container.is-menu-open a.wp-block-navigation-item__content,
@@ -456,36 +467,26 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 .dark-mode .stat-value {
     color: #F4F6F8;
-    font-size: 3.5rem;
-    font-weight: 200;
-    letter-spacing: -0.04em;
-    line-height: 1;
 }
 .dark-mode .stat-label {
     color: var(--dark-text-muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    margin-top: 0.5rem;
     display: block;
 }
 
 /* ── FOOTER: minimalista, premium ── */
+/* Sólo color: el relleno y el borde de arriba los pone el pie y son iguales en los dos modos
+   (medido: en oscuro metía 48 px de relleno y bajaba el borde de 3 a 1 px, y el pie crecía
+   93 px). Se cambia el color del borde, no su grosor. */
 .dark-mode .site-footer {
-    border-top: 1px solid var(--dark-border) !important;
+    border-top-color: var(--dark-border) !important;
     background: linear-gradient(180deg, #3D1530 0%, #1A0B16 100%) !important;
-    padding-block: 3rem !important;
 }
 .dark-mode .site-footer h3 {
     color: var(--dark-text-muted) !important;
-    font-weight: 400;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
 }
-.dark-mode .site-footer a { color: rgba(255, 255, 255, 0.75) !important; font-size: 0.85rem; transition: color 0.25s ease; }
+.dark-mode .site-footer a { color: rgba(255, 255, 255, 0.75) !important; transition: color 0.25s ease; }
 .dark-mode .site-footer a:hover { color: var(--dark-amber) !important; }
-.dark-mode .site-footer p { color: rgba(255, 255, 255, 0.6) !important; font-size: 0.8rem; }
+.dark-mode .site-footer p { color: rgba(255, 255, 255, 0.6) !important; }
 
 /* Section subtitle: readable in both modes */
 .convoca-section-subtitle {
@@ -508,8 +509,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     border-left: 2px solid rgba(255, 171, 0, 0.15);
     color: var(--dark-text-secondary);
     background: rgba(42, 29, 36, 0.2);
-    padding: 1.5rem 2rem;
-    border-radius: 0 16px 16px 0;
 }
 .dark-mode .wp-block-separator { color: rgba(255, 235, 220, 0.03) !important; }
 .dark-mode figcaption,
@@ -577,7 +576,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 .dark-mode .wp-block-latest-posts__featured-image img {
-    border-radius: 8px;
 }
 
 .dark-mode .wp-block-categories-list a,
@@ -1409,15 +1407,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .dark-mode .site-header > .wp-block-group,
     .site-header > .wp-block-group {
         justify-content: space-between !important;
-        padding: 0 !important;
     }
 
     .dark-mode .site-header > .wp-block-group > .wp-block-group.is-nowrap,
     .site-header > .wp-block-group > .wp-block-group.is-nowrap,
     .site-header > .wp-block-group.is-content-justification-space-between > .wp-block-group.is-nowrap {
-        padding: 0 !important;
-        margin: 0 0 0 0.75rem !important;
-        gap: 0.5rem !important;
     }
 
     /* Prevent nav wrapping - let items shrink/overlap if needed */
@@ -4146,7 +4140,6 @@ body .convoca-topnav ul {
 .dark-mode .convoca-archivo__grid .wp-block-post,
 .dark-mode .convoca-portada-grid .wp-block-post,
 .dark-mode .wp-block-post-template .wp-block-post {
-    padding: 0;
 }
 
 .dark-mode .wp-block-group.convoca-participa,
