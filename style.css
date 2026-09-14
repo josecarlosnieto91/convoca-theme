@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.2
+Version: 2.9.3
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -1475,7 +1475,11 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     .wp-site-blocks > .wp-block-template-part:first-child {
         margin-top: 0 !important;
     }
-    .site-header > .wp-block-group > .wp-block-group.is-layout-flex {
+    /* Esta regla es para el MENÚ (a la derecha). Antes apuntaba a cualquier grupo flex
+       dentro de la fila, y la marca también lo es: le ponía margin-left:auto (la empujaba
+       a la derecha) y overflow:hidden con max-height 48px, que le cortaba el logotipo
+       (52 px) por arriba y por abajo. Acotada al menú. */
+    .site-header > .wp-block-group > .wp-block-group.convoca-nav.is-layout-flex {
         margin-left: auto !important;
         justify-content: flex-end !important;
         padding-right: 0.25rem !important;
@@ -1484,6 +1488,18 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
         min-height: 44px !important;
         max-height: 48px !important;
         overflow: hidden !important;
+    }
+
+    /* La marca, en cambio: pegada a la izquierda y sin recortar el logotipo. Su caja se
+       ajusta al contenido (el logotipo manda), así no se corta ningún píxel. */
+    .site-header > .wp-block-group > .wp-block-group.convoca-marca.is-layout-flex {
+        margin-left: 0 !important;
+        margin-right: auto !important;
+        justify-content: flex-start !important;
+        padding-right: 0 !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
 
     /* Hamburger button pushed to the right edge of the header */
