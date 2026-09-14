@@ -22,3 +22,8 @@ composer.lock
 build-dir/
 CHANGELOG.md
 README.md
+
+# Guiones de desarrollo (auditorias y utilidades), no van al sitio ni al paquete
+scripts/
+__pycache__/
+*.pyc
