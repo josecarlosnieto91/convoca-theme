@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.8.4
+Version: 2.8.5
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -4205,4 +4205,35 @@ body .convoca-topnav ul {
 .dark-mode .convoca-hero .wp-block-site-title,
 .dark-mode .convoca-hero .wp-block-site-title a {
     color: var(--dark-orange) !important;
+}
+
+/* ── CAJAS CON FONDO PROPIO QUE EL MODO OSCURO NO CUBRÍA (JC, 2026-09-14) ────────────
+   Tres familias que se quedaban en claro, medido por píxeles en modo oscuro:
+     · Cajas con fondo elegido en el editor (.has-background): rgb(240,247,240).
+     · Las fichas de la junta directiva, que son un bloque de Genesis Blocks:
+       .gb-profile-box con rgb(242,242,242) y su texto en rgb(50,55,60).
+     · El elemento activo del menú, con fondo crema rgb(255,242,224).
+   Todas pasan a la superficie oscura del tema, y el texto a la tinta clara: cambiar el fondo
+   sin cambiar la tinta dejaría texto oscuro sobre fondo oscuro. */
+/* La clase real del bloque de Genesis Blocks es la larga del plugin; con el nombre corto la regla
+   no alcanzaba a nada (medido: la ficha seguía en rgb(242,242,242) con el texto en rgb(50,55,60)). */
+.dark-mode .wp-block-group.has-background,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box,
+.dark-mode .gb-block-profile,
+.dark-mode .gb-profile-columns,
+.dark-mode .gb-profile-column {
+    background-color: var(--dark-elevated) !important;
+}
+.dark-mode .wp-block-group.has-background,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box .gb-profile-name,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box .gb-profile-title,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box .gb-profile-text,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box p,
+.dark-mode .wp-block-genesis-blocks-gb-profile-box a {
+    color: var(--dark-text) !important;
+}
+.dark-mode .wp-block-navigation-item__content[aria-current] {
+    background-color: var(--dark-elevated) !important;
+    color: var(--dark-text) !important;
 }
