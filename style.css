@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.7
+Version: 2.9.9
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -4292,4 +4292,20 @@ body .convoca-topnav ul {
 .dark-mode .wp-block-navigation-item__content[aria-current] {
     background-color: var(--dark-elevated) !important;
     color: var(--dark-text) !important;
+}
+
+/* =========================================================================
+   UNA PORTADA SIN FONDO NO ES UNA PORTADA
+   =========================================================================
+   El bloque Portada (wp-block-cover) pone el texto en blanco, como si tuviera detrás una
+   imagen o un color oscuro. Si no tiene ni imagen ni color ni degradado, se queda
+   transparente y ese texto blanco acaba sobre el fondo claro de la página: contraste 1:1,
+   ilegible. Medido en «Únete a Biodevas»: el párrafo «Forma parte de la comunidad…» salía
+   blanco sobre blanco.
+   Aquí se le da el color de marca por defecto (uva), que es lo que la portada esperaba.
+   Solo afecta a las portadas sin imagen y sin color: se excluyen las que ya tienen uno, tanto en
+   el bloque como en su velo (.wp-block-cover__background). Medido: una portada con el velo de un
+   color propio quedaba teñida del color de marca por encima, ensuciando el color elegido. */
+.wp-block-cover:not(:has(.wp-block-cover__image-background)):not(:has(.wp-block-cover__background[class*="background-color"])):not([class*="background-color"]):not([class*="gradient"]) {
+	background-color: var(--convoca-uva);
 }
