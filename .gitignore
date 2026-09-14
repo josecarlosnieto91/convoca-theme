@@ -11,3 +11,7 @@
 
 # Paquete de compilación (lo genera el CI y el script de empaquetado)
 build-dir/
+
+# Cachés de Python de los guiones de scripts/
+__pycache__/
+*.pyc
