@@ -24,6 +24,14 @@ COLOR = ("border-color", "border-top-color", "border-right-color", "border-botto
          "stroke", "text-decoration-color", "caret-color", "border-image")
 ESTADOS = (":hover", ":focus", ":focus-visible", ":active", ":focus-within")
 
+# Las formas cortas de borde y contorno SÍ ocupan sitio (`border: 2px solid …`), y antes no
+# se revisaban: se colaba cualquier regla que cambiara el grosor del borde. Solo se libran
+# las que terminan en `-color`, que no desplazan nada.
+OCUPAN = ("border", "border-left", "border-right", "border-top", "border-bottom",
+          "border-block", "border-inline", "border-block-start", "border-block-end",
+          "border-inline-start", "border-inline-end", "border-width", "border-style")
+
+
 reglas = []
 i = 0
 while True:
@@ -66,6 +74,9 @@ for selector, cuerpo in reglas:
         if prop in COLOR or any(prop.startswith(c) for c in COLOR if c != "color"):
             continue
         if prop in ("transition", "transition-property", "transform", "box-shadow"):
+            continue
+        if prop in OCUPAN:
+            malas.append(decl)
             continue
         if any(prop == g or prop.startswith(g + "-") or prop == g for g in GEOMETRICAS):
             malas.append(decl)
