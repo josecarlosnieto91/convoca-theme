@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.9
+Version: 2.9.10
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -180,6 +180,28 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     color: var(--dark-text-secondary) !important;
 }
 .dark-mode .wp-block-navigation .wp-block-navigation-item__content:hover {
+    color: var(--dark-amber) !important;
+}
+
+/* ── Submenús desplegables en modo oscuro ──
+   El panel del desplegable toma su fondo de la paleta base (blanco), pero el texto de
+   sus ítems sí heredaba el color claro del modo oscuro: texto claro sobre blanco, 1.1:1
+   de contraste, ilegible. Aquí el panel pasa a fondo oscuro y los ítems a texto legible.
+   En modo claro no cambia nada. */
+.dark-mode .wp-block-navigation__submenu-container {
+    background-color: var(--dark-elevated) !important;
+    border-color: rgba(255, 135, 0, 0.14) !important;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5) !important;
+}
+.dark-mode .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+    color: var(--dark-text) !important;
+}
+.dark-mode .wp-block-navigation__submenu-container .wp-block-navigation-item__content:is(:hover, :focus-visible) {
+    color: var(--dark-amber) !important;
+    background-color: rgba(255, 171, 0, 0.10) !important;
+}
+.dark-mode .wp-block-navigation__submenu-container .current-menu-item > .wp-block-navigation-item__content,
+.dark-mode .wp-block-navigation__submenu-container .current-menu-ancestor > .wp-block-navigation-item__content {
     color: var(--dark-amber) !important;
 }
 

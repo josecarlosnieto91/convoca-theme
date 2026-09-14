@@ -1,5 +1,16 @@
 # Changelog - Convoca Theme
 
+## 2.9.10 (2026-09-14)
+
+Los menús desplegables eran ilegibles en modo oscuro.
+
+- **Desplegables del menú en modo oscuro.** El panel del desplegable toma su fondo de la
+  paleta base (blanco), pero los ítems heredaban el color claro del modo oscuro: texto
+  claro sobre blanco, 1,1:1 de contraste, imposible de leer. Ahora el panel usa la
+  superficie oscura del tema, los ítems el texto claro y el ámbar marca el elemento bajo
+  el ratón y el de la página actual. Contraste medido: 15,6:1 (antes 1,1:1). En modo claro
+  no cambia nada (verificado: 17,8:1, fondo blanco).
+
 ## 2.8.1 (2026-09-13)
 
 Tres correcciones pedidas al revisar la web en el navegador, dos de ellas del modo oscuro.
