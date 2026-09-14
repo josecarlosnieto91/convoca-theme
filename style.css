@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.8.0
+Version: 2.8.1
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -366,7 +366,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 
 /* ── GRUPOS GENÉRICOS: transparentes siempre ── */
 .dark-mode .wp-block-columns .wp-block-column > .wp-block-group,
-.dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.convoca-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover):not(main) {
+.dark-mode .wp-block-group:not(.has-background):not(.site-header):not(.site-footer):not(.convoca-card):not(.is-style-card):not(.wp-block-post):not(.wp-block-cover):not(.convoca-participa):not(main) {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -4126,4 +4126,58 @@ body .convoca-topnav ul {
 	.wp-block-navigation__responsive-container.is-menu-open li.has-child > button.wp-block-navigation-submenu__toggle {
 		margin-right: 2px !important;
 	}
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════════
+   CORRECCIONES DEL MODO OSCURO (JC, 2026-09-13)
+
+   1) Las tarjetas de las rejillas salían con un relleno de 2,5rem por lado que en modo
+      claro NO tienen. Con dos columnas, 80px de relleno dejan el texto sin sitio y las
+      entradas se ven más estrechas que en claro. Se les quita: la tarjeta ya se separa
+      sola con su fondo y su borde.
+
+   2) La sección "Participa" no tenía NINGUNA regla en modo oscuro: se quedaba sin su fondo
+      naranja pero con la tinta carbón de claro, así que el titular, los enlaces y los
+      textos de apoyo eran invisibles sobre el fondo oscuro. Se le da el mismo tratamiento
+      que al resto del tema: superficie oscura, texto claro y el ámbar para lo que destaca.
+   ══════════════════════════════════════════════════════════════════════════════════ */
+
+.dark-mode .convoca-historias-grid .wp-block-post,
+.dark-mode .convoca-archivo__grid .wp-block-post,
+.dark-mode .convoca-portada-grid .wp-block-post,
+.dark-mode .wp-block-post-template .wp-block-post {
+    padding: 0;
+}
+
+.dark-mode .wp-block-group.convoca-participa,
+.dark-mode section.convoca-participa,
+.dark-mode .convoca-participa {
+    background-color: #1c1f23 !important;
+    color: #f4f6f8;
+}
+
+.dark-mode .convoca-participa h2,
+.dark-mode .convoca-participa h3,
+.dark-mode .convoca-participa .wp-block-heading,
+.dark-mode .convoca-participa p,
+.dark-mode .convoca-participa a,
+.dark-mode .convoca-participa li {
+    color: #f4f6f8;
+}
+
+.dark-mode .convoca-participa__via strong {
+    color: #f4f6f8;
+}
+
+.dark-mode .convoca-participa__via span {
+    color: rgba(244, 246, 248, 0.72);
+}
+
+.dark-mode .convoca-participa__via:hover strong {
+    color: var(--dark-amber, #d97b11);
+}
+
+.dark-mode .convoca-participa__acciones .wp-block-button__link {
+    background: rgba(255, 135, 0, 0.85) !important;
+    color: #0f1115 !important;
 }

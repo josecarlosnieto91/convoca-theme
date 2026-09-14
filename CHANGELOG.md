@@ -1,5 +1,21 @@
 # Changelog - Convoca Theme
 
+## 2.8.1 (2026-09-13)
+
+Tres correcciones pedidas al revisar la web en el navegador, dos de ellas del modo oscuro.
+
+- **Las entradas se veían más estrechas en modo oscuro que en claro.** Las tarjetas de las
+  rejillas recibían un relleno de 2.5rem por lado que en modo claro no tienen: con dos
+  columnas, 80 px de relleno dejan el texto sin sitio. Ahora esas tarjetas van sin relleno en
+  los dos modos, como estaban en claro.
+- **Textos ilegibles en la sección «Participa» en modo oscuro.** Esa sección no tenía ninguna
+  regla de modo oscuro: se quedaba sin su fondo naranja pero con la tinta carbón de claro, así
+  que titular, enlaces y textos de apoyo quedaban invisibles. Ahora usa la superficie oscura
+  del tema con texto claro, y los botones mantienen su naranja. Contrastes medidos: 17,57:1 en
+  los textos, 9,28:1 en los de apoyo y 7,84:1 en los botones (el mínimo es 4,5:1).
+- **El grupo del CTA se libra de la regla que hace transparentes los grupos en modo oscuro**,
+  para que la sección conserve su superficie propia.
+
 ## 2.8.0 (2026-09-12)
 
 **The theme is now generic and sellable.** No data from any particular installation is left
