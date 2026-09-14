@@ -351,3 +351,6 @@ msgstr "📅 Fecha: [convoca_actividad_meta field=\"fecha_inicio\"]"
 
 msgid "📍 Location: [convoca_actividad_meta field=\"ubicacion\"]"
 msgstr "📍 Ubicación: [convoca_actividad_meta field=\"ubicacion\"]"
+
+msgid "Full Width Page"
+msgstr "Página a ancho completo"
