@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.8.3
+Version: 2.8.4
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -463,7 +463,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     background: rgba(36, 22, 29, 0.3) !important;
     border-top: 1px solid var(--dark-border);
     border-bottom: 1px solid var(--dark-border);
-    padding-block: 3rem !important;
 }
 .dark-mode .stat-value {
     color: #F4F6F8;
@@ -1406,8 +1405,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     /* Consistent alignment: same padding in both modes (dark mode behavior) */
     .dark-mode .site-header > .wp-block-group,
     .site-header > .wp-block-group {
-        justify-content: space-between !important;
-    }
+        }
 
     .dark-mode .site-header > .wp-block-group > .wp-block-group.is-nowrap,
     .site-header > .wp-block-group > .wp-block-group.is-nowrap,
@@ -4190,4 +4188,21 @@ body .convoca-topnav ul {
     background-color: var(--dark-amber) !important;
     border-color: var(--dark-amber) !important;
     color: #0F1115 !important;
+}
+
+/* ── LA MARCA DEL SITIO EN MODO OSCURO (JC, 2026-09-14) ─────────────────────────────
+   El «BIODEVAS» de la cabecera y del hero es un ENLACE dentro del título del sitio. El <p>
+   se ponía en blanco, pero el enlace de dentro conservaba su color de modo claro (carbón,
+   rgb(22,24,27)) y ganaba por orden de aparición a la regla general de enlaces en oscuro:
+   el texto se quedaba casi negro sobre fondo oscuro y sólo se veía al pasar el ratón, que es
+   cuando el tema lo pinta en naranja. Medido: p en blanco, a en rgb(22,24,27). Va en naranja
+   siempre. El del pie ya era legible (blanco al 75 %) y se queda como estaba. */
+/* Por contexto, no por el envoltorio: el nombre del envoltorio cambia entre la cabecera, el
+   hero y el pie, y con el envoltorio equivocado la regla no alcanzaba al enlace (medido: el
+   <p> quedaba naranja y el <a> de dentro seguía en carbón). */
+.dark-mode .site-header .wp-block-site-title,
+.dark-mode .site-header .wp-block-site-title a,
+.dark-mode .convoca-hero .wp-block-site-title,
+.dark-mode .convoca-hero .wp-block-site-title a {
+    color: var(--dark-orange) !important;
 }

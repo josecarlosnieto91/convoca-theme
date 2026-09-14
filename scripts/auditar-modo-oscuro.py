@@ -17,8 +17,7 @@ S = re.sub(r"/\*.*?\*/", "", S, flags=re.S)
 GEOMETRICAS = ("padding", "margin", "border-width", "border-radius", "width", "height",
                "min-width", "min-height", "max-width", "max-height", "gap", "flex-basis",
                "font-size", "line-height", "letter-spacing", "font-weight", "font-family",
-               "text-transform", "box-sizing", "position", "top", "left", "right", "bottom",
-               "inset", "grid-template", "flex-direction", "align-items", "justify-content", "order")
+               "text-transform", "box-sizing", "grid-template", "flex-direction", "align-items", "justify-content", "order")
 # `border` a secas sí mueve (ocupa sitio); `border-color` no.
 COLOR = ("border-color", "border-top-color", "border-right-color", "border-bottom-color",
          "border-left-color", "background", "color", "box-shadow", "outline-color", "fill",
