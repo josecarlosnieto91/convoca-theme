@@ -1912,3 +1912,50 @@ add_filter(
 	10,
 	2
 );
+
+/**
+ * 27. Paginación de la búsqueda: la búsqueda tiene que sobrevivir al cambio de página
+ *
+ * Al paginar los resultados, WordPress construía direcciones del tipo `/page/2/?s=Setas`.
+ * Esa URL NO es la página 2 de la búsqueda: el core la resuelve como la portada paginada
+ * (medido: servía «BIODEVAS - Página 2 de 71»), así que el visitante salía de los resultados
+ * y acababa en el blog. El origen está en `paginate_links()` y en `get_pagenum_link()`, que
+ * arman la dirección desde la URL actual y pierden la búsqueda por el camino.
+ *
+ * Aquí se reescribe `get_pagenum_link()` —que es por donde pasan los tres bloques de la
+ * paginación— y se reconstruye a partir de la URL de búsqueda real:
+ *
+ *   - Sitio con base de búsqueda («/search/Setas/»): se pagina pegando la base de paginación
+ *     → `/search/Setas/page/2/` (comprobado que sirve la página 2).
+ *   - Sitio sin ella («/?s=Setas»): con parámetro → `/?s=Setas&paged=2` (también comprobado).
+ *
+ * Solo toca las búsquedas; el resto de paginaciones (portada, archivos, categorías) siguen
+ * con `/page/N/`, que en ellas es lo correcto.
+ */
+add_filter(
+	'get_pagenum_link',
+	function ( string $link, int $pagenum ): string {
+		if ( ! is_search() ) {
+			return $link;
+		}
+
+		$base = get_search_link( get_search_query( false ) );
+
+		if ( $pagenum <= 1 ) {
+			return $base;
+		}
+
+		// Con base de búsqueda la URL es "bonita" y la paginación va pegada; sin ella
+		// hay que conservar la búsqueda como parámetro, porque la ruta sola la pierde.
+		if ( ! str_contains( $base, '?' ) ) {
+			return user_trailingslashit(
+				trailingslashit( $base ) . $GLOBALS['wp_rewrite']->pagination_base . '/' . $pagenum,
+				'paged'
+			);
+		}
+
+		return add_query_arg( 'paged', $pagenum, $base );
+	},
+	10,
+	2
+);

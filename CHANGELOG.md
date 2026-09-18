@@ -1,5 +1,19 @@
 # Changelog - Convoca Theme
 
+## 2.9.12 (2026-09-18)
+
+La paginación de los resultados de búsqueda sacaba de los resultados.
+
+- **Al pasar a la página 2, 3… de una búsqueda, el visitante acababa en la portada del blog.**
+  WordPress construía direcciones del tipo `/page/2/?s=Setas`, y esa URL no es la página 2 de
+  la búsqueda: el core la resuelve como la portada paginada (medido: servía «BIODEVAS - Página 2
+  de 71»). El origen está en `paginate_links()` y `get_pagenum_link()`, que arman la dirección
+  desde la URL actual y pierden la búsqueda por el camino. Los tres bloques de la paginación
+  (números, anterior y siguiente) pasan por `get_pagenum_link()`, que tiene filtro: se reescribe
+  ahí a partir de la URL de búsqueda real —`/search/Setas/page/2/` con base de búsqueda, o
+  `/?s=Setas&paged=2` sin ella— y quedan los tres arreglados. El resto de paginaciones (portada,
+  archivos, categorías) siguen con `/page/N/`, que en ellas es lo correcto.
+
 ## 2.9.11 (2026-09-18)
 
 El buscador existía dentro del contenido, pero no había forma de buscarlo desde la cabecera.
