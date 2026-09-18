@@ -604,6 +604,9 @@ add_action(
  * @return string Contenido con los tokens sustituidos.
  */
 function convoca_theme_render_block( $block_content, $block ) {
+	// Guard de recursión del bloque de más abajo (ver comentario allí).
+	static $convoca_resolviendo_shortcodes = false;
+
 	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0).
 	$centro_url = apply_filters( 'convoca_theme_centro_url', home_url( '/' ) );
 	if ( has_filter( 'convoca_theme_lugg_url' ) ) {
@@ -699,8 +702,19 @@ function convoca_theme_render_block( $block_content, $block ) {
 	// el HTML renderizado la capacidad de ejecutar shortcodes de cualquier plugin.
 	$convoca_bloques_con_shortcodes = array( 'core/block', 'core/pattern', 'core/html' );
 	if ( in_array( $block['blockName'] ?? '', $convoca_bloques_con_shortcodes, true )
-		&& strpos( $block_content, '[' ) !== false ) {
-		$block_content = do_shortcode( $block_content );
+		&& strpos( $block_content, '[' ) !== false
+		&& ! $convoca_resolviendo_shortcodes ) {
+		// Guard de recursión: un shortcode puede volver a renderizar bloques (un
+		// patrón sincronizado que se contiene a sí mismo, HTML con el mismo
+		// shortcode). Sin esto, esta reentrada giraba en CPU hasta agotar
+		// `max_execution_time`: la petición acababa en 500 y dejaba un worker
+		// ocupado dos minutos al 100 %, que con el pool lleno tumbaba el sitio.
+		$convoca_resolviendo_shortcodes = true;
+		try {
+			$block_content = do_shortcode( $block_content );
+		} finally {
+			$convoca_resolviendo_shortcodes = false;
+		}
 	}
 	return $block_content;
 }
@@ -717,7 +731,16 @@ add_filter( 'render_block', 'convoca_theme_render_block', 10, 2 );
  * @return array<string,string> clave => URL absoluta.
  */
 function convoca_theme_get_site_links(): array {
-	return apply_filters(
+	// Cacheado por petición: el pie, el menú y los CTA piden estos enlaces en CADA
+	// bloque renderizado. Resolverlos cuesta una consulta por enlace (get_page_by_path)
+	// más otra por permalink, así que sin caché una página normal hacía miles de
+	// consultas y cualquier bucle de render se llevaba por delante el worker de PHP.
+	static $links = null;
+	if ( null !== $links ) {
+		return $links;
+	}
+
+	$links = apply_filters(
 		'convoca_theme_site_links',
 		array(
 			'about'        => '',
@@ -739,6 +762,8 @@ function convoca_theme_get_site_links(): array {
 			'links'        => '',
 		)
 	);
+
+	return $links;
 }
 
 /**
@@ -748,7 +773,13 @@ function convoca_theme_get_site_links(): array {
  * @return array<string,string> clave => texto visible.
  */
 function convoca_theme_get_link_labels(): array {
-	return apply_filters(
+	// Igual que los enlaces: cacheado por petición (se pide en cada bloque).
+	static $labels = null;
+	if ( null !== $labels ) {
+		return $labels;
+	}
+
+	$labels = apply_filters(
 		'convoca_theme_link_labels',
 		array(
 			'about'        => __( 'Who we are', 'convoca' ),
@@ -765,6 +796,8 @@ function convoca_theme_get_link_labels(): array {
 			'legal'        => __( 'Legal notice', 'convoca' ),
 		)
 	);
+
+	return $labels;
 }
 
 /**
