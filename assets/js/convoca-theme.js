@@ -94,4 +94,59 @@
             ticking = true;
         }
     }, { passive: true });
+
+    /* ── Buscador de cabecera ─────────────────────
+       Un solo cuadro y dos botones de lupa (franja en escritorio, fila en móvil).
+       El estado va en una clase para que el editor de bloques no lo borre al
+       reescribir la plantilla. Escape cierra y devuelve el foco al botón visible. */
+    var buscador = document.getElementById('convoca-buscador-cabecera');
+
+    if (buscador) {
+        var toggles = document.querySelectorAll('.convoca-buscar-toggle');
+        var botonCerrar = buscador.querySelector('.convoca-buscador-cabecera__cerrar');
+        var campoBusqueda = buscador.querySelector('.wp-block-search__input');
+
+        var abrirBuscador = function () {
+            buscador.classList.add('convoca-buscador-cabecera--abierto');
+            toggles.forEach(function (t) { t.setAttribute('aria-expanded', 'true'); });
+            if (campoBusqueda) campoBusqueda.focus();
+        };
+
+        var cerrarBuscador = function () {
+            buscador.classList.remove('convoca-buscador-cabecera--abierto');
+            toggles.forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
+        };
+
+        var estaAbierto = function () {
+            return buscador.classList.contains('convoca-buscador-cabecera--abierto');
+        };
+
+        toggles.forEach(function (t) {
+            t.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (estaAbierto()) { cerrarBuscador(); } else { abrirBuscador(); }
+            });
+        });
+
+        if (botonCerrar) {
+            botonCerrar.addEventListener('click', cerrarBuscador);
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && estaAbierto()) {
+                cerrarBuscador();
+                toggles.forEach(function (t) {
+                    if (t.offsetParent !== null) t.focus();
+                });
+            }
+        });
+
+        // Un clic fuera cierra; dentro del cuadro o en un botón de lupa, no.
+        document.addEventListener('click', function (e) {
+            if (!estaAbierto() || buscador.contains(e.target)) return;
+            var enBoton = false;
+            toggles.forEach(function (t) { if (t.contains(e.target)) enBoton = true; });
+            if (!enBoton) cerrarBuscador();
+        });
+    }
 })();

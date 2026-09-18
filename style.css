@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.10
+Version: 2.9.11
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -4330,4 +4330,214 @@ body .convoca-topnav ul {
    color propio quedaba teñida del color de marca por encima, ensuciando el color elegido. */
 .wp-block-cover:not(:has(.wp-block-cover__image-background)):not(:has(.wp-block-cover__background[class*="background-color"])):not([class*="background-color"]):not([class*="gradient"]) {
 	background-color: var(--convoca-uva);
+}
+
+/* =========================================================================
+   BUSCADOR EN LA CABECERA — botón de lupa + cuadro desplegable
+   =========================================================================
+   Un único cuadro para toda la cabecera, abierto por dos botones gemelos: el de
+   la franja uva (escritorio) y el de la fila (móvil), igual que el botón de modo
+   oscuro. El estado vive en la clase `--abierto` y NO en el atributo `hidden`:
+   el editor de bloques reescribe el HTML al guardar la plantilla y se llevaría
+   por delante cualquier atributo que no reconozca.
+   El corte de visibilidad es el mismo que el del resto de la cabecera (1199 px):
+   por debajo manda la fila, porque la franja desaparece.
+*/
+.convoca-buscar-toggle {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background: transparent;
+	border: 0;
+	border-radius: 999px;
+	color: inherit;
+	cursor: pointer;
+}
+
+.convoca-buscar-toggle svg {
+	width: 20px;
+	height: 20px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.2;
+	stroke-linecap: round;
+}
+
+.convoca-buscar-toggle:focus-visible {
+	outline: 2px solid var(--convoca-naranja);
+	outline-offset: 2px;
+}
+
+/* En la franja uva (escritorio). */
+.convoca-buscar-toggle--franja {
+	display: inline-flex;
+	color: #fff;
+}
+
+.convoca-buscar-toggle--franja:is(:hover, :focus-visible) {
+	background-color: rgba(255, 255, 255, 0.12);
+	color: var(--convoca-ambar);
+}
+
+/* En la fila (móvil), a la izquierda de la hamburguesa. */
+.convoca-buscar-toggle--fila {
+	width: 44px;
+	height: 44px;
+	color: var(--convoca-carbon);
+}
+
+.convoca-buscar-toggle--fila svg {
+	width: 22px;
+	height: 22px;
+}
+
+.convoca-buscar-toggle--fila:is(:hover, :focus-visible) {
+	background-color: var(--convoca-naranja-tenue);
+}
+
+.dark-mode .convoca-buscar-toggle--fila {
+	color: #fff;
+}
+
+@media (max-width: 1199px) {
+	.convoca-buscar-toggle--franja { display: none; }
+	.convoca-buscar-toggle--fila { display: inline-flex; }
+}
+
+/* El cuadro: cerrado no ocupa nada.
+   Ojo con la especificidad: el CSS crítico del theme (que va en línea en el <head>)
+   pone «display: flex» a todo hijo directo de la cabecera —`.site-header > .wp-block-group`—
+   y esa regla le gana por especificidad a una clase suelta, así que el cuadro se veía
+   abierto desde el primer momento. Por eso el selector va anclado a la cabecera. */
+.site-header > .wp-block-group.convoca-buscador-cabecera {
+	display: none;
+	width: 100%;
+	max-width: none;
+	background-color: var(--convoca-hueso);
+	border-top: 1px solid var(--convoca-gris-borde);
+	padding: 0.9rem var(--convoca-gutter);
+}
+
+.site-header > .wp-block-group.convoca-buscador-cabecera--abierto { display: block; }
+
+.convoca-buscador-cabecera__interior {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	width: min(100%, var(--convoca-ancho));
+	margin-inline: auto;
+}
+
+.convoca-buscador-cabecera__interior .wp-block-search {
+	flex: 1 1 auto;
+	width: auto;
+	margin: 0;
+}
+
+/* Mismo buscador «píldora» que el secundario del theme. */
+.convoca-buscador-cabecera .wp-block-search__inside-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	border: 1px solid var(--convoca-gris-borde);
+	border-radius: 999px;
+	background-color: #fff;
+	padding: 0.25rem 0.25rem 0.25rem 1rem;
+}
+
+.convoca-buscador-cabecera .wp-block-search__input {
+	border: 0;
+	background: transparent;
+	padding: 0.55rem 0;
+	font-size: 0.98rem;
+	box-shadow: none;
+}
+
+.convoca-buscador-cabecera .wp-block-search__input:focus {
+	border: 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.convoca-buscador-cabecera .wp-block-search__button {
+	flex: 0 0 auto;
+	margin: 0;
+	background-color: var(--convoca-carbon);
+	color: #fff;
+	border: 0;
+	border-radius: 999px;
+	font-family: 'Outfit', sans-serif;
+	font-weight: 700;
+	font-size: 0.85rem;
+	padding: 0.55rem 1.1rem;
+}
+
+.convoca-buscador-cabecera .wp-block-search__button:hover {
+	background-color: var(--convoca-naranja-rojo);
+	color: var(--convoca-carbon);
+}
+
+.convoca-buscador-cabecera__cerrar {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex: 0 0 auto;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background: transparent;
+	border: 1px solid var(--convoca-gris-borde);
+	border-radius: 999px;
+	color: var(--convoca-carbon);
+	cursor: pointer;
+}
+
+.convoca-buscador-cabecera__cerrar svg {
+	width: 18px;
+	height: 18px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.2;
+	stroke-linecap: round;
+}
+
+.convoca-buscador-cabecera__cerrar:is(:hover, :focus-visible) {
+	background-color: var(--convoca-naranja-tenue);
+}
+
+.convoca-buscador-cabecera__cerrar:focus-visible {
+	outline: 2px solid var(--convoca-naranja);
+	outline-offset: 2px;
+}
+
+/* Modo oscuro. */
+.dark-mode .convoca-buscador-cabecera {
+	background-color: var(--dark-elevated);
+	border-top-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-mode .convoca-buscador-cabecera .wp-block-search__inside-wrapper {
+	background-color: var(--dark-surface);
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.dark-mode .convoca-buscador-cabecera .wp-block-search__input {
+	color: var(--dark-text);
+}
+
+.dark-mode .convoca-buscador-cabecera .wp-block-search__input::placeholder {
+	color: var(--dark-text-muted);
+}
+
+.dark-mode .convoca-buscador-cabecera .wp-block-search__button {
+	background-color: var(--convoca-ambar);
+	color: var(--convoca-carbon);
+}
+
+.dark-mode .convoca-buscador-cabecera__cerrar {
+	color: var(--dark-text);
+	border-color: rgba(255, 255, 255, 0.18);
 }

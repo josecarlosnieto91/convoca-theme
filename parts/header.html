@@ -4,6 +4,11 @@
     - Fila principal: marca + navegación principal (menú "Principal" real).
     Nada de rutas inventadas: los enlaces salen de los menús de WordPress, y el
     CTA de los filtros del theme hijo ({cta_url} / {cta_label}).
+
+    Buscador: un único cuadro (abajo, ancho completo) que abren los dos botones de
+    lupa — el de la franja en escritorio y el de la fila en móvil, igual que el
+    botón de modo oscuro. El estado lo lleva la clase `--abierto`, no el atributo
+    `hidden`: el editor de bloques reescribe el HTML al guardar y se lo comería.
 -->
 <!-- wp:group {"tagName":"header","className":"site-header convoca-header","layout":{"type":"default"}} -->
 <header class="wp-block-group site-header convoca-header">
@@ -19,6 +24,12 @@
 
             <!-- wp:group {"className":"convoca-topbar__acciones","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
             <div class="wp-block-group convoca-topbar__acciones">
+                <!-- wp:html -->
+                <button class="convoca-buscar-toggle convoca-buscar-toggle--franja" aria-label="Buscar en la web" aria-expanded="false" aria-controls="convoca-buscador-cabecera" type="button">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="10.8" cy="10.8" r="7"/><path d="M15.9 15.9 21 21"/></svg>
+                </button>
+                <!-- /wp:html -->
+
                 <!-- wp:html -->
                 <button class="dark-mode-toggle" aria-label="Switch color mode" aria-pressed="false" type="button">
                     <svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37a.996.996 0 00-1.41 0 .996.996 0 000 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 000-1.41l-1.06-1.06zm1.06-10.96a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36a.996.996 0 000-1.41.996.996 0 00-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/></svg>
@@ -59,6 +70,12 @@
         <!-- wp:group {"className":"convoca-nav","layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
         <div class="wp-block-group convoca-nav">
             <!-- wp:html -->
+            <button class="convoca-buscar-toggle convoca-buscar-toggle--fila" aria-label="Buscar en la web" aria-expanded="false" aria-controls="convoca-buscador-cabecera" type="button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="10.8" cy="10.8" r="7"/><path d="M15.9 15.9 21 21"/></svg>
+            </button>
+            <!-- /wp:html -->
+
+            <!-- wp:html -->
             <button class="dark-mode-toggle convoca-toggle-fila" aria-label="Switch color mode" aria-pressed="false" type="button">
                 <svg class="sun" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="5"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg>
                 <svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -70,6 +87,22 @@
         </div>
         <!-- /wp:group -->
 
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"convoca-buscador-cabecera","layout":{"type":"default"}} -->
+    <div class="wp-block-group convoca-buscador-cabecera" id="convoca-buscador-cabecera">
+        <!-- wp:group {"className":"convoca-buscador-cabecera__interior","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group convoca-buscador-cabecera__interior">
+            <!-- wp:search {"label":"Buscar en la web","showLabel":false,"placeholder":"Buscar en la web…","buttonText":"Buscar","buttonUseIcon":false} /-->
+
+            <!-- wp:html -->
+            <button type="button" class="convoca-buscador-cabecera__cerrar" aria-label="Cerrar la búsqueda">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M6 6 18 18M18 6 6 18"/></svg>
+            </button>
+            <!-- /wp:html -->
+        </div>
+        <!-- /wp:group -->
     </div>
     <!-- /wp:group -->
 

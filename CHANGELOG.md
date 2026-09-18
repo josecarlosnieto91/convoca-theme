@@ -1,5 +1,19 @@
 # Changelog - Convoca Theme
 
+## 2.9.11 (2026-09-18)
+
+El buscador existía dentro del contenido, pero no había forma de buscarlo desde la cabecera.
+
+- **Buscador en la cabecera.** Botón de lupa en la franja uva (escritorio) y en la fila
+  (móvil) que abre un cuadro de búsqueda a ancho completo, con el mismo buscador «píldora»
+  que el secundario del theme. El cuadro es uno solo para toda la cabecera y lo abren los
+  dos botones, igual que el botón de modo oscuro. Escape cierra y devuelve el foco al botón
+  visible; un clic fuera también cierra. El estado va en una clase y no en el atributo
+  `hidden`: el editor de bloques reescribe el HTML al guardar la plantilla y se lo llevaría
+  por delante. En modo oscuro usa la superficie oscura del tema y el botón en ámbar.
+  Como el resto de la navegación de la cabecera (menú móvil, botón de modo), necesita
+  JavaScript para abrirse.
+
 ## 2.9.10 (2026-09-14)
 
 Los menús desplegables eran ilegibles en modo oscuro.
