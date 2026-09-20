@@ -1,5 +1,17 @@
 # Changelog - Convoca Theme
 
+## 2.9.13 (2026-09-20)
+
+La foto de un «camino» de la portada se veía recortada por arriba.
+
+- **En el camino de Voluntariado solo se veían nubes**, con las personas fuera de cuadro.
+  El `<figure>` de la imagen no cabía en el hueco (medido: 655 px dentro de un contenedor de
+  230 px): desbordaba y el `overflow:hidden` del contenedor recortaba por **arriba**, que en una
+  foto vertical es el cielo. `width/height: 100%` no bastaba porque el `100%` se resolvía contra el
+  `<figure>`, que no tiene altura propia. La imagen pasa a anclarse al hueco con
+  `position:absolute; inset:0`: así el recorte lo hace el `img` con `object-fit:cover` y el punto
+  focal (`object-position`) sí tiene efecto. Arregla los tres caminos, no solo el de Voluntariado.
+
 ## 2.9.12 (2026-09-18)
 
 La paginación de los resultados de búsqueda sacaba de los resultados.
