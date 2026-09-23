@@ -612,15 +612,21 @@ function convoca_theme_render_block( $block_content, $block ) {
 	if ( has_filter( 'convoca_theme_lugg_url' ) ) {
 		$centro_url = apply_filters_deprecated( 'convoca_theme_lugg_url', [ $centro_url ], '2.7.0', 'convoca_theme_centro_url' );
 	}
+	// Redes sociales: fuente única en `convoca_social_links` (Convoca Core), que
+	// es la que usan el shortcode [convoca_socials] y estos tokens. Antes cada uno
+	// leía su propio filtro (`convoca_theme_social_*`), de modo que había que
+	// declarar las mismas URLs dos veces.
+	$social_links = (array) apply_filters( 'convoca_social_links', array() );
+
 	$replacements = apply_filters(
 		'convoca_theme_footer_replacements',
 		[
 			'{admin_email}'      => get_bloginfo( 'admin_email' ),
 			'{volunteer_email}'  => apply_filters( 'convoca_theme_volunteer_email', get_bloginfo( 'admin_email' ) ),
-			'{social_instagram}' => apply_filters( 'convoca_theme_social_instagram', '' ),
-			'{social_facebook}'  => apply_filters( 'convoca_theme_social_facebook', '' ),
-			'{social_youtube}'   => apply_filters( 'convoca_theme_social_youtube', '' ),
-			'{social_handle}'    => apply_filters( 'convoca_theme_social_handle', '' ),
+			'{social_instagram}' => (string) ( $social_links['instagram'] ?? '' ),
+			'{social_facebook}'  => (string) ( $social_links['facebook'] ?? '' ),
+			'{social_youtube}'   => (string) ( $social_links['youtube'] ?? '' ),
+			'{social_handle}'    => (string) ( $social_links['handle'] ?? '' ),
 			'{centro_url}'       => $centro_url,
 			'{lugg_url}'         => $centro_url, // deprecated token, kept for templates existentes.
 			'{community_url}'    => apply_filters( 'convoca_theme_community_url', home_url( '/' ) ),
@@ -821,90 +827,6 @@ function convoca_theme_get_cta_url(): string {
  */
 function convoca_theme_get_cta_label(): string {
 	return (string) apply_filters( 'convoca_theme_cta_label', __( 'Join us', 'convoca' ) );
-}
-
-/**
- * Redes sociales del theme: shortcode [convoca_socials].
- *
- * Los enlaces llegan por filtros (convoca_theme_social_instagram, etc.). No se
- * pueden poner como placeholder dentro del atributo `url` de un bloque: los
- * atributos se resuelven al analizar el bloque, antes de `render_block`. Por eso
- * el theme construye el bloque en PHP y lo renderiza él mismo.
- *
- * @since 2.8.0
- */
-
-
-/**
- * Cifras reales de la instalación para la franja de estadísticas.
- *
- * Sin números fijos: cada cifra sale de datos reales y se puede sobrescribir
- * con el filtro `convoca_theme_stats`. Si no hay ningún dato, devuelve [] y el
- * patrón convoca/stats no se pinta.
- *
- * @since 2.8.0
- * @return array<string,array{value:string,label:string}>
- */
-function convoca_theme_get_stats(): array {
-	$stats = array();
-	$year  = (int) gmdate( 'Y' );
-
-	$published = (int) wp_count_posts( 'post' )->publish;
-	if ( $published > 0 ) {
-		$stats['publicaciones'] = array(
-			'value' => '+' . number_format_i18n( $published ),
-			'label' => __( 'Posts', 'convoca' ),
-		);
-	}
-
-	$this_year = new WP_Query(
-		array(
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'fields'         => 'ids',
-			'date_query'     => array( array( 'year' => $year ) ),
-		)
-	);
-	if ( $this_year->found_posts > 0 ) {
-		$stats['este_ano'] = array(
-			'value' => (string) number_format_i18n( $this_year->found_posts ),
-			'label' => sprintf( /* translators: %s: year of the archive. */ __( 'Posts in %s', 'convoca' ), $year ),
-		);
-	}
-
-	$oldest = get_posts(
-		array(
-			'post_type'      => 'post',
-			'post_status'    => 'publish',
-			'posts_per_page' => 1,
-			'order'          => 'ASC',
-			'orderby'        => 'date',
-		)
-	);
-	if ( ! empty( $oldest ) ) {
-		$years         = max( 1, $year - (int) get_the_date( 'Y', $oldest[0] ) );
-		$stats['anos'] = array(
-			'value' => (string) number_format_i18n( $years ),
-			'label' => __( 'Years of work', 'convoca' ),
-		);
-	}
-
-	/**
-	 * El sitio puede ajustar estas cifras con su filtro, así que pueden llegar con otra
-	 * forma. Se ensancha el tipo a propósito: lo que no venga bien formado se descarta aquí,
-	 * en la fuente, y quien las pinte puede darlas por buenas.
-	 *
-	 * @var array<string, mixed> $stats
-	 */
-	$stats = apply_filters( 'convoca_theme_stats', $stats );
-
-	return array_filter(
-		$stats,
-		static function ( $dato ): bool {
-			return is_array( $dato ) && isset( $dato['value'], $dato['label'] );
-		}
-	);
 }
 
 /**
@@ -1170,157 +1092,26 @@ add_action(
 	5
 );
 
+// El menú de las plantillas FSE lo pinta Convoca Core (shortcode [convoca_menu]).
 /**
- * [convoca_menu location="top"] — pinta un menú clásico existente en una
- * plantilla FSE (los .html de templates/parts no ejecutan PHP).
- * Mantiene un único origen de datos: el menú real de WordPress.
- */
-/**
- * Meta de evento — doble lectura (clave nueva → clave antigua).
+ * Meta de evento de una entrada.
  *
- * Este theme escribe las metas de evento con las claves `_convoca_event_*`.
- * La base de datos de producción, sin embargo, conserva 306 entradas guardadas
- * con las claves antiguas `_biodevas_event_*` (heredadas del theme hijo que se
- * ha fusionado aquí). Para no perder esos datos se lee PRIMERO la clave nueva
- * y, si está vacía, se cae a la antigua. Al guardar desde el metabox se escribe
- * SIEMPRE la clave nueva, de modo que el dato se migra de forma natural la
- * próxima vez que se edita la entrada.
+ * Los datos y su formulario viven en Convoca Core (`includes/event-meta.php`),
+ * que es el plugin base del producto. Aquí sólo se delega para no duplicar la
+ * lectura: el theme se limita a pintar lo que Core le da. Sin Core activo no hay
+ * dato de evento (y por tanto tampoco schema ni fecha de evento).
  *
- * @param int    $post_id ID de la entrada.
- * @param string $new_key Clave nueva (p. ej. '_convoca_event_start_date').
+ * @param int    $post_id    ID de la entrada.
+ * @param string $meta_key   Clave canónica (p. ej. '_convoca_event_start_date').
  * @return string Valor de la meta, o cadena vacía si no hay dato.
  */
-function convoca_get_event_meta( int $post_id, string $new_key ): string {
-	// Mapa de clave nueva → clave antigua (datos históricos de producción).
-	$legacy_keys = array(
-		'_convoca_event_start_date' => '_biodevas_event_start_date',
-		'_convoca_event_end_date'   => '_biodevas_event_end_date',
-		'_convoca_event_address'    => '_biodevas_event_address',
-		'_convoca_has_event'        => '_biodevas_has_event',
-	);
-
-	$value = get_post_meta( $post_id, $new_key, true );
-	if ( '' !== (string) $value ) {
-		return (string) $value;
+function convoca_get_event_meta( int $post_id, string $meta_key ): string {
+	if ( ! function_exists( '\Convoca\Core\event_meta' ) ) {
+		return '';
 	}
 
-	if ( isset( $legacy_keys[ $new_key ] ) ) {
-		return (string) get_post_meta( $post_id, $legacy_keys[ $new_key ], true );
-	}
-
-	return '';
+	return \Convoca\Core\event_meta( $post_id, $meta_key );
 }
-
-/**
- * Metabox «Evento»: datos del evento (Schema.org) para las entradas.
- */
-function convoca_event_meta_box(): void {
-	add_meta_box(
-		'convoca_event_meta',
-		'Event',
-		'convoca_event_meta_box_callback',
-		'post',
-		'side',
-		'default'
-	);
-}
-add_action( 'add_meta_boxes', 'convoca_event_meta_box' );
-
-/**
- * Pinta el bloque de evento en la ficha de edición.
- *
- * Lee con la doble lectura de metas, así que funciona igual con los datos
- * históricos de producción que con los nuevos.
- *
- * @param \WP_Post $post Entrada que se está editando.
- * @return void
- */
-function convoca_event_meta_box_callback( $post ): void {
-	wp_nonce_field( 'convoca_event_meta', 'convoca_event_meta_nonce' );
-	$start_date = convoca_get_event_meta( $post->ID, '_convoca_event_start_date' );
-	$end_date   = convoca_get_event_meta( $post->ID, '_convoca_event_end_date' );
-	$address    = convoca_get_event_meta( $post->ID, '_convoca_event_address' );
-	$has_event  = convoca_get_event_meta( $post->ID, '_convoca_has_event' );
-	?>
-	<p>
-		<label for="convoca_has_event">
-			<input type="checkbox" id="convoca_has_event" name="convoca_has_event" value="1" <?php checked( $has_event, '1' ); ?>>
-			This content is an event
-		</label>
-	</p>
-	<p>
-		<label for="convoca_event_start_date">Start date and time</label>
-		<input type="datetime-local" id="convoca_event_start_date" name="convoca_event_start_date"
-			value="<?php echo esc_attr( $start_date ); ?>" style="width:100%">
-	</p>
-	<p>
-		<label for="convoca_event_end_date">End date and time</label>
-		<input type="datetime-local" id="convoca_event_end_date" name="convoca_event_end_date"
-			value="<?php echo esc_attr( $end_date ); ?>" style="width:100%">
-	</p>
-	<p>
-		<label for="convoca_event_address">Address / location</label>
-		<input type="text" id="convoca_event_address" name="convoca_event_address"
-			value="<?php echo esc_attr( $address ); ?>" placeholder="e.g. Main Street 1, Your Town, Spain" style="width:100%">
-	</p>
-	<p style="color:#666;font-size:12px;margin-top:8px;">
-		Fill in these fields only if you want Google to index this content as an event with structured data.
-	</p>
-	<?php
-}
-
-/**
- * Guarda los datos del evento.
- *
- * Escribe SIEMPRE las claves nuevas (_convoca_event_*). Las antiguas se siguen
- * leyendo mientras dure la migración de los datos de producción.
- *
- * @param int $post_id Identificador de la entrada.
- * @return void
- */
-function convoca_event_meta_save( $post_id ): void {
-	if ( ! isset( $_POST['convoca_event_meta_nonce'] ) ) {
-		return;
-	}
-	if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['convoca_event_meta_nonce'] ) ), 'convoca_event_meta' ) ) {
-		return;
-	}
-	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-		return;
-	}
-	if ( ! current_user_can( 'edit_post', $post_id ) ) {
-		return;
-	}
-	// El gancho save_post es global: hay que descartar lo que no es una entrada editable
-	// (revisiones, autoguardados y tipos de contenido donde el campo no se muestra).
-	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
-		return;
-	}
-	if ( 'post' !== get_post_type( $post_id ) ) {
-		return;
-	}
-
-	// Se escribe SIEMPRE la clave nueva (_convoca_event_*): la lectura ya cae a
-	// la antigua para el contenido histórico que aún no se ha re-editado.
-	update_post_meta( $post_id, '_convoca_has_event', isset( $_POST['convoca_has_event'] ) ? '1' : '0' );
-
-	foreach ( array(
-		'convoca_event_start_date' => '_convoca_event_start_date',
-		'convoca_event_end_date'   => '_convoca_event_end_date',
-		'convoca_event_address'    => '_convoca_event_address',
-	) as $field => $meta_key ) {
-		if ( ! isset( $_POST[ $field ] ) ) {
-			continue;
-		}
-		$value = sanitize_text_field( wp_unslash( $_POST[ $field ] ) );
-		if ( '' !== $value ) {
-			update_post_meta( $post_id, $meta_key, $value );
-		} else {
-			delete_post_meta( $post_id, $meta_key );
-		}
-	}
-}
-add_action( 'save_post', 'convoca_event_meta_save' );
 
 /**
  * Convierte una fecha escrita por quien edita a ISO 8601 en UTC, o null si no es válida.
@@ -1535,30 +1326,6 @@ function convoca_fse_remove_version( $src ) {
 	}
 
 	return $src;
-}
-
-/**
- * Presentación de los datos de evento que YA existen en la instalación.
- *
- * Los metas `_convoca_event_start_date` y `_convoca_event_address` los gestiona
- * el metabox de este mismo theme. Aquí sólo se FORMATEAN para mostrarlos: no se
- * escribe ni se inventa ningún dato, y si un contenido no tiene fecha de evento
- * se cae a la fecha de publicación.
- */
-function convoca_fse_evento_donde(): string {
-	$id = get_the_ID();
-	if ( ! $id ) {
-		return '';
-	}
-	$dir = (string) convoca_get_event_meta( $id, '_convoca_event_address' );
-	$dir = trim( preg_replace( '/\s+/', ' ', $dir ) );
-	// Se muestra sólo el municipio/lugar: lo que va tras la primera coma suele
-	// ser la dirección postal completa, que no aporta en una tarjeta.
-	if ( strlen( $dir ) > 60 ) {
-		$partes = explode( ',', $dir );
-		$dir    = trim( $partes[0] );
-	}
-	return $dir;
 }
 
 /**
@@ -1790,39 +1557,10 @@ add_filter(
 	2
 );
 
-/**
- * La fecha del evento nunca cae a la de publicación.
- *
- * Antes, un contenido sin fecha de evento mostraba su fecha de publicación
- * disfrazada de fecha de actividad. Ahora, sin fecha de evento, no hay fecha.
- */
-function convoca_fse_evento_cuando(): string {
-	$id  = get_the_ID();
-	$ini = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_start_date' ) : '';
-	$fin = $id ? (string) convoca_get_event_meta( $id, '_convoca_event_end_date' ) : '';
+// La fecha del evento la formatea Convoca Core (event_when()); el shortcode de la
+// plantilla es el de Core.
 
-	if ( '' === $ini ) {
-		return '';
-	}
-
-	$ts   = strtotime( $ini );
-	$text = $ts ? date_i18n( 'j \\d\\e F, H:i', $ts ) : $ini;
-
-	if ( '' !== $fin && substr( $fin, 0, 10 ) !== substr( $ini, 0, 10 ) ) {
-		$tsf  = strtotime( $fin );
-		$text = sprintf( '%s – %s', $text, $tsf ? date_i18n( 'j \\d\\e F', $tsf ) : $fin );
-	}
-
-	return $text;
-}
-
-/**
- * Contenido relacionado: entradas de la MISMA categoría que la actual.
- *
- * Se resuelve en PHP porque el bloque de consulta no puede leer las categorías
- * de la entrada que se está viendo. Es sólo presentación: no crea ni modifica
- * contenido, y si no hay relacionadas no pinta nada.
- */
+// Las relacionadas las sirve Convoca Core (shortcode [convoca_relacionadas]).
 /**
  * Estilos de bloque propios del diseño del sitio.
  *

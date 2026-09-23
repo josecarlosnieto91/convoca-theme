@@ -4,7 +4,7 @@ Tags: FSE, full-site-editing, dark-mode, blocks, patterns, asociaciones
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 2.8.0
+Stable tag: 2.9.16
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,12 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 2. Activa el tema desde Apariencia > Temas
 
 == Changelog ==
+
+= 2.9.16 =
+* El theme deja de implementar funcionalidad: menú, redes, relacionadas, cifras del sitio y datos de evento pasan a Convoca Core. Los shortcodes [convoca_menu], [convoca_socials], [convoca_cuando], [convoca_donde], [convoca_relacionadas] y [convoca_stats] los registra Core, así que el theme funciona sin ningún mu-plugin privado del sitio.
+* Redes sociales con una sola fuente: el filtro convoca_social_links (Core) alimenta el shortcode y los tokens {social_*} del pie.
+* Las cifras del sitio pasan al filtro convoca_site_stats (antes convoca_theme_stats).
+* Las versiones 2.9.0 a 2.9.15 no se anotaron aquí; el detalle está en CHANGELOG.md.
 
 = 2.8.0 =
 Generic, sellable theme. No installation data is left inside: texts, links, phone numbers and

@@ -1,5 +1,26 @@
 # Changelog - Convoca Theme
 
+## 2.9.16 (2026-09-23)
+
+El theme deja de implementar funcionalidad. El menú, las redes, las relacionadas, las cifras del
+sitio y los datos de evento pasan a **Convoca Core** (el plugin base del producto):
+
+- `[convoca_menu]`, `[convoca_socials]`, `[convoca_cuando]`, `[convoca_donde]`,
+  `[convoca_relacionadas]` y `[convoca_stats]` los registra Core: el theme ya **no necesita ningún
+  mu-plugin privado del sitio** para funcionar.
+- Meta de evento (metabox, guardado y acceso) en Core (`includes/event-meta.php`). El theme se queda
+  con la presentación: schema.org, el formateo de la fecha y el lugar, y el retirado de la fecha de
+  publicación cuando el contenido es un evento.
+- Redes con **una sola fuente**: `convoca_social_links` alimenta el shortcode y los tokens
+  `{social_*}` del pie. Desaparecen los filtros `convoca_theme_social_instagram/facebook/youtube/handle`
+  (declarar las mismas URLs dos veces permitía que el pie y el shortcode discrepasen).
+- Cifras del sitio: filtro `convoca_site_stats` (antes `convoca_theme_stats`); el patrón de
+  estadísticas las pide a `\Convoca\Core\site_stats()`.
+- Comentarios de plantilla sin corchetes que pareciesen shortcodes (ensuciaban las auditorías).
+
+**Requiere Convoca Core**: sin él no hay datos de evento ni shortcodes de interfaz. El theme no
+inventa valores vacíos que parezcan contenido.
+
 ## 2.9.14 (2026-09-23)
 
 El archivo (categorías, etiquetas, fechas, autor) no paginaba: mostraba siempre las mismas entradas.

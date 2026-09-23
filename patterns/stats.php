@@ -22,10 +22,10 @@
  * Keywords: stats, figures, numbers
  *
  * Este patrón NO lleva números hardcodeados: los obtiene en PHP de los datos
- * reales del sitio (entradas publicadas, antigüedad, páginas hijas...) y admite
- * sobrescritura por filtro:
+ * reales del sitio (entradas publicadas, antigüedad...) y admite sobrescritura
+ * por filtro. Las calcula Convoca Core (`\Convoca\Core\site_stats()`):
  *
- *     add_filter( 'convoca_theme_stats', function ( $stats ) {
+ *     add_filter( 'convoca_site_stats', function ( $stats ) {
  *         $stats['socios'] = 210; // sólo si existe un dato real
  *         return $stats;
  *     } );
@@ -33,7 +33,7 @@
  * @since 2.8.0
  */
 
-$convoca_stats = function_exists( 'convoca_theme_get_stats' ) ? convoca_theme_get_stats() : array();
+$convoca_stats = function_exists( '\Convoca\Core\site_stats' ) ? \Convoca\Core\site_stats() : array();
 
 if ( empty( $convoca_stats ) ) {
 	return; // Sin datos reales no se pinta una franja vacía.
