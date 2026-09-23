@@ -1,5 +1,21 @@
 # Changelog - Convoca Theme
 
+## 2.9.14 (2026-09-23)
+
+El archivo (categorías, etiquetas, fechas, autor) no paginaba: mostraba siempre las mismas entradas.
+
+- **Causa**: el bloque `wp:query` de `templates/archive.html` llevaba `"inherit":false` con
+  `perPage:6`, así que construía su propia consulta («las 6 entradas más recientes del sitio»)
+  ignorando el archivo en el que estaba. Síntoma medido en `/secciones/noticias/`: el título decía
+  «Página 2 de 15» (la consulta principal sí contaba 85 entradas) pero el listado de las páginas
+  1, 2 y 3 era **idéntico**. Efecto real: las entradas antiguas del archivo eran inalcanzables.
+- **Arreglo**: `inherit:true` en ese bloque. El bucle usa la consulta principal del archivo y la
+  paginación funciona. Verificado: 15 páginas con 6 entradas distintas cada una, las 67 entradas
+  nuevas alcanzables, y portada, archivo de Actividades y etiquetas siguen en 200.
+- ⚠️ La plantilla vive en la BASE DE DATOS (`wp_template` 11978) y **esa manda**: el arreglo se
+  aplicó primero ahí (copia previa en `/tmp/archive-11978.bak.php_content.txt` de orion) y después
+  al fichero del repo, que es el que se desplegará en el futuro.
+
 ## 2.9.13 (2026-09-20)
 
 La foto de un «camino» de la portada se veía recortada por arriba.
