@@ -34,7 +34,7 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 * Tipografía Outfit + Lato con Google Fonts
 * 15+ Block Patterns: hero, cards, pricing, CTA, estadísticas, contacto
 * 8 estilos de bloque personalizados
-* Shortcode de interfaz: [convoca_dark_mode_toggle]
+* Shortcode de interfaz del tema: ninguno (el modo oscuro es un botón del header, no un shortcode)
 * Los shortcodes de negocio ([convoca_mi_area], [convoca_inscripcion_page], [convoca_calendario], [convoca_pago]…) pertenecen a los plugins y funcionan con cualquier tema
 
 == Installation ==
