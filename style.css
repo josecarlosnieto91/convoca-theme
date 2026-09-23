@@ -4332,7 +4332,7 @@ body .convoca-topnav ul {
    El bloque Portada (wp-block-cover) pone el texto en blanco, como si tuviera detrás una
    imagen o un color oscuro. Si no tiene ni imagen ni color ni degradado, se queda
    transparente y ese texto blanco acaba sobre el fondo claro de la página: contraste 1:1,
-   ilegible. Medido en «Únete a Biodevas»: el párrafo «Forma parte de la comunidad…» salía
+   ilegible. Medido en una página con CTA: el párrafo «Forma parte de la comunidad…» salía
    blanco sobre blanco.
    Aquí se le da el color de marca por defecto (uva), que es lo que la portada esperaba.
    Solo afecta a las portadas sin imagen y sin color: se excluyen las que ya tienen uno, tanto en
