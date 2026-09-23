@@ -18,7 +18,7 @@
  * Title: Community figures (dynamic)
  * Slug: convoca/stats
  * Categories: convoca, convoca-layout
- * Description: Strip with REAL figures from the installation (no fixed values). Each figure can be overridden with the convoca_theme_stats filter; those without data are omitted.
+ * Description: Strip with REAL figures from the installation (no fixed values). Each figure can be overridden with the convoca_site_stats filter; those without data are omitted.
  * Keywords: stats, figures, numbers
  *
  * Este patrón NO lleva números hardcodeados: los obtiene en PHP de los datos
