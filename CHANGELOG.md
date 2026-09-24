@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.9.18] - 2026-09-24
+
+### Añadido
+- El schema.org del evento lee el **precio** (`_convoca_event_price`, con la clave heredada que
+  mapee el sitio en `convoca_event_meta_legacy_keys`): un evento de pago ya no sale como gratuito
+  en los datos estructurados. Si no hay precio —o el valor no es numérico— se mantiene el `0` de
+  antes, así que ningún sitio cambia de comportamiento por el simple hecho de actualizar el theme.
+
 ## [2.9.17] - 2026-09-23
 
 ### Cambiado

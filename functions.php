@@ -1177,6 +1177,12 @@ function convoca_event_schema(): void {
 
 	$location_address = convoca_get_event_meta( $post_id, '_convoca_event_address' );
 
+	// El precio, si el sitio lo declara (meta del núcleo o la clave heredada que mapee). Un
+	// valor vacío o no numérico no se inventa: el schema sale como gratuito, que es lo que
+	// venía haciendo el tema por defecto.
+	$precio = convoca_get_event_meta( $post_id, '_convoca_event_price' );
+	$precio = ( '' !== $precio && is_numeric( $precio ) ) ? (string) $precio : '0';
+
 	// Las fechas se validan antes de publicar el schema: un valor mal escrito por quien edita
 	// no puede acabar en datos estructurados. Y un valor de tipo `datetime-local` viene sin
 	// zona horaria, asi que se interpreta en la del sitio y se convierte a UTC al serializar;
@@ -1232,7 +1238,7 @@ function convoca_event_schema(): void {
 		),
 		'offers'              => array(
 			'@type'         => 'Offer',
-			'price'         => '0',
+			'price'         => $precio,
 			'priceCurrency' => 'EUR',
 			'availability'  => 'https://schema.org/InStock',
 			'validFrom'     => get_the_date( 'c' ),
