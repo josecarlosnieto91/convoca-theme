@@ -1695,7 +1695,7 @@ add_filter(
  *
  * Al paginar los resultados, WordPress construía direcciones del tipo `/page/2/?s=Setas`.
  * Esa URL NO es la página 2 de la búsqueda: el core la resuelve como la portada paginada
- * (medido: servía «BIODEVAS - Página 2 de 71»), así que el visitante salía de los resultados
+ * (medido: servía «ASOCIACION - Página 2 de 71»), así que el visitante salía de los resultados
  * y acababa en el blog. El origen está en `paginate_links()` y en `get_pagenum_link()`, que
  * arman la dirección desde la URL actual y pierden la búsqueda por el camino.
  *
