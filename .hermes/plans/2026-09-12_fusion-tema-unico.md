@@ -5,11 +5,11 @@
 > Cada fase termina con verificación y commit. No se pasa a la siguiente sin verde.
 
 **Objetivo:** que `convoca-theme` sea el único tema, con todo el diseño que se hizo
-en el hijo `biodevas-fse` dentro y sin nomenclatura de Biodevas en su código.
+en el hijo `asociacion-fse` dentro y sin nomenclatura de Asociacion en su código.
 
 **Contexto de partida (medido el 2026-09-12):**
 
-| | `convoca-theme` | `biodevas-fse` (hijo) |
+| | `convoca-theme` | `asociacion-fse` (hijo) |
 |---|---|---|
 | plantillas | 14 | 8 (sobrescriben 8 del padre) |
 | partes | 8 | 3 (sobrescriben 3 del padre) |
@@ -19,8 +19,8 @@ en el hijo `biodevas-fse` dentro y sin nomenclatura de Biodevas en su código.
 | `theme.json` | 531 líneas | 651 líneas |
 | clases `bio-*` | 0 | 922 |
 | variables `--bio-*` | 0 | 204 |
-| funciones `biodevas_*` | 0 | 59 |
-| metas `_biodevas_*` | 0 | 21 (solo en `functions.php`) |
+| funciones `asociacion_*` | 0 | 59 |
+| metas `_asociacion_*` | 0 | 21 (solo en `functions.php`) |
 
 Sin colisiones de funciones entre ambos (0 de 62+10). **5 hooks compartidos** que hay
 que fusionar a mano: `after_setup_theme`, `init`, `wp_enqueue_scripts`, `wp_head` y el
@@ -31,8 +31,8 @@ filtro `convoca_theme_stats`. Hoy se cargan las DOS hojas de estilo.
 1. Prefijo: `convoca-` (el theme ya usa 44 clases así: `.convoca-card`, `.convoca-badge`).
 2. Los 5 colores de la identidad viven en **Global Styles del sitio**; el theme queda neutro.
 3. Las plantillas y partes solo del padre (producto) se **adaptan** al diseño nuevo.
-4. Los 4 patrones editoriales de Biodevas pasan **al sitio** como patrones sincronizados.
-5. Las metas `_biodevas_*` se **migran también en producción** (Orion y Andromeda).
+4. Los 4 patrones editoriales de Asociacion pasan **al sitio** como patrones sincronizados.
+5. Las metas `_asociacion_*` se **migran también en producción** (Orion y Andromeda).
 
 **Puntos de retorno creados:** `pre-fusion-convoca` (6aa2f5f), `pre-fusion-child`
 (215e03c), `pre-fusion-demo` (802e49b).
@@ -41,10 +41,10 @@ filtro `convoca_theme_stats`. Hoy se cargan las DOS hojas de estilo.
 
 ## Fase 0 — Red de seguridad
 
-- [ ] Ramas: `fusion-tema-unico` en `convoca-theme` y en `biodevas-fse`.
+- [ ] Ramas: `fusion-tema-unico` en `convoca-theme` y en `asociacion-fse`.
 - [ ] Empujar los tres tags al remoto (`git push origin --tags`).
 - [ ] Anotar el estado de partida: `hermes verify` (8 fases) y las 42 capturas.
-      **Comando:** `cd ~/repos/biodevas-demo && hermes verify --json > /tmp/fusion-antes.json`
+      **Comando:** `cd ~/repos/asociacion-demo && hermes verify --json > /tmp/fusion-antes.json`
 - [ ] Referencia visual "antes": `bash scripts/shots-web.sh` y guardar en
       `reference/fusion-antes/` (la comparación final se hace contra esto).
 
@@ -61,7 +61,7 @@ se renombran sus clases dentro.
 
 **Pasos:**
 1. Copiar cada fichero del hijo sobre el del padre.
-2. Renombrar dentro: `bio-` → `convoca-`, `biodevas-` → `convoca-`.
+2. Renombrar dentro: `bio-` → `convoca-`, `asociacion-` → `convoca-`.
 3. Comprobar que no queda ninguna clase `bio-` sin renombrar:
    `grep -rn '\bbio-[a-z]' convoca-theme/templates convoca-theme/parts` → debe salir vacío.
 4. Los 4 patrones editoriales del hijo (`hero-portada`, `participa`, `quienes-somos`,
@@ -79,7 +79,7 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 
 | Parche en el hijo | Regla del padre que lo obliga | Qué hacer |
 |---|---|---|
-| `body .site-header .biodevas-fila { min-height: 88px !important }` | `.site-header .biodevas-fila` de la sección 20 | dejar UNA regla, sin `!important` |
+| `body .site-header .asociacion-fila { min-height: 88px !important }` | `.site-header .asociacion-fila` de la sección 20 | dejar UNA regla, sin `!important` |
 | correcciones de `.wp-block-site-title { max-width: 40vw }` | regla del padre que recorta el titular | arreglar el padre en su origen |
 | relleno de `#main-content` forzado | `has-global-padding` + `#main-content` del padre | una sola fuente de verdad |
 | impresión pintada en el contenedor | `global-styles-inline-css` con `!important` | revisar si sigue haciendo falta |
@@ -102,13 +102,13 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 ## Fase 3 — `functions.php` fusionada
 
 **Pasos:**
-1. Renombrar `biodevas_*` → `convoca_*` (59 apariciones) y `biodevas-` → `convoca-`.
+1. Renombrar `asociacion_*` → `convoca_*` (59 apariciones) y `asociacion-` → `convoca-`.
 2. Fusionar los 5 hooks compartidos revisando los dos lados, uno a uno.
 3. **Doble lectura de las metas** (clave para la fase 6):
-   leer primero `_convoca_event_start_date` y caer a `_biodevas_event_start_date`.
+   leer primero `_convoca_event_start_date` y caer a `_asociacion_event_start_date`.
    Igual para `_end_date`, `_address` y `has_event`.
 4. El metabox se queda, con la etiqueta en español neutro («Evento»), sin la palabra
-   Biodevas.
+   Asociacion.
 
 **Verificación:**
 - `php -l` de todos los PHP del theme.
@@ -120,7 +120,7 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 
 **Pasos:**
 1. El `theme.json` del padre se queda con la paleta neutra (escalas de gris + un color
-   de marca genérico), sin los 5 colores de Biodevas.
+   de marca genérico), sin los 5 colores de Asociacion.
 2. Los 5 colores (`#ff8700`, `#ffab00`, `#ff500a`, `#7d0032`, `#320028`) se exportan
    como **Global Styles del sitio** (`wp_global_styles` del tema): así la identidad es
    configuración, no código, y sobrevive a las actualizaciones del theme.
@@ -138,7 +138,7 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 1. `docker-compose.yml`: quitar el montaje del hijo; `themes/convoca` desde
    `~/repos/convoca-theme` (4 referencias al hijo que hay que limpiar).
 2. Activar el tema: `wp theme activate convoca`.
-3. Quitar los 5 temas de arrastre (`biodevas-theme`, `bravada`, `bravada-child`,
+3. Quitar los 5 temas de arrastre (`asociacion-theme`, `bravada`, `bravada-child`,
    `twentytwentyfive`) — son inactivos, vienen del clon de producción.
 4. Actualizar `README.md` (9 referencias) y `scripts/verify-assets.py` (1).
 5. Arrancar y comprobar que todo sigue: las 8 fases de la receta + `verify-tarjetas.py`.
@@ -167,7 +167,7 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 
    ```sql
    UPDATE wp_postmeta SET meta_key = '_convoca_event_start_date'
-    WHERE meta_key = '_biodevas_event_start_date';
+    WHERE meta_key = '_asociacion_event_start_date';
    ```
 
    (y las otras tres). Guardar el recuento ANTES y DESPUÉS: los números deben cuadrar.
@@ -180,21 +180,21 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 
 **Riesgos:**
 - Producción **no puede** llevar este tema todavía: el despliegue del FSE a
-  biodevas.org es un proyecto aparte. Hasta que ocurra, la doble lectura se queda.
+  ejemplo.org es un proyecto aparte. Hasta que ocurra, la doble lectura se queda.
 - Toda la fase 6 va con el OK explícito de JC en el momento de ejecutarla, no antes.
 
 ---
 
 ## Validación global (criterio de cierre)
 
-1. `convoca-theme` es el único tema: 0 referencias a Biodevas en su código
-   (`grep -ri biodevas convoca-theme --exclude-dir=.git` → solo la doble lectura de
+1. `convoca-theme` es el único tema: 0 referencias a Asociacion en su código
+   (`grep -ri asociacion convoca-theme --exclude-dir=.git` → solo la doble lectura de
    metas, que es explícita y documentada).
 2. `hermes verify`: 8 fases en verde.
 3. Las 42 capturas comparadas contra el antes: sin diferencias estructurales.
 4. La demo se ve igual que antes de empezar (esa es la prueba de que la fusión no cambió
    nada de lo que ya habíamos acordado).
-5. `biodevas-fse` archivado en `~/archive/projects/` con su README explicando que su
+5. `asociacion-fse` archivado en `~/archive/projects/` con su README explicando que su
    contenido vive en `convoca-theme`.
 
 ## Cerrado con JC (2026-09-12)
@@ -206,7 +206,7 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
    tema. Esta tanda cierra en la fase 5.
 2. **La fase 6 se queda parada en el paso 1**: el tema con doble lectura de las metas, y
    la migración de la base de datos se ejecuta cuando toque desplegar el FSE a
-   biodevas.org. No se toca Orion en esta tanda.
+   ejemplo.org. No se toca Orion en esta tanda.
 
 ## Ficheros que van a cambiar
 
@@ -215,13 +215,13 @@ fusionar hay que arreglar la regla original, no arrastrar el parche. Conocidos:
 - `convoca-theme/theme.json` — paleta neutra
 - `convoca-theme/templates/*.html`, `convoca-theme/parts/*.html` — sustitución y renombrado
 - `convoca-theme/patterns/*.php` — limpieza de los 4 editoriales
-- `biodevas-demo/docker-compose.yml`, `README.md`, `scripts/verify-assets.py`
-- `biodevas-demo/reference/fusion-antes/`, `reference/fusion-despues/` — capturas
+- `asociacion-demo/docker-compose.yml`, `README.md`, `scripts/verify-assets.py`
+- `asociacion-demo/reference/fusion-antes/`, `reference/fusion-despues/` — capturas
 
 ## Comandos de verificación (los de siempre, no inventar otros)
 
 ```bash
-cd ~/repos/biodevas-demo
+cd ~/repos/asociacion-demo
 hermes verify --json                      # 8 fases (receta del proyecto)
 python3 scripts/verify-tarjetas.py        # etiquetas y fechas
 python3 scripts/verify-render.py          # 12 casos sobre HTTP real

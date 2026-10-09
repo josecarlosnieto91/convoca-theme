@@ -4279,7 +4279,7 @@ body .convoca-topnav ul {
 }
 
 /* ── LA MARCA DEL SITIO EN MODO OSCURO (JC, 2026-09-14) ─────────────────────────────
-   El «BIODEVAS» de la cabecera y del hero es un ENLACE dentro del título del sitio. El <p>
+   El «ASOCIACION» de la cabecera y del hero es un ENLACE dentro del título del sitio. El <p>
    se ponía en blanco, pero el enlace de dentro conservaba su color de modo claro (carbón,
    rgb(22,24,27)) y ganaba por orden de aparición a la regla general de enlaces en oscuro:
    el texto se quedaba casi negro sobre fondo oscuro y sólo se veía al pasar el ratón, que es

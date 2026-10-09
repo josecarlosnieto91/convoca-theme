@@ -69,7 +69,7 @@ La paginación de los resultados de búsqueda sacaba de los resultados.
 
 - **Al pasar a la página 2, 3… de una búsqueda, el visitante acababa en la portada del blog.**
   WordPress construía direcciones del tipo `/page/2/?s=Setas`, y esa URL no es la página 2 de
-  la búsqueda: el core la resuelve como la portada paginada (medido: servía «BIODEVAS - Página 2
+  la búsqueda: el core la resuelve como la portada paginada (medido: servía «ASOCIACION - Página 2
   de 71»). El origen está en `paginate_links()` y `get_pagenum_link()`, que arman la dirección
   desde la URL actual y pierden la búsqueda por el camino. Los tres bloques de la paginación
   (números, anterior y siguiente) pasan por `get_pagenum_link()`, que tiene filtro: se reescribe
