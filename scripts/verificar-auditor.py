@@ -18,7 +18,7 @@ import urllib.request
 AQUI = pathlib.Path(__file__).resolve().parent
 AUDITOR = AQUI / "auditar-modo-oscuro.py"
 CSS = AQUI.parent / "style.css"
-PRODUCCION = "https://biodevas.org/wp-content/themes/convoca/style.css"
+PRODUCCION = "https://biodevas.org/wp-content/themes/convoca/style.css"  # convoca-hygiene-ignore: direccion de produccion que compara el script
 
 CAZA = [
     ("forma corta border", ".dark-mode .x { border: 2px solid red; }"),

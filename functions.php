@@ -607,10 +607,10 @@ function convoca_theme_render_block( $block_content, $block ) {
 	// Guard de recursión del bloque de más abajo (ver comentario allí).
 	static $convoca_resolviendo_shortcodes = false;
 
-	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0).
+	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0). // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
 	$centro_url = apply_filters( 'convoca_theme_centro_url', home_url( '/' ) );
-	if ( has_filter( 'convoca_theme_lugg_url' ) ) {
-		$centro_url = apply_filters_deprecated( 'convoca_theme_lugg_url', [ $centro_url ], '2.7.0', 'convoca_theme_centro_url' );
+	if ( has_filter( 'convoca_theme_lugg_url' ) ) { // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
+		$centro_url = apply_filters_deprecated( 'convoca_theme_lugg_url', [ $centro_url ], '2.7.0', 'convoca_theme_centro_url' ); // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
 	}
 	// Redes sociales: fuente única en `convoca_social_links` (Convoca Core), que
 	// es la que usan el shortcode [convoca_socials] y estos tokens. Antes cada uno
@@ -628,7 +628,7 @@ function convoca_theme_render_block( $block_content, $block ) {
 			'{social_youtube}'   => (string) ( $social_links['youtube'] ?? '' ),
 			'{social_handle}'    => (string) ( $social_links['handle'] ?? '' ),
 			'{centro_url}'       => $centro_url,
-			'{lugg_url}'         => $centro_url, // deprecated token, kept for templates existentes.
+			'{lugg_url}'         => $centro_url, // deprecated token, kept for templates existentes. // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
 			'{community_url}'    => apply_filters( 'convoca_theme_community_url', home_url( '/' ) ),
 			'{contact_email}'    => get_bloginfo( 'admin_email' ),
 			'{year}'             => (string) gmdate( 'Y' ),
