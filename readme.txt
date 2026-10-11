@@ -4,7 +4,7 @@ Tags: FSE, full-site-editing, dark-mode, blocks, patterns, asociaciones
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 2.9.20
+Stable tag: 2.9.21
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,10 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 2. Activa el tema desde Apariencia > Temas
 
 == Changelog ==
+
+= 2.9.21 =
+* El selector de idioma ya no emite un <li> suelto fuera del <ul> del menu (HTML invalido y fallo de accesibilidad): entra dentro de la lista, o sale como <div> si no la hay.
+* Los enlaces dentro de un parrafo del pie van subrayados: se distinguian solo por color (1.43:1).
 
 = 2.9.20 =
 * Los encabezados (h1-h4) y el foco de los enlaces dejan de usar el naranja de marca como texto: sobre blanco daba 2.41:1 y no cumple AA. Pasan a naranja-oscuro (5.07:1).

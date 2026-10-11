@@ -890,11 +890,16 @@ function convoca_theme_lang_languages(): array {
  *
  * @return string HTML del selector.
  */
-function convoca_theme_lang_switcher_html(): string {
+function convoca_theme_lang_switcher_html( string $tag = 'li' ): string {
 	$languages = convoca_theme_lang_languages();
 	if ( count( $languages ) < 2 ) {
 		return '';
 	}
+	// El contenedor es un <li> cuando el selector va DENTRO de una lista (menu
+	// clasico). Cuando el bloque lo deja fuera del <ul>, un <li> no es valido:
+	// axe lo marca como «List item does not have a <ul> parent» — asi que ahi se
+	// pide un <div>. El CSS va por las clases `convoca-lang-switcher*`, no por el tag.
+	$tag = ( 'div' === $tag ) ? 'div' : 'li';
 
 	$current_code = 'EN';
 	foreach ( $languages as $lang ) {
@@ -906,7 +911,7 @@ function convoca_theme_lang_switcher_html(): string {
 
 	$id = 'convoca-lang-' . wp_unique_id();
 
-	$html  = '<li class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher convoca-lang-switcher--dropdown">';
+	$html  = '<' . $tag . ' class="menu-item menu-item-type-custom menu-item-object-custom convoca-lang-switcher convoca-lang-switcher--dropdown">';
 	$html .= '<button type="button" class="convoca-lang-switcher__toggle" aria-label="' . esc_attr__( 'Change language', 'convoca' ) . '" aria-expanded="false" aria-controls="' . esc_attr( $id ) . '">';
 	$html .= '<span class="convoca-lang-switcher__globe" aria-hidden="true">🌐</span>';
 	$html .= '<span class="convoca-lang-switcher__code">' . esc_html( $current_code ) . '</span>';
@@ -919,7 +924,7 @@ function convoca_theme_lang_switcher_html(): string {
 		$html .= '<a class="' . esc_attr( $cls ) . '" href="' . esc_url( $lang['url'] ) . '" hreflang="' . esc_attr( $lang['code'] ) . '" lang="' . esc_attr( $lang['code'] ) . '">' . esc_html( $lang['name'] ) . '</a>';
 		$html .= '</li>';
 	}
-	$html .= '</ul></li>';
+	$html .= '</ul></' . $tag . '>';
 
 	return $html;
 }
@@ -955,12 +960,24 @@ function convoca_theme_lang_switcher_block( $block_content, $block ) {
 	if ( '' === $switcher ) {
 		return $block_content;
 	}
-	// Insertar antes del cierre del <nav> o del contenedor del bloque.
-	if ( preg_match( '#(</nav>)#', $block_content, $m, PREG_OFFSET_CAPTURE ) ) {
-		$pos = $m[1][1];
-		return substr( $block_content, 0, $pos ) . $switcher . substr( $block_content, $pos );
+
+	$cierre_nav = strpos( $block_content, '</nav>' );
+
+	// El selector se colgaba justo antes de `</nav>`, es decir DESPUES del `</ul>`
+	// del menu: un <li> suelto, sin lista que lo contenga. axe lo marca («List item
+	// does not have a <ul> parent») y es HTML invalido. Va DENTRO de la ultima
+	// lista del bloque, que es donde un <li> es valido.
+	if ( false !== $cierre_nav ) {
+		$antes_del_nav = substr( $block_content, 0, $cierre_nav );
+		$cierre_ul     = strrpos( $antes_del_nav, '</ul>' );
+		if ( false !== $cierre_ul ) {
+			return substr_replace( $block_content, $switcher, $cierre_ul, 0 );
+		}
+		// Sin lista donde meterlo: se inyecta un <div> (nunca un <li> suelto).
+		return substr_replace( $block_content, convoca_theme_lang_switcher_html( 'div' ), $cierre_nav, 0 );
 	}
-	return $block_content . $switcher;
+
+	return $block_content . convoca_theme_lang_switcher_html( 'div' );
 }
 add_filter( 'render_block', 'convoca_theme_lang_switcher_block', 20, 2 );
 

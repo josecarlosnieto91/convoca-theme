@@ -21,6 +21,12 @@ if ( ! function_exists( '__' ) ) {
 if ( ! function_exists( 'esc_html' ) ) {
 	function esc_html( $t ) {
 		return htmlspecialchars( $t, ENT_QUOTES, 'UTF-8' ); } }
+if ( ! function_exists( 'esc_attr__' ) ) {
+	function esc_attr__( $t, $d = 'default' ) {
+		return esc_attr( $t ); } }
+if ( ! function_exists( 'esc_html__' ) ) {
+	function esc_html__( $t, $d = 'default' ) {
+		return esc_html( $t ); } }
 if ( ! function_exists( 'esc_attr' ) ) {
 	function esc_attr( $t ) {
 		return htmlspecialchars( $t, ENT_QUOTES, 'UTF-8' ); } }
@@ -113,6 +119,19 @@ if ( ! function_exists( 'has_filter' ) ) {
 	function has_filter( $tag, $cb = false ) {
 		$hay = ! empty( $GLOBALS['convoca_test_filtros'][ $tag ] );
 		return $hay; } }
+// Mocks del selector de idioma. VAN AQUÍ (fichero sin namespace): functions.php es
+// del namespace global y no vería una función declarada dentro del namespace de un
+// test. `icl_get_languages` solo lo consulta el selector (bloques core/navigation).
+if ( ! function_exists( 'wp_unique_id' ) ) {
+	function wp_unique_id( $prefix = '' ) {
+		static $n = 0;
+		return $prefix . ( ++$n ); } }
+if ( ! function_exists( 'icl_get_languages' ) ) {
+	function icl_get_languages( $args = '' ) {
+		return array(
+			array( 'language_code' => 'es', 'native_name' => 'Español', 'url' => 'https://example.com/', 'active' => true ),
+			array( 'language_code' => 'en', 'native_name' => 'English', 'url' => 'https://example.com/en/', 'active' => false ),
+		); } }
 if ( ! function_exists( 'get_page_by_path' ) ) {
 	function get_page_by_path( $p ) {
 		return null; } }

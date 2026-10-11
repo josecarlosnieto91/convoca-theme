@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.9.21] - 2026-10-11
+
+### Arreglado
+- **El selector de idioma emitía un `<li>` sin lista que lo contuviera.** Se inyectaba antes
+  de `</nav>`, es decir **después** del `</ul>` del menú, así que quedaba suelto: HTML inválido
+  y violación de accesibilidad medida con axe («List item does not have a `<ul>` parent»).
+  Ahora entra **dentro de la última lista del bloque**; si el bloque no trae lista, se emite un
+  `<div>` en vez de un `<li>`. En el menú clásico (`wp_nav_menu_items`) sigue siendo un `<li>`,
+  que ahí sí es válido. Cubierto por `tests/Unit/LangSwitcherTest.php`, probado **en negativo**
+  (sin el arreglo fallan 4 de los 5 casos).
+- **Enlace del pie que solo se distinguía por color**: «CC BY-NC 4.0» quedaba a **1.43:1** del
+  texto que lo rodea, con `text-decoration: none` (WCAG 1.4.1 pide 3:1 o un indicador que no sea
+  el color). Los enlaces dentro de un párrafo del pie van ahora subrayados; las listas de
+  navegación se quedan como estaban.
+
 ## [2.9.20] - 2026-10-11
 
 ### Arreglado
