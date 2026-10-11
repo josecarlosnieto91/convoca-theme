@@ -138,4 +138,23 @@ if ( ! function_exists( 'get_page_by_path' ) ) {
 if ( ! function_exists( 'get_permalink' ) ) {
 	function get_permalink( $p = 0 ) {
 		return 'https://example.com/'; } }
+// Mocks para el sellado de assets por fecha de fichero (convoca_fse_remove_version).
+if ( ! defined( 'WP_CONTENT_DIR' ) ) {
+	define( 'WP_CONTENT_DIR', sys_get_temp_dir() . '/convoca-test-wp-contents' ); }
+if ( ! defined( 'WP_CONTENT_URL' ) ) {
+	define( 'WP_CONTENT_URL', 'https://example.com/wp-content' ); }
+if ( ! function_exists( 'remove_query_arg' ) ) {
+	function remove_query_arg( $clave, $url = '' ) {
+		$partes = explode( '?', $url, 2 );
+		if ( ! isset( $partes[1] ) ) {
+			return $url; }
+		parse_str( $partes[1], $q );
+		unset( $q[ $clave ] );
+		return $q ? $partes[0] . '?' . http_build_query( $q ) : $partes[0]; } }
+if ( ! function_exists( 'add_query_arg' ) ) {
+	function add_query_arg( $clave, $valor, $url = '' ) {
+		$partes = explode( '?', $url, 2 );
+		parse_str( $partes[1] ?? '', $q );
+		$q[ $clave ] = $valor;
+		return $partes[0] . '?' . http_build_query( $q ); } }
 date_default_timezone_set( 'Europe/Madrid' );

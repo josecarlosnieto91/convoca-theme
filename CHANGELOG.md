@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.9.22] - 2026-10-11
+
+### Arreglado
+- **Los assets de los plugins del ecosistema se quedaban sin invalidación de caché.** El tema
+  sellaba con `filemtime` sus propias hojas (y el comentario de la función explica por qué: «sin
+  esto la URL del CSS no cambia nunca, el navegador sirve una copia vieja y se acaba midiendo y
+  diagnosticando sobre un estado que no es el del fichero»), pero a los assets de los **plugins**
+  les **quitaba** el `?ver=`. Consecuencia real, medida: `mi-area.css` corregido en disco seguía
+  llegando **viejo** al navegador — un arreglo desplegado podía no llegar nunca al usuario, y
+  cualquier arreglo de seguridad en CSS/JS quedaba invisible. Ahora los assets de
+  `plugins/convoca-*` se sellan igual que los del tema, con la fecha del fichero. La versión de
+  WordPress se sigue ocultando (era el objetivo original).
+- Cubierto por `tests/Unit/AssetVersionTest.php`, probado **en negativo** (sin el arreglo, 2 de
+  los 5 casos fallan: la URL del plugin quedaba sin fecha).
+
 ## [2.9.21] - 2026-10-11
 
 ### Arreglado

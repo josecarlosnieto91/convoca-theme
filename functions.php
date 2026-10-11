@@ -1350,12 +1350,31 @@ function convoca_fse_remove_version( $src ) {
 		return $sin_version;
 	}
 
-	// Core y plugins: se sigue ocultando la versión de WordPress.
-	if ( false !== strpos( $src, '?ver=' ) ) {
-		$src = remove_query_arg( 'ver', $src );
+	// Core de WordPress: se sigue ocultando la versión, que era el objetivo.
+	if ( false === strpos( $src, '/plugins/convoca-' ) ) {
+		if ( false !== strpos( $src, '?ver=' ) ) {
+			$src = remove_query_arg( 'ver', $src );
+		}
+		return $src;
 	}
 
-	return $src;
+	// Los assets de los PLUGINS del ecosistema se sellan con la fecha del fichero,
+	// igual que los del tema. Quitarles el `?ver=` dejaba al navegador sirviendo la
+	// copia vieja después de cada actualización: un arreglo ya desplegado podía no
+	// llegar nunca al usuario, y se acaba midiendo y diagnosticando sobre un estado
+	// que no es el del fichero (el mismo problema que documenta el bloque de arriba).
+	$sin_version = strtok( $src, '?' );
+	$en_disco    = str_replace(
+		WP_CONTENT_URL . '/plugins/',
+		WP_CONTENT_DIR . '/plugins/',
+		$sin_version
+	);
+
+	if ( $en_disco !== $sin_version && is_readable( $en_disco ) ) {
+		return add_query_arg( 'ver', (string) filemtime( $en_disco ), $sin_version );
+	}
+
+	return $sin_version;
 }
 
 /**

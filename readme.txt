@@ -4,7 +4,7 @@ Tags: FSE, full-site-editing, dark-mode, blocks, patterns, asociaciones
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 2.9.21
+Stable tag: 2.9.22
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 2. Activa el tema desde Apariencia > Temas
 
 == Changelog ==
+
+= 2.9.22 =
+* Los assets de los plugins convoca-* se sellan con la fecha del fichero: antes se les quitaba el ?ver= y el navegador seguia sirviendo la copia vieja tras cada actualizacion.
 
 = 2.9.21 =
 * El selector de idioma ya no emite un <li> suelto fuera del <ul> del menu (HTML invalido y fallo de accesibilidad): entra dentro de la lista, o sale como <div> si no la hay.
