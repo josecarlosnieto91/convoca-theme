@@ -38,7 +38,7 @@ class FooterTokensTest extends TestCase {
 	}
 
 	public function test_un_enlace_suelto_con_token_se_retira_entero(): void {
-		$pie = '<p>Escribenos<br><a href="{phone_url}">{phone_label}</a></p>';
+		$pie    = '<p>Escribenos<br><a href="{phone_url}">{phone_label}</a></p>';
 		$salida = $this->render( $pie );
 		$this->assertStringNotContainsString( '<a', $salida, 'El enlace sin destino no se muestra' );
 		$this->assertStringContainsString( 'Escribenos', $salida, 'El texto que no es enlace se conserva' );

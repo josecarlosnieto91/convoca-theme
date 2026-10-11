@@ -129,8 +129,18 @@ if ( ! function_exists( 'wp_unique_id' ) ) {
 if ( ! function_exists( 'icl_get_languages' ) ) {
 	function icl_get_languages( $args = '' ) {
 		return array(
-			array( 'language_code' => 'es', 'native_name' => 'Español', 'url' => 'https://example.com/', 'active' => true ),
-			array( 'language_code' => 'en', 'native_name' => 'English', 'url' => 'https://example.com/en/', 'active' => false ),
+			array(
+				'language_code' => 'es',
+				'native_name'   => 'Español',
+				'url'           => 'https://example.com/',
+				'active'        => true,
+			),
+			array(
+				'language_code' => 'en',
+				'native_name'   => 'English',
+				'url'           => 'https://example.com/en/',
+				'active'        => false,
+			),
 		); } }
 if ( ! function_exists( 'get_page_by_path' ) ) {
 	function get_page_by_path( $p ) {

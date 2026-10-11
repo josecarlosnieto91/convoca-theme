@@ -607,10 +607,10 @@ function convoca_theme_render_block( $block_content, $block ) {
 	// Guard de recursión del bloque de más abajo (ver comentario allí).
 	static $convoca_resolviendo_shortcodes = false;
 
-	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0). // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
+	// Deprecated alias: {lugg_url} / convoca_theme_lugg_url (pre-3.0). // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad.
 	$centro_url = apply_filters( 'convoca_theme_centro_url', home_url( '/' ) );
-	if ( has_filter( 'convoca_theme_lugg_url' ) ) { // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
-		$centro_url = apply_filters_deprecated( 'convoca_theme_lugg_url', [ $centro_url ], '2.7.0', 'convoca_theme_centro_url' ); // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
+	if ( has_filter( 'convoca_theme_lugg_url' ) ) { // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad.
+		$centro_url = apply_filters_deprecated( 'convoca_theme_lugg_url', [ $centro_url ], '2.7.0', 'convoca_theme_centro_url' ); // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad.
 	}
 	// Redes sociales: fuente única en `convoca_social_links` (Convoca Core), que
 	// es la que usan el shortcode [convoca_socials] y estos tokens. Antes cada uno
@@ -621,33 +621,33 @@ function convoca_theme_render_block( $block_content, $block ) {
 	$replacements = apply_filters(
 		'convoca_theme_footer_replacements',
 		[
-			'{admin_email}'      => get_bloginfo( 'admin_email' ),
-			'{volunteer_email}'  => apply_filters( 'convoca_theme_volunteer_email', get_bloginfo( 'admin_email' ) ),
-			'{social_instagram}' => (string) ( $social_links['instagram'] ?? '' ),
-			'{social_facebook}'  => (string) ( $social_links['facebook'] ?? '' ),
-			'{social_youtube}'   => (string) ( $social_links['youtube'] ?? '' ),
-			'{social_handle}'    => (string) ( $social_links['handle'] ?? '' ),
-			'{centro_url}'       => $centro_url,
-			'{lugg_url}'         => $centro_url, // deprecated token, kept for templates existentes. // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad
-			'{community_url}'    => apply_filters( 'convoca_theme_community_url', home_url( '/' ) ),
-			'{contact_email}'    => get_bloginfo( 'admin_email' ),
-			'{year}'             => (string) gmdate( 'Y' ),
-			'{site_name}'        => get_bloginfo( 'name' ),
-			'{site_tagline}'     => get_bloginfo( 'description' ),
+			'{admin_email}'         => get_bloginfo( 'admin_email' ),
+			'{volunteer_email}'     => apply_filters( 'convoca_theme_volunteer_email', get_bloginfo( 'admin_email' ) ),
+			'{social_instagram}'    => (string) ( $social_links['instagram'] ?? '' ),
+			'{social_facebook}'     => (string) ( $social_links['facebook'] ?? '' ),
+			'{social_youtube}'      => (string) ( $social_links['youtube'] ?? '' ),
+			'{social_handle}'       => (string) ( $social_links['handle'] ?? '' ),
+			'{centro_url}'          => $centro_url,
+			'{lugg_url}'            => $centro_url, // deprecated token, kept for templates existentes. // convoca-hygiene-ignore: alias de filtro publicado; quitarlo rompe la compatibilidad.
+			'{community_url}'       => apply_filters( 'convoca_theme_community_url', home_url( '/' ) ),
+			'{contact_email}'       => get_bloginfo( 'admin_email' ),
+			'{year}'                => (string) gmdate( 'Y' ),
+			'{site_name}'           => get_bloginfo( 'name' ),
+			'{site_tagline}'        => get_bloginfo( 'description' ),
 			// Descripción larga del sitio y datos de contacto: el tema trae un valor por
 			// defecto razonable (la descripción del sitio) y vacío donde no puede saberlo,
 			// y la instalación los rellena con su filtro. Un token sin valor no deja enlace.
-			'{site_description}' => get_bloginfo( 'description' ),
-			'{phone_url}'        => '',
-			'{phone_label}'      => '',
-			'{cta_url}'          => convoca_theme_get_cta_url(),
-			'{cta_label}'        => convoca_theme_get_cta_label(),
-			'{copyright_extra}'  => apply_filters( 'convoca_theme_copyright_extra', '' ),
+			'{site_description}'    => get_bloginfo( 'description' ),
+			'{phone_url}'           => '',
+			'{phone_label}'         => '',
+			'{cta_url}'             => convoca_theme_get_cta_url(),
+			'{cta_label}'           => convoca_theme_get_cta_label(),
+			'{copyright_extra}'     => apply_filters( 'convoca_theme_copyright_extra', '' ),
 			// Texto de muestra del lateral: la instalación lo sustituye por el suyo con el
 			// filtro de reemplazos, y quien no lo haga ve una presentación neutra.
 			'{sidebar_description}' => __( 'A non-profit association dedicated to environmental education and citizen participation.', 'convoca' ),
-			'{cta_heading}'      => (string) apply_filters( 'convoca_theme_cta_heading', __( 'Want to be part of the change?', 'convoca' ) ),
-			'{cta_text}'         => (string) apply_filters( 'convoca_theme_cta_text', __( 'Join as a member, volunteer, or just come and meet us. Every action counts.', 'convoca' ) ),
+			'{cta_heading}'         => (string) apply_filters( 'convoca_theme_cta_heading', __( 'Want to be part of the change?', 'convoca' ) ),
+			'{cta_text}'            => (string) apply_filters( 'convoca_theme_cta_text', __( 'Join as a member, volunteer, or just come and meet us. Every action counts.', 'convoca' ) ),
 		]
 	);
 
@@ -888,6 +888,8 @@ function convoca_theme_lang_languages(): array {
 /**
  * Devuelve el HTML del selector de idioma, o cadena vacía si sólo hay un idioma.
  *
+ * @param string $tag Etiqueta contenedora de cada idioma: 'li' (por defecto) o 'div'
+ *                    cuando el llamador pinta fuera de una lista.
  * @return string HTML del selector.
  */
 function convoca_theme_lang_switcher_html( string $tag = 'li' ): string {
@@ -1226,7 +1228,7 @@ function convoca_event_schema(): void {
 	$region  = (string) apply_filters( 'convoca_theme_event_region', '' );
 	$country = (string) apply_filters( 'convoca_theme_event_country', '' );
 
-	$lugar = array(
+	$lugar     = array(
 		'@type' => 'Place',
 		'name'  => ( '' !== $location_address ) ? $location_address : get_bloginfo( 'name' ),
 	);
