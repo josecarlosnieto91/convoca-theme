@@ -28,7 +28,9 @@ class AssetVersionTest extends TestCase {
 		if ( ! file_exists( $disco ) ) {
 			file_put_contents( $disco, "/* prueba */\n" );
 		}
-		return array( WP_CONTENT_URL . '/' . $relativo, $disco );
+		// content_url(), no la constante WP_CONTENT_URL: PHPStan la rechaza y pide
+		// la función (que además respeta WP_CONTENT_URL si el sitio la redefine).
+		return array( content_url( '/' . $relativo ), $disco );
 	}
 
 	private function sella( string $url ): string {

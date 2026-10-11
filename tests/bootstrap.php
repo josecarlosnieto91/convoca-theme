@@ -141,8 +141,9 @@ if ( ! function_exists( 'get_permalink' ) ) {
 // Mocks para el sellado de assets por fecha de fichero (convoca_fse_remove_version).
 if ( ! defined( 'WP_CONTENT_DIR' ) ) {
 	define( 'WP_CONTENT_DIR', sys_get_temp_dir() . '/convoca-test-wp-contents' ); }
-if ( ! defined( 'WP_CONTENT_URL' ) ) {
-	define( 'WP_CONTENT_URL', 'https://example.com/wp-content' ); }
+if ( ! function_exists( 'content_url' ) ) {
+	function content_url( $ruta = '' ) {
+		return 'https://example.com/wp-content' . $ruta; } }
 if ( ! function_exists( 'remove_query_arg' ) ) {
 	function remove_query_arg( $clave, $url = '' ) {
 		$partes = explode( '?', $url, 2 );

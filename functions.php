@@ -1365,7 +1365,7 @@ function convoca_fse_remove_version( $src ) {
 	// que no es el del fichero (el mismo problema que documenta el bloque de arriba).
 	$sin_version = strtok( $src, '?' );
 	$en_disco    = str_replace(
-		WP_CONTENT_URL . '/plugins/',
+		content_url( '/plugins/' ),
 		WP_CONTENT_DIR . '/plugins/',
 		$sin_version
 	);
