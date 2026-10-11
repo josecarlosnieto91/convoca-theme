@@ -29,6 +29,9 @@ if ( ! function_exists( 'add_action' ) ) {
 		return true; } }
 if ( ! function_exists( 'add_filter' ) ) {
 	function add_filter( $h, $c, $p = 10, $a = 1 ) {
+		// Registro real (no un simple true): los tests de tokens necesitan
+		// comprobar que un valor configurado SI se sustituye.
+		$GLOBALS['convoca_test_filtros'][ $h ][] = $c;
 		return true; } }
 if ( ! function_exists( 'add_theme_support' ) ) {
 	function add_theme_support( $f, ...$a ) {
@@ -87,4 +90,33 @@ if ( ! function_exists( 'get_theme_file_path' ) ) {
 if ( ! function_exists( 'get_theme_file_uri' ) ) {
 	function get_theme_file_uri( $f = '' ) {
 		return 'https://example.com/wp-content/themes/convoca/' . $f; } }
+// Mocks que necesitan los filtros de render de bloques (tokens del pie).
+if ( ! function_exists( 'apply_filters' ) ) {
+	function apply_filters( $tag, $value ) {
+		foreach ( $GLOBALS['convoca_test_filtros'][ $tag ] ?? array() as $cb ) {
+			$value = $cb( $value );
+		}
+		return $value; } }
+if ( ! function_exists( 'home_url' ) ) {
+	function home_url( $p = '' ) {
+		return 'https://example.com' . $p; } }
+if ( ! function_exists( 'esc_url' ) ) {
+	function esc_url( $u ) {
+		return $u; } }
+if ( ! function_exists( 'wp_kses_post' ) ) {
+	function wp_kses_post( $t ) {
+		return $t; } }
+if ( ! function_exists( 'do_shortcode' ) ) {
+	function do_shortcode( $t ) {
+		return $t; } }
+if ( ! function_exists( 'has_filter' ) ) {
+	function has_filter( $tag, $cb = false ) {
+		$hay = ! empty( $GLOBALS['convoca_test_filtros'][ $tag ] );
+		return $hay; } }
+if ( ! function_exists( 'get_page_by_path' ) ) {
+	function get_page_by_path( $p ) {
+		return null; } }
+if ( ! function_exists( 'get_permalink' ) ) {
+	function get_permalink( $p = 0 ) {
+		return 'https://example.com/'; } }
 date_default_timezone_set( 'Europe/Madrid' );

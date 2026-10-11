@@ -694,6 +694,13 @@ function convoca_theme_render_block( $block_content, $block ) {
 			// quedar a la vista un href con llaves.
 			'~<li[^>]*>\s*<a[^>]*href="[^"]*\{[a-z0-9_]+\}[^"]*"[^>]*>.*?</a>\s*</li>~is',
 			'~<div class="wp-block-button(?:\s[^"]*)?">\s*<a[^>]*href="[^"]*\{[a-z0-9_]+\}[^"]*"[^>]*>.*?</a>\s*</div>~is',
+			// …y un enlace SUELTO (ni <li> ni botón), que es como el pie pone el teléfono:
+			// dentro de un <p>. Los patrones de arriba no lo cogían, así que el visitante
+			// veía «{phone_label}» a la vista en todas las páginas.
+			'~<a\b[^>]*href="[^"]*\{[a-z0-9_]+\}[^"]*"[^>]*>.*?</a>~is',
+			'~<a\b[^>]*>\s*\{[a-z0-9_]+\}\s*</a>~is',
+			// El <br> que separaba el enlace retirado no debe dejar una línea en blanco.
+			'~<br\s*/?>\s*</p>~i',
 		);
 		foreach ( $patterns as $pattern ) {
 			$cleaned = preg_replace( $pattern, '', $block_content );

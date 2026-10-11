@@ -21,7 +21,9 @@ class ThemeSetupTest extends TestCase {
 	}
 
 	public function test_functions_php_loads_without_fatal(): void {
-		$result = require dirname( __DIR__, 2 ) . '/functions.php';
+		// require_once: varios tests cargan functions.php y un `require` a secas
+		// redeclaraba las funciones (fatal) en cuanto el orden cambiaba.
+		$result = require_once dirname( __DIR__, 2 ) . '/functions.php';
 		// La aserción comprueba algo real: que el fichero define sus funciones.
 		$this->assertTrue( function_exists( 'convoca_theme_lang_switcher_html' ), 'functions.php define sus funciones' );
 	}

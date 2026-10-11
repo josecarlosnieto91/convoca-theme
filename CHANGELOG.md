@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.9.19] - 2026-10-11
+
+### Arreglado
+- El pie ya no deja **«{phone_label}» a la vista** cuando la instalación no configura el
+  teléfono. La limpieza de tokens sin resolver cubría los enlaces dentro de `<li>` y de
+  botones, pero **no un enlace suelto dentro de un `<p>`**, que es justo donde el pie pone
+  el teléfono; el token acababa impreso en todas las páginas públicas. Ahora se retira el
+  enlace entero y el `<br>` que lo separaba, sin tocar los enlaces que sí tienen valor.
+  Cubierto por `tests/Unit/FooterTokensTest.php`, probado **en negativo** (sin el arreglo,
+  el token queda a la vista).
+- `readme.txt`: el `Stable tag` se quedó en **2.9.16** mientras `style.css` iba por 2.9.18.
+
 ## [2.9.18] - 2026-09-24
 
 ### Añadido
