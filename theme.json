@@ -70,6 +70,11 @@
 					"name": "Dark orange (text)"
 				},
 				{
+					"slug": "naranja-oscuro-hover",
+					"color": "#8f4400",
+					"name": "Dark orange (hover)"
+				},
+				{
 					"slug": "naranja-tenue",
 					"color": "#fff2e0",
 					"name": "Soft orange (background)"

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.9.23] - 2026-10-11
+
+### Añadido
+- `naranja-oscuro-hover` (`#8f4400`) en la paleta: el `:hover` del botón primario, para que el
+  tema declare su propio paso oscuro (blanco encima = 7.01:1) sin imponérselo a los sitios que no
+  usan esta paleta.
+
 ## [2.9.22] - 2026-10-11
 
 ### Arreglado
