@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.9.20] - 2026-10-11
+
+### Arreglado
+- **Contraste de los encabezados (WCAG 2.1 AA)**: h1, h2, h3 y h4 del tema se pintaban con
+  `--wp--preset--color--naranja` (`#ff8700`), que sobre fondo blanco da **2.41:1** — por debajo
+  de 4.5:1 para texto normal y de 3:1 para texto grande. Medido con axe en la demo: **13
+  elementos** incumplían en el alta de socio y 2 en la portada. Ahora usan
+  `--wp--preset--color--naranja-oscuro` (`#b05500`, **5.07:1**), que la propia paleta ya declaraba
+  como «Dark orange (text)»: el tema sigue siendo naranja, pero legible.
+- Igual en `link:focus` (**2.4.11** exige 3:1 para el indicador de foco, que también estaba en
+  2.41:1) y en el `:hover` del título del sitio. El borde de la cita (`core/quote`) se deja como
+  estaba: un borde no es texto y no tiene ese requisito.
+
 ## [2.9.19] - 2026-10-11
 
 ### Arreglado

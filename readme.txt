@@ -4,7 +4,7 @@ Tags: FSE, full-site-editing, dark-mode, blocks, patterns, asociaciones
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 2.9.19
+Stable tag: 2.9.20
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,9 @@ Tema de bloques moderno con Full Site Editing (FSE). Incluye modo oscuro nativo,
 2. Activa el tema desde Apariencia > Temas
 
 == Changelog ==
+
+= 2.9.20 =
+* Los encabezados (h1-h4) y el foco de los enlaces dejan de usar el naranja de marca como texto: sobre blanco daba 2.41:1 y no cumple AA. Pasan a naranja-oscuro (5.07:1).
 
 = 2.9.19 =
 * El pie ya no muestra «{phone_label}» a la vista cuando la instalación no configura el teléfono: el enlace suelto dentro de un <p> no lo limpiaba la retirada de tokens sin resolver.
