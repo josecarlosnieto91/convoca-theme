@@ -1,15 +1,4 @@
-<!--
-    Cabecera: UNA sola pieza de navegación.
-    - Franja superior (carbón): menú "Superior" real + botón de modo + CTA.
-    - Fila principal: marca + navegación principal (menú "Principal" real).
-    Nada de rutas inventadas: los enlaces salen de los menús de WordPress, y el
-    CTA de los filtros del theme hijo ({cta_url} / {cta_label}).
 
-    Buscador: un único cuadro (abajo, ancho completo) que abren los dos botones de
-    lupa — el de la franja en escritorio y el de la fila en móvil, igual que el
-    botón de modo oscuro. El estado lo lleva la clase `--abierto`, no el atributo
-    `hidden`: el editor de bloques reescribe el HTML al guardar y se lo comería.
--->
 <!-- wp:group {"tagName":"header","className":"site-header convoca-header","layout":{"type":"default"}} -->
 <header class="wp-block-group site-header convoca-header">
 
@@ -81,7 +70,6 @@
                 <svg class="moon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
             </button>
             <!-- /wp:html -->
-
 
             <!-- wp:navigation {"overlayMenu":"mobile","overlayBackgroundColor":"hueso","overlayTextColor":"carbon","layout":{"type":"flex","setCascadingProperties":true}} /-->
         </div>

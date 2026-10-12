@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.9.27] - 2026-10-12
+
+### Arreglado
+- **Los comentarios de documentacion de las plantillas se servian en el HTML publico**: iban
+  en 13 ficheros de `parts/` y `templates/`, asi que viajaban al navegador de cada visitante
+  en cada pagina, desvelaban la implementacion interna y hacian que un barrido de tokens sin
+  resolver diera falsos positivos (los `{about_url}`/`{cta_url}` que aparecian en el barrido
+  eran esos comentarios). Salen del HTML y pasan a `docs/comentarios-de-plantillas.md`.
+- **Los delimitadores de bloque NO se han tocado**: en un tema de bloques `<!-- wp:x -->` es
+  la plantilla, no documentacion. Comprobado antes y despues: **580 delimitadores en los dos
+  lados**, el mismo numero.
+
 ## [2.9.26] - 2026-10-12
 
 ### Cambiado
