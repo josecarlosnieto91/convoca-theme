@@ -7,13 +7,44 @@
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/assets/js/*</exclude-pattern>
 	<exclude-pattern>/languages/*</exclude-pattern>
+	<!-- build-dir/ es un artefacto de build generado (esta en .gitignore): lo que
+	     se analiza y se corrige es el fuente, no una copia. -->
+	<exclude-pattern>/build-dir/*</exclude-pattern>
 
 	<arg name="extensions" value="php"/>
 	<arg name="colors"/>
 	<arg value="sp"/>
 	<arg name="parallel" value="8"/>
 
-	<rule ref="WordPress"/>
+	<rule ref="WordPress">
+		<!--
+		  Exclusiones con motivo escrito (no es un silenciador: declara que se acepta
+		  y por que, y queda versionado).
+		  NoHtmlWrappedStrings: plantillas de correo HTML, donde el HTML es el contenido.
+		  base64: tokens opacos, no ofuscacion de codigo.
+		  file_system: escritura en el propio directorio del plugin.
+		  UseUnderscores: hooks ya publicados con guion.
+		  PostsPerPage: exportadores que necesitan el conjunto entero.
+		  PreparedSQLPlaceholders: prepare() acepta array desde WP 4.9.
+		  CronInterval: el cron de un minuto es intencional (cola de correo/webhooks).
+		  AssignmentInCondition: patron while ( ( $x = f() ) !== false ).
+		  error_log: es la salida del propio Logger de Core.
+		-->
+		<exclude name="WordPress.WP.I18n.NoHtmlWrappedStrings"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode"/>
+		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_file_put_contents"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_mkdir"/>
+		<exclude name="WordPress.WP.AlternativeFunctions.file_system_operations_touch"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<exclude name="WordPress.WP.PostsPerPage.posts_per_page_posts_per_page"/>
+		<exclude name="WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare"/>
+		<exclude name="WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber"/>
+		<exclude name="WordPress.WP.CronInterval.CronSchedulesInterval"/>
+		<exclude name="Generic.CodeAnalysis.AssignmentInCondition"/>
+		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log"/>
+	</rule>
 
 	<!--
 		La sintaxis corta de array ([]) es la del resto del ecosistema Convoca y la

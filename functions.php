@@ -366,7 +366,8 @@ function convoca_theme_scripts() {
 	// (fija), el navegador cachea la hoja y los cambios de CSS no llegan: se
 	// mide y se diagnostica sobre un estado viejo. Así cada edición invalida la
 	// caché sola.
-	$version_css = @filemtime( get_stylesheet_directory() . '/style.css' );
+	$ruta_css    = get_stylesheet_directory() . '/style.css';
+	$version_css = file_exists( $ruta_css ) ? (int) filemtime( $ruta_css ) : 0;
 	wp_enqueue_style(
 		'convoca-theme-style',
 		get_stylesheet_uri(),
@@ -473,11 +474,14 @@ function convoca_help_page_html(): void {
  * Enqueue Google Fonts in the block editor too.
  */
 function convoca_editor_fonts(): void {
+	// $theme_version de mas arriba es local de otra funcion: aqui se recalcula.
+	$version_tema = wp_get_theme()->get( 'Version' );
+
 	wp_enqueue_style(
 		'convoca-editor-google-fonts',
 		'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Outfit:wght@400..700&display=swap',
 		array(),
-		null
+		$version_tema ? $version_tema : '1.0'
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'convoca_editor_fonts' );

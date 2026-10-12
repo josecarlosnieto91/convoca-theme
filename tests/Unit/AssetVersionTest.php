@@ -24,7 +24,9 @@ class AssetVersionTest extends TestCase {
 	/** URL y ruta de un asset de prueba dentro de wp-content. */
 	private function asset( string $relativo ): array {
 		$disco = WP_CONTENT_DIR . '/' . $relativo;
-		@mkdir( dirname( $disco ), 0777, true );
+		if ( ! is_dir( dirname( $disco ) ) ) {
+			mkdir( dirname( $disco ), 0777, true );
+		}
 		if ( ! file_exists( $disco ) ) {
 			file_put_contents( $disco, "/* prueba */\n" );
 		}
