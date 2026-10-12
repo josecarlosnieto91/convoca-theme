@@ -37,3 +37,19 @@ playwright-report/
 test-results/
 .phpunit.result.cache
 __pycache__/
+
+# Configuracion de herramientas de analisis estatico: no viaja al sitio ni al paquete.
+# Se colaba en el despliegue del tema (medido: 1 fichero en la carga limpia).
+phpstan.neon
+phpstan.neon.dist
+*.neon
+
+# Documentacion interna (los .md ya se excluian, pero el directorio vacio se creaba)
+docs/
+
+# El propio fichero de patrones: `rsync --exclude-from` no lo excluye solo, asi que se
+# colaba en el sitio y quedaba servido por HTTP (200 en biodevas). Y los marcadores de git.
+.distignore
+.gitkeep
+.phpcs.xml.dist
+.editorconfig
