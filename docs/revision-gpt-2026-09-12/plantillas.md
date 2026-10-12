@@ -27,7 +27,7 @@
   ```html
   <a href="/la-escuela/">La Escuela</a>
   <a href="/voluntariado/">Voluntariado</a>
-  <a href="tel:+34621366648">621 366 648</a>
+  <a href="tel:{telefono_del_centro}">{telefono_del_centro}</a>
   ```
 
   y:
