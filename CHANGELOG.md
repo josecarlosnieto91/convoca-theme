@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.9.28 (2026-10-12)
+
+### Arreglado
+- **El tema no declaraba ningún favicon.** Traía `favicon.png` pero no emitía `rel="icon"`,
+  así que un sitio sin icono configurado (la demo) no declaraba ninguno y el navegador pedía
+  `/favicon.ico` en cada carga: un 404 en todas las páginas. Ahora el tema emite el suyo
+  **solo si el sitio no tiene icono propio** en Ajustes → Identidad del sitio.
+- `favicon.png` era en realidad un **JPEG de 1024×1024 y 362 KB** con la extensión cambiada.
+  Desde que el navegador lo va a pedir, pasa a ser un PNG de verdad de 512×512 (mismo
+  dibujo, el logotipo): pesa lo que debe pesar un icono.
+- Test de regresión: `tests/Unit/FaviconTest.php`, que además fija que no pise el icono del
+  sitio cuando lo hay.
+
 ## [2.9.27] - 2026-10-12
 
 ### Arreglado

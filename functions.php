@@ -302,6 +302,26 @@ function convoca_critical_css(): void {
 add_action( 'wp_head', 'convoca_critical_css', 2 );
 
 /**
+ * 6.b Favicon del tema.
+ *
+ * Se emite SOLO si el sitio no tiene icono propio (Ajustes → Identidad del sitio): si lo
+ * tiene, el suyo manda y aquí no se toca nada. Sin esto, un sitio sin icono no declara
+ * ninguno, así que el navegador pide `/favicon.ico` en cada carga y recibe un 404 — medido
+ * en la demo, que usa este tema, con 0 `rel="icon"` en el HTML.
+ */
+function convoca_theme_favicon(): void {
+	if ( function_exists( 'has_site_icon' ) && has_site_icon() ) {
+		return;
+	}
+
+	printf(
+		'<link rel="icon" href="%s" sizes="512x512" />' . "\n",
+		esc_url( get_theme_file_uri( 'favicon.png' ) )
+	);
+}
+add_action( 'wp_head', 'convoca_theme_favicon', 4 );
+
+/**
  * 7. Performance: remove jQuery migrate, defer scripts, lazy loading
  */
 function convoca_performance_tweaks(): void {
