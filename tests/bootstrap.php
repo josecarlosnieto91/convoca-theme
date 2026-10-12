@@ -93,6 +93,13 @@ if ( ! function_exists( 'wp_get_theme' ) ) {
 if ( ! function_exists( 'get_theme_file_path' ) ) {
 	function get_theme_file_path( $f = '' ) {
 		return dirname( __DIR__ ) . ( $f ? '/' . $f : '' ); } }
+if ( ! function_exists( 'has_site_icon' ) ) {
+	// El tema emite su favicon SOLO si el sitio no tiene icono propio (Ajustes →
+	// Identidad del sitio). Las pruebas controlan la respuesta con esta bandera.
+	function has_site_icon() {
+		return ! empty( $GLOBALS['_test_has_site_icon'] );
+	}
+}
 if ( ! function_exists( 'get_theme_file_uri' ) ) {
 	function get_theme_file_uri( $f = '' ) {
 		return 'https://example.com/wp-content/themes/convoca/' . $f; } }
