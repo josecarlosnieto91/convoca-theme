@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.9.26] - 2026-10-12
+
+### Cambiado
+- **Se revierten los cambios de color** de las dos ultimas versiones: la paleta
+  (`naranja-oscuro` y su hover) vuelve a los valores definidos en el theme, y el
+  eyebrow vuelve a su naranja-oscuro de siempre. La paleta es una decision de
+  producto: no se ajusta hasta que el medidor de contraste calle.
+
+### Añadido
+- `docs/contraste-y-accesibilidad.md`: el criterio de contraste queda escrito, con
+  las excepciones aceptadas y **su medida real** al lado. El liston sigue siendo
+  AA; lo que cambia es que cuando un color de marca no llega, se documenta en vez
+  de retocar el diseno.
+
 ## [2.9.25] - 2026-10-12
 
 ### Arreglado

@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.25
+Version: 2.9.26
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -2632,21 +2632,6 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 }
 
 .convoca-participa p { margin: 0 0 1.75rem; font-size: 1.075rem; line-height: 1.65; max-width: 38rem; }
-
-/* El eyebrow sobre fondo naranja.
-   `.convoca-eyebrow` es naranja-oscuro por defecto, y sobre el naranja del bloque
-   se queda en 2.1:1 — el texto se lee mal justo donde se pide que se lea. En carbon
-   son 7.5:1, el mismo color que ya lleva el resto del bloque. La rayita de delante
-   tambien pasa a carbon: en naranja sobre naranja no se veia. */
-.convoca-participa .convoca-eyebrow,
-.is-style-convoca-banda-naranja .convoca-eyebrow {
-	color: var(--convoca-carbon);
-}
-
-.convoca-participa .convoca-eyebrow::before,
-.is-style-convoca-banda-naranja .convoca-eyebrow::before {
-	background-color: var(--convoca-carbon);
-}
 
 .convoca-participa__acciones { display: flex; flex-wrap: wrap; gap: 0.85rem; }
 
