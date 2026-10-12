@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.9.25] - 2026-10-12
+
+### Arreglado
+- **Contraste del eyebrow sobre fondo naranja**: `.convoca-eyebrow` va en
+  naranja-oscuro por defecto, y dentro de un bloque naranja (`convoca-participa`,
+  `is-style-convoca-banda-naranja`) quedaba en **2.1:1**. Pasa a carbon, que da
+  **7.5:1**, el mismo color que ya usa el resto del bloque. La rayita de delante
+  tambien pasa a carbon porque en naranja sobre naranja no se veia.
+
+### Notas
+- Detectado al comprobar el despliegue con axe en biodevas.org; medido antes
+  (1 violacion `color-contrast`) y despues.
+
 ## [2.9.24] - 2026-10-12
 
 ### Arreglado
