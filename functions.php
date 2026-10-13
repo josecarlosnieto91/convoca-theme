@@ -1806,7 +1806,7 @@ add_filter(
 	2
 );
 
-/*
+/**
  * ── Título de los archivos de tipo de contenido (h1 y <title> honestos) ─────────────
  *
  * Medido en la demo el 13/10/2026: https://demo.getconvoca.app/actividades/ (el archivo del CPT
@@ -1817,6 +1817,12 @@ add_filter(
  *     buscador se les decía que la página no existe.
  *
  * El título del archivo se resuelve aquí para que no dependa de que la consulta tenga entradas.
+ */
+/**
+ * Devuelve el nombre del tipo de contenido como título de su archivo.
+ *
+ * @param string $titulo Título que propone WordPress.
+ * @return string
  */
 function convoca_titulo_de_archivo( $titulo ) {
 	if ( ! is_post_type_archive() ) {
@@ -1833,6 +1839,12 @@ function convoca_titulo_de_archivo( $titulo ) {
 }
 add_filter( 'get_the_archive_title', 'convoca_titulo_de_archivo', 10, 1 );
 
+/**
+ * Título del documento para los archivos de tipo de contenido.
+ *
+ * @param string $titulo Título que propone WordPress.
+ * @return string
+ */
 function convoca_titulo_documento( $titulo ) {
 	if ( ! is_post_type_archive() ) {
 		return $titulo;
@@ -1845,15 +1857,22 @@ function convoca_titulo_documento( $titulo ) {
 }
 add_filter( 'pre_get_document_title', 'convoca_titulo_documento', 10, 1 );
 
-/*
+/**
  * Red de seguridad del `query-title`: en el archivo del CPT de la demo el bloque no pintaba NADA
  * (ni con `level`), así que la página pública se quedaba sin h1. Si el bloque sale vacío, se pinta
  * aquí el título del archivo como h1. Si el bloque pinta, este filtro no hace nada.
  */
+/**
+ * Si el bloque `query-title` no pinta nada, pinta el título del archivo como h1.
+ *
+ * @param string $html  HTML que ha producido el bloque.
+ * @param array  $block El bloque, con sus atributos.
+ * @return string
+ */
 function convoca_query_title_si_vacio( $html, $block ) {
-	$attrs = is_array( $block ) && isset( $block['attrs'] ) ? $block['attrs'] : array();
+	$attrs = isset( $block['attrs'] ) ? $block['attrs'] : array();
 
-	if ( isset( $attrs['level'] ) && null !== $attrs['level'] ) {
+	if ( isset( $attrs['level'] ) ) {
 		$nivel = (int) $attrs['level'];
 	} else {
 		$nivel = ( isset( $attrs['type'] ) && 'archive' === $attrs['type'] ) ? 1 : 1;
