@@ -1805,3 +1805,73 @@ add_filter(
 	10,
 	2
 );
+
+/*
+ * ── Título de los archivos de tipo de contenido (h1 y <title> honestos) ─────────────
+ *
+ * Medido en la demo el 13/10/2026: https://demo.getconvoca.app/actividades/ (el archivo del CPT
+ * `actividad`) respondía 200 con la plantilla correcta, pero:
+ *   - el bloque `query-title` no pintaba nada (el título del archivo llegaba vacío cuando no hay
+ *     entradas), así que la página pública se quedaba SIN h1; y
+ *   - WordPress ponía en el <title> «Página no encontrada», que es el del 404: al usuario y al
+ *     buscador se les decía que la página no existe.
+ *
+ * El título del archivo se resuelve aquí para que no dependa de que la consulta tenga entradas.
+ */
+function convoca_titulo_de_archivo( $titulo ) {
+	if ( ! is_post_type_archive() ) {
+		return $titulo;
+	}
+
+	$tipo = get_query_var( 'post_type' );
+	if ( is_array( $tipo ) ) {
+		$tipo = reset( $tipo );
+	}
+	$objeto = $tipo ? get_post_type_object( $tipo ) : null;
+
+	return ( $objeto && ! empty( $objeto->labels->name ) ) ? $objeto->labels->name : $titulo;
+}
+add_filter( 'get_the_archive_title', 'convoca_titulo_de_archivo', 10, 1 );
+
+function convoca_titulo_documento( $titulo ) {
+	if ( ! is_post_type_archive() ) {
+		return $titulo;
+	}
+	$propio = convoca_titulo_de_archivo( '' );
+	if ( '' === $propio ) {
+		return $titulo;
+	}
+	return $propio . " \u{2013} " . get_bloginfo( 'name' );
+}
+add_filter( 'pre_get_document_title', 'convoca_titulo_documento', 10, 1 );
+
+/*
+ * Red de seguridad del `query-title`: en el archivo del CPT de la demo el bloque no pintaba NADA
+ * (ni con `level`), así que la página pública se quedaba sin h1. Si el bloque sale vacío, se pinta
+ * aquí el título del archivo como h1. Si el bloque pinta, este filtro no hace nada.
+ */
+function convoca_query_title_si_vacio( $html, $block ) {
+	$attrs = is_array( $block ) && isset( $block['attrs'] ) ? $block['attrs'] : array();
+
+	if ( isset( $attrs['level'] ) && null !== $attrs['level'] ) {
+		$nivel = (int) $attrs['level'];
+	} else {
+		$nivel = ( isset( $attrs['type'] ) && 'archive' === $attrs['type'] ) ? 1 : 1;
+	}
+	$nivel = max( 1, min( 6, $nivel ) );
+
+	$titulo = get_the_archive_title();
+	if ( '' === trim( (string) $titulo ) ) {
+		$titulo = convoca_titulo_de_archivo( '' );
+	}
+	if ( '' === trim( (string) $titulo ) ) {
+		return $html;
+	}
+
+	return sprintf(
+		'<h%1$d class="wp-block-query-title convoca-archivo__titulo">%2$s</h%1$d>',
+		$nivel,
+		esc_html( $titulo )
+	);
+}
+add_filter( 'render_block_core/query-title', 'convoca_query_title_si_vacio', 10, 2 );

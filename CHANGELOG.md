@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.9.29] - 2026-10-13
+
+### Arreglado
+
+- **Los archivos de tipo de contenido se quedaban sin `h1` y con el título del 404.** Medido en la demo
+  en `https://demo.getconvoca.app/actividades/` (el archivo del CPT `actividad`): la página respondía 200
+  con su plantilla, pero el bloque `query-title` no pintaba nada (el archivo se quedaba sin `h1`) y
+  WordPress ponía en el `<title>` «Página no encontrada», que es el del 404: al usuario y al buscador se
+  les decía que la página no existe.
+  - El título del archivo se resuelve ahora en el tema, sin depender de que la consulta tenga entradas.
+  - Si el bloque `query-title` sale vacío, se pinta el título como `h1` desde un filtro de render.
+
 ## 2.9.28 (2026-10-12)
 
 ### Arreglado
