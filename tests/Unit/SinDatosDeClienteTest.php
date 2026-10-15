@@ -25,13 +25,20 @@ class SinDatosDeClienteTest extends TestCase {
 	 * @return array<int, string>
 	 */
 	private function cadenas(): array {
-		return array(
+		// Las palabras prohibidas se escriben PARTIDAS a proposito: escribirlas enteras convertiria esta prueba
+		// en la fuga que vigila. Por eso aqui se permite la concatenacion que el estandar prohibe en el resto
+		// del tema, y solo aqui.
+		// phpcs:disable Generic.Strings.UnnecessaryStringConcat.Found
+		$cadenas = array(
 			'l' . 'ugg',
 			'bio' . 'devas',
 			'o' . 'rion',
 			'andre' . 'meda',
 			'sync-' . 'replica',
 		);
+		// phpcs:enable Generic.Strings.UnnecessaryStringConcat.Found
+
+		return $cadenas;
 	}
 
 	/**
@@ -40,7 +47,7 @@ class SinDatosDeClienteTest extends TestCase {
 	 * @return array<int, string>
 	 */
 	private function ficheros(): array {
-		$raiz = dirname( __DIR__, 2 );
+		$raiz   = dirname( __DIR__, 2 );
 		$salida = array();
 		foreach ( array( 'functions.php', 'style.css', 'CHANGELOG.md', 'README.md', '.distignore' ) as $f ) {
 			if ( file_exists( $raiz . '/' . $f ) ) {
@@ -57,7 +64,7 @@ class SinDatosDeClienteTest extends TestCase {
 	}
 
 	public function test_ningun_fichero_nombra_a_un_cliente_ni_a_la_infraestructura(): void {
-		$raiz      = dirname( __DIR__, 2 );
+		$raiz       = dirname( __DIR__, 2 );
 		$encontrado = array();
 
 		foreach ( $this->ficheros() as $ruta ) {
