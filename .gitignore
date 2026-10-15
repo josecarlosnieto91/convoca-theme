@@ -7,7 +7,6 @@
 
 # Translation files (user-generated)
 *.po
-*.mo
 
 # Paquete de compilación (lo genera el CI y el script de empaquetado)
 build-dir/
@@ -18,3 +17,6 @@ __pycache__/
 
 # Planes y material interno de trabajo: no se versionan (issue #3).
 .hermes/
+
+# El .mo SÍ se versiona: es lo que hace que la traducción llegue al sitio. Un paquete
+# hecho con `git archive` no lo tendría, y el tema se quedaría en inglés sin que nadie lo diga.
