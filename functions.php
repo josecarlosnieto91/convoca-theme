@@ -352,12 +352,14 @@ add_filter(
 
 /**
  * 8. Accessibility: skip link
+ *
+ * El tema ponía su propio enlace de salto apuntando a `#main-content`, y en la portada ese ancla no existía
+ * —esa plantilla usaba la del core—, así que el salto no llevaba a ninguna parte (issue #6). Y WordPress ya
+ * emite uno propio en los temas de bloques, apuntando a `#wp--skip-link--target`: había dos, y uno roto.
+ *
+ * Se retira el del tema (menos código, no más) y todas las plantillas usan el ancla del core, que es la que
+ * el enlace del core espera encontrar.
  */
-function convoca_skip_link(): void {
-	echo '<a class="skip-link screen-reader-text" href="#main-content">' .
-		esc_html__( 'Skip to content', 'convoca' ) . '</a>';
-}
-add_action( 'wp_body_open', 'convoca_skip_link' );
 
 /**
  * 9. Custom image sizes for cards
@@ -756,6 +758,29 @@ function convoca_theme_render_block( $block_content, $block ) {
 	return $block_content;
 }
 add_filter( 'render_block', 'convoca_theme_render_block', 10, 2 );
+
+/**
+ * Deja traducible la etiqueta del botón de modo oscuro (issue #7).
+ *
+ * El botón vive en `parts/header.html`, que es marcado de bloque y no ejecuta PHP, así que la etiqueta estaba
+ * escrita a mano en inglés: en una web en castellano el lector de pantalla la anunciaba en otro idioma. Se
+ * sustituye al vuelo por la cadena traducible, con el mismo mecanismo que usa el conmutador de idioma.
+ *
+ * @param string $block_content Marcado del bloque.
+ * @return string
+ */
+function convoca_theme_etiqueta_modo_oscuro( $block_content ) {
+	if ( false === strpos( $block_content, 'aria-label="Switch color mode"' ) ) {
+		return $block_content;
+	}
+
+	return str_replace(
+		'aria-label="Switch color mode"',
+		'aria-label="' . esc_attr__( 'Switch color mode', 'convoca' ) . '"',
+		$block_content
+	);
+}
+add_filter( 'render_block', 'convoca_theme_etiqueta_modo_oscuro', 10, 1 );
 
 /**
  * Enlaces del sitio usados por el pie y las llamadas a la acción.

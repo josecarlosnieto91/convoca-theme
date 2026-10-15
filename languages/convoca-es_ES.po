@@ -7,6 +7,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+
+#: parts/header.html
+msgid "Switch color mode"
+msgstr "Cambiar el modo de color"
 msgid "A non-profit association dedicated to environmental education and citizen participation."
 msgstr "Asociación sin ánimo de lucro dedicada a la educación ambiental y a la participación ciudadana."
 

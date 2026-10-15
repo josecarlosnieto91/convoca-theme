@@ -1,3 +1,13 @@
+## 2.9.30
+
+- **Accesibilidad: el enlace de salto ya lleva a alguna parte (#6).** El tema ponía uno propio apuntando a
+  `#main-content`, y la portada no tenía ese ancla (usaba la del core): el salto no hacía nada. Además
+  WordPress ya emite el suyo en los temas de bloques, así que había dos y uno roto. Se retira el del tema y
+  todas las plantillas pasan al ancla del core, que es la que su enlace espera encontrar.
+- **La etiqueta del modo oscuro se puede traducir (#7).** Estaba escrita a mano en inglés dentro de
+  `parts/header.html` (marcado de bloque, sin PHP), así que el lector de pantalla la anunciaba en otro idioma.
+  Ahora pasa por `esc_attr__()` y va traducida al castellano.
+
 # Changelog
 
 ## [2.9.29] - 2026-10-13

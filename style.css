@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.29
+Version: 2.9.30
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -1396,22 +1396,22 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     }
 
     /* Content area horizontal padding on mobile */
-    #main-content {
+    #wp--skip-link--target {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
     }
 
     /* Specific elements that need extra inner padding */
-    #main-content > .wp-block-post-title,
-    #main-content > .wp-block-post-content,
-    #main-content > .entry-content,
-    #main-content > .wp-block-group:not(.wp-block-template-part) {
+    #wp--skip-link--target > .wp-block-post-title,
+    #wp--skip-link--target > .wp-block-post-content,
+    #wp--skip-link--target > .entry-content,
+    #wp--skip-link--target > .wp-block-group:not(.wp-block-template-part) {
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;
     }
 
     /* Full-width elements that should ignore parent padding */
-    #main-content > .wp-block-template-part {
+    #wp--skip-link--target > .wp-block-template-part {
         margin-left: -1rem !important;
         margin-right: -1rem !important;
         width: calc(100% + 2rem) !important;
@@ -1419,9 +1419,9 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     }
 
     /* Remove inner padding from spacers and separators */
-    #main-content > .wp-block-spacer,
-    #main-content > .wp-block-separator,
-    #main-content > .wp-block-post-featured-image {
+    #wp--skip-link--target > .wp-block-spacer,
+    #wp--skip-link--target > .wp-block-separator,
+    #wp--skip-link--target > .wp-block-post-featured-image {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
@@ -1731,7 +1731,7 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
    renombrado a `convoca-`. PENDIENTE DE INTEGRACIÓN: por debajo siguen quedando reglas del
    theme padre que estas sobrescriben, y parches que existían solo por tener el
    diseño en dos capas (min-height de la cabecera, recorte del titular, relleno
-   de #main-content, impresión). Se van quitando en los pasos siguientes,
+   de #wp--skip-link--target, impresión). Se van quitando en los pasos siguientes,
    midiendo en la demo entre paso y paso.
    ========================================================================= */
 
