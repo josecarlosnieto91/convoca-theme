@@ -48,7 +48,7 @@ phpstan.neon.dist
 docs/
 
 # El propio fichero de patrones: `rsync --exclude-from` no lo excluye solo, asi que se
-# colaba en el sitio y quedaba servido por HTTP (200 en biodevas). Y los marcadores de git.
+# colaba en el sitio y quedaba servido por HTTP (200 en un sitio real). Y los marcadores de git.
 .distignore
 .gitkeep
 .phpcs.xml.dist

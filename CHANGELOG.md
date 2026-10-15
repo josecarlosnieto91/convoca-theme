@@ -1,3 +1,27 @@
+## [2.9.32] - 2026-10-15
+
+### Cambiado
+- **El tema es genérico y se puede comprobar (issue #3).** Criterio del issue: cero cadenas de cliente y cero
+  rutas de infraestructura interna en el árbol. Lo que quedaba, y lo que se ha hecho con cada cosa:
+  - **`.hermes/plans/`** — los planes internos estaban **versionados** (citaban la topología de servidores).
+    Fuera del control de versiones y `.hermes/` al `.gitignore`, para que no se cuele otra vez. Los ficheros
+    siguen en local: lo que se va es el versionado.
+  - **`scripts/verificar-auditor.py`** — llevaba escrita la dirección de un sitio concreto para comparar el CSS.
+    Ahora se pasa por argumento o por entorno (`CONVOCA_CSS_REMOTO`) y, sin ella, la comparación se salta: el
+    repositorio no lleva dentro la dirección de ningún sitio.
+  - **`CHANGELOG.md` y `.distignore`** — nombraban un sitio real y un servidor interno. Se cuenta lo mismo sin
+    nombrarlos.
+  - **`{lugg_url}` y `convoca_theme_lugg_url`** se quedan, a propósito: son **alias de filtro publicados** que un
+    sitio puede estar usando; quitarlos rompe compatibilidad. Van marcados con `convoca-hygiene-ignore` y su
+    motivo, que es lo que los hace excepciones y no deuda.
+
+### Pruebas
+- `tests/Unit/SinDatosDeClienteTest.php`: vigila que no vuelvan, en los ficheros que se publican y en los
+  scripts. Las palabras prohibidas se componen con concatenación **a propósito**: escribirlas enteras convertiría
+  la prueba en la fuga que vigila. **Negativos probados**: devolviendo el nombre del cliente cae; sacando
+  `.hermes/` del `.gitignore`, cae; quitándole la dirección por parámetro al auditor, cae.
+- Suite 29 en verde, PHPCS 0, PHPStan `[OK]`.
+
 ## 2.9.31
 
 - **Las traducciones del tema no se cargaban nunca (y esto es una reparación, no un adorno).** El fichero se
@@ -80,7 +104,7 @@
   tambien pasa a carbon porque en naranja sobre naranja no se veia.
 
 ### Notas
-- Detectado al comprobar el despliegue con axe en biodevas.org; medido antes
+- Detectado al comprobar el despliegue con axe en un sitio real; medido antes
   (1 violacion `color-contrast`) y despues.
 
 ## [2.9.24] - 2026-10-12
@@ -213,7 +237,7 @@ El archivo (categorías, etiquetas, fechas, autor) no paginaba: mostraba siempre
   paginación funciona. Verificado: 15 páginas con 6 entradas distintas cada una, las 67 entradas
   nuevas alcanzables, y portada, archivo de Actividades y etiquetas siguen en 200.
 - ⚠️ La plantilla vive en la BASE DE DATOS (`wp_template` 11978) y **esa manda**: el arreglo se
-  aplicó primero ahí (copia previa en `/tmp/archive-11978.bak.php_content.txt` de orion) y después
+  aplicó primero ahí (con copia previa del contenido) y después
   al fichero del repo, que es el que se desplegará en el futuro.
 
 ## 2.9.13 (2026-09-20)

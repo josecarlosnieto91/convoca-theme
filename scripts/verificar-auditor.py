@@ -18,7 +18,9 @@ import urllib.request
 AQUI = pathlib.Path(__file__).resolve().parent
 AUDITOR = AQUI / "auditar-modo-oscuro.py"
 CSS = AQUI.parent / "style.css"
-PRODUCCION = "https://biodevas.org/wp-content/themes/convoca/style.css"  # convoca-hygiene-ignore: direccion de produccion que compara el script
+# La direccion NO va escrita aqui (issue #3): se pasa por argumento o por entorno, para que este
+# repositorio no lleve dentro la direccion de ningun sitio. Sin ella, la comparacion se salta.
+PRODUCCION = os.environ.get("CONVOCA_CSS_REMOTO", "") or (sys.argv[1] if len(sys.argv) > 1 else "")
 
 CAZA = [
     ("forma corta border", ".dark-mode .x { border: 2px solid red; }"),

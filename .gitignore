@@ -15,3 +15,6 @@ build-dir/
 # Cachés de Python de los guiones de scripts/
 __pycache__/
 *.pyc
+
+# Planes y material interno de trabajo: no se versionan (issue #3).
+.hermes/
