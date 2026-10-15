@@ -677,12 +677,12 @@ function convoca_theme_render_block( $block_content, $block ) {
 			// Rótulos que viven en plantillas HTML (`templates/`, `parts/`): el HTML no pasa por gettext, así
 			// que escrito a mano se servía en inglés aunque hubiera catálogo (theme#11). Con ficha, el tema
 			// trae la cadena en inglés como fuente y el catálogo la traduce — el mismo camino que el resto.
-			'{label_latest_posts}'        => __( 'Latest posts', 'convoca' ),
-			'{label_write_us}'     => __( 'Write to us', 'convoca' ),
-			'{label_explore}'      => __( 'Explore', 'convoca' ),
-			'{label_involved}'     => __( 'Get involved', 'convoca' ),
-			'{label_news}'         => __( 'News', 'convoca' ),
-			'{label_community}'    => __( 'Community', 'convoca' ),
+			'{label_latest_posts}'  => __( 'Latest posts', 'convoca' ),
+			'{label_write_us}'      => __( 'Write to us', 'convoca' ),
+			'{label_explore}'       => __( 'Explore', 'convoca' ),
+			'{label_involved}'      => __( 'Get involved', 'convoca' ),
+			'{label_news}'          => __( 'News', 'convoca' ),
+			'{label_community}'     => __( 'Community', 'convoca' ),
 		]
 	);
 
