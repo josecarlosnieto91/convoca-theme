@@ -28,12 +28,12 @@
 	<!-- wp:heading {"textAlign":"center","level":2,"textColor":"amarillo","fontSize":"x-large","fontFamily":"display"} -->
 	<h2
 		class="wp-block-heading has-text-align-center has-amarillo-color has-text-color has-display-font-family has-x-large-font-size">
-		Want to be part of the change?</h2>
+		{cta_heading}</h2>
 	<!-- /wp:heading -->
 	<!-- wp:paragraph {"align":"center","style":{"color":{"text":"rgba(255,255,255,0.85)"},"spacing":{"margin":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|30"}}}} -->
 	<p class="has-text-align-center"
 		style="color:rgba(255,255,255,0.85);margin-top:var(--wp--preset--spacing--10);margin-bottom:var(--wp--preset--spacing--30)">
-		Join as a member, volunteer, or just come and meet us. Every action counts.</p>
+		{cta_text}</p>
 	<!-- /wp:paragraph -->
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-buttons">

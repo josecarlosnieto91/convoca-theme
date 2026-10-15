@@ -1,3 +1,20 @@
+## [2.9.36] — 2026-10-16
+
+### Arreglado
+- **Los rótulos del tema se traducen, también los que viven en plantillas (issue #11).** La portada servía
+  «Latest posts», «Want to be part of the change?», «Join as a member…», «Write to us», «Explore», «Get involved»,
+  «News» y «Community» en inglés aunque hubiera catálogo. La causa: ese texto estaba **escrito a mano dentro de
+  plantillas HTML** (`templates/*.html`, `parts/*.html`), y el HTML de una plantilla **no pasa por gettext** — por eso
+  había traducción y se seguía sirviendo el inglés. Ahora esos rótulos son **fichas** (`{label_…}`) que se resuelven
+  en PHP, el mismo camino que ya usaba el tema para todo lo demás, con su traducción en el catálogo `es_ES`.
+- De paso, el texto del bloque de llamada a la acción pasa a usar sus fichas `{cta_heading}`/`{cta_text}`: estaban
+  escritas a mano en el patrón, así que **se ignoraba el filtro del sitio** y tampoco se traducían.
+
+### Añadido
+- `RotulosEnCastellanoTest`: cuatro comprobaciones (ningún rótulo inglés a mano en plantillas/partes/patrones, cada
+  ficha existe y es traducible, se usa, y el catálogo la traduce). Probada en negativo: volviendo a poner el literal
+  en el patrón, cae.
+
 ## [2.9.35] - 2026-10-16
 
 ### Cambiado

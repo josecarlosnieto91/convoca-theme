@@ -984,3 +984,22 @@ msgstr "Página de aterrizaje"
 msgctxt "Custom template name"
 msgid "Full Width Page"
 msgstr "Página a ancho completo"
+
+msgid "Latest posts"
+msgstr "Últimas entradas"
+
+msgid "Write to us"
+msgstr "Escríbenos"
+
+msgid "Explore"
+msgstr "Explora"
+
+msgid "Get involved"
+msgstr "Participa"
+
+msgid "News"
+msgstr "Noticias"
+
+msgid "Community"
+msgstr "Comunidad"
+
