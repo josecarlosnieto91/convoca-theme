@@ -1,3 +1,26 @@
+## [2.9.35] - 2026-10-16
+
+### Cambiado
+- **El `?ver=` de los assets: cada uno con su sello (issue #19 del repositorio del núcleo).** El sello por fecha de
+  fichero se queda **solo para los ficheros del tema**; los assets de los **plugins del ecosistema conservan la
+  versión del plugin** —que se sube en cada release y en cada despliegue— y el núcleo y los plugins ajenos siguen
+  sirviéndose sin versión. El motivo: sellar por fecha los assets de un plugin **tapaba su versión real**, que es
+  justo lo que comprueba la batería (`2.3.35`, `2.5.24`, `0.2.17`). El reparto, y los dos incidentes que lo
+  justifican, quedan razonados en `docs/sello-de-assets.md` y en el comentario del propio filtro.
+
+### Arreglado
+- **La prueba del sellado no cubría el caso del tema**: la función llama a `get_stylesheet_directory()` y las
+  pruebas no lo tenían definido, así que el caso que sí importaba —el CSS del tema sellado por fecha— no estaba
+  probado nunca. Ahora hay un caso por tipo de asset, y se comprueba que la prueba cae si se revierte el arreglo.
+
+## [2.9.34] - 2026-10-15
+
+### Cambiado
+- **Los 15 patrones del tema, en castellano (issue #9 del repositorio del tema).** El texto visible de los patrones
+  pasa a ser traducible (`esc_html__`/`_x`, con `printf` donde una frase la partían los shortcodes) y el catálogo
+  `es_ES` se reconstruyó entero desde el `.pot`: 183 cadenas traducidas, sin las 29 entradas difusas y truncadas
+  que hacían que el navegador acabara sirviendo el inglés.
+
 ## [2.9.32] - 2026-10-15
 
 ### Cambiado

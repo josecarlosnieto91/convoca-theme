@@ -1371,7 +1371,13 @@ add_filter( 'style_loader_src', 'convoca_fse_remove_version', 9999 );
 add_filter( 'script_loader_src', 'convoca_fse_remove_version', 9999 );
 
 /**
- * Sella los assets con su fecha de modificación y oculta la versión del core.
+ * Sella los assets del TEMA con su fecha y oculta la versión del núcleo y de los plugins ajenos.
+ *
+ * El reparto está decidido y razonado en `docs/sello-de-assets.md` (`convoca-core#19`, 16/10/2026):
+ *   - ficheros del TEMA  -> fecha de modificación del fichero (su versión cambia poco);
+ *   - plugins del ECOSISTEMA (`/plugins/convoca-`) -> se dejan con su `?ver=`, que es la versión del
+ *     plugin y se sube en cada release;
+ *   - núcleo de WordPress y plugins ajenos -> sin versión (endurecimiento heredado).
  *
  * @param mixed $src URL del recurso; la traen los filtros de WordPress y no siempre
  *                    es una cadena (puede llegar vacío o como arreglo).
@@ -1382,7 +1388,7 @@ function convoca_fse_remove_version( $src ) {
 		return $src;
 	}
 
-	// Las hojas del PROPIO theme se sellan con la FECHA DEL FICHERO, sin importar
+	// 1) Las hojas del PROPIO theme se sellan con la FECHA DEL FICHERO, sin importar
 	// quién las encole. Sin esto la URL del CSS no cambia nunca, el navegador
 	// sirve una copia vieja y se acaba midiendo y diagnosticando sobre un estado
 	// que no es el del fichero.
@@ -1401,31 +1407,20 @@ function convoca_fse_remove_version( $src ) {
 		return $sin_version;
 	}
 
-	// Core de WordPress: se sigue ocultando la versión, que era el objetivo.
-	if ( false === strpos( $src, '/plugins/convoca-' ) ) {
-		if ( false !== strpos( $src, '?ver=' ) ) {
-			$src = remove_query_arg( 'ver', $src );
-		}
+	// 2) Los assets de los PLUGINS del ecosistema se dejan COMO ESTÁN: su `?ver=` es la versión
+	// del plugin, que se sube en cada release y en cada despliegue, así que ya cumple la función
+	// de sello. Sellar por fecha (lo que se hacía aquí) tapaba esa versión y hacía que la medida
+	// dijera «fecha» donde se espera `2.3.35`, `2.5.24` o `0.2.17` (decisión del 16/10, core#19).
+	if ( false !== strpos( $src, '/plugins/convoca-' ) ) {
 		return $src;
 	}
 
-	// Los assets de los PLUGINS del ecosistema se sellan con la fecha del fichero,
-	// igual que los del tema. Quitarles el `?ver=` dejaba al navegador sirviendo la
-	// copia vieja después de cada actualización: un arreglo ya desplegado podía no
-	// llegar nunca al usuario, y se acaba midiendo y diagnosticando sobre un estado
-	// que no es el del fichero (el mismo problema que documenta el bloque de arriba).
-	$sin_version = strtok( $src, '?' );
-	$en_disco    = str_replace(
-		content_url( '/plugins/' ),
-		WP_CONTENT_DIR . '/plugins/',
-		$sin_version
-	);
-
-	if ( $en_disco !== $sin_version && is_readable( $en_disco ) ) {
-		return add_query_arg( 'ver', (string) filemtime( $en_disco ), $sin_version );
+	// 3) Núcleo de WordPress y plugins ajenos: se sigue ocultando la versión, que era el objetivo.
+	if ( false !== strpos( $src, '?ver=' ) ) {
+		$src = remove_query_arg( 'ver', $src );
 	}
 
-	return $sin_version;
+	return $src;
 }
 
 /**

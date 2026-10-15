@@ -59,6 +59,14 @@ if ( ! function_exists( 'get_template_directory' ) ) {
 if ( ! function_exists( 'get_template_directory_uri' ) ) {
 	function get_template_directory_uri() {
 		return 'https://example.com/wp-content/themes/convoca'; } }
+// La función de sellado llama también a las del tema hijo. Faltaban: sin ellas, el caso
+// «asset del tema» no se podía ni probar (el tema es su propia plantilla en el repo).
+if ( ! function_exists( 'get_stylesheet_directory' ) ) {
+	function get_stylesheet_directory() {
+		return ABSPATH; } }
+if ( ! function_exists( 'get_stylesheet_directory_uri' ) ) {
+	function get_stylesheet_directory_uri() {
+		return 'https://example.com/wp-content/themes/convoca'; } }
 if ( ! function_exists( 'wp_enqueue_style' ) ) {
 	function wp_enqueue_style( $h, $s = '', $d = [], $v = '', $m = 'all' ) {} }
 if ( ! function_exists( 'wp_enqueue_script' ) ) {
