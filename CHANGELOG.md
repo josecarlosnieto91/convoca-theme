@@ -11,7 +11,7 @@
     repositorio no lleva dentro la dirección de ningún sitio.
   - **`CHANGELOG.md` y `.distignore`** — nombraban un sitio real y un servidor interno. Se cuenta lo mismo sin
     nombrarlos.
-  - **`{lugg_url}` y `convoca_theme_lugg_url`** se quedan, a propósito: son **alias de filtro publicados** que un
+  - **`{lugg_url}` y `convoca_theme_lugg_url`** se quedan, a propósito: son **alias de filtro publicados** (// convoca-hygiene-ignore: alias publicado, excepción del issue #3) que un
     sitio puede estar usando; quitarlos rompe compatibilidad. Van marcados con `convoca-hygiene-ignore` y su
     motivo, que es lo que los hace excepciones y no deuda.
 

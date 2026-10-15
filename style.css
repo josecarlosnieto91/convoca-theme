@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.32
+Version: 2.9.33
 Requires at least: 6.6
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -4450,6 +4450,9 @@ body .convoca-topnav ul {
 	flex: 1 1 auto;
 	width: auto;
 	margin: 0;
+	/* Un hijo de un flex `nowrap` no encoge por debajo de su contenido sin esto (issue #5):
+	   el buscador medía la suma de sus piezas y se salía del viewport a 390 px. */
+	min-width: 0;
 }
 
 /* Mismo buscador «píldora» que el secundario del theme. */
@@ -4461,6 +4464,7 @@ body .convoca-topnav ul {
 	border-radius: 999px;
 	background-color: #fff;
 	padding: 0.25rem 0.25rem 0.25rem 1rem;
+	min-width: 0;
 }
 
 .convoca-buscador-cabecera .wp-block-search__input {
@@ -4469,6 +4473,8 @@ body .convoca-topnav ul {
 	padding: 0.55rem 0;
 	font-size: 0.98rem;
 	box-shadow: none;
+	min-width: 0;
+	width: 100%;
 }
 
 .convoca-buscador-cabecera .wp-block-search__input:focus {
