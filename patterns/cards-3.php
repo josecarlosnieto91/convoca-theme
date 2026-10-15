@@ -26,7 +26,7 @@
 <div class="wp-block-group"
 	style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)">
 	<!-- wp:heading {"textAlign":"center","level":2,"fontSize":"x-large","fontFamily":"display"} -->
-	<h2 class="wp-block-heading has-text-align-center has-display-font-family has-x-large-font-size">Our areas of work</h2>
+	<h2 class="wp-block-heading has-text-align-center has-display-font-family has-x-large-font-size"><?php esc_html_e( 'Our areas of work', 'convoca' ); ?></h2>
 	<!-- /wp:heading -->
 	<!-- wp:columns {"isStackedOnMobile":true,"style":{"spacing":{"blockGap":{"top":"var:preset|spacing|30","left":"var:preset|spacing|30"},"margin":{"top":"var:preset|spacing|40"}}}} -->
 	<div class="wp-block-columns is-stacked-on-mobile" style="margin-top:var(--wp--preset--spacing--40)">
@@ -38,10 +38,10 @@
 				<p class="has-text-align-center" style="font-size:2.5rem">🌿</p>
 				<!-- /wp:paragraph -->
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center">Environmental education</h3>
+				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Environmental education', 'convoca' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"align":"center"} -->
-				<p class="has-text-align-center">Workshops, talks and training activities to foster ecological awareness in the community.</p>
+				<p class="has-text-align-center"><?php esc_html_e( 'Workshops, talks and training activities to foster ecological awareness in the community.', 'convoca' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -55,10 +55,10 @@
 				<p class="has-text-align-center" style="font-size:2.5rem">🏔️</p>
 				<!-- /wp:paragraph -->
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center">Conservation</h3>
+				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Conservation', 'convoca' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"align":"center"} -->
-				<p class="has-text-align-center">Restoration projects, clean-ups of natural spaces and protection of local biodiversity.</p>
+				<p class="has-text-align-center"><?php esc_html_e( 'Restoration projects, clean-ups of natural spaces and protection of local biodiversity.', 'convoca' ); ?></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:group -->
@@ -72,7 +72,7 @@
 				<p class="has-text-align-center" style="font-size:2.5rem">🤝</p>
 				<!-- /wp:paragraph -->
 				<!-- wp:heading {"textAlign":"center","level":3} -->
-				<h3 class="wp-block-heading has-text-align-center">Community action</h3>
+				<h3 class="wp-block-heading has-text-align-center"><?php esc_html_e( 'Community action', 'convoca' ); ?></h3>
 				<!-- /wp:heading -->
 				<!-- wp:paragraph {"align":"center"} -->
 				<p class="has-text-align-center">Neighbourhood volunteering, community activities and collaboration networks with other associations.</p>

@@ -1,360 +1,986 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Convoca 2.8.0\n"
-"Report-Msgid-Bugs-To: https://github.com/josecarlosnieto91/convoca-theme\n"
+"Project-Id-Version: Convoca 2.9.34\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/convoca\n"
+"POT-Creation-Date: 2026-10-15T21:32:02+00:00\n"
 "Language: es_ES\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Convoca\n"
 
+#. Theme Name of the theme
+#: style.css functions.php:152
+msgid "Convoca"
+msgstr ""
 
-#: parts/header.html
-msgid "Switch color mode"
-msgstr "Cambiar el modo de color"
-msgid "A non-profit association dedicated to environmental education and citizen participation."
-msgstr "Asociación sin ánimo de lucro dedicada a la educación ambiental y a la participación ciudadana."
+#. Theme URI of the theme
+#: style.css
+msgid "https://getconvoca.app"
+msgstr ""
 
-msgid "About us"
-msgstr "Conócenos"
+#. Description of the theme
+#: style.css
+msgid "FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive."
+msgstr ""
+"Tema FSE (edición completa del sitio), basado en bloques, WCAG 2.1 AA, "
+"adaptable."
 
-msgid "Activities"
-msgstr "Actividades"
+#. Author of the theme
+#: style.css
+msgid "Jose Carlos Nieto Ramos"
+msgstr ""
 
-msgid "Activities, volunteering, environmental education and local nature, told from the inside."
-msgstr "Actividades, voluntariado, educación ambiental y naturaleza asturiana, contado desde dentro."
+#. Author URI of the theme
+#: style.css
+msgid "https://josecarlosnietoramos.com"
+msgstr ""
 
-msgid "Activity Page"
-msgstr "Página de Actividad"
+#. translators: %d: number of templates and template parts reset.
+#: functions.php:96
+#, php-format
+msgid ""
+"Reset %d templates and template parts. They will now be read directly from "
+"the theme files."
+msgstr ""
+"Se restablecerán %d plantillas y partes de plantilla. A partir de ahora se "
+"leerán directamente de los ficheros del tema."
 
-msgid "Activity information"
-msgstr "Información de la actividad"
-
-msgid "Address / location"
-msgstr "Dirección / lugar"
-
-msgid "Alliances"
-msgstr "Alianzas"
-
-msgid "Animated stats bar."
-msgstr "Barra de estadísticas animada."
-
-msgid "Are you sure? This will delete any customization you made in the Site Editor and revert to the theme files."
-msgstr "¿Estás seguro? Esto borrará cualquier personalización que hayas hecho en el Editor de Sitios y volverá a los archivos del theme."
-
-msgid "Become a member"
-msgstr "Hazte Socio/a"
-
-msgid "Built-in registration form."
-msgstr "Formulario de inscripción integrado."
-
-msgid "Card"
-msgstr "Tarjeta"
-
-msgid "Change language"
-msgstr "Cambiar idioma"
-
-msgid "Charcoal block"
-msgstr "Bloque carbón"
-
-msgid "Community"
-msgstr "¡Conciencia!"
-
-msgid "Community action"
-msgstr "Acción Comunitaria"
-
-msgid "Community centre"
-msgstr "Centro"
-
-msgid "Conservation"
-msgstr "Conservación"
-
-msgid "Contact"
-msgstr "Contacto"
-
-msgid "Convoca Help"
-msgstr "Ayuda Convoca"
-
-msgid "Convoca patterns"
-msgstr "Patrones Convoca"
-
-msgid "Convoca table"
-msgstr "Tabla Convoca"
-
+#: functions.php:153
 msgid "Convoca theme patterns."
-msgstr "Patrones del theme Convoca."
+msgstr "Patrones del tema Convoca."
 
-msgid "Cookie policy"
-msgstr "Política de cookies"
+#: functions.php:159
+msgid "Convoca — Layout"
+msgstr ""
 
-msgid "Coordination"
-msgstr "Coordinación"
-
-msgid "Coordinator box"
-msgstr "Caja Coordinador"
-
-msgid "Creative Commons Attribution-NonCommercial 4.0 license"
-msgstr "Licencia Creative Commons Reconocimiento-NoComercial 4.0"
-
-msgid "DATE"
-msgstr "FECHA"
-
-msgid "Donations"
-msgstr "Donaciones"
-
-msgid "Editorial frame"
-msgstr "Marco editorial"
-
-msgid "Elevated"
-msgstr "Elevada"
-
-msgid "End date and time"
-msgstr "Fecha y hora de fin"
-
-msgid "Environmental education"
-msgstr "Educación Ambiental"
-
-msgid "Explore"
-msgstr "Explora"
-
-msgid "Featured quote"
-msgstr "Cita destacada"
-
-msgid "Fill in the form to sign up for this activity. If you are a member, the discount is applied automatically."
-msgstr "Completa el formulario para inscribirte en esta actividad. Si eres socio/a, el descuento se aplicará automáticamente."
-
-msgid "Fill in these fields only if you want Google to index this content as an event with structured data."
-msgstr "Rellena estos campos solo si quieres que Google indexe este contenido como evento con datos estructurados."
-
-msgid "Frosted glass"
-msgstr "Cristal Esmerilado"
-
+#: functions.php:160
 msgid "Full-page sections."
-msgstr "Secciones de página completas."
+msgstr "Secciones a página completa."
 
-msgid "Get involved"
-msgstr "Participa"
-
-msgid "Ghost button"
-msgstr "Botón fantasma"
-
-msgid "Go to the homepage"
-msgstr "Ir a la portada"
-
-msgid "Grid of activities or news."
-msgstr "Cuadrícula de actividades o noticias."
-
-msgid "Have questions or want to get involved? Write to us or follow us on social media."
-msgstr "¿Tienes dudas o quieres colaborar? Escríbenos o síguenos en redes sociales."
-
-msgid "Heading with rule"
-msgstr "Título con regla"
-
-msgid "Join as a member, volunteer, or just come and meet us. Every action counts."
-msgstr "Únete como socio/a, participa como voluntario/a, o simplemente ven a conocernos. Cada acción cuenta."
-
-msgid "Join us"
-msgstr "Asóciate"
-
-msgid "Keep reading"
-msgstr "Sigue leyendo"
-
-msgid "LOCATION"
-msgstr "UBICACIÓN"
-
-msgid "Latest"
-msgstr "Lo último"
-
-msgid "Latest posts"
-msgstr "Últimas entradas publicadas"
-
+#: functions.php:175
 msgid "Lead"
 msgstr "Destacado (Lead)"
 
-msgid "Legal notice"
-msgstr "Aviso legal"
+#: functions.php:184
+msgid "Card"
+msgstr "Tarjeta"
 
-msgid "Library"
-msgstr "Biblioteca"
+#: functions.php:193
+msgid "Coordinator box"
+msgstr "Caja de coordinación"
 
-msgid "Links"
-msgstr "Enlaces"
+#: functions.php:202
+msgid "Frosted glass"
+msgstr "Cristal esmerilado"
 
-msgid "Links of interest"
-msgstr "Enlaces de interés"
+#: functions.php:211
+msgid "Topographic overlay"
+msgstr "Superposición topográfica"
 
-msgid "Looking for something?"
-msgstr "¿No encuentras algo?"
+#: functions.php:220
+msgid "Convoca table"
+msgstr "Tabla Convoca"
 
-msgid "Main header with text."
-msgstr "Cabecera principal con texto."
-
-msgid "Neighbourhood volunteering, community activities and collaboration networks with other associations."
-msgstr "Voluntariado vecinal, actividades comunitarias y redes de colaboración"
-
-msgid "News"
-msgstr "Noticias"
-
-msgid "No activities are scheduled right now. Check back soon!"
-msgstr "No hay actividades programadas en este"
-
-msgid "No content has been published here yet."
-msgstr "Todavía no hay contenido publicado aquí."
-
-msgid "No posts have been published yet. When they are, they will appear here."
-msgstr "Aún no hay entradas publicadas. Cuando las haya, aparecerán aquí."
-
-msgid "Nothing was found for those terms. Try another word or check the activities and news ."
-msgstr "No se ha encontrado nada con esos términos. Prueba con otra palabra o revisa las actividades y noticias ."
-
-msgid "Open Site Editor (FSE)"
-msgstr "Abrir Editor de Sitios (FSE)"
-
-msgid "Orange band"
-msgstr "Banda naranja"
-
-msgid "Our areas of work"
-msgstr "Nuestras áreas de"
-
-msgid "PRICE"
-msgstr "PRECIO"
-
-msgid "Posts"
-msgstr "Publicaciones"
-
-msgid "Posts in %s"
-msgstr "Publicaciones en %s"
-
-msgid "Privacy"
-msgstr "Privacidad"
-
-msgid "Privacy policy"
-msgstr "Política de privacidad"
-
-msgid "Project Page"
-msgstr "Página de Proyecto"
-
-msgid "Projects"
-msgstr "Proyectos"
-
-msgid "Registration"
-msgstr "Inscripción"
-
-msgid "Related content"
-msgstr "Contenido relacionado"
-
-msgid "Reset %d templates and template parts. They will now be read directly from the theme files."
-msgstr "Se han reiniciado %d plantillas y partes de plantilla del theme. Se leerán directamente de los archivos del tema."
-
-msgid "Resources"
-msgstr "Recursos"
-
-msgid "Restoration projects, clean-ups of natural spaces and protection of local biodiversity."
-msgstr "Proyectos de restauración, limpieza de espacios naturales y protección"
-
-msgid "SPOTS"
-msgstr "PLAZAS"
-
+#: functions.php:229
 msgid "Secondary"
 msgstr "Secundario"
 
+#: functions.php:238
+msgid "Elevated"
+msgstr "Elevada"
+
+#: functions.php:407 functions.php:408
+msgid "Convoca Help"
+msgstr "Ayuda de Convoca"
+
+#: functions.php:423
 msgid "Settings & Help — Convoca Theme"
-msgstr "Configuración y Ayuda — Theme Convoca"
+msgstr "Ajustes y ayuda — Tema Convoca"
 
-msgid "Skip to content"
-msgstr "Ir al contenido"
-
-msgid "Start date and time"
-msgstr "Fecha y hora de inicio"
-
-msgid "Switch to dark mode"
-msgstr "Cambiar a modo oscuro"
-
-msgid "Switch to light mode"
-msgstr "Cambiar a modo claro"
-
-msgid "Templates & Pages Guide"
-msgstr "Guía de Plantillas y Páginas"
-
-msgid "Theme information"
-msgstr "Información del Theme"
-
-msgid "This content is an event"
-msgstr "Este contenido es un evento"
-
-msgid "This is an FSE (Full Site Editing) theme for associations and community groups. Here you will find a quick start guide."
-msgstr "Este es un theme FSE (Full Site Editing) optimizado para la Asociación Convoca. Aquí encontrarás una guía rápida de uso."
-
-msgid "This page is not here (or it wandered off)"
-msgstr "Esta página no está (o se fue de ruta)"
-
-msgid "Topographic overlay"
-msgstr "Overlay Topográfico"
-
-msgid "Transparency"
-msgstr "Transparencia"
-
-msgid "Use the \"Activity Page\" template for pages that describe a specific activity. It automatically includes the registration form."
-msgstr "Usa la plantilla \"Página de Actividad\" para las páginas que describen una actividad específica. Incluye automáticamente el formulario de inscripción."
-
-msgid "Use the \"Project Page\" template for long-running project sections. It includes project-specific metadata."
-msgstr "Usa la plantilla \"Página de Proyecto\" para secciones de proyectos de largo recorrido. Incluye metadatos específicos del proyecto."
-
-msgid "View activities"
-msgstr "Ver actividades"
-
-msgid "View all activities"
-msgstr "Ver todas las actividades"
-
-msgid "Volunteering"
-msgstr "Voluntariado"
-
-msgid "Want to be part of the change?"
-msgstr "¿Quieres ser parte del cambio?"
-
+#. translators: %s: version of the installed theme.
+#: functions.php:427
+#, php-format
 msgid "Welcome to Convoca v%s"
 msgstr "Bienvenido a Convoca v%s"
 
-msgid "What we are publishing"
-msgstr "Lo que vamos publicando"
+#. translators: %s: version of the installed theme.
+#: functions.php:428
+msgid ""
+"This is an FSE (Full Site Editing) theme for associations and community "
+"groups. Here you will find a quick start guide."
+msgstr ""
+"Este es un tema FSE (edición completa del sitio) para asociaciones y "
+"colectivos. Aquí tienes una guía de inicio rápido."
 
+#: functions.php:438
+msgid "Theme information"
+msgstr "Información del tema"
+
+#: functions.php:441
+msgid "Version:"
+msgstr "Versión:"
+
+#: functions.php:442
+msgid "Author:"
+msgstr "Autor:"
+
+#: functions.php:443
+msgid "Documentation:"
+msgstr "Documentación:"
+
+#: functions.php:443
+msgid "View the GitHub wiki"
+msgstr "Ver la wiki de GitHub"
+
+#: functions.php:446
+msgid "Open Site Editor (FSE)"
+msgstr "Abrir el editor del sitio (FSE)"
+
+#: functions.php:451
+msgid "Templates & Pages Guide"
+msgstr "Guía de plantillas y páginas"
+
+#: functions.php:453
+msgid "Activity Page"
+msgstr "Página de actividad"
+
+#: functions.php:454
+msgid ""
+"Use the \"Activity Page\" template for pages that describe a specific "
+"activity. It automatically includes the registration form."
+msgstr ""
+"Usa la plantilla «Página de actividad» para las páginas que describen una "
+"actividad concreta. Incluye el formulario de inscripción automáticamente."
+
+#: functions.php:456
+msgid "Project Page"
+msgstr "Página de proyecto"
+
+#: functions.php:457
+msgid ""
+"Use the \"Project Page\" template for long-running project sections. It "
+"includes project-specific metadata."
+msgstr ""
+"Usa la plantilla «Página de proyecto» para secciones de proyectos de larga "
+"duración. Incluye los datos propios del proyecto."
+
+#: functions.php:460
+msgid "Note:"
+msgstr "Nota:"
+
+#: functions.php:460
+msgid "If the templates do not display correctly, you can try resetting them."
+msgstr "Si las plantillas no se ven bien, puedes probar a restablecerlas."
+
+#: functions.php:461
+msgid ""
+"Are you sure? This will delete any customization you made in the Site Editor "
+"and revert to the theme files."
+msgstr ""
+"¿Seguro? Se borrarán los cambios que hayas hecho en el editor del sitio y se "
+"volverá a los ficheros del tema."
+
+#: functions.php:461
+msgid "Reset templates to factory defaults"
+msgstr "Restablecer las plantillas a los valores de fábrica"
+
+#: functions.php:467
+msgid "Convoca patterns"
+msgstr "Patrones de Convoca"
+
+#: functions.php:469
+msgid ""
+"You can insert these pre-designed blocks from the editor (+) > Patterns > "
+"Convoca:"
+msgstr ""
+"Puedes insertar estos bloques ya diseñados desde el editor (+) > Patrones > "
+"Convoca:"
+
+#: functions.php:471
+msgid "Main header with text."
+msgstr "Cabecera principal con texto."
+
+#: functions.php:472
+msgid "Grid of activities or news."
+msgstr "Rejilla de actividades o noticias."
+
+#: functions.php:473
+msgid "Animated stats bar."
+msgstr "Barra de cifras animada."
+
+#: functions.php:474
+msgid "Built-in registration form."
+msgstr "Formulario de inscripción integrado."
+
+#: functions.php:547
+msgid "Switch to dark mode"
+msgstr "Cambiar a modo oscuro"
+
+#: functions.php:548
+msgid "Switch to light mode"
+msgstr "Cambiar a modo claro"
+
+#: functions.php:674
+msgid ""
+"A non-profit association dedicated to environmental education and citizen "
+"participation."
+msgstr ""
+"Una asociación sin ánimo de lucro dedicada a la educación ambiental y la "
+"participación ciudadana."
+
+#: functions.php:675
+msgid "Want to be part of the change?"
+msgstr "¿Quieres formar parte del cambio?"
+
+#: functions.php:676
+msgid ""
+"Join as a member, volunteer, or just come and meet us. Every action counts."
+msgstr ""
+"Hazte socio, colabora como voluntario o simplemente ven a conocernos. Toda "
+"acción cuenta."
+
+#: functions.php:779
+msgid "Switch color mode"
+msgstr "Cambiar el modo de color"
+
+#: functions.php:847
 msgid "Who we are"
-msgstr "¿Quiénes somos?"
+msgstr "Quiénes somos"
 
-msgid "Workshops, talks and training activities to foster ecological awareness in the community."
-msgstr "Talleres, charlas y actividades formativas para fomentar la conciencia"
+#: functions.php:848
+msgid "Transparency"
+msgstr "Transparencia"
 
-msgid "Years of work"
-msgstr "Años de trayectoria"
+#: functions.php:849
+msgid "Projects"
+msgstr "Proyectos"
 
+#: functions.php:850
+msgid "Alliances"
+msgstr "Alianzas"
+
+#: functions.php:851
+msgid "Activities"
+msgstr "Actividades"
+
+#: functions.php:852 patterns/cta.php:41
+msgid "Become a member"
+msgstr "Hazte socio"
+
+#: functions.php:853 patterns/cta.php:44
+msgid "Volunteering"
+msgstr "Voluntariado"
+
+#: functions.php:854
+msgid "Donations"
+msgstr "Donaciones"
+
+#: functions.php:855
+msgid "Community centre"
+msgstr "Centro social"
+
+#: functions.php:856
+msgid "Privacy"
+msgstr "Privacidad"
+
+#: functions.php:857
+msgid "Cookies"
+msgstr "Cookies"
+
+#: functions.php:858
+msgid "Legal notice"
+msgstr "Aviso legal"
+
+#: functions.php:885
+msgid "Join us"
+msgstr "Asóciate"
+
+#: functions.php:966
+msgid "Change language"
+msgstr "Cambiar idioma"
+
+#: functions.php:1673
+msgid "Orange band"
+msgstr "Banda naranja"
+
+#: functions.php:1674
+msgid "Charcoal block"
+msgstr "Bloque carbón"
+
+#: functions.php:1675
+msgid "Editorial frame"
+msgstr "Marco editorial"
+
+#: functions.php:1676
+msgid "Ghost button"
+msgstr "Botón fantasma"
+
+#: functions.php:1677
+msgid "Featured quote"
+msgstr "Cita destacada"
+
+#: functions.php:1678
+msgid "Heading with rule"
+msgstr "Título con regla"
+
+#: patterns/cards-3.php
+msgctxt "Pattern title"
+msgid "3 content cards"
+msgstr "Tres tarjetas de contenido"
+
+#: patterns/cards-3.php
+msgctxt "Pattern description"
+msgid "Grid of 3 cards with icon, title and description."
+msgstr "Rejilla de tres tarjetas con icono, título y descripción."
+
+#: patterns/cards-3.php:29
+msgid "Our areas of work"
+msgstr "Nuestras líneas de trabajo"
+
+#: patterns/cards-3.php:41
+msgid "Environmental education"
+msgstr "Educación ambiental"
+
+#: patterns/cards-3.php:44
+msgid ""
+"Workshops, talks and training activities to foster ecological awareness in "
+"the community."
+msgstr ""
+"Talleres, charlas y formación para fomentar la conciencia ecológica en la "
+"comunidad."
+
+#: patterns/cards-3.php:58
+msgid "Conservation"
+msgstr "Conservación"
+
+#: patterns/cards-3.php:61
+msgid ""
+"Restoration projects, clean-ups of natural spaces and protection of local "
+"biodiversity."
+msgstr ""
+"Proyectos de restauración, limpiezas de espacios naturales y protección de "
+"la biodiversidad local."
+
+#: patterns/cards-3.php:75
+msgid "Community action"
+msgstr "Acción comunitaria"
+
+#: patterns/cards-grid.php
+msgctxt "Pattern title"
+msgid "Cards grid (3 columns)"
+msgstr "Rejilla de tarjetas (3 columnas)"
+
+#: patterns/cards-grid.php
+msgctxt "Pattern description"
+msgid "Grid of 3 cards with image, label, title, description and button."
+msgstr ""
+"Rejilla de tres tarjetas con imagen, etiqueta, título, descripción y botón."
+
+#: patterns/contact-banner.php
+msgctxt "Pattern title"
+msgid "Contact banner"
+msgstr "Banda de contacto"
+
+#: patterns/contact-banner.php
+msgctxt "Pattern description"
+msgid "Contact banner with organisation details and buttons."
+msgstr "Banda de contacto con los datos de la entidad y botones."
+
+#: patterns/contact-banner.php:28
+msgid "Contact"
+msgstr "Contacto"
+
+#: patterns/contact-banner.php:32
+msgid ""
+"Have questions or want to get involved? Write to us or follow us on social "
+"media."
+msgstr ""
+"¿Tienes dudas o quieres implicarte? Escríbenos o síguenos en redes sociales."
+
+#: patterns/cta-centered.php
+msgctxt "Pattern title"
+msgid "Centered call to action"
+msgstr "Llamada a la acción centrada"
+
+#: patterns/cta-centered.php
+msgctxt "Pattern description"
+msgid "Centered CTA with a dark gradient background, heading and two buttons."
+msgstr ""
+"Llamada a la acción centrada, con fondo degradado oscuro, encabezado y dos "
+"botones."
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Call to action"
+msgstr "Llamada a la acción"
+
+#: patterns/cta.php
+msgctxt "Pattern description"
+msgid "CTA section with title, subtitle and buttons on a dark background."
+msgstr ""
+"Sección de llamada a la acción con título, subtítulo y botones sobre fondo "
+"oscuro."
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern title"
+msgid "Hero with gradient"
+msgstr "Portada con degradado"
+
+#: patterns/hero-gradient.php
+msgctxt "Pattern description"
+msgid ""
+"Hero section with featured image, sunset gradient overlay, title and CTA "
+"buttons."
+msgstr ""
+"Portada con imagen destacada, degradado de atardecer, título y botones."
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern title"
+msgid "Hero with image"
+msgstr "Portada con imagen"
+
+#: patterns/hero-imagen.php
+msgctxt "Pattern description"
+msgid ""
+"Hero with customisable background image, gradient overlay, title and CTA "
+"buttons."
+msgstr ""
+"Portada con imagen de fondo personalizable, degradado, título y botones."
+
+#: patterns/hero-imagen.php:35
+msgid "Your title here"
+msgstr "Tu título aquí"
+
+#: patterns/hero-imagen.php:38
 msgid "Your description here."
 msgstr "Tu descripción aquí."
 
-msgid "style=\"letter-spacing:-0.02em\">Sowing awareness, shaping tomorrow"
-msgstr "style=\"letter-spacing:-0.02em\">Sembrando conciencia, transformando el mañana"
+#: patterns/hero-imagen.php:43 patterns/hero.php:43
+msgid "View activities"
+msgstr "Ver actividades"
 
-msgid "style=\"letter-spacing:-0.02em\">Your title here"
-msgstr "style=\"letter-spacing:-0.02em\">Tu título aquí"
+#: patterns/hero-imagen.php:46 patterns/hero.php:46
+msgid "About us"
+msgstr "Quiénes somos"
 
-msgid "style=\"margin-bottom:var(--wp--preset--spacing--20)\">Upcoming activities"
-msgstr "style=\"margin-bottom:var(--wp--preset--spacing--20)\">Próximas actividades"
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Main hero"
+msgstr "Portada principal"
 
-msgid "value=\" \" placeholder=\"e.g. Main Street 1, Your Town, Spain\" style=\"width:100%\">"
-msgstr "value=\" \" placeholder=\"Ej: Playa de Rodiles, Villaviciosa, Asturias\" style=\"width:100%\">"
+#: patterns/hero.php
+msgctxt "Pattern description"
+msgid ""
+"Front-page hero section with featured image, gradient, title and CTA buttons."
+msgstr ""
+"Portada de la página de inicio, con imagen destacada, degradado, título y "
+"botones."
 
-msgid "🎓 School"
-msgstr "🎓 La Escuela"
+#: patterns/hero.php:35
+msgid "Sowing awareness, shaping tomorrow"
+msgstr "Sembrando conciencia, construyendo mañana"
 
-msgid "👥 Spots: [convoca_actividad_meta field=\"plazas_disponibles\"] available out of [convoca_actividad_meta field=\"plazas_totales\"]"
-msgstr "👥 Plazas: [convoca_actividad_meta field=\"plazas_disponibles\"] disponibles de [convoca_actividad_meta field=\"plazas_totales\"]"
+#: patterns/hero.php:38
+msgid ""
+"A socio-environmental association. Education, conservation and community "
+"action."
+msgstr ""
+"Una asociación socioambiental. Educación, conservación y acción comunitaria."
 
-msgid "💰 Price: [convoca_actividad_meta field=\"precio_general\"]€ (member: [convoca_actividad_meta field=\"precio_socio\"]€)"
-msgstr "💰 Precio: [convoca_actividad_meta field=\"precio_general\"]€ (socio/a: [convoca_actividad_meta field=\"precio_socio\"]€)"
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern title"
+msgid "Activity registration section"
+msgstr "Sección de inscripción a la actividad"
 
-msgid "📅 Date: [convoca_actividad_meta field=\"fecha_inicio\"]"
-msgstr "📅 Fecha: [convoca_actividad_meta field=\"fecha_inicio\"]"
+#: patterns/inscripcion-actividad.php
+msgctxt "Pattern description"
+msgid ""
+"Section with a registration form (uses the dynamic shortcode to detect the "
+"current activity)."
+msgstr ""
+"Sección con formulario de inscripción (usa el shortcode dinámico para "
+"detectar la actividad actual)."
 
-msgid "📍 Location: [convoca_actividad_meta field=\"ubicacion\"]"
-msgstr "📍 Ubicación: [convoca_actividad_meta field=\"ubicacion\"]"
+#: patterns/inscripcion-actividad.php:35
+msgid "Activity information"
+msgstr "Información de la actividad"
 
+#: patterns/inscripcion-actividad.php:38
+msgid ""
+"Fill in the form to sign up for this activity. If you are a member, the "
+"discount is applied automatically."
+msgstr ""
+"Rellena el formulario para inscribirte en esta actividad. Si eres socio, el "
+"descuento se aplica automáticamente."
+
+#: patterns/inscripcion-actividad.php:42
+msgid "📅 Date:"
+msgstr "📅 Fecha:"
+
+#: patterns/inscripcion-actividad.php:43
+msgid "📍 Location:"
+msgstr "📍 Lugar:"
+
+#: patterns/inscripcion-actividad.php:44
+msgid "👥 Spots:"
+msgstr "👥 Plazas:"
+
+#. translators: 1: plazas disponibles, 2: plazas totales.
+#: patterns/inscripcion-actividad.php:44
+#, php-format
+msgid "%1$s available out of %2$s"
+msgstr "%1$s disponibles de %2$s"
+
+#. translators: 1: plazas disponibles, 2: plazas totales.
+#: patterns/inscripcion-actividad.php:45
+msgid "💰 Price:"
+msgstr "💰 Precio:"
+
+#. translators: 1: precio general, 2: precio para socios.
+#: patterns/inscripcion-actividad.php:45
+#, php-format
+msgid "%1$s€ (member: %2$s€)"
+msgstr "%1$s€ (socios: %2$s€)"
+
+#: patterns/inscripcion-actividad.php:57
+msgid "Registration"
+msgstr "Inscripción"
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern title"
+msgid "Pricing grid (memberships)"
+msgstr "Tarifas de socio"
+
+#: patterns/pricing-grid.php
+msgctxt "Pattern description"
+msgid "Three membership plans in a grid with the middle plan highlighted."
+msgstr "Tres modalidades de socio en rejilla, con la central destacada."
+
+#: patterns/pricing-grid.php:73
+msgid "Popular"
+msgstr "Popular"
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern title"
+msgid "Upcoming activities"
+msgstr "Próximas actividades"
+
+#: patterns/proximas-actividades.php
+msgctxt "Pattern description"
+msgid "Grid of upcoming activities from the activity CPT with metadata."
+msgstr "Rejilla con las próximas actividades y sus datos."
+
+#: patterns/proximas-actividades.php:31
+msgid "Upcoming activities"
+msgstr "Próximas actividades"
+
+#: patterns/proximas-actividades.php:35
+msgid "Workshops, volunteering and outings to connect with nature."
+msgstr "Talleres, voluntariado y salidas para conectar con la naturaleza."
+
+#: patterns/proximas-actividades.php:92
+msgid "No activities are scheduled right now. Check back soon!"
+msgstr "Ahora mismo no hay actividades programadas. ¡Vuelve pronto!"
+
+#: patterns/proximas-actividades.php:102
+msgid "View all activities"
+msgstr "Ver todas las actividades"
+
+#: patterns/section-violeta.php
+msgctxt "Pattern title"
+msgid "Dark violet section"
+msgstr "Sección violeta oscuro"
+
+#: patterns/section-violeta.php
+msgctxt "Pattern description"
+msgid "Full-width section with a dark violet background and white text."
+msgstr "Sección a todo el ancho, con fondo violeta oscuro y texto blanco."
+
+#: patterns/stats-bar.php
+msgctxt "Pattern title"
+msgid "Stats bar"
+msgstr "Barra de cifras"
+
+#: patterns/stats-bar.php
+msgctxt "Pattern description"
+msgid "Bar of 4 stats with a dark gradient background and values in yellow."
+msgstr "Barra con cuatro cifras, fondo degradado oscuro y valores en amarillo."
+
+#: patterns/stats.php
+msgctxt "Pattern title"
+msgid "Community figures (dynamic)"
+msgstr "Cifras de la entidad (dinámicas)"
+
+#: patterns/stats.php
+msgctxt "Pattern description"
+msgid ""
+"Strip with REAL figures from the installation (no fixed values). Each figure "
+"can be overridden with the convoca_site_stats filter; those without data are "
+"omitted."
+msgstr ""
+"Franja con cifras REALES de la instalación (ningún valor fijo). Cada cifra "
+"se puede cambiar con el filtro convoca_site_stats; las que no tienen dato no "
+"se muestran."
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern title"
+msgid "Transparency table"
+msgstr "Tabla de transparencia"
+
+#: patterns/transparencia-table.php
+msgctxt "Pattern description"
+msgid "Styled table for transparency data (income, expenses, balance)."
+msgstr ""
+"Tabla con estilo para los datos de transparencia (ingresos, gastos, saldo)."
+
+#: theme.json
+msgctxt "Color name"
+msgid "Orange"
+msgstr "Naranja"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Violet"
+msgstr "Violeta"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark plum"
+msgstr "Ciruela oscuro"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Yellow"
+msgstr "Amarillo"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Intense orange"
+msgstr "Naranja intenso"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Forest green"
+msgstr "Verde bosque"
+
+#: theme.json
+msgctxt "Color name"
+msgid "White"
+msgstr "Blanco"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Stone grey"
+msgstr "Gris piedra"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Mid grey"
+msgstr "Gris medio"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Anthracite"
+msgstr "Antracita"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark orange (text)"
+msgstr "Naranja oscuro (texto)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Dark orange (hover)"
+msgstr "Naranja oscuro (hover)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Soft orange (background)"
+msgstr "Naranja suave (fondo)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Amber"
+msgstr "Ámbar"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Red-orange (interaction)"
+msgstr "Rojo anaranjado (interacción)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Deep magenta (footer)"
+msgstr "Magenta oscuro (pie)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Grape (dark surface)"
+msgstr "Uva (superficie oscura)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Charcoal"
+msgstr "Carbón"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Text grey"
+msgstr "Gris de texto"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Border grey"
+msgstr "Gris de borde"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Bone (base)"
+msgstr "Hueso (base)"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Sand"
+msgstr "Arena"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Deep green"
+msgstr "Verde oscuro"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Light green"
+msgstr "Verde claro"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Earth"
+msgstr "Tierra"
+
+#: theme.json
+msgctxt "Color name"
+msgid "Heading blue"
+msgstr "Azul de titulares"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Sunset Hero"
+msgstr "Portada atardecer"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Dark stats"
+msgstr "Cifras oscuras"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Dark CTA"
+msgstr "Llamada oscura"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Warm orange"
+msgstr "Naranja cálido"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Light hero"
+msgstr "Portada clara"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Natural green"
+msgstr "Verde natural"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Photo veil"
+msgstr "Velo de foto"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Soft orange"
+msgstr "Naranja suave"
+
+#: theme.json
+msgctxt "Gradient name"
+msgid "Forest"
+msgstr "Bosque"
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Lato"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "Outfit"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr "Pequeño"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Body"
+msgstr "Cuerpo"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Lead"
+msgstr "Destacado"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small heading"
+msgstr "Encabezado pequeño"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Heading"
+msgstr "Encabezado"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Metadata"
+msgstr "Metadatos"
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large heading"
+msgstr "Encabezado grande"
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XS"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "S"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "M"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "L"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XL"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "XXL"
+msgstr ""
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card"
+msgstr "Tarjeta"
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Card hover"
+msgstr "Tarjeta (hover)"
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Elevated"
+msgstr "Elevada"
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Soft shadow"
+msgstr "Sombra suave"
+
+#: theme.json
+msgctxt "Shadow name"
+msgid "Elevated shadow"
+msgstr "Sombra elevada"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr "Cabecera"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr "Pie de página"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Sidebar"
+msgstr "Barra lateral"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Reusable hero"
+msgstr "Portada reutilizable"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Call to action"
+msgstr "Llamada a la acción"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Activity card"
+msgstr "Tarjeta de actividad"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Project card"
+msgstr "Tarjeta de proyecto"
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Activity metadata"
+msgstr "Datos de la actividad"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Single Activity"
+msgstr "Actividad (individual)"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Archive Activity"
+msgstr "Archivo de actividades"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Project Page"
+msgstr "Página de proyecto"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Activity Page"
+msgstr "Página de actividad"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Institutional Page"
+msgstr "Página institucional"
+
+#: theme.json
+msgctxt "Custom template name"
+msgid "Landing Page"
+msgstr "Página de aterrizaje"
+
+#: theme.json
+msgctxt "Custom template name"
 msgid "Full Width Page"
 msgstr "Página a ancho completo"

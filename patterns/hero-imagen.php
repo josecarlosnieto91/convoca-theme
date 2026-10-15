@@ -32,18 +32,18 @@
 		<div class="wp-block-group">
 			<!-- wp:heading {"level":1,"textColor":"blanco","fontSize":"xx-large","style":{"typography":{"letterSpacing":"-0.02em"}}} -->
 			<h1 class="wp-block-heading has-blanco-color has-text-color has-xx-large-font-size"
-				style="letter-spacing:-0.02em">Your title here</h1>
+				style="letter-spacing:-0.02em"><?php esc_html_e( 'Your title here', 'convoca' ); ?></h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"style":{"typography":{"fontSize":"1.2rem"},"color":{"text":"rgba(255,255,255,0.9)"}}} -->
-			<p style="color:rgba(255,255,255,0.9);font-size:1.2rem">Your description here.</p>
+			<p style="color:rgba(255,255,255,0.9);font-size:1.2rem"><?php esc_html_e( 'Your description here.', 'convoca' ); ?></p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
 			<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
 				<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-				<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">View activities</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}"><?php esc_html_e( 'View activities', 'convoca' ); ?></a></div>
 				<!-- /wp:button -->
 				<!-- wp:button {"className":"is-style-outline","textColor":"blanco","style":{"border":{"color":"rgba(255,255,255,0.5)","width":"2px"}}} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{about_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px">About us</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{about_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px"><?php esc_html_e( 'About us', 'convoca' ); ?></a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->

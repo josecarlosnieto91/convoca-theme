@@ -28,11 +28,11 @@
 
 	<!-- wp:heading {"textAlign":"center","textColor":"naranja","fontFamily":"display","fontSize":"x-large","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 	<h2 class="wp-block-heading has-text-align-center has-naranja-color has-text-color has-display-font-family has-x-large-font-size"
-		style="margin-bottom:var(--wp--preset--spacing--20)">Upcoming activities</h2>
+		style="margin-bottom:var(--wp--preset--spacing--20)"><?php esc_html_e( 'Upcoming activities', 'convoca' ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"align":"center","className":"convoca-section-subtitle","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|40"}}}} -->
-	<p class="has-text-align-center convoca-section-subtitle" style="margin-bottom:var(--wp--preset--spacing--40)">Workshops, volunteering and outings to connect with nature.</p>
+	<p class="has-text-align-center convoca-section-subtitle" style="margin-bottom:var(--wp--preset--spacing--40)"><?php esc_html_e( 'Workshops, volunteering and outings to connect with nature.', 'convoca' ); ?></p>
 	<!-- /wp:paragraph -->
 
 	<!-- wp:query {"queryId":10,"query":{"perPage":6,"pages":1,"offset":0,"postType":"actividad","order":"asc","orderBy":"meta_value","metaKey":"_convoca_fecha_inicio","inherit":false}} -->
@@ -89,7 +89,7 @@
 
 		<!-- wp:query-no-results -->
 		<!-- wp:paragraph {"align":"center","style":{"typography":{"fontSize":"1rem"},"color":{"text":"#777777"}}} -->
-		<p class="has-text-align-center convoca-card-meta" style="font-size:1rem">No activities are scheduled right now. Check back soon!</p>
+		<p class="has-text-align-center convoca-card-meta" style="font-size:1rem"><?php esc_html_e( 'No activities are scheduled right now. Check back soon!', 'convoca' ); ?></p>
 		<!-- /wp:paragraph -->
 		<!-- /wp:query-no-results -->
 
@@ -99,7 +99,7 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
 	<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--30)">
 		<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}">View all activities</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{activities_url}"><?php esc_html_e( 'View all activities', 'convoca' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

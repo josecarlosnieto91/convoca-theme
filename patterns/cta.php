@@ -38,10 +38,10 @@
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|20"}}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"backgroundColor":"naranja","textColor":"blanco"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{membership_url}">Become a member</a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-blanco-color has-naranja-background-color has-text-color has-background wp-element-button" href="{membership_url}"><?php esc_html_e( 'Become a member', 'convoca' ); ?></a></div>
 		<!-- /wp:button -->
 		<!-- wp:button {"className":"is-style-outline","textColor":"blanco","style":{"border":{"color":"rgba(255,255,255,0.5)","width":"2px"}}} -->
-		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{volunteer_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px">Volunteering</a></div>
+		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-blanco-color has-text-color has-border-color wp-element-button" href="{volunteer_url}" style="border-color:rgba(255,255,255,0.5);border-width:2px"><?php esc_html_e( 'Volunteering', 'convoca' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-15T11:02:49+00:00\n"
+"POT-Creation-Date: 2026-10-15T21:32:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: convoca\n"
@@ -239,10 +239,12 @@ msgid "Activities"
 msgstr ""
 
 #: functions.php:852
+#: patterns/cta.php:41
 msgid "Become a member"
 msgstr ""
 
 #: functions.php:853
+#: patterns/cta.php:44
 msgid "Volunteering"
 msgstr ""
 
@@ -308,6 +310,30 @@ msgctxt "Pattern description"
 msgid "Grid of 3 cards with icon, title and description."
 msgstr ""
 
+#: patterns/cards-3.php:29
+msgid "Our areas of work"
+msgstr ""
+
+#: patterns/cards-3.php:41
+msgid "Environmental education"
+msgstr ""
+
+#: patterns/cards-3.php:44
+msgid "Workshops, talks and training activities to foster ecological awareness in the community."
+msgstr ""
+
+#: patterns/cards-3.php:58
+msgid "Conservation"
+msgstr ""
+
+#: patterns/cards-3.php:61
+msgid "Restoration projects, clean-ups of natural spaces and protection of local biodiversity."
+msgstr ""
+
+#: patterns/cards-3.php:75
+msgid "Community action"
+msgstr ""
+
 #: patterns/cards-grid.php
 msgctxt "Pattern title"
 msgid "Cards grid (3 columns)"
@@ -326,6 +352,14 @@ msgstr ""
 #: patterns/contact-banner.php
 msgctxt "Pattern description"
 msgid "Contact banner with organisation details and buttons."
+msgstr ""
+
+#: patterns/contact-banner.php:28
+msgid "Contact"
+msgstr ""
+
+#: patterns/contact-banner.php:32
+msgid "Have questions or want to get involved? Write to us or follow us on social media."
 msgstr ""
 
 #: patterns/cta-centered.php
@@ -368,6 +402,24 @@ msgctxt "Pattern description"
 msgid "Hero with customisable background image, gradient overlay, title and CTA buttons."
 msgstr ""
 
+#: patterns/hero-imagen.php:35
+msgid "Your title here"
+msgstr ""
+
+#: patterns/hero-imagen.php:38
+msgid "Your description here."
+msgstr ""
+
+#: patterns/hero-imagen.php:43
+#: patterns/hero.php:43
+msgid "View activities"
+msgstr ""
+
+#: patterns/hero-imagen.php:46
+#: patterns/hero.php:46
+msgid "About us"
+msgstr ""
+
 #: patterns/hero.php
 msgctxt "Pattern title"
 msgid "Main hero"
@@ -378,6 +430,14 @@ msgctxt "Pattern description"
 msgid "Front-page hero section with featured image, gradient, title and CTA buttons."
 msgstr ""
 
+#: patterns/hero.php:35
+msgid "Sowing awareness, shaping tomorrow"
+msgstr ""
+
+#: patterns/hero.php:38
+msgid "A socio-environmental association. Education, conservation and community action."
+msgstr ""
+
 #: patterns/inscripcion-actividad.php
 msgctxt "Pattern title"
 msgid "Activity registration section"
@@ -386,6 +446,47 @@ msgstr ""
 #: patterns/inscripcion-actividad.php
 msgctxt "Pattern description"
 msgid "Section with a registration form (uses the dynamic shortcode to detect the current activity)."
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:35
+msgid "Activity information"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:38
+msgid "Fill in the form to sign up for this activity. If you are a member, the discount is applied automatically."
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:42
+msgid "📅 Date:"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:43
+msgid "📍 Location:"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:44
+msgid "👥 Spots:"
+msgstr ""
+
+#. translators: 1: plazas disponibles, 2: plazas totales.
+#: patterns/inscripcion-actividad.php:44
+#, php-format
+msgid "%1$s available out of %2$s"
+msgstr ""
+
+#. translators: 1: plazas disponibles, 2: plazas totales.
+#: patterns/inscripcion-actividad.php:45
+msgid "💰 Price:"
+msgstr ""
+
+#. translators: 1: precio general, 2: precio para socios.
+#: patterns/inscripcion-actividad.php:45
+#, php-format
+msgid "%1$s€ (member: %2$s€)"
+msgstr ""
+
+#: patterns/inscripcion-actividad.php:57
+msgid "Registration"
 msgstr ""
 
 #: patterns/pricing-grid.php
@@ -410,6 +511,22 @@ msgstr ""
 #: patterns/proximas-actividades.php
 msgctxt "Pattern description"
 msgid "Grid of upcoming activities from the activity CPT with metadata."
+msgstr ""
+
+#: patterns/proximas-actividades.php:31
+msgid "Upcoming activities"
+msgstr ""
+
+#: patterns/proximas-actividades.php:35
+msgid "Workshops, volunteering and outings to connect with nature."
+msgstr ""
+
+#: patterns/proximas-actividades.php:92
+msgid "No activities are scheduled right now. Check back soon!"
+msgstr ""
+
+#: patterns/proximas-actividades.php:102
+msgid "View all activities"
 msgstr ""
 
 #: patterns/section-violeta.php
