@@ -1,3 +1,12 @@
+## 2.9.31
+
+- **Las traducciones del tema no se cargaban nunca (y esto es una reparación, no un adorno).** El fichero se
+  llamaba `languages/convoca-es_ES.mo`, pero cuando el tema declara su propio directorio de idiomas
+  (`load_theme_textdomain`) WordPress busca `languages/es_ES.mo`. Medido en la demo: con el nombre viejo
+  `__('Change language','convoca')` devolvía «Change language», y con el nombre correcto devuelve «Cambiar
+  idioma». Afectaba a **todas** las cadenas del tema, no solo a la del modo oscuro.
+- La etiqueta del botón de modo oscuro pasa a estar traducida de verdad (issue #7).
+
 ## 2.9.30
 
 - **Accesibilidad: el enlace de salto ya lleva a alguna parte (#6).** El tema ponía uno propio apuntando a
