@@ -841,9 +841,10 @@ function convoca_theme_textos_de_plantillas(): array {
 		'View more'                                  => __( 'View more', 'convoca' ),
 		'← Previous'                               => __( '← Previous', 'convoca' ),
 		'Next →'                                   => __( 'Next →', 'convoca' ),
+		'Type here'                                  => __( 'Type here', 'convoca' ),
 		'Activities, volunteering, environmental education and local nature, told from the inside.' => __( 'Activities, volunteering, environmental education and local nature, told from the inside.', 'convoca' ),
 		'Search the site'                            => __( 'Search the site', 'convoca' ),
-		'Search…'                                    => __( 'Search…', 'convoca' ),
+		'Search…'                                  => __( 'Search…', 'convoca' ),
 		'Search'                                     => __( 'Search', 'convoca' ),
 	);
 }

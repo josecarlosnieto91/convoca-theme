@@ -54,19 +54,28 @@ class TextosDePlantillasTest extends TestCase {
 		foreach ( array( 'templates', 'parts' ) as $carpeta ) {
 			foreach ( glob( $this->raiz() . '/' . $carpeta . '/*' ) as $fichero ) {
 				foreach ( explode( "\n", (string) file_get_contents( $fichero ) ) as $n => $linea ) {
-					if ( preg_match( '/__\(|_e\(|esc_html_e|esc_attr_e|sprintf\(|printf\(/', $linea ) ) {
-						continue;
-					// Y los textos que viven en ATRIBUTOS de bloque (`content`, `label`, `placeholder`, `buttonText`,
+					// Los textos que viven en ATRIBUTOS de bloque (`content`, `label`, `placeholder`, `buttonText`,
 					// `linkLabel`): «View more» y la paginación no se pintan entre etiquetas, así que el patrón de
-					// arriba no los veía y salían en inglés (theme#13).
+					// más abajo no los veía y salían en inglés (theme#13).
 					if ( preg_match_all( '/"(?:content|label|placeholder|buttonText|linkLabel|text)"\s*:\s*"([^"]{2,200})"/', $linea, $attrs ) ) {
 						foreach ( $attrs[1] as $texto ) {
+							// Un atributo con el mismo nombre lleva también COLORES y medidas
+							// (`{"color":{"text":"#777777"}}`, `rgba(...)`, `var:preset|...`): no son
+							// texto y no se traducen. Y estos ya están en castellano en la plantilla.
+							if ( preg_match( '/^(#|rgba?\(|var[:(]|[0-9.]+(px|rem|em|%|vh|vw)$)/', $texto ) ) {
+								continue;
+							}
+							if ( in_array( $texto, array( 'Buscar en la web', 'Buscar en la web…', 'Buscar' ), true ) ) {
+								continue;
+							}
 							if ( ! in_array( $texto, $declarados, true ) ) {
 								$sin_declarar[] = basename( $fichero ) . ':' . ( $n + 1 ) . ' atributo «' . $texto . '»';
 							}
 						}
 					}
 
+					if ( preg_match( '/__\(|_e\(|esc_html_e|esc_attr_e|sprintf\(|printf\(/', $linea ) ) {
+						continue;
 					}
 					if ( preg_match_all( '/>\s*([A-Za-z][^<>{}]{2,200}?)\s*</', $linea, $textos ) ) {
 						foreach ( $textos[1] as $texto ) {

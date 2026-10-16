@@ -1133,3 +1133,6 @@ msgstr "Resultados para «%s»"
 
 msgid "Activities, volunteering, environmental education and local nature, told from the inside."
 msgstr "Actividades, voluntariado, educación ambiental y naturaleza local, contadas desde dentro."
+
+msgid "Type here"
+msgstr "Escribe aquí"
