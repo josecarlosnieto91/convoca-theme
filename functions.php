@@ -792,62 +792,57 @@ function convoca_theme_etiqueta_modo_oscuro( $block_content ) {
 add_filter( 'render_block', 'convoca_theme_etiqueta_modo_oscuro', 10, 1 );
 
 /**
- * Los textos que las plantillas del tema traen escritos a mano (docs#7, antes #11).
+ * Los textos que las plantillas traen escritos a mano, con su traducción.
  *
  * Las plantillas y las partes son marcado de bloque: no ejecutan PHP, así que un rótulo escrito dentro no pasa
  * por ninguna traducción. El tema ya resolvía así la etiqueta del botón de modo oscuro (#7); esto es lo mismo
  * para el resto. Medido en la demo antes de arreglarlo: en una web en castellano se leían «Latest», «Error
  * 404», «Keep reading», «Privacy policy», «LOCATION», «SPOTS»…
  *
- * Cada rótulo se declara aquí una vez con su texto original, y el valor se resuelve con `__()`: así el día que
- * alguien traduzca el tema a otro idioma, estos textos ya vienen con los demás. Se sustituye **solo cuando el
- * texto es todo el contenido de una etiqueta** (entre `>` y `<`), nunca dentro de un atributo: cambiar un
- * `class` o un `href` por una traducción rompería el diseño o los enlaces.
+ * Cada texto va declarado con `__()` y su literal a la vista: es lo que necesitan las herramientas de
+ * traducción para extraerlos, y así el día que el tema se traduzca a otro idioma vienen con los demás.
  *
- * @return string[] Texto original => texto original (la traducción la hace el catálogo).
+ * @return array<string, string> Texto original => traducción.
  */
 function convoca_theme_textos_de_plantillas(): array {
-	$textos = array(
-		'Latest',
-		'What we are publishing',
-		'No posts have been published yet. When they are, they will appear here.',
-		'No content has been published here yet.',
-		'Error 404',
-		'This page is not here (or it wandered off)',
-		'Go to the homepage',
-		'Keep reading',
-		'Related content',
-		// La frase de la búsqueda sin resultados. Antes traía dos enlaces dentro y, cuando el sitio no
-		// tiene esas URL configuradas, el tema los retira: quedaba «check the  and .» a la vista
-		// (medido en la demo). Una frase que se sostiene sola no puede romperse.
-		'Nothing was found for those terms. Try another word.',
-		'Looking for something?',
-		'Resources',
-		'Library',
-		'Alliances',
-		'Links of interest',
-		'Links',
-		'Transparency',
-		'About us',
-		'View activities',
-		'Coordination',
-		'DATE',
-		'LOCATION',
-		'SPOTS',
-		'PRICE',
-		'Legal',
-		'Legal notice',
-		'Privacy policy',
-		'Cookie policy',
-		'CC BY-NC 4.0',
+	return array(
+		'Latest' => __( 'Latest', 'convoca' ),
+		'What we are publishing' => __( 'What we are publishing', 'convoca' ),
+		'No posts have been published yet. When they are, they will appear here.' => __( 'No posts have been published yet. When they are, they will appear here.', 'convoca' ),
+		'No content has been published here yet.' => __( 'No content has been published here yet.', 'convoca' ),
+		'Error 404' => __( 'Error 404', 'convoca' ),
+		'This page is not here (or it wandered off)' => __( 'This page is not here (or it wandered off)', 'convoca' ),
+		'Go to the homepage' => __( 'Go to the homepage', 'convoca' ),
+		'Keep reading' => __( 'Keep reading', 'convoca' ),
+		'Related content' => __( 'Related content', 'convoca' ),
+		'Nothing was found for those terms. Try another word.' => __( 'Nothing was found for those terms. Try another word.', 'convoca' ),
+		'Looking for something?' => __( 'Looking for something?', 'convoca' ),
+		'Resources' => __( 'Resources', 'convoca' ),
+		'Library' => __( 'Library', 'convoca' ),
+		'Alliances' => __( 'Alliances', 'convoca' ),
+		'Links of interest' => __( 'Links of interest', 'convoca' ),
+		'Links' => __( 'Links', 'convoca' ),
+		'Transparency' => __( 'Transparency', 'convoca' ),
+		'About us' => __( 'About us', 'convoca' ),
+		'View activities' => __( 'View activities', 'convoca' ),
+		'Coordination' => __( 'Coordination', 'convoca' ),
+		'DATE' => __( 'DATE', 'convoca' ),
+		'LOCATION' => __( 'LOCATION', 'convoca' ),
+		'SPOTS' => __( 'SPOTS', 'convoca' ),
+		'PRICE' => __( 'PRICE', 'convoca' ),
+		'Legal' => __( 'Legal', 'convoca' ),
+		'Legal notice' => __( 'Legal notice', 'convoca' ),
+		'Privacy policy' => __( 'Privacy policy', 'convoca' ),
+		'Cookie policy' => __( 'Cookie policy', 'convoca' ),
+		'CC BY-NC 4.0' => __( 'CC BY-NC 4.0', 'convoca' ),
 	);
-
-	/** @var string[] Texto original => traducción. */
-	return array_combine( $textos, array_map( static fn( $t ) => __( $t, 'convoca' ), $textos ) );
 }
 
 /**
  * Sustituye, al vuelo, los rótulos escritos a mano por su traducción.
+ *
+ * Se cambia **solo cuando el texto es todo el contenido de una etiqueta** (entre `>` y `<`), nunca dentro de un
+ * atributo: cambiar un `class` o un `href` por una traducción rompería el diseño o los enlaces.
  *
  * @param string $block_content Marcado del bloque.
  * @return string
@@ -862,7 +857,6 @@ function convoca_theme_traduce_textos_de_plantillas( $block_content ) {
 			continue;
 		}
 
-		// Solo el contenido completo de una etiqueta: `>Latest<` sí, `class="Latest"` no.
 		$block_content = preg_replace(
 			'/>\s*' . preg_quote( $original, '/' ) . '\s*</',
 			'>' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $traducido ) . '<',
@@ -872,6 +866,7 @@ function convoca_theme_traduce_textos_de_plantillas( $block_content ) {
 
 	return (string) $block_content;
 }
+
 add_filter( 'render_block', 'convoca_theme_traduce_textos_de_plantillas', 10, 1 );
 
 

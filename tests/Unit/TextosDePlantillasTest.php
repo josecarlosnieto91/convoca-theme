@@ -44,10 +44,10 @@ class TextosDePlantillasTest extends TestCase {
 	public function test_no_queda_ningun_rotulo_sin_declarar(): void {
 		$fuente = (string) file_get_contents( $this->raiz() . '/functions.php' );
 
-		preg_match( '/function convoca_theme_textos_de_plantillas\(\): array \{.*?\$textos = array\((.*?)\);/s', $fuente, $m );
+		preg_match( '/function convoca_theme_textos_de_plantillas\(\): array \{\s*return array\((.*?)\);\s*\}/s', $fuente, $m );
 		$this->assertNotEmpty( $m, 'No he encontrado la lista de textos declarada' );
 
-		preg_match_all( "/'((?:[^'\\\\]|\\\\.)+)'/", $m[1], $declarados );
+		preg_match_all( "/'((?:[^'\\\\]|\\\\.)+)'\\s*=>/", $m[1], $declarados );
 		$declarados = array_map( 'trim', $declarados[1] );
 
 		$sinDeclarar = array();
