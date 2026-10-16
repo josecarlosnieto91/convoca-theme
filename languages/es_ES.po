@@ -1111,3 +1111,7 @@ msgstr "Política de cookies"
 #: parts/footer.html:83
 msgid "CC BY-NC 4.0"
 msgstr "CC BY-NC 4.0"
+
+#: templates/search.html:41
+msgid "Nothing was found for those terms. Try another word."
+msgstr "No se ha encontrado nada con esos términos. Prueba con otra palabra."

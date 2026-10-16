@@ -1051,3 +1051,7 @@ msgstr ""
 #: parts/footer.html:83
 msgid "CC BY-NC 4.0"
 msgstr ""
+
+#: templates/search.html:41
+msgid "Nothing was found for those terms. Try another word."
+msgstr ""

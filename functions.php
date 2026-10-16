@@ -817,10 +817,10 @@ function convoca_theme_textos_de_plantillas(): array {
 		'Go to the homepage',
 		'Keep reading',
 		'Related content',
-		'Nothing was found for those terms. Try another word or check the ',
-		'activities',
-		'news',
-		' and ',
+		// La frase de la búsqueda sin resultados. Antes traía dos enlaces dentro y, cuando el sitio no
+		// tiene esas URL configuradas, el tema los retira: quedaba «check the  and .» a la vista
+		// (medido en la demo). Una frase que se sostiene sola no puede romperse.
+		'Nothing was found for those terms. Try another word.',
 		'Looking for something?',
 		'Resources',
 		'Library',
