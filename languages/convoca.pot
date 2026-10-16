@@ -942,3 +942,112 @@ msgstr ""
 msgctxt "Custom template name"
 msgid "Full Width Page"
 msgstr ""
+
+#: templates/front-page.html:11
+msgid "Latest"
+msgstr ""
+
+#: templates/home.html:13
+#: templates/index.html:13
+msgid "What we are publishing"
+msgstr ""
+
+#: templates/front-page.html:38
+msgid "No posts have been published yet. When they are, they will appear here."
+msgstr ""
+
+#: templates/archive.html:43
+msgid "No content has been published here yet."
+msgstr ""
+
+#: templates/404.html:9
+msgid "Error 404"
+msgstr ""
+
+#: templates/404.html:13
+msgid "This page is not here (or it wandered off)"
+msgstr ""
+
+#: templates/404.html:28
+msgid "Go to the homepage"
+msgstr ""
+
+#: templates/single.html:89
+msgid "Keep reading"
+msgstr ""
+
+#: templates/single.html:92
+msgid "Related content"
+msgstr ""
+
+#: templates/search.html:41
+msgid "Nothing was found for those terms. Try another word or check the "
+msgstr ""
+
+#: templates/search.html:41
+msgid "activities"
+msgstr ""
+
+#: templates/search.html:41
+msgid "news"
+msgstr ""
+
+#: templates/search.html:41
+msgid " and "
+msgstr ""
+
+#: parts/sidebar.html:8
+msgid "Looking for something?"
+msgstr ""
+
+#: parts/sidebar.html:55
+msgid "Resources"
+msgstr ""
+
+#: parts/sidebar.html:59
+msgid "Library"
+msgstr ""
+
+#: parts/sidebar.html:61
+msgid "Links of interest"
+msgstr ""
+
+#: parts/sidebar.html:70
+msgid "Links"
+msgstr ""
+
+#: templates/page-proyecto.html:32
+msgid "Coordination"
+msgstr ""
+
+#: parts/activity-meta.html:16
+msgid "DATE"
+msgstr ""
+
+#: parts/activity-meta.html:34
+msgid "LOCATION"
+msgstr ""
+
+#: parts/activity-meta.html:52
+msgid "SPOTS"
+msgstr ""
+
+#: parts/activity-meta.html:70
+msgid "PRICE"
+msgstr ""
+
+#: parts/footer.html:57
+msgid "Legal"
+msgstr ""
+
+#: parts/footer.html:62
+msgid "Privacy policy"
+msgstr ""
+
+#: parts/footer.html:63
+msgid "Cookie policy"
+msgstr ""
+
+#: parts/footer.html:83
+msgid "CC BY-NC 4.0"
+msgstr ""

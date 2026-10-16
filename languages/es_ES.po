@@ -13,12 +13,12 @@ msgstr ""
 #. Theme Name of the theme
 #: style.css functions.php:152
 msgid "Convoca"
-msgstr ""
+msgstr "Convoca"
 
 #. Theme URI of the theme
 #: style.css
 msgid "https://getconvoca.app"
-msgstr ""
+msgstr "https://getconvoca.app"
 
 #. Description of the theme
 #: style.css
@@ -30,12 +30,12 @@ msgstr ""
 #. Author of the theme
 #: style.css
 msgid "Jose Carlos Nieto Ramos"
-msgstr ""
+msgstr "Jose Carlos Nieto Ramos"
 
 #. Author URI of the theme
 #: style.css
 msgid "https://josecarlosnietoramos.com"
-msgstr ""
+msgstr "https://josecarlosnietoramos.com"
 
 #. translators: %d: number of templates and template parts reset.
 #: functions.php:96
@@ -53,7 +53,7 @@ msgstr "Patrones del tema Convoca."
 
 #: functions.php:159
 msgid "Convoca — Layout"
-msgstr ""
+msgstr "Convoca — Layout"
 
 #: functions.php:160
 msgid "Full-page sections."
@@ -813,12 +813,12 @@ msgstr "Bosque"
 #: theme.json
 msgctxt "Font family name"
 msgid "Lato"
-msgstr ""
+msgstr "Lato"
 
 #: theme.json
 msgctxt "Font family name"
 msgid "Outfit"
-msgstr ""
+msgstr "Outfit"
 
 #: theme.json
 msgctxt "Font size name"
@@ -858,32 +858,32 @@ msgstr "Encabezado grande"
 #: theme.json
 msgctxt "Space size name"
 msgid "XS"
-msgstr ""
+msgstr "XS"
 
 #: theme.json
 msgctxt "Space size name"
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: theme.json
 msgctxt "Space size name"
 msgid "M"
-msgstr ""
+msgstr "M"
 
 #: theme.json
 msgctxt "Space size name"
 msgid "L"
-msgstr ""
+msgstr "L"
 
 #: theme.json
 msgctxt "Space size name"
 msgid "XL"
-msgstr ""
+msgstr "XL"
 
 #: theme.json
 msgctxt "Space size name"
 msgid "XXL"
-msgstr ""
+msgstr "XXL"
 
 #: theme.json
 msgctxt "Shadow name"
@@ -1003,3 +1003,111 @@ msgstr "Noticias"
 msgid "Community"
 msgstr "Comunidad"
 
+#: templates/front-page.html:11
+msgid "Latest"
+msgstr "Novedades"
+
+#: templates/home.html:13
+#: templates/index.html:13
+msgid "What we are publishing"
+msgstr "Lo que publicamos"
+
+#: templates/front-page.html:38
+msgid "No posts have been published yet. When they are, they will appear here."
+msgstr "Todavía no se ha publicado nada. Cuando lo haya, aparecerá aquí."
+
+#: templates/archive.html:43
+msgid "No content has been published here yet."
+msgstr "Aquí todavía no se ha publicado nada."
+
+#: templates/404.html:9
+msgid "Error 404"
+msgstr "Error 404"
+
+#: templates/404.html:13
+msgid "This page is not here (or it wandered off)"
+msgstr "Esta página no está aquí (o se ha ido a dar una vuelta)"
+
+#: templates/404.html:28
+msgid "Go to the homepage"
+msgstr "Ir a la portada"
+
+#: templates/single.html:89
+msgid "Keep reading"
+msgstr "Seguir leyendo"
+
+#: templates/single.html:92
+msgid "Related content"
+msgstr "Contenido relacionado"
+
+#: templates/search.html:41
+msgid "Nothing was found for those terms. Try another word or check the "
+msgstr "No se ha encontrado nada con esos términos. Prueba con otra palabra o mira las "
+
+#: templates/search.html:41
+msgid "activities"
+msgstr "actividades"
+
+#: templates/search.html:41
+msgid "news"
+msgstr "noticias"
+
+#: templates/search.html:41
+msgid " and "
+msgstr " y "
+
+#: parts/sidebar.html:8
+msgid "Looking for something?"
+msgstr "¿Buscas algo?"
+
+#: parts/sidebar.html:55
+msgid "Resources"
+msgstr "Recursos"
+
+#: parts/sidebar.html:59
+msgid "Library"
+msgstr "Biblioteca"
+
+#: parts/sidebar.html:61
+msgid "Links of interest"
+msgstr "Enlaces de interés"
+
+#: parts/sidebar.html:70
+msgid "Links"
+msgstr "Enlaces"
+
+#: templates/page-proyecto.html:32
+msgid "Coordination"
+msgstr "Coordinación"
+
+#: parts/activity-meta.html:16
+msgid "DATE"
+msgstr "FECHA"
+
+#: parts/activity-meta.html:34
+msgid "LOCATION"
+msgstr "LUGAR"
+
+#: parts/activity-meta.html:52
+msgid "SPOTS"
+msgstr "PLAZAS"
+
+#: parts/activity-meta.html:70
+msgid "PRICE"
+msgstr "PRECIO"
+
+#: parts/footer.html:57
+msgid "Legal"
+msgstr "Legal"
+
+#: parts/footer.html:62
+msgid "Privacy policy"
+msgstr "Política de privacidad"
+
+#: parts/footer.html:63
+msgid "Cookie policy"
+msgstr "Política de cookies"
+
+#: parts/footer.html:83
+msgid "CC BY-NC 4.0"
+msgstr "CC BY-NC 4.0"

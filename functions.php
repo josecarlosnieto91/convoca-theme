@@ -792,6 +792,90 @@ function convoca_theme_etiqueta_modo_oscuro( $block_content ) {
 add_filter( 'render_block', 'convoca_theme_etiqueta_modo_oscuro', 10, 1 );
 
 /**
+ * Los textos que las plantillas del tema traen escritos a mano (docs#7, antes #11).
+ *
+ * Las plantillas y las partes son marcado de bloque: no ejecutan PHP, así que un rótulo escrito dentro no pasa
+ * por ninguna traducción. El tema ya resolvía así la etiqueta del botón de modo oscuro (#7); esto es lo mismo
+ * para el resto. Medido en la demo antes de arreglarlo: en una web en castellano se leían «Latest», «Error
+ * 404», «Keep reading», «Privacy policy», «LOCATION», «SPOTS»…
+ *
+ * Cada rótulo se declara aquí una vez con su texto original, y el valor se resuelve con `__()`: así el día que
+ * alguien traduzca el tema a otro idioma, estos textos ya vienen con los demás. Se sustituye **solo cuando el
+ * texto es todo el contenido de una etiqueta** (entre `>` y `<`), nunca dentro de un atributo: cambiar un
+ * `class` o un `href` por una traducción rompería el diseño o los enlaces.
+ *
+ * @return string[] Texto original => texto original (la traducción la hace el catálogo).
+ */
+function convoca_theme_textos_de_plantillas(): array {
+	$textos = array(
+		'Latest',
+		'What we are publishing',
+		'No posts have been published yet. When they are, they will appear here.',
+		'No content has been published here yet.',
+		'Error 404',
+		'This page is not here (or it wandered off)',
+		'Go to the homepage',
+		'Keep reading',
+		'Related content',
+		'Nothing was found for those terms. Try another word or check the ',
+		'activities',
+		'news',
+		' and ',
+		'Looking for something?',
+		'Resources',
+		'Library',
+		'Alliances',
+		'Links of interest',
+		'Links',
+		'Transparency',
+		'About us',
+		'View activities',
+		'Coordination',
+		'DATE',
+		'LOCATION',
+		'SPOTS',
+		'PRICE',
+		'Legal',
+		'Legal notice',
+		'Privacy policy',
+		'Cookie policy',
+		'CC BY-NC 4.0',
+	);
+
+	/** @var string[] Texto original => traducción. */
+	return array_combine( $textos, array_map( static fn( $t ) => __( $t, 'convoca' ), $textos ) );
+}
+
+/**
+ * Sustituye, al vuelo, los rótulos escritos a mano por su traducción.
+ *
+ * @param string $block_content Marcado del bloque.
+ * @return string
+ */
+function convoca_theme_traduce_textos_de_plantillas( $block_content ) {
+	if ( false === strpos( $block_content, '>' ) ) {
+		return $block_content;
+	}
+
+	foreach ( convoca_theme_textos_de_plantillas() as $original => $traducido ) {
+		if ( $traducido === $original ) {
+			continue;
+		}
+
+		// Solo el contenido completo de una etiqueta: `>Latest<` sí, `class="Latest"` no.
+		$block_content = preg_replace(
+			'/>\s*' . preg_quote( $original, '/' ) . '\s*</',
+			'>' . str_replace( array( '\\', '$' ), array( '\\\\', '\\$' ), $traducido ) . '<',
+			$block_content
+		);
+	}
+
+	return (string) $block_content;
+}
+add_filter( 'render_block', 'convoca_theme_traduce_textos_de_plantillas', 10, 1 );
+
+
+/**
  * Enlaces del sitio usados por el pie y las llamadas a la acción.
  *
  * Vacíos por defecto: cada instalación (o su theme hijo) declara sus URLs
