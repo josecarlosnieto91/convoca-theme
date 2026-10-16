@@ -1,3 +1,14 @@
+## [2.9.40] — 2026-10-16
+
+### Arreglado
+- **El contrato de textos tenía un bloque muerto.** El bloque que revisa los textos que viven en los
+  **atributos** de bloque (contenido, etiqueta, marcador…) había quedado detrás de un `continue;`, así que
+  no se ejecutaba nunca: el contrato parecía vigilando y no vigilaba. Lo cazó el PHPCS del CI, no el propio
+  contrato. Movido delante de la guarda y comprobado sembrando un infractor.
+- Con el bloque vivo, los hallazgos son casi todos falsos positivos (un mismo nombre de atributo lleva
+  colores, medidas y `var:preset|…`), ahora saltados; y uno real: la barra lateral decía `Type here` sin
+  traducir.
+
 ## [2.9.39] — 2026-10-16
 
 ### Arreglado
