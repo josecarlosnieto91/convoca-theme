@@ -56,8 +56,19 @@ class TextosDePlantillasTest extends TestCase {
 				foreach ( explode( "\n", (string) file_get_contents( $fichero ) ) as $n => $linea ) {
 					if ( preg_match( '/__\(|_e\(|esc_html_e|esc_attr_e|sprintf\(|printf\(/', $linea ) ) {
 						continue;
+					// Y los textos que viven en ATRIBUTOS de bloque (`content`, `label`, `placeholder`, `buttonText`,
+					// `linkLabel`): «View more» y la paginación no se pintan entre etiquetas, así que el patrón de
+					// arriba no los veía y salían en inglés (theme#13).
+					if ( preg_match_all( '/"(?:content|label|placeholder|buttonText|linkLabel|text)"\s*:\s*"([^"]{2,200})"/', $linea, $attrs ) ) {
+						foreach ( $attrs[1] as $texto ) {
+							if ( ! in_array( $texto, $declarados, true ) ) {
+								$sin_declarar[] = basename( $fichero ) . ':' . ( $n + 1 ) . ' atributo «' . $texto . '»';
+							}
+						}
 					}
-					if ( preg_match_all( '/>\s*([A-Za-z][^<>{}]{2,70}?)\s*</', $linea, $textos ) ) {
+
+					}
+					if ( preg_match_all( '/>\s*([A-Za-z][^<>{}]{2,200}?)\s*</', $linea, $textos ) ) {
 						foreach ( $textos[1] as $texto ) {
 							$texto = trim( $texto );
 							if ( preg_match( '/^[\s\d.,:;|\/\\\\-]*$/', $texto ) ) {

@@ -835,6 +835,16 @@ function convoca_theme_textos_de_plantillas(): array {
 		'Privacy policy'                             => __( 'Privacy policy', 'convoca' ),
 		'Cookie policy'                              => __( 'Cookie policy', 'convoca' ),
 		'CC BY-NC 4.0'                               => __( 'CC BY-NC 4.0', 'convoca' ),
+		// Los que quedaban fuera (theme#13): el texto del 404, el rótulo de «seguir leyendo» y la
+		// paginación. Sin estar en el mapa, el filtro no los mira y salen en inglés tal cual.
+		'The link may be misspelled or the content may have moved. Try searching for it or start here:' => __( 'The link may be misspelled or the content may have moved. Try searching for it or start here:', 'convoca' ),
+		'View more'                                  => __( 'View more', 'convoca' ),
+		'← Previous'                               => __( '← Previous', 'convoca' ),
+		'Next →'                                   => __( 'Next →', 'convoca' ),
+		'Activities, volunteering, environmental education and local nature, told from the inside.' => __( 'Activities, volunteering, environmental education and local nature, told from the inside.', 'convoca' ),
+		'Search the site'                            => __( 'Search the site', 'convoca' ),
+		'Search…'                                    => __( 'Search…', 'convoca' ),
+		'Search'                                     => __( 'Search', 'convoca' ),
 	);
 }
 
@@ -868,6 +878,32 @@ function convoca_theme_traduce_textos_de_plantillas( $block_content ) {
 }
 
 add_filter( 'render_block', 'convoca_theme_traduce_textos_de_plantillas', 10, 1 );
+
+/**
+ * El título de una búsqueda sin resultados.
+ *
+ * WordPress marca esas búsquedas como 404 (no hay nada que enseñar, y es coherente), y el título del
+ * documento salía «Página no encontrada» aunque la página fuese la de resultados con su buscador delante:
+ * confunde a quien busca y a los buscadores. Se dice lo que de verdad es (theme#13).
+ *
+ * @param string $titulo Título calculado por WordPress.
+ * @return string
+ */
+function convoca_theme_titulo_de_busqueda( $titulo ) {
+	if ( ! is_search() ) {
+		return $titulo;
+	}
+
+	$buscado = get_search_query();
+	if ( '' === trim( (string) $buscado ) ) {
+		return __( 'Buscar en la web', 'convoca' );
+	}
+
+	/* translators: %s: lo que se ha buscado. */
+	return sprintf( __( 'Resultados para «%s»', 'convoca' ), $buscado );
+}
+
+add_filter( 'pre_get_document_title', 'convoca_theme_titulo_de_busqueda' );
 
 
 /**

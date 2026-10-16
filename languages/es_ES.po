@@ -1115,3 +1115,21 @@ msgstr "CC BY-NC 4.0"
 #: templates/search.html:41
 msgid "Nothing was found for those terms. Try another word."
 msgstr "No se ha encontrado nada con esos términos. Prueba con otra palabra."
+
+msgid "The link may be misspelled or the content may have moved. Try searching for it or start here:"
+msgstr "Puede que el enlace esté mal escrito o que el contenido se haya movido. Prueba a buscarlo o empieza por aquí:"
+
+msgid "View more"
+msgstr "Ver más"
+
+msgid "← Previous"
+msgstr "← Anterior"
+
+msgid "Next →"
+msgstr "Siguiente →"
+
+msgid "Resultados para «%s»"
+msgstr "Resultados para «%s»"
+
+msgid "Activities, volunteering, environmental education and local nature, told from the inside."
+msgstr "Actividades, voluntariado, educación ambiental y naturaleza local, contadas desde dentro."

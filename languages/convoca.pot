@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Convoca 2.9.35\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/theme-pot\n"
+"Project-Id-Version: Convoca 2.9.39\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/th-pot\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-15T23:32:19+00:00\n"
+"POT-Creation-Date: 2026-10-16T09:17:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: convoca\n"
@@ -242,85 +242,238 @@ msgstr ""
 msgid "Switch color mode"
 msgstr ""
 
-#: functions.php:856
-msgid "Who we are"
+#: functions.php:809
+msgid "Latest"
 msgstr ""
 
-#: functions.php:857
-msgid "Transparency"
+#: functions.php:810
+msgid "What we are publishing"
 msgstr ""
 
-#: functions.php:858
-msgid "Projects"
+#: functions.php:811
+msgid "No posts have been published yet. When they are, they will appear here."
 msgstr ""
 
-#: functions.php:859
+#: functions.php:812
+msgid "No content has been published here yet."
+msgstr ""
+
+#: functions.php:813
+msgid "Error 404"
+msgstr ""
+
+#: functions.php:814
+msgid "This page is not here (or it wandered off)"
+msgstr ""
+
+#: functions.php:815
+msgid "Go to the homepage"
+msgstr ""
+
+#: functions.php:816
+msgid "Keep reading"
+msgstr ""
+
+#: functions.php:817
+msgid "Related content"
+msgstr ""
+
+#: functions.php:818
+msgid "Nothing was found for those terms. Try another word."
+msgstr ""
+
+#: functions.php:819
+msgid "Looking for something?"
+msgstr ""
+
+#: functions.php:820
+msgid "Resources"
+msgstr ""
+
+#: functions.php:821
+msgid "Library"
+msgstr ""
+
+#: functions.php:822
+#: functions.php:974
 msgid "Alliances"
 msgstr ""
 
-#: functions.php:860
+#: functions.php:823
+msgid "Links of interest"
+msgstr ""
+
+#: functions.php:824
+msgid "Links"
+msgstr ""
+
+#: functions.php:825
+#: functions.php:972
+msgid "Transparency"
+msgstr ""
+
+#: functions.php:826
+#: patterns/hero-imagen.php:46
+#: patterns/hero.php:46
+msgid "About us"
+msgstr ""
+
+#: functions.php:827
+#: patterns/hero-imagen.php:43
+#: patterns/hero.php:43
+msgid "View activities"
+msgstr ""
+
+#: functions.php:828
+msgid "Coordination"
+msgstr ""
+
+#: functions.php:829
+msgid "DATE"
+msgstr ""
+
+#: functions.php:830
+msgid "LOCATION"
+msgstr ""
+
+#: functions.php:831
+msgid "SPOTS"
+msgstr ""
+
+#: functions.php:832
+msgid "PRICE"
+msgstr ""
+
+#: functions.php:833
+msgid "Legal"
+msgstr ""
+
+#: functions.php:834
+#: functions.php:982
+msgid "Legal notice"
+msgstr ""
+
+#: functions.php:835
+msgid "Privacy policy"
+msgstr ""
+
+#: functions.php:836
+msgid "Cookie policy"
+msgstr ""
+
+#: functions.php:837
+msgid "CC BY-NC 4.0"
+msgstr ""
+
+#: functions.php:840
+msgid "The link may be misspelled or the content may have moved. Try searching for it or start here:"
+msgstr ""
+
+#: functions.php:841
+msgid "View more"
+msgstr ""
+
+#: functions.php:842
+msgid "← Previous"
+msgstr ""
+
+#: functions.php:843
+msgid "Next →"
+msgstr ""
+
+#: functions.php:844
+msgid "Activities, volunteering, environmental education and local nature, told from the inside."
+msgstr ""
+
+#: functions.php:845
+msgid "Search the site"
+msgstr ""
+
+#: functions.php:846
+msgid "Search…"
+msgstr ""
+
+#: functions.php:847
+msgid "Search"
+msgstr ""
+
+#: functions.php:899
+msgid "Buscar en la web"
+msgstr ""
+
+#. translators: %s: lo que se ha buscado.
+#: functions.php:903
+#, php-format
+msgid "Resultados para «%s»"
+msgstr ""
+
+#: functions.php:971
+msgid "Who we are"
+msgstr ""
+
+#: functions.php:973
+msgid "Projects"
+msgstr ""
+
+#: functions.php:975
 msgid "Activities"
 msgstr ""
 
-#: functions.php:861
+#: functions.php:976
 #: patterns/cta.php:41
 msgid "Become a member"
 msgstr ""
 
-#: functions.php:862
+#: functions.php:977
 #: patterns/cta.php:44
 msgid "Volunteering"
 msgstr ""
 
-#: functions.php:863
+#: functions.php:978
 msgid "Donations"
 msgstr ""
 
-#: functions.php:864
+#: functions.php:979
 msgid "Community centre"
 msgstr ""
 
-#: functions.php:865
+#: functions.php:980
 msgid "Privacy"
 msgstr ""
 
-#: functions.php:866
+#: functions.php:981
 msgid "Cookies"
 msgstr ""
 
-#: functions.php:867
-msgid "Legal notice"
-msgstr ""
-
-#: functions.php:894
+#: functions.php:1009
 msgid "Join us"
 msgstr ""
 
-#: functions.php:975
+#: functions.php:1090
 msgid "Change language"
 msgstr ""
 
-#: functions.php:1677
+#: functions.php:1792
 msgid "Orange band"
 msgstr ""
 
-#: functions.php:1678
+#: functions.php:1793
 msgid "Charcoal block"
 msgstr ""
 
-#: functions.php:1679
+#: functions.php:1794
 msgid "Editorial frame"
 msgstr ""
 
-#: functions.php:1680
+#: functions.php:1795
 msgid "Ghost button"
 msgstr ""
 
-#: functions.php:1681
+#: functions.php:1796
 msgid "Featured quote"
 msgstr ""
 
-#: functions.php:1682
+#: functions.php:1797
 msgid "Heading with rule"
 msgstr ""
 
@@ -434,16 +587,6 @@ msgstr ""
 msgid "Your description here."
 msgstr ""
 
-#: patterns/hero-imagen.php:43
-#: patterns/hero.php:43
-msgid "View activities"
-msgstr ""
-
-#: patterns/hero-imagen.php:46
-#: patterns/hero.php:46
-msgid "About us"
-msgstr ""
-
 #: patterns/hero.php
 msgctxt "Pattern title"
 msgid "Main hero"
@@ -511,6 +654,24 @@ msgstr ""
 
 #: patterns/inscripcion-actividad.php:57
 msgid "Registration"
+msgstr ""
+
+#: patterns/inscripcion-anuncio.php
+msgctxt "Pattern title"
+msgid "Inscripción para el anuncio"
+msgstr ""
+
+#: patterns/inscripcion-anuncio.php
+msgctxt "Pattern description"
+msgid "Sección con el formulario de inscripción de UNA actividad, para la entrada de anuncio. Se le indica la actividad en el bloque y pinta su formulario; si no se le indica ninguna, avisa en vez de dejar el hueco en blanco."
+msgstr ""
+
+#: patterns/inscripcion-anuncio.php:30
+msgid "Apúntate a esta actividad"
+msgstr ""
+
+#: patterns/inscripcion-anuncio.php:34
+msgid "Elige la actividad en el bloque de aquí abajo: en cuanto la indiques, su formulario aparece en este mismo sitio. Si eres socio, el descuento se aplica solo."
 msgstr ""
 
 #: patterns/pricing-grid.php
@@ -941,117 +1102,4 @@ msgstr ""
 #: theme.json
 msgctxt "Custom template name"
 msgid "Full Width Page"
-msgstr ""
-
-#: templates/front-page.html:11
-msgid "Latest"
-msgstr ""
-
-#: templates/home.html:13
-#: templates/index.html:13
-msgid "What we are publishing"
-msgstr ""
-
-#: templates/front-page.html:38
-msgid "No posts have been published yet. When they are, they will appear here."
-msgstr ""
-
-#: templates/archive.html:43
-msgid "No content has been published here yet."
-msgstr ""
-
-#: templates/404.html:9
-msgid "Error 404"
-msgstr ""
-
-#: templates/404.html:13
-msgid "This page is not here (or it wandered off)"
-msgstr ""
-
-#: templates/404.html:28
-msgid "Go to the homepage"
-msgstr ""
-
-#: templates/single.html:89
-msgid "Keep reading"
-msgstr ""
-
-#: templates/single.html:92
-msgid "Related content"
-msgstr ""
-
-#: templates/search.html:41
-msgid "Nothing was found for those terms. Try another word or check the "
-msgstr ""
-
-#: templates/search.html:41
-msgid "activities"
-msgstr ""
-
-#: templates/search.html:41
-msgid "news"
-msgstr ""
-
-#: templates/search.html:41
-msgid " and "
-msgstr ""
-
-#: parts/sidebar.html:8
-msgid "Looking for something?"
-msgstr ""
-
-#: parts/sidebar.html:55
-msgid "Resources"
-msgstr ""
-
-#: parts/sidebar.html:59
-msgid "Library"
-msgstr ""
-
-#: parts/sidebar.html:61
-msgid "Links of interest"
-msgstr ""
-
-#: parts/sidebar.html:70
-msgid "Links"
-msgstr ""
-
-#: templates/page-proyecto.html:32
-msgid "Coordination"
-msgstr ""
-
-#: parts/activity-meta.html:16
-msgid "DATE"
-msgstr ""
-
-#: parts/activity-meta.html:34
-msgid "LOCATION"
-msgstr ""
-
-#: parts/activity-meta.html:52
-msgid "SPOTS"
-msgstr ""
-
-#: parts/activity-meta.html:70
-msgid "PRICE"
-msgstr ""
-
-#: parts/footer.html:57
-msgid "Legal"
-msgstr ""
-
-#: parts/footer.html:62
-msgid "Privacy policy"
-msgstr ""
-
-#: parts/footer.html:63
-msgid "Cookie policy"
-msgstr ""
-
-#: parts/footer.html:83
-msgid "CC BY-NC 4.0"
-msgstr ""
-
-#: templates/search.html:41
-msgid "Nothing was found for those terms. Try another word."
 msgstr ""

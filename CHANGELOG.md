@@ -1,8 +1,13 @@
-## [2.9.38] — 2026-10-16
+## [2.9.39] — 2026-10-16
 
 ### Arreglado
-- **La frase de «no se ha encontrado nada» ya no se rompe cuando faltan los enlaces.** Traía dos enlaces dentro
-  (`{activities_url}` y `{news_url}`) y, si el sitio no tiene esas URL configuradas, el tema los retira: medido
-  en la demo, el visitante leía «Nothing was found for those terms. Try another word or check the  and .» — con
-  el hueco en medio, en cualquier idioma. Ahora la frase se sostiene sola y se traduce entera.
+- **Lo que quedaba en inglés** (theme#13):
+  - La frase del enlace en el 404 («The link may be misspelled or the content may have moved…») y el subtítulo de
+    la portada. No estaban traducidos **ni declarados**: el contrato que vigila los rótulos solo miraba textos de
+    hasta 70 caracteres, así que una frase de 95 se le colaba.
+  - «View more», «← Previous» y «Next →» vivían en **atributos** de bloque (`content`), no entre etiquetas, y el
+    contrato solo miraba `>texto<`: el contrato tiene ahora los dos ojos, y por eso encontró también el subtítulo.
+- **El título de una búsqueda sin resultados** decía «Página no encontrada». WordPress marca esas búsquedas como
+  404 —no hay nada que enseñar, y es coherente—, pero el título de la página es el de los resultados con su
+  buscador delante: ahora dice «Resultados para «X»», que es lo que de verdad es.
 
