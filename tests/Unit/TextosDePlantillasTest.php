@@ -50,7 +50,7 @@ class TextosDePlantillasTest extends TestCase {
 		preg_match_all( "/'((?:[^'\\\\]|\\\\.)+)'\\s*=>/", $m[1], $declarados );
 		$declarados = array_map( 'trim', $declarados[1] );
 
-		$sinDeclarar = array();
+		$sin_declarar = array();
 		foreach ( array( 'templates', 'parts' ) as $carpeta ) {
 			foreach ( glob( $this->raiz() . '/' . $carpeta . '/*' ) as $fichero ) {
 				foreach ( explode( "\n", (string) file_get_contents( $fichero ) ) as $n => $linea ) {
@@ -64,7 +64,7 @@ class TextosDePlantillasTest extends TestCase {
 								continue;
 							}
 							if ( ! in_array( $texto, $declarados, true ) ) {
-								$sinDeclarar[] = basename( $fichero ) . ':' . ( $n + 1 ) . ' «' . $texto . '»';
+								$sin_declarar[] = basename( $fichero ) . ':' . ( $n + 1 ) . ' «' . $texto . '»';
 							}
 						}
 					}
@@ -74,8 +74,8 @@ class TextosDePlantillasTest extends TestCase {
 
 		$this->assertSame(
 			array(),
-			$sinDeclarar,
-			"Hay rótulos escritos a mano que no pasan por traducción (docs#7):\n  " . implode( "\n  ", $sinDeclarar )
+			$sin_declarar,
+			"Hay rótulos escritos a mano que no pasan por traducción (docs#7):\n  " . implode( "\n  ", $sin_declarar )
 		);
 	}
 
@@ -102,17 +102,17 @@ class TextosDePlantillasTest extends TestCase {
 			$lineas[] = $limpia;
 		}
 
-		$sinTraducir = array();
+		$sin_traducir = array();
 		foreach ( $lineas as $i => $linea ) {
 			if ( preg_match( '/^msgid\s+"(.+)"$/', $linea, $m ) && isset( $lineas[ $i + 1 ] ) && 'msgstr ""' === $lineas[ $i + 1 ] ) {
-				$sinTraducir[] = $m[1];
+				$sin_traducir[] = $m[1];
 			}
 		}
 
 		$this->assertSame(
 			array(),
-			$sinTraducir,
-			"Quedan cadenas sin traducir en es_ES.po (docs#7: el criterio es cero):\n  " . implode( "\n  ", $sinTraducir )
+			$sin_traducir,
+			"Quedan cadenas sin traducir en es_ES.po (docs#7: el criterio es cero):\n  " . implode( "\n  ", $sin_traducir )
 		);
 	}
 }
