@@ -29,6 +29,12 @@
 		  CronInterval: el cron de un minuto es intencional (cola de correo/webhooks).
 		  AssignmentInCondition: patron while ( ( $x = f() ) !== false ).
 		  error_log: es la salida del propio Logger de Core.
+		  MultipleStatementAlignment: aviso de FORMATO, no de corrección. Medido el 17/10/2026: el phpcs
+		  local (misma versión 3.13.6, la del lock) NO marca nada en el mapa de textos de functions.php,
+		  mientras que el runner del CI marca 3 avisos de alineación; con claves de 88-100 bytes junto a
+		  claves de 6, parte el array en grupos distintos. Realinear el fichero a mano lo empeoró (78
+		  avisos) y se restauró. Decidido con JC el 17/10: se relaja este aviso y se mantiene el resto del
+		  estándar.
 		-->
 		<exclude name="WordPress.WP.I18n.NoHtmlWrappedStrings"/>
 		<exclude name="WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode"/>
@@ -43,6 +49,7 @@
 		<exclude name="WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber"/>
 		<exclude name="WordPress.WP.CronInterval.CronSchedulesInterval"/>
 		<exclude name="Generic.CodeAnalysis.AssignmentInCondition"/>
+		<exclude name="WordPress.Arrays.MultipleStatementAlignment"/>
 		<exclude name="WordPress.PHP.DevelopmentFunctions.error_log_error_log"/>
 	</rule>
 
