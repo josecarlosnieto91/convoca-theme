@@ -145,7 +145,7 @@ class TextosDePlantillasTest extends TestCase {
 	public function test_cada_texto_ingles_de_plantilla_esta_en_el_mapa_y_traducido(): void {
 		$funciones = (string) file_get_contents( dirname( __DIR__, 2 ) . '/functions.php' );
 
-		// El mapa del tema: 'texto original' => __( 'texto original', 'convoca' )
+		// El mapa del tema: 'texto original' => __( 'texto original', 'convoca' ).
 		preg_match_all( "/^\t\t'((?:[^'\\\\]|\\\\.)+)'\s*=> __\(/m", $funciones, $m );
 		$mapa = array_flip( $m[1] );
 
@@ -165,7 +165,7 @@ class TextosDePlantillasTest extends TestCase {
 		foreach ( array( 'templates', 'parts' ) as $carpeta ) {
 			foreach ( glob( $this->raiz() . '/' . $carpeta . '/*' ) as $fichero ) {
 				$contenido = (string) file_get_contents( $fichero );
-				// cada comentario de bloque: <!-- wp:x {json} /-->
+				// cada comentario de bloque: <!-- wp:x {json} /-->.
 				preg_match_all( '/<!-- wp:[a-z0-9\/-]+ (\{.*?\}) \/-->/', $contenido, $bloques );
 				foreach ( $bloques[1] as $json ) {
 					$attrs = json_decode( $json, true );

@@ -838,14 +838,14 @@ function convoca_theme_textos_de_plantillas(): array {
 		// Los que quedaban fuera (theme#13): el texto del 404, el rótulo de «seguir leyendo» y la
 		// paginación. Sin estar en el mapa, el filtro no los mira y salen en inglés tal cual.
 		'The link may be misspelled or the content may have moved. Try searching for it or start here:' => __( 'The link may be misspelled or the content may have moved. Try searching for it or start here:', 'convoca' ),
-		'View more'                                  => __( 'View more', 'convoca' ),
-		'← Previous'                               => __( '← Previous', 'convoca' ),
-		'Next →'                                   => __( 'Next →', 'convoca' ),
-		'Type here'                                  => __( 'Type here', 'convoca' ),
-		'Activities, volunteering, environmental education and local nature, told from the inside.' => __( 'Activities, volunteering, environmental education and local nature, told from the inside.', 'convoca' ),
-		'Search the site'                            => __( 'Search the site', 'convoca' ),
-		'Search…'                                  => __( 'Search…', 'convoca' ),
-		'Search'                                     => __( 'Search', 'convoca' ),
+		'View more'                                                                                     => __( 'View more', 'convoca' ),
+		'← Previous'                                                                                    => __( '← Previous', 'convoca' ),
+		'Next →'                                                                                        => __( 'Next →', 'convoca' ),
+		'Type here'                                                                                     => __( 'Type here', 'convoca' ),
+		'Activities, volunteering, environmental education and local nature, told from the inside.'     => __( 'Activities, volunteering, environmental education and local nature, told from the inside.', 'convoca' ),
+		'Search the site'                                                                               => __( 'Search the site', 'convoca' ),
+		'Search…'                                                                                       => __( 'Search…', 'convoca' ),
+		'Search'                                                                                        => __( 'Search', 'convoca' ),
 	);
 }
 
@@ -893,7 +893,7 @@ add_filter( 'render_block', 'convoca_theme_traduce_textos_de_plantillas', 10, 1 
  * @return array<string, mixed>
  */
 function convoca_theme_traduce_atributos_de_bloque( $parsed_block ) {
-	if ( ! is_array( $parsed_block ) || empty( $parsed_block['attrs'] ) || ! is_array( $parsed_block['attrs'] ) ) {
+	if ( empty( $parsed_block['attrs'] ) || ! is_array( $parsed_block['attrs'] ) ) {
 		return $parsed_block;
 	}
 
