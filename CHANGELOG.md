@@ -1,3 +1,19 @@
+## [2.9.41] — 2026-10-16
+
+### Arreglado
+- **El inglés que quedaba salía de los ATRIBUTOS de bloque (issue #14).** El filtro del tema sustituye
+  rótulos sólo cuando el texto es todo el contenido de una etiqueta (a propósito: cambiar un `class` o un
+  `href` rompería el diseño), así que los textos de `core/search` y `core/read-more` —que se imprimen
+  dentro de atributos— no los tocaba nadie: «Search the site», «Search…», «Search», en el 404 y en el
+  buscador. Nuevo filtro `render_block_data` que los traduce con **el mismo mapa** del tema (una sola
+  fuente), y las tres entradas que faltaban en el catálogo.
+- **El `.mo` iba por detrás del `.po`.** La etiqueta del conmutador de modo oscuro («Switch color
+  mode») estaba traducida en el `.po` y seguía saliendo en inglés porque el binario compilado era viejo.
+  Recompilado.
+- **Contrato nuevo**: cada texto de atributo que *parece inglés* (y por tanto no lo traduce WordPress
+  solo) tiene que estar en el mapa del tema y traducido en el catálogo. Es la comprobación que faltaba:
+  «View more» estaba en el `.po` y aun así salía en inglés.
+
 ## [2.9.40] — 2026-10-16
 
 ### Arreglado

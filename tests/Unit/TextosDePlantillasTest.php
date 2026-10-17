@@ -135,4 +135,66 @@ class TextosDePlantillasTest extends TestCase {
 			"Quedan cadenas sin traducir en es_ES.po (docs#7: el criterio es cero):\n  " . implode( "\n  ", $sin_traducir )
 		);
 	}
+
+	/**
+	 * La invariante de verdad (theme#14): un texto inglés escrito en un atributo de bloque no se traduce
+	 * solo, así que tiene que estar **en el mapa del tema** (que es lo que el filtro de render usa para
+	 * sustituirlo) **y traducido en el catálogo**. Medido: «View more» estaba traducido en el `.po` y no
+	 * en el mapa —o al revés— y el navegador recibía el inglés igual.
+	 */
+	public function test_cada_texto_ingles_de_plantilla_esta_en_el_mapa_y_traducido(): void {
+		$funciones = (string) file_get_contents( dirname( __DIR__, 2 ) . '/functions.php' );
+
+		// El mapa del tema: 'texto original' => __( 'texto original', 'convoca' )
+		preg_match_all( "/^\t\t'((?:[^'\\\\]|\\\\.)+)'\s*=> __\(/m", $funciones, $m );
+		$mapa = array_flip( $m[1] );
+
+		// El catálogo: msgid => msgstr (sólo las traducidas de verdad).
+		$po         = (string) file_get_contents( dirname( __DIR__, 2 ) . '/languages/es_ES.po' );
+		$traducidas = array();
+		preg_match_all( '/msgid "((?:[^"\\\\]|\\\\.)*)"\nmsgstr "((?:[^"\\\\]|\\\\.)*)"/', $po, $mm, PREG_SET_ORDER );
+		foreach ( $mm as $par ) {
+			if ( '' !== $par[2] && $par[2] !== $par[1] ) {
+				$traducidas[ stripslashes( $par[1] ) ] = true;
+			}
+		}
+
+		$problemas = array();
+		$atributos = array( 'label', 'placeholder', 'buttonText', 'content' );
+
+		foreach ( array( 'templates', 'parts' ) as $carpeta ) {
+			foreach ( glob( $this->raiz() . '/' . $carpeta . '/*' ) as $fichero ) {
+				$contenido = (string) file_get_contents( $fichero );
+				// cada comentario de bloque: <!-- wp:x {json} /-->
+				preg_match_all( '/<!-- wp:[a-z0-9\/-]+ (\{.*?\}) \/-->/', $contenido, $bloques );
+				foreach ( $bloques[1] as $json ) {
+					$attrs = json_decode( $json, true );
+					if ( ! is_array( $attrs ) ) {
+						continue;
+					}
+					foreach ( $atributos as $clave ) {
+						if ( ! isset( $attrs[ $clave ] ) || ! is_string( $attrs[ $clave ] ) ) {
+							continue;
+						}
+						$texto = $attrs[ $clave ];
+
+						// Un texto que ya está en castellano en la plantilla es válido (no necesita nada).
+						// Lo que se vigila es el que *parece inglés*: ese no lo traduce WordPress solo,
+						// porque un atributo de bloque no pasa por `__()`.
+						if ( ! preg_match( '/\b(search|view|more|previous|next|site|here|error|latest|reading|keep|entries|read)\b/i', $texto ) ) {
+							continue;
+						}
+
+						if ( ! isset( $mapa[ $texto ] ) ) {
+							$problemas[] = basename( $fichero ) . ': "' . $texto . '" parece inglés y no está en el mapa del tema';
+						} elseif ( ! isset( $traducidas[ $texto ] ) ) {
+							$problemas[] = basename( $fichero ) . ': "' . $texto . '" está en el mapa pero sin traducir en el .po';
+						}
+					}
+				}
+			}
+		}
+
+		$this->assertSame( array(), $problemas, "Textos de atributo que saldrían en inglés:\n  " . implode( "\n  ", array_unique( $problemas ) ) );
+	}
 }

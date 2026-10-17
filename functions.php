@@ -839,12 +839,12 @@ function convoca_theme_textos_de_plantillas(): array {
 		// paginación. Sin estar en el mapa, el filtro no los mira y salen en inglés tal cual.
 		'The link may be misspelled or the content may have moved. Try searching for it or start here:' => __( 'The link may be misspelled or the content may have moved. Try searching for it or start here:', 'convoca' ),
 		'View more'                                  => __( 'View more', 'convoca' ),
-		'← Previous'                                 => __( '← Previous', 'convoca' ),
-		'Next →'                                     => __( 'Next →', 'convoca' ),
+		'← Previous'                               => __( '← Previous', 'convoca' ),
+		'Next →'                                   => __( 'Next →', 'convoca' ),
 		'Type here'                                  => __( 'Type here', 'convoca' ),
 		'Activities, volunteering, environmental education and local nature, told from the inside.' => __( 'Activities, volunteering, environmental education and local nature, told from the inside.', 'convoca' ),
 		'Search the site'                            => __( 'Search the site', 'convoca' ),
-		'Search…'                                    => __( 'Search…', 'convoca' ),
+		'Search…'                                  => __( 'Search…', 'convoca' ),
 		'Search'                                     => __( 'Search', 'convoca' ),
 	);
 }
@@ -879,6 +879,37 @@ function convoca_theme_traduce_textos_de_plantillas( $block_content ) {
 }
 
 add_filter( 'render_block', 'convoca_theme_traduce_textos_de_plantillas', 10, 1 );
+
+/**
+ * Traduce los textos que viven en **atributos** de bloque (label, placeholder, buttonText, content).
+ *
+ * El filtro de arriba sólo sustituye cuando el texto es todo el contenido de una etiqueta (`>texto<`), a
+ * propósito: cambiar un `class` o un `href` rompería el diseño. Pero los rótulos de `core/search` y
+ * `core/read-more` no se imprimen como contenido: se imprimen **dentro de atributos**, así que no los
+ * tocaba nadie y salían en inglés en una web en castellano (theme#14: «Search the site», «View more»,
+ * «← Previous», «Next →», «Search…»). Se resuelven aquí, con el **mismo mapa**: una sola fuente.
+ *
+ * @param array<string, mixed> $parsed_block Bloque ya interpretado, antes de renderizarse.
+ * @return array<string, mixed>
+ */
+function convoca_theme_traduce_atributos_de_bloque( $parsed_block ) {
+	if ( ! is_array( $parsed_block ) || empty( $parsed_block['attrs'] ) || ! is_array( $parsed_block['attrs'] ) ) {
+		return $parsed_block;
+	}
+
+	$mapa   = convoca_theme_textos_de_plantillas();
+	$claves = array( 'label', 'placeholder', 'buttonText', 'content' );
+
+	foreach ( $claves as $clave ) {
+		if ( isset( $parsed_block['attrs'][ $clave ] ) && is_string( $parsed_block['attrs'][ $clave ] )
+			&& isset( $mapa[ $parsed_block['attrs'][ $clave ] ] ) ) {
+			$parsed_block['attrs'][ $clave ] = $mapa[ $parsed_block['attrs'][ $clave ] ];
+		}
+	}
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'convoca_theme_traduce_atributos_de_bloque', 10, 1 );
 
 /**
  * El título de una búsqueda sin resultados.

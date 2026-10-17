@@ -1136,3 +1136,12 @@ msgstr "Actividades, voluntariado, educación ambiental y naturaleza local, cont
 
 msgid "Type here"
 msgstr "Escribe aquí"
+
+msgid "Search the site"
+msgstr "Buscar en el sitio"
+
+msgid "Search…"
+msgstr "Buscar…"
+
+msgid "Search"
+msgstr "Buscar"
