@@ -3,9 +3,9 @@
  * El tema no lleva dentro datos de ningún cliente (issue #3).
  *
  * Criterio de hecho del issue: cero cadenas de cliente y cero rutas de infraestructura interna en el árbol. La
- * excepción documentada son los **alias de filtro publicados** (`{lugg_url}` y `convoca_theme_lugg_url`): son
- * API que un sitio puede estar usando, y quitarlos rompe compatibilidad; van marcados con
- * `convoca-hygiene-ignore` y su motivo.
+ * excepción documentada son los **alias de filtro publicados** del nombre del centro: son API que un sitio
+ * puede estar usando, y quitarlos rompe compatibilidad; van marcados con `convoca-hygiene-ignore` y su motivo.
+ * (El nombre no se escribe aquí ni en ninguna otra línea: decirlo sería la fuga que esta prueba vigila.)
  *
  * Las palabras prohibidas se componen aquí con concatenación a propósito: escribirlas enteras convertiría esta
  * prueba en la fuga que vigila.
