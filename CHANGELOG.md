@@ -37,4 +37,3 @@
 - **El título de una búsqueda sin resultados** decía «Página no encontrada». WordPress marca esas búsquedas como
   404 —no hay nada que enseñar, y es coherente—, pero el título de la página es el de los resultados con su
   buscador delante: ahora dice «Resultados para «X»», que es lo que de verdad es.
-

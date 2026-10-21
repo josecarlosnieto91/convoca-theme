@@ -30,7 +30,7 @@
   - incluir las fuentes legalmente en el tema y declarar sus archivos mediante `fontFace`;
   - cargarlas desde un plugin o desde la instalación, documentando esa dependencia;
   - eliminar los nombres de fuentes no disponibles y usar una pila de fuentes del sistema.
-  
+
   Si se usan fuentes remotas, conviene valorar privacidad, consentimiento y rendimiento, además de no depender de un servicio externo para que el tema sea visualmente correcto.
 
 ### [MEDIO] La paleta y varios colores están fijados por el tema pese a que la instalación debe aportarla

@@ -421,7 +421,7 @@ function convoca_help_page_html(): void {
 	?>
 	<div class="wrap convoca-admin-page">
 		<h1><?php echo esc_html__( 'Settings & Help — Convoca Theme', 'convoca' ); ?></h1>
-		
+
 		<div class="welcome-panel" style="padding: 0; margin-top: 20px; overflow: hidden; border-radius: 8px; border: none; background: #000;">
 			<div class="welcome-panel-content" style="padding: 60px 40px; background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/admin-banner.png' ); ?>'); background-size: cover; background-position: center; color: #fff;">
 				<h2 style="color: #fff; font-size: 2.4em; margin: 0; font-family: 'Outfit', sans-serif; text-shadow: 0 2px 4px rgba(0,0,0,0.3);"><?php printf( /* translators: %s: version of the installed theme. */ esc_html__( 'Welcome to Convoca v%s', 'convoca' ), esc_html( (string) $theme->get( 'Version' ) ) ); ?></h2>
@@ -432,7 +432,7 @@ function convoca_help_page_html(): void {
 		<div id="dashboard-widgets-wrap">
 			<div id="dashboard-widgets" class="metabox-holder">
 				<div id="postbox-container-1" class="postbox-container">
-					
+
 					<!-- Theme Information -->
 					<div class="postbox">
 						<h2 class="hndle"><span><?php echo esc_html__( 'Theme information', 'convoca' ); ?></span></h2>
@@ -452,10 +452,10 @@ function convoca_help_page_html(): void {
 						<div class="inside">
 							<h4><?php echo esc_html__( 'Activity Page', 'convoca' ); ?></h4>
 							<p><?php echo esc_html__( 'Use the "Activity Page" template for pages that describe a specific activity. It automatically includes the registration form.', 'convoca' ); ?></p>
-							
+
 							<h4><?php echo esc_html__( 'Project Page', 'convoca' ); ?></h4>
 							<p><?php echo esc_html__( 'Use the "Project Page" template for long-running project sections. It includes project-specific metadata.', 'convoca' ); ?></p>
-							
+
 							<hr>
 							<p><strong><?php echo esc_html__( 'Note:', 'convoca' ); ?></strong> <?php echo esc_html__( 'If the templates do not display correctly, you can try resetting them.', 'convoca' ); ?></p>
 							<a href="<?php echo esc_url( wp_nonce_url( admin_url( 'themes.php?page=convoca-help&convoca_reset_templates=1' ), 'convoca_reset_templates' ) ); ?>" class="button button-link-delete" onclick="return confirm('<?php echo esc_js( __( 'Are you sure? This will delete any customization you made in the Site Editor and revert to the theme files.', 'convoca' ) ); ?>');"><?php echo esc_html__( 'Reset templates to factory defaults', 'convoca' ); ?></a>

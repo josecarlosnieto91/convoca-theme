@@ -34,7 +34,7 @@ bloque (`<!-- wp:... -->`) NO se tocan: son la plantilla, no documentacion.
         - Fila principal: marca + navegación principal (menú "Principal" real).
         Nada de rutas inventadas: los enlaces salen de los menús de WordPress, y el
         CTA de los filtros del theme hijo ({cta_url} / {cta_label}).
-    
+
         Buscador: un único cuadro (abajo, ancho completo) que abren los dos botones de
         lupa — el de la franja en escritorio y el de la fila en móvil, igual que el
         botón de modo oscuro. El estado lo lleva la clase `--abierto`, no el atributo
