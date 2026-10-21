@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- El .dist es el que usan la puerta local y el job de cobertura. Se añade <source> porque sin
+     filtro PHPUnit no procesa la cobertura («No filter is configured»), que es justo lo que dejó
+     un job en verde sin medir nada. Se mide el código PHP real del tema: functions.php, parts/ y
+     patterns/ (no hay directorio inc/). -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         backupGlobals="false"
+         colors="true"
+         cacheResult="false">
+  <testsuites>
+    <testsuite name="unit">
+      <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <file>./functions.php</file>
+      <directory suffix=".php">./parts</directory>
+      <directory suffix=".php">./patterns</directory>
+    </include>
+  </source>
+</phpunit>
