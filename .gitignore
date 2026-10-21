@@ -20,3 +20,6 @@ __pycache__/
 
 # El .mo SÍ se versiona: es lo que hace que la traducción llegue al sitio. Un paquete
 # hecho con `git archive` no lo tendría, y el tema se quedaría en inglés sin que nadie lo diga.
+
+# Artefactos de la puerta de cobertura (clover, junit): no se versionan.
+/build/
