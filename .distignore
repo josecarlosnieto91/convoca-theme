@@ -25,6 +25,11 @@ README.md
 
 # Guiones de desarrollo (auditorias y utilidades), no van al sitio ni al paquete
 scripts/
+
+# El guion de la puerta de versión del flujo de desarrollo no viaja al paquete: Theme Check
+# lo marca como REQUIRED («Shell script file found. This file must not be in the production
+# version of the theme») y tumba el job.
+bin/
 __pycache__/
 *.pyc
 
