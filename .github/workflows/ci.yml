@@ -129,3 +129,19 @@ jobs:
             -o "$RUNNER_TEMP/higiene.py" \
             https://raw.githubusercontent.com/josecarlosnieto91/convoca-health-check/main/scripts/check-data-hygiene.py
           python3 "$RUNNER_TEMP/higiene.py" .
+
+  acoplamiento:
+    name: Acoplamiento entre plugins
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Un TEMA no crea roles ni escribe metas de un plugin. Las reglas de «llamar a clases de otro plugin»
+      # (R2) y «decidir por rol de personas» (R4) no se le aplican: el tema consume el núcleo, no decide
+      # quién es nadie. Vive en la misma pasada que el guardián de los plugins, con su alcance.
+      - name: El tema, a lo suyo
+        run: |
+          curl -fsSL --retry 3 --retry-delay 2 \
+            -o "$RUNNER_TEMP/acoplamiento.py" \
+            https://raw.githubusercontent.com/josecarlosnieto91/convoca-health-check/main/scripts/check-acoplamiento.py
+          python3 "$RUNNER_TEMP/acoplamiento.py" . --reglas R1,R3
