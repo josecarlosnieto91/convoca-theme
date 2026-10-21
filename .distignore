@@ -53,3 +53,5 @@ docs/
 .gitkeep
 .phpcs.xml.dist
 .editorconfig
+# Política del proyecto: los .htaccess no viajan.
+.htaccess
