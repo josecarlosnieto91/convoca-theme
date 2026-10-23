@@ -141,7 +141,8 @@ class ArranqueDelTemaTest extends TestCase {
 			'convoca_reset_templates' => '1',
 			'_wpnonce' => 'x',
 		];
-		$GLOBALS['convoca_test_nonce'] = false;
+		$GLOBALS['convoca_test_nonce']  = false;
+		$GLOBALS['convoca_test_ids']    = [ 11, 12 ];
 
 		( $this->enGancho( 'admin_init' ) )();
 
@@ -154,6 +155,7 @@ class ArranqueDelTemaTest extends TestCase {
 			'_wpnonce' => 'x',
 		];
 		$GLOBALS['convoca_test_ajax'] = true;
+		$GLOBALS['convoca_test_ids']  = [ 11, 12 ];
 
 		( $this->enGancho( 'admin_init' ) )();
 
@@ -340,7 +342,12 @@ class ArranqueDelTemaTest extends TestCase {
 		$this->assertArrayHasKey( 'convoca-google-fonts', $estilos );
 		$this->assertArrayHasKey( 'convoca-theme-style', $estilos );
 		$this->assertSame( [ 'convoca-google-fonts' ], $estilos['convoca-theme-style']['d'], 'la hoja del tema va detrás de las fuentes' );
-		$this->assertNotEmpty( $estilos['convoca-theme-style']['v'], 'sin versión el navegador se queda con el CSS viejo' );
+		$esperado = file_exists( ABSPATH . 'style.css' ) ? (string) (int) filemtime( ABSPATH . 'style.css' ) : '';
+		$this->assertSame(
+			$esperado,
+			(string) $estilos['convoca-theme-style']['v'],
+			'la versión de la hoja es la fecha del fichero: con la versión del tema, el navegador sirve CSS viejo'
+		);
 	}
 
 	public function test_el_editor_carga_las_mismas_fuentes(): void {
