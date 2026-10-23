@@ -129,6 +129,8 @@ class ArranqueDelTemaTest extends TestCase {
 			'convoca_reset_templates' => '1',
 			'_wpnonce' => 'x',
 		];
+		// Con identificadores en juego: si la guarda se cayera, se borrarían de verdad.
+		$GLOBALS['convoca_test_ids'] = [ 11, 12 ];
 		$this->marcarPermiso( false );
 
 		( $this->enGancho( 'admin_init' ) )();
