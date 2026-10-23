@@ -143,8 +143,8 @@ class ArranqueDelTemaTest extends TestCase {
 			'convoca_reset_templates' => '1',
 			'_wpnonce' => 'x',
 		];
-		$GLOBALS['convoca_test_nonce']  = false;
-		$GLOBALS['convoca_test_ids']    = [ 11, 12 ];
+		$GLOBALS['convoca_test_nonce'] = false;
+		$GLOBALS['convoca_test_ids']   = [ 11, 12 ];
 
 		( $this->enGancho( 'admin_init' ) )();
 
