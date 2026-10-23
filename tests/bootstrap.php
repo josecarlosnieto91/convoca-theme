@@ -30,6 +30,13 @@ if ( ! function_exists( 'esc_html__' ) ) {
 if ( ! function_exists( 'esc_attr' ) ) {
 	function esc_attr( $t ) {
 		return htmlspecialchars( $t, ENT_QUOTES, 'UTF-8' ); } }
+if ( ! function_exists( 'is_search' ) ) {
+	function is_search() {
+		return (bool) ( $GLOBALS['convoca_test_is_search'] ?? false ); } }
+if ( ! function_exists( 'get_search_query' ) ) {
+	function get_search_query( $escaped = true ) {
+		unset( $escaped );
+		return (string) ( $GLOBALS['convoca_test_search_query'] ?? '' ); } }
 if ( ! function_exists( 'add_action' ) ) {
 	function add_action( $h, $c, $p = 10, $a = 1 ) {
 		return true; } }
