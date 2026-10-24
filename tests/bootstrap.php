@@ -148,7 +148,17 @@ if ( ! function_exists( 'wp_kses_post' ) ) {
 		return $t; } }
 if ( ! function_exists( 'do_shortcode' ) ) {
 	function do_shortcode( $t ) {
-		return $t; } }
+		// Sin el interruptor, el shortcode se devuelve tal cual (lo que esperan las pruebas que ya había).
+		if ( empty( $GLOBALS['convoca_test_shortcodes'] ) ) {
+			return $t;
+		}
+		$GLOBALS['convoca_test_resoluciones'] = ( $GLOBALS['convoca_test_resoluciones'] ?? 0 ) + 1;
+		// Reentrada: el shortcode vuelve a renderizar el mismo bloque, como el patrón que se contiene a sí mismo.
+		if ( ! empty( $GLOBALS['convoca_test_reentrar'] ) ) {
+			$GLOBALS['convoca_test_reentrar'] = false;
+			convoca_theme_render_block( $t, array( 'blockName' => 'core/block' ) );
+		}
+		return 'RESUELTO'; } }
 if ( ! function_exists( 'has_filter' ) ) {
 	function has_filter( $tag, $cb = false ) {
 		$hay = ! empty( $GLOBALS['convoca_test_filtros'][ $tag ] );
