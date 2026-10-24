@@ -1,5 +1,5 @@
 .PHONY: test lint
 test:
-	composer test
+	vendor/bin/phpunit -c phpunit.xml.dist
 lint:
-	composer phpcs
+	vendor/bin/phpcs
