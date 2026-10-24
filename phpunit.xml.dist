@@ -14,11 +14,11 @@
       <directory suffix="Test.php">./tests/Unit</directory>
     </testsuite>
   </testsuites>
+  <!-- Solo `functions.php`: es la lógica del tema. `parts/` y `patterns/` son plantillas y `tests/` no es
+       producto; medirlos falseaba el porcentaje en los dos sentidos. -->
   <source>
     <include>
       <file>./functions.php</file>
-      <directory suffix=".php">./parts</directory>
-      <directory suffix=".php">./patterns</directory>
     </include>
   </source>
 </phpunit>
