@@ -17,7 +17,11 @@ if ( ! defined( 'WP_DEBUG' ) ) {
 // Mock WP functions needed by theme.
 if ( ! function_exists( '__' ) ) {
 	function __( $t, $d = 'default' ) {
-		return $t; } }
+		// WordPress devuelve la cadena TRADUCIDA del catálogo cargado, no la de entrada. Sin esta
+		// ficha, cualquier prueba del filtro de rótulos se salía por el `$traducido === $original`
+		// y no medía nada: el doble tiene que copiar el contrato, no devolver la entrada.
+		return $GLOBALS['convoca_test_traducciones'][ $t ] ?? $t;
+	} }
 if ( ! function_exists( 'esc_html' ) ) {
 	function esc_html( $t ) {
 		return htmlspecialchars( $t, ENT_QUOTES, 'UTF-8' ); } }
@@ -158,7 +162,10 @@ if ( ! function_exists( 'do_shortcode' ) ) {
 			$GLOBALS['convoca_test_reentrar'] = false;
 			convoca_theme_render_block( $t, array( 'blockName' => 'core/block' ) );
 		}
-		return 'RESUELTO'; } }
+		// WordPress sustituye el shortcode por el HTML que devuelve su callback. Cuando la prueba
+		// necesita ver DÓNDE cae ese HTML (el menú superior dentro del desplegable), la salida se
+		// escribe aquí; si no, «RESUELTO» sigue valiendo para comprobar que se resolvió.
+		return $GLOBALS['convoca_test_salida_shortcode'] ?? 'RESUELTO'; } }
 if ( ! function_exists( 'has_filter' ) ) {
 	function has_filter( $tag, $cb = false ) {
 		$hay = ! empty( $GLOBALS['convoca_test_filtros'][ $tag ] );
@@ -172,6 +179,11 @@ if ( ! function_exists( 'wp_unique_id' ) ) {
 		return $prefix . ( ++$n ); } }
 if ( ! function_exists( 'icl_get_languages' ) ) {
 	function icl_get_languages( $args = '' ) {
+		// WPML devuelve los idiomas CONFIGURADOS en el sitio: la prueba decide cuáles con esta
+		// ficha (hace falta, por ejemplo, el sitio con un solo idioma, donde no hay selector).
+		if ( isset( $GLOBALS['convoca_test_idiomas'] ) ) {
+			return (array) $GLOBALS['convoca_test_idiomas'];
+		}
 		return array(
 			array(
 				'language_code' => 'es',
@@ -295,6 +307,12 @@ if ( ! function_exists( 'get_queried_object_id' ) ) {
 if ( ! function_exists( 'get_the_title' ) ) {
 	function get_the_title( $post = null ) {
 		$id = is_object( $post ) ? (int) $post->ID : (int) $post;
+		// HALLAZGO DEL ARNÉS: `get_the_title()` sin argumento NO significa «ninguna entrada», usa la
+		// entrada del bucle (`get_the_ID()`). El doble devolvía el título por defecto y las pruebas
+		// del schema no podían ver el nombre real del evento.
+		if ( ! $id ) {
+			$id = (int) ( $GLOBALS['convoca_test_post_id'] ?? 0 );
+		}
 		return (string) ( $GLOBALS['convoca_test_titulos'][ $id ] ?? 'Actividad de ejemplo' ); } }
 if ( ! function_exists( 'get_permalink_x' ) ) {
 	function get_permalink_x() {} }
@@ -349,6 +367,115 @@ if ( ! function_exists( 'wp_cache_set' ) ) {
 		return true; } }
 
 date_default_timezone_set( 'Europe/Madrid' );
+
+// ── Dobles de las consultas y del contexto de plantilla ───────────────────────
+// Los filtros de bloque del tema deciden con el contexto (¿es una entrada?, ¿qué
+// categorías tiene?, ¿qué dice la meta del evento?) y con la fecha del sitio. Sin
+// estos dobles esas decisiones no se podían probar: cada uno copia el contrato de
+// la función de WordPress que sustituye, y lo que devuelve se controla con $GLOBALS.
+if ( ! function_exists( 'is_single' ) ) {
+	function is_single( $post = '' ) {
+		return (bool) ( $GLOBALS['convoca_test_is_single'] ?? false ); } }
+if ( ! function_exists( 'has_category' ) ) {
+	function has_category( $categoria = '', $post = null ) {
+		return in_array( $categoria, (array) ( $GLOBALS['convoca_test_categorias_post'] ?? array() ), true ); } }
+if ( ! function_exists( 'get_the_content' ) ) {
+	function get_the_content( $more = null, $strip = false, $post = null ) {
+		return (string) ( $GLOBALS['convoca_test_contenido'] ?? '' ); } }
+if ( ! function_exists( 'get_the_date' ) ) {
+	function get_the_date( $formato = '', $post = null ) {
+		return (string) ( $GLOBALS['convoca_test_fecha_publicacion'] ?? '' ); } }
+if ( ! function_exists( 'get_the_post_thumbnail_url' ) ) {
+	function get_the_post_thumbnail_url( $post = null, $tam = 'full' ) {
+		return (string) ( $GLOBALS['convoca_test_imagen_destacada'] ?? '' ); } }
+if ( ! function_exists( 'get_post' ) ) {
+	function get_post( $post = null ) {
+		return $GLOBALS['convoca_test_post'] ?? null; } }
+if ( ! function_exists( 'wp_trim_words' ) ) {
+	function wp_trim_words( $texto, $num = 55, $resto = '…' ) {
+		// Mismo criterio que WordPress: recorta por palabras y añade el sufijo si sobra algo.
+		$palabras = preg_split( '/\s+/u', trim( (string) $texto ), -1, PREG_SPLIT_NO_EMPTY );
+		if ( count( $palabras ) <= (int) $num ) {
+			return implode( ' ', $palabras );
+		}
+		return implode( ' ', array_slice( $palabras, 0, (int) $num ) ) . $resto; } }
+if ( ! function_exists( 'wp_timezone' ) ) {
+	function wp_timezone() {
+		// La zona del sitio (Ajustes → Generales). Por defecto la de la casa.
+		return new \DateTimeZone( $GLOBALS['convoca_test_zona'] ?? 'Europe/Madrid' ); } }
+if ( ! function_exists( 'is_post_type_archive' ) ) {
+	function is_post_type_archive( $tipos = '' ) {
+		return (bool) ( $GLOBALS['convoca_test_archivo_tipo'] ?? false ); } }
+if ( ! function_exists( 'get_query_var' ) ) {
+	function get_query_var( $query_var, $defecto = '' ) {
+		return $GLOBALS['convoca_test_query_vars'][ $query_var ] ?? $defecto; } }
+if ( ! function_exists( 'get_post_type_object' ) ) {
+	function get_post_type_object( $tipo ) {
+		return $GLOBALS['convoca_test_objetos_tipo'][ $tipo ] ?? null; } }
+if ( ! function_exists( 'get_the_archive_title' ) ) {
+	function get_the_archive_title() {
+		return (string) ( $GLOBALS['convoca_test_titulo_archivo'] ?? '' ); } }
+if ( ! function_exists( 'get_post_field' ) ) {
+	function get_post_field( $campo, $post = null, $contexto = 'display' ) {
+		return (string) ( $GLOBALS['convoca_test_campos_post'][ $campo ] ?? '' ); } }
+if ( ! function_exists( 'get_term' ) ) {
+	function get_term( $termino, $taxonomia = '', $salida = 'OBJECT' ) {
+		return $GLOBALS['convoca_test_terminos'][ (int) $termino ] ?? null; } }
+if ( ! function_exists( 'get_term_by' ) ) {
+	function get_term_by( $campo, $valor, $taxonomia = '' ) {
+		return $GLOBALS['convoca_test_terminos_por_slug'][ (string) $valor ] ?? null; } }
+if ( ! function_exists( 'get_term_link' ) ) {
+	function get_term_link( $termino, $taxonomia = '' ) {
+		$slug = is_object( $termino ) ? $termino->slug : (string) $termino;
+		return 'https://example.com/categoria/' . $slug . '/'; } }
+if ( ! function_exists( 'is_wp_error' ) ) {
+	function is_wp_error( $cosa ) {
+		return class_exists( 'WP_Error', false ) && $cosa instanceof \WP_Error; } }
+if ( ! function_exists( 'wp_parse_url' ) ) {
+	function wp_parse_url( $url, $componente = -1 ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url -- este doble ES wp_parse_url.
+		return -1 === $componente ? parse_url( $url ) : parse_url( $url, $componente ); } }
+if ( ! function_exists( 'register_nav_menus' ) ) {
+	function register_nav_menus( $ubicaciones ) {
+		$GLOBALS['convoca_test_ubicaciones_menus'] = $ubicaciones;
+		return true; } }
+if ( ! function_exists( 'date_i18n' ) ) {
+	function date_i18n( $formato, $ts = null ) {
+		// Copia el contrato en lo que el tema usa (formatear una marca de tiempo en la zona del
+		// sitio). Los nombres de mes/día van en inglés: el entorno unitario no carga catálogos
+		// de gettext, y las pruebas no afirman sobre ellos.
+		$fecha = ( new \DateTimeImmutable( '@' . ( null === $ts ? time() : (int) $ts ) ) )
+			->setTimezone( wp_timezone() );
+		return $fecha->format( (string) $formato ); } }
+if ( ! function_exists( 'get_search_link' ) ) {
+	function get_search_link( $termino = '' ) {
+		// Sin base de búsqueda, WordPress devuelve la búsqueda como parámetro; con base «bonita»,
+		// la ruta. La prueba fija cuál de las dos con $GLOBALS['convoca_test_enlace_busqueda'].
+		if ( isset( $GLOBALS['convoca_test_enlace_busqueda'] ) ) {
+			return (string) $GLOBALS['convoca_test_enlace_busqueda'];
+		}
+		return 'https://example.com/?s=' . rawurlencode( (string) $termino ); } }
+if ( ! function_exists( 'trailingslashit' ) ) {
+	function trailingslashit( $url ) {
+		return rtrim( (string) $url, '/\\' ) . '/'; } }
+if ( ! function_exists( 'untrailingslashit' ) ) {
+	function untrailingslashit( $url ) {
+		return rtrim( (string) $url, '/\\' ); } }
+if ( ! function_exists( 'user_trailingslashit' ) ) {
+	function user_trailingslashit( $url, $tipo = '' ) {
+		// La barra final la decide la configuración de enlaces permanentes del sitio.
+		return ! empty( $GLOBALS['convoca_test_barras_finales'] )
+			? trailingslashit( $url )
+			: untrailingslashit( $url ); } }
+if ( ! function_exists( 'apply_filters_deprecated' ) ) {
+	function apply_filters_deprecated( $gancho, $args, $version, $sustituto = '' ) {
+		// WordPress aplica el filtro igual (y avisa de la deprecación): si hay callbacks
+		// registrados, se aplican; si no, el valor pasa intacto.
+		$valor = $args[0] ?? null;
+		foreach ( $GLOBALS['convoca_test_filtros'][ $gancho ] ?? array() as $cb ) {
+			$valor = $cb( $valor );
+		}
+		return $valor; } }
 
 // El doble de \Convoca\Core\site_stats() vive en su propio fichero: un bloque `namespace`
 // no puede convivir con el código sin espacio de nombres de este bootstrap.
