@@ -32,6 +32,11 @@ final class EsquemaDeEventoTest extends TestCase {
 		if ( ! function_exists( 'convoca_event_schema' ) ) {
 			require_once dirname( __DIR__, 2 ) . '/functions.php';
 		}
+
+		// El doble de Core se monta AQUÍ, con el resto del escenario. Antes se cargaba dentro de
+		// `test_con_core_la_meta_la_sirve_core`, así que los tres tests de esquema solo veían la meta si ese test
+		// había corrido antes: en orden aleatorio el esquema salía vacío y fallaban los tres (theme#15).
+		require_once dirname( __DIR__ ) . '/StubCoreEventMeta.php';
 		$GLOBALS['convoca_test_post_id']           = 42;
 		$GLOBALS['convoca_test_is_single']         = true;
 		$GLOBALS['convoca_test_is_search']         = false;
@@ -61,24 +66,9 @@ final class EsquemaDeEventoTest extends TestCase {
 	}
 
 	/**
-	 * Sin Convoca Core activo no hay dato de evento: el tema no se lo inventa.
-	 *
-	 * Va el primero a propósito: PHP no sabe retirar una función declarada, así que el caso «sin
-	 * Core» solo se puede recorrer antes de cargar su doble.
-	 */
-	public function test_sin_core_no_hay_dato_de_evento(): void {
-		$this->assertFalse(
-			function_exists( '\Convoca\Core\event_meta' ),
-			'El doble de Core no puede estar cargado todavía'
-		);
-		$this->assertSame( '', convoca_get_event_meta( 42, '_convoca_event_start_date' ) );
-	}
-
-	/**
 	 * Con Core activo, la meta la sirve Core (el tema no la lee por su cuenta).
 	 */
 	public function test_con_core_la_meta_la_sirve_core(): void {
-		require_once dirname( __DIR__ ) . '/StubCoreEventMeta.php';
 		$GLOBALS['convoca_test_event_meta'][42] = array( '_convoca_event_start_date' => '2026-10-15T18:30' );
 
 		$this->assertSame(

@@ -14,6 +14,36 @@ use PHPUnit\Framework\TestCase;
 
 class FooterTokensTest extends TestCase {
 
+	/**
+	 * Filtros que había antes del caso.
+	 *
+	 * @var array
+	 */
+	private array $filtros_previos = array();
+
+	/**
+	 * Aparta el registro de filtros antes de tocarlo.
+	 *
+	 * @return void
+	 */
+	protected function setUp(): void {
+		$this->filtros_previos = $GLOBALS['convoca_test_filtros']['convoca_theme_footer_replacements'] ?? array();
+	}
+
+	/**
+	 * Lo devuelve a como estaba.
+	 *
+	 * `test_un_token_con_valor_se_sustituye` engancha un filtro con los valores del teléfono y no lo quitaba, así que
+	 * si corría antes, `test_un_enlace_suelto_con_token_se_retira_entero` encontraba el enlace CON destino y su
+	 * aserción («no se muestra») fallaba. Una prueba que deja un filtro puesto decide el resultado de la siguiente
+	 * (theme#15).
+	 *
+	 * @return void
+	 */
+	protected function tearDown(): void {
+		$GLOBALS['convoca_test_filtros']['convoca_theme_footer_replacements'] = $this->filtros_previos;
+	}
+
 	private function render( string $html ): string {
 		require_once dirname( __DIR__, 2 ) . '/functions.php';
 		$block = array( 'blockName' => 'core/paragraph' );
