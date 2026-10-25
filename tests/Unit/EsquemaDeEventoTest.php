@@ -189,7 +189,7 @@ final class EsquemaDeEventoTest extends TestCase {
 			'_convoca_has_event'        => '1',
 			'_convoca_event_start_date' => '2026-01-15 18:30',
 			'_convoca_event_end_date'   => '2026-01-15T20:00',
-			'_convoca_event_address'    => 'Centro Lugg, Asturias',
+			'_convoca_event_address'    => 'Aula de la naturaleza, Asturias',
 			'_convoca_event_price'      => '12.50',
 		);
 		$GLOBALS['convoca_test_imagen_destacada'] = 'https://example.com/setas.jpg';
@@ -209,7 +209,7 @@ final class EsquemaDeEventoTest extends TestCase {
 
 		$data = $this->schema_json( $this->schema() );
 
-		$this->assertSame( 'Centro Lugg, Asturias', $data['location']['name'] );
+		$this->assertSame( 'Aula de la naturaleza, Asturias', $data['location']['name'] );
 		$this->assertSame( 'Asturias', $data['location']['address']['addressRegion'], 'La región la declara el sitio' );
 		$this->assertSame( 'ES', $data['location']['address']['addressCountry'], 'El país lo declara el sitio' );
 		$this->assertSame( '12.50', $data['offers']['price'] );
