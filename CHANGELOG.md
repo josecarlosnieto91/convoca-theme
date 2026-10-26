@@ -1,3 +1,10 @@
+## [2.9.42] — 2026-10-26
+
+### Corregido
+
+- **El doble de Core se carga en el `setUp` de quien lo necesita**, no dentro del cuerpo de un test: la suite
+  depende del orden y en orden aleatorio fallaban 8 de 8 semillas.
+
 ## [2.9.41] — 2026-10-16
 
 ### Arreglado
