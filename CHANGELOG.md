@@ -1,3 +1,12 @@
+## [2.9.44] — 2026-10-31
+
+### Corregido
+
+- **Rótulo «Error 404» pegado al borde**: `.convoca-eyebrow` era `inline-flex` y dentro de un grupo
+  `constrained` de WordPress los elementos en línea no reciben el margen automático, así que el
+  rótulo quedaba en x=11 mientras el `h1` empezaba en x=101. Ahora es `flex` de bloque y ambos
+  arrancan en la misma vertical (theme#16).
+
 ## [2.9.43] — 2026-10-31
 
 ### Corregido
