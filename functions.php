@@ -1508,7 +1508,7 @@ function convoca_descripcion_automatica( $descripcion ) {
 	if ( is_singular() ) {
 		$objeto = get_queried_object();
 
-		if ( $objeto instanceof WP_Post ) {
+		if ( is_object( $objeto ) && isset( $objeto->post_content ) ) {
 			$texto = has_excerpt( $objeto ) ? (string) $objeto->post_excerpt : (string) $objeto->post_content;
 			$texto = wp_strip_all_tags( strip_shortcodes( $texto ) );
 		}

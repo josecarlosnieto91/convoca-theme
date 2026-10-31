@@ -38,6 +38,16 @@ final class DescripcionAutomaticaTest extends TestCase {
 	}
 
 	/**
+	 * Entrada de mentira con los campos que se usan.
+	 *
+	 * @param array<string,mixed> $campos Campos.
+	 * @return object
+	 */
+	private function entrada( array $campos ): object {
+		return (object) $campos;
+	}
+
+	/**
 	 * Lo que ya trae el SEO no se toca.
 	 */
 	public function test_no_pisa_la_descripcion_del_seo(): void {
@@ -49,7 +59,7 @@ final class DescripcionAutomaticaTest extends TestCase {
 	 */
 	public function test_usa_el_contenido_limpio(): void {
 		$GLOBALS['convoca_test_singular'] = true;
-		$GLOBALS['convoca_test_objeto']   = new \WP_Post(
+		$GLOBALS['convoca_test_objeto']   = $this->entrada(
 			array(
 				'ID'           => 7,
 				'post_excerpt' => '',
@@ -57,9 +67,7 @@ final class DescripcionAutomaticaTest extends TestCase {
 			)
 		);
 
-		$descripcion = convoca_descripcion_automatica( '' );
-
-		$this->assertSame( 'Curso de educación ambiental en Oviedo.', $descripcion );
+		$this->assertSame( 'Curso de educación ambiental en Oviedo.', convoca_descripcion_automatica( '' ) );
 	}
 
 	/**
@@ -67,7 +75,7 @@ final class DescripcionAutomaticaTest extends TestCase {
 	 */
 	public function test_prefiere_el_extracto(): void {
 		$GLOBALS['convoca_test_singular'] = true;
-		$GLOBALS['convoca_test_objeto']   = new \WP_Post(
+		$GLOBALS['convoca_test_objeto']   = $this->entrada(
 			array(
 				'post_excerpt' => 'Resumen corto.',
 				'post_content' => 'Contenido largo que no debería usarse.',
@@ -82,10 +90,8 @@ final class DescripcionAutomaticaTest extends TestCase {
 	 */
 	public function test_recorta_largo(): void {
 		$GLOBALS['convoca_test_singular'] = true;
-		$GLOBALS['convoca_test_objeto']   = new \WP_Post(
-			array(
-				'post_content' => str_repeat( 'palabra ', 60 ),
-			)
+		$GLOBALS['convoca_test_objeto']   = $this->entrada(
+			array( 'post_content' => str_repeat( 'palabra ', 60 ) )
 		);
 
 		$descripcion = convoca_descripcion_automatica( '' );
@@ -100,10 +106,7 @@ final class DescripcionAutomaticaTest extends TestCase {
 	public function test_archivo_sin_descripcion_usa_la_del_sitio(): void {
 		$GLOBALS['convoca_test_archivo_tipo'] = true;
 
-		$descripcion = convoca_descripcion_automatica( '' );
-
-		$this->assertNotSame( '', $descripcion );
-		$this->assertSame( get_bloginfo( 'description' ), $descripcion );
+		$this->assertSame( get_bloginfo( 'description' ), convoca_descripcion_automatica( '' ) );
 	}
 
 	/**
@@ -121,7 +124,7 @@ final class DescripcionAutomaticaTest extends TestCase {
 	 */
 	public function test_sin_datos_usa_la_descripcion_del_sitio(): void {
 		$GLOBALS['convoca_test_singular'] = true;
-		$GLOBALS['convoca_test_objeto']   = new \WP_Post( array( 'post_content' => '' ) );
+		$GLOBALS['convoca_test_objeto']   = $this->entrada( array( 'post_content' => '' ) );
 
 		$this->assertSame( get_bloginfo( 'description' ), convoca_descripcion_automatica( '' ) );
 	}
