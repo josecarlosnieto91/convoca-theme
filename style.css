@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.44
+Version: 2.9.45
 Requires at least: 6.6
 Tested up to: 7.1.4
 Requires PHP: 8.1
@@ -2877,7 +2877,17 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
    10. ENTRADA INDIVIDUAL — lectura cómoda, imágenes grandes
    ========================================================================= */
 
-.convoca-single__cabecera { padding-block: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem); }
+.convoca-single__cabecera {
+	padding-block: clamp(2rem, 4vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+	/* La cabecera vive en `.convoca-wrap` (más ancho) y el cuerpo en `.convoca-single__cuerpo`
+	   (ancho de contenido): el titular arrancaba 40 px a la izquierda del texto (theme#17). Se
+	   iguala al cuerpo y se le da el mismo relleno lateral para que el texto caiga en la misma
+	   vertical. Medido: h1 y primer párrafo, x=101 y 720 px de ancho. */
+	max-width: var(--wp--style--global--content-size, 46rem);
+	margin-inline: auto;
+	padding-inline: 8px;
+	box-sizing: border-box;
+}
 
 .convoca-single__cabecera h1,
 .convoca-single__cabecera .wp-block-post-title {

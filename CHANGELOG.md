@@ -1,3 +1,13 @@
+## [2.9.45] — 2026-10-31
+
+### Corregido
+
+- **El titular de la ficha no arrancaba donde el texto**: la cabecera vive en `.convoca-wrap` (más
+  ancho) y el cuerpo en `.convoca-single__cuerpo` (ancho de contenido), así que el `h1` quedaba 40 px
+  a la izquierda y 79 px más ancho que el primer párrafo. La cabecera se limita al ancho de contenido
+  y recibe el mismo relleno lateral: medido, `h1` y primer párrafo en x=101 con 720 px de ancho
+  (theme#17).
+
 ## [2.9.44] — 2026-10-31
 
 ### Corregido
