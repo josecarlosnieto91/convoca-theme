@@ -1489,6 +1489,44 @@ function convoca_event_schema(): void {
 add_action( 'wp_head', 'convoca_event_schema', 20 );
 
 /**
+ * Descripción automática cuando el SEO no la tiene.
+ *
+ * Yoast solo emite `meta description` si el editor la escribió o si hay extracto; las
+ * páginas y los archivos se quedaban sin ninguna (theme#22). Aquí se rellena con el
+ * extracto, el contenido recortado o la descripción del sitio, sin pisar lo que ya haya.
+ *
+ * @param string $descripcion Descripción que trae el plugin de SEO.
+ * @return string
+ */
+function convoca_descripcion_automatica( $descripcion ) {
+	if ( '' !== trim( (string) $descripcion ) ) {
+		return $descripcion;
+	}
+
+	$texto = '';
+
+	if ( is_singular() ) {
+		$objeto = get_queried_object();
+
+		if ( $objeto instanceof WP_Post ) {
+			$texto = has_excerpt( $objeto ) ? (string) $objeto->post_excerpt : (string) $objeto->post_content;
+			$texto = wp_strip_all_tags( strip_shortcodes( $texto ) );
+		}
+	} elseif ( is_post_type_archive() || is_tax() || is_category() || is_tag() ) {
+		$texto = wp_strip_all_tags( (string) get_the_archive_description() );
+	}
+
+	if ( '' === trim( $texto ) ) {
+		$texto = (string) get_bloginfo( 'description' );
+	}
+
+	$texto = trim( preg_replace( '/\s+/u', ' ', $texto ) );
+
+	return '' !== $texto ? wp_html_excerpt( $texto, 155, '…' ) : $descripcion;
+}
+add_filter( 'wpseo_metadesc', 'convoca_descripcion_automatica' );
+
+/**
  * Seguimiento de clics en formularios externos (GA4). Si no hay GA cargado, el
  * script no hace nada.
  */

@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.42
+Version: 2.9.43
 Requires at least: 6.6
 Tested up to: 7.1.4
 Requires PHP: 8.1
@@ -125,12 +125,38 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     color-scheme: dark;
 }
 
+/* El modo oscuro se aplica en el <html>, pero el fondo y el color viven en el body: sin
+   esto el body seguía en blanco y los textos que usan --dark-text (#F4F6F8) quedaban
+   invisibles sobre blanco (theme#21). */
+.dark-mode body {
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
 /* ── Page title header (stats-dark gradient) ── */
 .dark-mode .has-stats-dark-gradient-background {
     background: linear-gradient(135deg, rgba(35, 38, 46, 0.6) 0%, rgba(26, 29, 36, 0.8) 100%) !important;
 }
 .dark-mode .has-stats-dark-gradient-background .wp-block-post-title {
     color: #F4F6F8 !important;
+}
+
+/* En móvil los controles de verdad (botones, paginación, redes) no llegaban a 44 px
+   de alto: se podían pulsar, pero mal (theme#24). */
+@media (max-width: 782px) {
+    .convoca-vermas,
+    .wp-block-read-more,
+    .page-numbers,
+    .wp-block-social-link-anchor,
+    .wp-block-query-pagination a,
+    .wp-block-query-pagination-next,
+    .wp-block-query-pagination-previous {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 /* Hide duplicate page title in post content (already shown in header) */

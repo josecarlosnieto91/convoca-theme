@@ -1,3 +1,17 @@
+## [2.9.43] — 2026-10-31
+
+### Corregido
+
+- **Modo oscuro legible**: la clase `dark-mode` se aplicaba al `<html>` pero el fondo y el color del
+  `body` seguían en claro, así que los textos que usan `--dark-text` (#F4F6F8) quedaban casi invisibles
+  sobre blanco (2,8:1). Ahora el `body` hereda el fondo y el texto del tema oscuro.
+- **Metadatos sociales**: `og:image` no existía en ninguna página (imagen social por defecto de Yoast
+  sin configurar) y las páginas y archivos salían sin `meta description`. Se configura la imagen por
+  defecto y se rellena la descripción con el extracto, el contenido o la descripción del sitio cuando
+  el SEO no la trae.
+- **Objetivos táctiles en móvil**: los botones «Ver y apuntarme», la paginación y los iconos sociales
+  medían 25-36 px de alto; ahora llegan a 44 px en pantallas de menos de 782 px.
+
 ## [2.9.42] — 2026-10-26
 
 ### Corregido
