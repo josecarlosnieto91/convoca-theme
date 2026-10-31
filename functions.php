@@ -2039,6 +2039,11 @@ add_filter(
  * @return string
  */
 function convoca_titulo_de_archivo( $titulo ) {
+	// En categorías y etiquetas, el core envuelve el nombre en un `<span>`; al imprimirse escapado
+	// sale como texto («Categoría: <span>Actividades</span>») y su ancho empuja la página 43 px
+	// (theme#18). Se quitan las etiquetas siempre.
+	$titulo = wp_strip_all_tags( (string) $titulo );
+
 	if ( ! is_post_type_archive() ) {
 		return $titulo;
 	}
@@ -2052,6 +2057,18 @@ function convoca_titulo_de_archivo( $titulo ) {
 	return ( $objeto && ! empty( $objeto->labels->name ) ) ? $objeto->labels->name : $titulo;
 }
 add_filter( 'get_the_archive_title', 'convoca_titulo_de_archivo', 10, 1 );
+
+/**
+ * Quita el prefijo «Categoría:» / «Etiqueta:» del título del archivo.
+ *
+ * El nombre a secas es el título; el prefijo sobra en un h1.
+ *
+ * @return string
+ */
+function convoca_sin_prefijo_de_archivo() {
+	return '';
+}
+add_filter( 'get_the_archive_title_prefix', 'convoca_sin_prefijo_de_archivo' );
 
 /**
  * Título del documento para los archivos de tipo de contenido.

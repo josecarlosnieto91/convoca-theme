@@ -1,3 +1,12 @@
+## [2.9.46] — 2026-10-31
+
+### Corregido
+
+- **El título del archivo imprimía el `<span>` del core**: en categorías y etiquetas, WordPress envuelve
+  el nombre en un `<span>`; al escaparse salía como texto («Categoría: <span>Actividades</span>») y su
+  ancho empujaba la página **43 px** en un móvil de 390. Ahora el título llega sin etiquetas y sin el
+  prefijo «Categoría:», y el `h1` puede partir palabras largas (theme#18).
+
 ## [2.9.45] — 2026-10-31
 
 ### Corregido
