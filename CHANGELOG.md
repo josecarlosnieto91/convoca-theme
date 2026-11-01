@@ -1,3 +1,9 @@
+## [2.9.48] — 2026-11-01
+
+### Corregido
+
+- **Los términos de las tarjetas, a 44 px en móvil.** La medición real de los 100×33 no eran ítems del menú sino los enlaces de categoría de cada tarjeta (`.convoca-card__meta`).
+
 ## [2.9.47] — 2026-11-01
 
 ### Corregido
