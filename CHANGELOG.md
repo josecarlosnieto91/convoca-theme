@@ -1,3 +1,9 @@
+## [2.9.47] — 2026-11-01
+
+### Corregido
+
+- **Los ítems del menú, a 44 px en móvil.** Medían 100×33 y quedaban 16 de 132 controles por debajo del mínimo táctil (theme#24).
+
 ## [2.9.46] — 2026-10-31
 
 ### Corregido
