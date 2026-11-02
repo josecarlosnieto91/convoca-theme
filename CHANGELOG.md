@@ -1,3 +1,16 @@
+## [2.9.49] — 2026-11-02
+
+### Cambiado
+
+- **el selector de idioma sale a `inc/idioma.php`**: nueve funciones (260 líneas) que solo se llamaban
+  entre ellas. `functions.php` pasa de **2.127 a 1.824 líneas**. Sin cambios de comportamiento: la
+  batería del tema (169 pruebas) sigue verde.
+
+### Corregido (informe)
+
+- El informe de refactor decía que el tema «no tiene batería de pruebas». **Es falso**: tiene 20
+  ficheros y 169 pruebas con 435 aserciones, y corren en el CI. Se corrige allí.
+
 ## [2.9.48] — 2026-11-01
 
 ### Corregido
