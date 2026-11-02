@@ -8,6 +8,7 @@ parameters:
     level: 5
     paths:
         - functions.php
+        - inc
         - patterns
     excludePaths:
         - vendor
