@@ -109,6 +109,24 @@ final class AccesibilidadDePlantillasTest extends TestCase {
 	}
 
 	/**
+	 * Ningún titular del contenido se oculta con `display:none`: lo que no se
+	 * pinta no existe para quien lee, ni para el lector de pantalla, y deja
+	 * saltos de nivel (`heading-order`).
+	 */
+	public function test_ningun_titular_del_contenido_se_oculta(): void {
+		$css = (string) file_get_contents( dirname( __DIR__, 2 ) . '/style.css' );
+		// Los comentarios citan la regla vieja: sin quitarlos, el test se pondría
+		// rojo por la documentación y no por el CSS.
+		$css = (string) preg_replace( '/\/\*.*?\*\//s', '', $css );
+
+		$this->assertDoesNotMatchRegularExpression(
+			'/\.wp-block-heading:first-child\s*\{[^}]*display:\s*none/s',
+			$css,
+			'no se esconde el primer titular del contenido'
+		);
+	}
+
+	/**
 	 * La cabecera vertical tiene su regla propia y no se recorta.
 	 */
 	public function test_la_cabecera_vertical_no_se_recorta(): void {

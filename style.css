@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.50
+Version: 2.9.51
 Requires at least: 6.6
 Tested up to: 7.1.4
 Requires PHP: 8.1
@@ -164,13 +164,13 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
     }
 }
 
-/* Hide duplicate page title in post content (already shown in header) */
-.wp-block-post-content > .wp-block-heading:first-child {
-    display: none;
-}
-.entry-content > .wp-block-heading:first-child {
-    display: none;
-}
+/* Sin reglas que oculten el primer encabezado del contenido.
+ *
+ * Existían dos (`... .wp-block-heading:first-child { display:none }`) para
+ * esquivar un título duplicado, y se comían el titular de cualquier página que
+ * empezara con uno: contenido invisible y saltos de jerarquía (medido en cinco
+ * páginas de un sitio real, con axe `heading-order`). Un título duplicado se
+ * arregla en el contenido, no escondiéndolo. */
 
 /* ── Search block ── */
 .dark-mode .wp-block-search__button-inside {

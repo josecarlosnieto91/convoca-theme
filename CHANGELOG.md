@@ -1,3 +1,13 @@
+## [2.9.51] — 2026-11-04
+
+### Corregido
+
+- **El tema ya no esconde el primer encabezado del contenido.** Había dos reglas
+  (`... .wp-block-heading:first-child { display:none }`) para esquivar un título duplicado, y se comían
+  el titular de cualquier página que empezara con uno: contenido invisible en cinco páginas y saltos de
+  nivel en axe (`heading-order`). Un título duplicado se corrige en el contenido, no ocultándolo.
+- Prueba nueva: ninguna regla puede ocultar el primer `.wp-block-heading` del contenido.
+
 ## [2.9.50] — 2026-11-04
 
 ### Corregido (auditoría axe en un sitio real, 28 páginas)
