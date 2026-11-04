@@ -1,3 +1,34 @@
+## [2.9.50] — 2026-11-04
+
+### Corregido (auditoría axe en un sitio real, 28 páginas)
+
+- **La cabecera de una entrada no recorta los carteles verticales.** Con `width:100%` +
+  `max-height:40rem` + `object-fit:cover` se veía el 34 % central del cartel y desaparecían el título y
+  el pie (68 entradas afectadas). Ahora la destacada vertical se muestra entera, centrada y a 34 rem, y
+  la decisión se puede forzar por entrada en el editor («Automático / Entera / A sangre»), con el mismo
+  meta `_convoca_cabecera_imagen` que usaba el mu-plugin del sitio.
+- **Contenido fuera de landmarks (`region`).** La cabecera de archivo iba antes de `<main>` y el CTA
+  después de `</main>`. La cabecera entra en el `<main>` (el grupo constrained se traslada dentro para
+  conservar el fondo a sangre) y el CTA pasa a `<aside>`; los héroes de las plantillas de página entran
+  en `<main>` con `align:full`.
+- **Las dos navegaciones tienen nombre accesible (`landmark-unique`).** `ariaLabel` en
+  `wp:navigation` y `label="Enlaces rápidos"` en el shortcode de la barra superior.
+- **Las tablas anchas ya no arrastran la página en móvil.** La figura de la tabla se desplaza dentro de
+  su contenedor (`overflow-x:auto`) en pantallas de hasta 48 rem.
+
+### Corregido (herramientas)
+
+- **`make check` reproduce el CI.** El Makefile no tenía PHPStan y el análisis, con el límite de
+  memoria por defecto, reventaba con un falso error del código. Ahora `lint`, `analyse` y `test` usan
+  los mismos comandos y la misma memoria que el CI (`--memory-limit=2G`), y `composer.json` expone los
+  mismos scripts.
+
+### Pruebas
+
+- 13 nuevas: `CabeceraDeEntradaTest` (orientación, modo guardado, alcance del filtro, caja y nonce) y
+  `AccesibilidadDePlantillasTest` (landmarks, un solo `<main>`, nombres de las navegaciones, reglas de
+  tabla y de cabecera vertical).
+
 ## [2.9.49] — 2026-11-02
 
 ### Cambiado

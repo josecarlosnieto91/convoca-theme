@@ -2,6 +2,9 @@
 
 <!-- wp:template-part {"slug":"header","area":"header"} /-->
 
+
+<!-- wp:group {"tagName":"main","anchor":"wp--skip-link--target","layout":{"type":"default"}} -->
+<main id="wp--skip-link--target" class="wp-block-group">
 <!-- wp:group {"tagName":"section","className":"convoca-archivo__cabecera","layout":{"type":"default"}} -->
 <section class="wp-block-group convoca-archivo__cabecera">
     <!-- wp:group {"className":"convoca-wrap","layout":{"type":"default"}} -->
@@ -12,9 +15,8 @@
     <!-- /wp:group -->
 </section>
 <!-- /wp:group -->
-
-<!-- wp:group {"tagName":"main","anchor":"wp--skip-link--target","className":"convoca-seccion","layout":{"type":"constrained","contentSize":"85rem"}} -->
-<main id="wp--skip-link--target" class="wp-block-group convoca-seccion">
+<!-- wp:group {"className":"convoca-seccion","layout":{"type":"constrained","contentSize":"85rem"}} -->
+<div class="wp-block-group convoca-seccion">
 
     <!-- wp:group {"className":"convoca-buscador-secundario","layout":{"type":"default"}} -->
     <div class="wp-block-group convoca-buscador-secundario">
@@ -53,6 +55,8 @@
     </div>
     <!-- /wp:query -->
 
+</div>
+<!-- /wp:group -->
 </main>
 <!-- /wp:group -->
 

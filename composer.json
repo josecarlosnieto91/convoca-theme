@@ -18,5 +18,15 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "scripts": {
+        "lint": "phpcs",
+        "analyse": "phpstan analyse --configuration=phpstan.neon --no-progress --memory-limit=2G",
+        "test": "phpunit -c phpunit.xml.dist",
+        "check": [
+            "@lint",
+            "@analyse",
+            "@test"
+        ]
     }
 }

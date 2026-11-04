@@ -1500,6 +1500,148 @@ add_filter(
 );
 
 /**
+ * ¿La imagen destacada es vertical?
+ *
+ * Una foto apaisada se puede recortar sin perder nada; un cartel vertical, no:
+ * al llevarlo a sangre desaparecen el título y el pie.
+ *
+ * @param int $attachment_id Adjunto.
+ * @return bool
+ */
+function convoca_es_imagen_vertical( $attachment_id ): bool {
+	$meta = wp_get_attachment_metadata( (int) $attachment_id );
+	if ( empty( $meta['width'] ) || empty( $meta['height'] ) ) {
+		return false;
+	}
+
+	return (int) $meta['height'] > (int) $meta['width'];
+}
+
+/**
+ * Modo de la cabecera de una entrada: «entera» (sin recortar) o «sangre».
+ *
+ * El meta de la entrada manda; si no hay decisión guardada, decide la
+ * orientación de la destacada: un cartel vertical se muestra entero.
+ *
+ * @param int $post_id Entrada.
+ * @return string `entera` o `sangre`.
+ */
+function convoca_cabecera_modo( $post_id ): string {
+	$modo = (string) get_post_meta( (int) $post_id, '_convoca_cabecera_imagen', true );
+	if ( in_array( $modo, array( 'entera', 'sangre' ), true ) ) {
+		return $modo;
+	}
+
+	return convoca_es_imagen_vertical( get_post_thumbnail_id( (int) $post_id ) ) ? 'entera' : 'sangre';
+}
+
+/**
+ * La clase que muestra entera la cabecera de la entrada, y solo esa imagen.
+ *
+ * La guarda por `get_queried_object_id()` es la que evita que la clase se cuele
+ * en la misma imagen pintada dentro de otra tarjeta o en el cuerpo: solo la
+ * destacada de la entrada que se está viendo cuenta.
+ */
+add_filter(
+	'wp_get_attachment_image_attributes',
+	function ( $attr, $attachment ) {
+		if ( ! is_singular( 'post' ) ) {
+			return $attr;
+		}
+
+		$id = (int) get_queried_object_id();
+		if ( ! $id || (int) get_post_thumbnail_id( $id ) !== (int) $attachment->ID ) {
+			return $attr;
+		}
+
+		if ( 'entera' === convoca_cabecera_modo( $id ) ) {
+			$attr['class'] = trim( ( $attr['class'] ?? '' ) . ' convoca-cabecera-vertical' );
+		}
+
+		return $attr;
+	},
+	10,
+	2
+);
+
+/**
+ * Caja lateral de la entrada para forzar la cabecera entera o a sangre.
+ */
+add_action(
+	'add_meta_boxes_post',
+	function () {
+		add_meta_box(
+			'convoca_cabecera_imagen',
+			__( 'Imagen de cabecera', 'convoca' ),
+			'convoca_cabecera_metabox',
+			'post',
+			'side',
+			'default'
+		);
+	}
+);
+
+/**
+ * Contenido de la caja: orientación de la destacada y modo elegido.
+ *
+ * @param WP_Post $post Entrada.
+ */
+function convoca_cabecera_metabox( $post ): void {
+	wp_nonce_field( 'convoca_cabecera', 'convoca_cabecera_nonce' );
+
+	$modo = (string) get_post_meta( (int) $post->ID, '_convoca_cabecera_imagen', true );
+	$meta = wp_get_attachment_metadata( get_post_thumbnail_id( (int) $post->ID ) );
+	$info = ( ! empty( $meta['width'] ) && ! empty( $meta['height'] ) )
+		? sprintf(
+			/* translators: 1: ancho en píxeles, 2: alto en píxeles, 3: orientación. */
+			__( '%1$d×%2$d px, %3$s', 'convoca' ),
+			(int) $meta['width'],
+			(int) $meta['height'],
+			(int) $meta['height'] > (int) $meta['width'] ? __( 'vertical', 'convoca' ) : __( 'apaisada', 'convoca' )
+		)
+		: __( 'sin imagen destacada', 'convoca' );
+	?>
+	<p style="margin-top:0"><?php echo esc_html( $info ); ?></p>
+	<select name="convoca_cabecera_imagen" id="convoca_cabecera_imagen" style="width:100%">
+		<option value="" <?php selected( $modo, '' ); ?>><?php esc_html_e( 'Automático (según la orientación)', 'convoca' ); ?></option>
+		<option value="entera" <?php selected( $modo, 'entera' ); ?>><?php esc_html_e( 'Entera (carteles)', 'convoca' ); ?></option>
+		<option value="sangre" <?php selected( $modo, 'sangre' ); ?>><?php esc_html_e( 'A sangre (fotos)', 'convoca' ); ?></option>
+	</select>
+	<p class="description" style="margin-bottom:0"><?php esc_html_e( 'Los carteles verticales se recortarían en la cabecera; «entera» los muestra completos, centrados y a 34 rem de ancho.', 'convoca' ); ?></p>
+	<?php
+}
+
+/**
+ * Guarda la elección de la cabecera.
+ *
+ * @param int $post_id Entrada.
+ */
+add_action(
+	'save_post_post',
+	function ( $post_id ) {
+		if ( ! isset( $_POST['convoca_cabecera_nonce'] ) ) {
+			return;
+		}
+
+		$nonce = sanitize_key( wp_unslash( $_POST['convoca_cabecera_nonce'] ) );
+		if ( ! wp_verify_nonce( $nonce, 'convoca_cabecera' ) ) {
+			return;
+		}
+
+		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || ! current_user_can( 'edit_post', $post_id ) ) {
+			return;
+		}
+
+		$valor = isset( $_POST['convoca_cabecera_imagen'] ) ? sanitize_key( wp_unslash( $_POST['convoca_cabecera_imagen'] ) ) : '';
+		if ( in_array( $valor, array( 'entera', 'sangre' ), true ) ) {
+			update_post_meta( $post_id, '_convoca_cabecera_imagen', $valor );
+		} else {
+			delete_post_meta( $post_id, '_convoca_cabecera_imagen' );
+		}
+	}
+);
+
+/**
  * Ninguna fecha de publicación: sólo fechas de actividad.
  *
  * Una fecha de publicación junto a la fecha del evento se lee como duplicada, y

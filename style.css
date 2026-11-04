@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.49
+Version: 2.9.50
 Requires at least: 6.6
 Tested up to: 7.1.4
 Requires PHP: 8.1
@@ -2933,6 +2933,16 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 	display: block;
 }
 
+/* Un cartel vertical no se recorta: con `width:100%` + `max-height` se perdían
+   el título y el pie. Se muestra entero, centrado y a un ancho de lectura. La
+   clase la pone functions.php solo en la destacada de la entrada que se ve. */
+.convoca-single__imagen img.convoca-cabecera-vertical {
+	width: min(100%, 34rem);
+	height: auto;
+	max-height: none;
+	margin-inline: auto;
+}
+
 .convoca-single__cuerpo {
 	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-contenido));
 	margin-inline: auto;
@@ -2970,6 +2980,23 @@ body { transition: background-color 0.6s ease, color 0.6s ease; }
 .convoca-single__cuerpo table { width: 100%; border-collapse: collapse; font-size: 0.98rem; }
 .convoca-single__cuerpo th,
 .convoca-single__cuerpo td { border-bottom: 1px solid var(--convoca-gris-borde); padding: 0.6rem 0.5rem; text-align: left; }
+
+/* Una tabla ancha no puede arrastrar la página entera: en pantalla pequeña se
+   desplaza dentro de su figura. No se esconde con `overflow-x:hidden` en el
+   body, que taparía el desbordamiento en vez de resolverlo. */
+@media (max-width: 48rem) {
+	.convoca-single__cuerpo .wp-block-table {
+		display: block;
+		max-width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.convoca-single__cuerpo .wp-block-table table {
+		width: max-content;
+		min-width: 100%;
+	}
+}
 
 .convoca-single__acciones {
 	width: min(100% - (2 * var(--convoca-gutter)), var(--convoca-contenido));

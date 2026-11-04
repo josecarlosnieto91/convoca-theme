@@ -480,3 +480,43 @@ if ( ! function_exists( 'apply_filters_deprecated' ) ) {
 // El doble de \Convoca\Core\site_stats() vive en su propio fichero: un bloque `namespace`
 // no puede convivir con el código sin espacio de nombres de este bootstrap.
 require_once __DIR__ . '/StubCoreSiteStats.php';
+
+/**
+ * Dobles de la cabecera de entrada: metadatos del adjunto y del modo guardado.
+ *
+ * Se declaran al final para no tocar el resto del arnés; cada uno lee su almacén
+ * y devuelve lo mismo que WordPress (vacío cuando no hay dato).
+ */
+if ( ! function_exists( 'wp_get_attachment_metadata' ) ) {
+	function wp_get_attachment_metadata( $id = 0, $desplegar = false ) {
+		unset( $desplegar );
+		return $GLOBALS['convoca_test_attachment_meta'][ (int) $id ] ?? array(); } }
+if ( ! function_exists( 'update_post_meta' ) ) {
+	function update_post_meta( $id, $clave, $valor ) {
+		$GLOBALS['convoca_test_meta'][ (int) $id ][ $clave ] = $valor;
+		return true; } }
+if ( ! function_exists( 'delete_post_meta' ) ) {
+	function delete_post_meta( $id, $clave ) {
+		unset( $GLOBALS['convoca_test_meta'][ (int) $id ][ $clave ] );
+		return true; } }
+if ( ! function_exists( 'add_meta_box' ) ) {
+	function add_meta_box( $id, $titulo, $cb, $pantalla = null, $contexto = 'advanced', $prioridad = 'default' ) {
+		$GLOBALS['convoca_test_metaboxes'][ $id ] = compact( 'titulo', 'cb', 'pantalla', 'contexto', 'prioridad' );
+		return true; } }
+if ( ! function_exists( 'sanitize_key' ) ) {
+	function sanitize_key( $clave ) {
+		return preg_replace( '/[^a-z0-9_\-]/', '', strtolower( (string) $clave ) ); } }
+if ( ! function_exists( 'selected' ) ) {
+	function selected( $a, $b = true, $imprimir = true ) {
+		$html = ( (string) $a === (string) $b ) ? ' selected="selected"' : '';
+		if ( $imprimir ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- el doble imita a WordPress, que imprime HTML ya seguro.
+			echo $html; }
+		return $html; } }
+if ( ! function_exists( 'wp_nonce_field' ) ) {
+	function wp_nonce_field( $accion = -1, $nombre = '_wpnonce', $referer = true, $imprimir = true ) {
+		$html = '<input type="hidden" name="' . esc_attr( $nombre ) . '" value="' . esc_attr( (string) $accion ) . '">';
+		if ( $imprimir ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- el doble imita a WordPress, que imprime HTML ya seguro.
+			echo $html; }
+		return $html; } }
