@@ -4,7 +4,7 @@ Theme URI:   https://getconvoca.app
 Author:      Jose Carlos Nieto Ramos
 Author URI:  https://josecarlosnietoramos.com
 Description: FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive.
-Version: 2.9.51
+Version: 2.9.52
 Requires at least: 6.6
 Tested up to: 7.1.4
 Requires PHP: 8.1
@@ -16,6 +16,30 @@ Tags:        full-site-editing, block-patterns, custom-colors, custom-logo, edit
 Convoca Theme is distributed under the terms of the GNU GPL v2 or later.
 Copyright (C) 2026 Jose Carlos Nieto Ramos.
 */
+
+/* =========================================================
+   Puente entre la paleta del tema y los tokens del producto
+   =========================================================
+
+   Los plugins de Convoca ya no leen `--wp--preset--color--*`: usan los tokens
+   `--conv-*`, con un valor neutro por defecto, y cada sitio decide. Este tema
+   los rellena con SU paleta, así que su aspecto no cambia. Un sitio con otro
+   tema se queda con los valores neutros hasta que los sobrescriba.
+   ========================================================= */
+:root {
+	--conv-bg: var(--wp--preset--color--blanco, #ffffff);
+	--conv-surface: var(--wp--preset--color--gris-piedra, #f6f7f7);
+	--conv-fg: var(--wp--preset--color--carbon, #1d2327);
+	--conv-muted: var(--wp--preset--color--gris-texto, #50575e);
+	--conv-border: var(--wp--preset--color--gris-borde, #dcdcde);
+	--conv-accent: var(--wp--preset--color--naranja, #2271b1);
+	--conv-accent-strong: var(--wp--preset--color--naranja-oscuro, #135e96);
+	--conv-highlight: var(--wp--preset--color--amarillo, #8a6500);
+	--conv-ok: var(--wp--preset--color--verde, #0a7c3f);
+	--conv-accent-alt: var(--wp--preset--color--magenta, #3858e9);
+	--conv-font-display: var(--wp--preset--font-family--display, 'Outfit', system-ui, sans-serif);
+	--conv-font-body: var(--wp--preset--font-family--body, 'Outfit', system-ui, sans-serif);
+}
 
 /* =========================================================
    CONVOCA — Design System v2

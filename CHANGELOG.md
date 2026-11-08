@@ -1,3 +1,11 @@
+## [2.9.52] — 2026-11-08
+
+### Añadido
+
+- **puente de tokens del producto**: los plugins de Convoca ya no leen los presets del tema, usan los
+  tokens `--conv-*` con valor neutro. Este tema los rellena con **su** paleta (naranja, uva, gris) y sus
+  tipografías, así que el aspecto del sitio no cambia y un tema ajeno se queda con los valores neutros.
+
 ## [2.9.51] — 2026-11-04
 
 ### Corregido
