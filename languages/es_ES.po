@@ -23,7 +23,7 @@ msgstr "https://getconvoca.app"
 #. Description of the theme
 #: style.css
 msgid "FSE (Full Site Editing) theme, block-based, WCAG 2.1 AA, responsive."
-msgstr ""
+msgstr "Tema FSE (edición completa del sitio), basado en bloques, WCAG 2.1 AA y adaptable."
 "Tema FSE (edición completa del sitio), basado en bloques, WCAG 2.1 AA, "
 "adaptable."
 
@@ -375,7 +375,7 @@ msgstr "Rejilla de tarjetas (3 columnas)"
 #: patterns/cards-grid.php
 msgctxt "Pattern description"
 msgid "Grid of 3 cards with image, label, title, description and button."
-msgstr ""
+msgstr "Cuadrícula de 3 tarjetas con imagen, etiqueta, título, descripción y botón."
 "Rejilla de tres tarjetas con imagen, etiqueta, título, descripción y botón."
 
 #: patterns/contact-banner.php
@@ -407,7 +407,7 @@ msgstr "Llamada a la acción centrada"
 #: patterns/cta-centered.php
 msgctxt "Pattern description"
 msgid "Centered CTA with a dark gradient background, heading and two buttons."
-msgstr ""
+msgstr "Llamada a la acción centrada con fondo de degradado oscuro, titular y dos botones."
 "Llamada a la acción centrada, con fondo degradado oscuro, encabezado y dos "
 "botones."
 
@@ -419,7 +419,7 @@ msgstr "Llamada a la acción"
 #: patterns/cta.php
 msgctxt "Pattern description"
 msgid "CTA section with title, subtitle and buttons on a dark background."
-msgstr ""
+msgstr "Sección de llamada a la acción con título, subtítulo y botones sobre fondo oscuro."
 "Sección de llamada a la acción con título, subtítulo y botones sobre fondo "
 "oscuro."
 
@@ -632,7 +632,7 @@ msgstr "Tabla de transparencia"
 #: patterns/transparencia-table.php
 msgctxt "Pattern description"
 msgid "Styled table for transparency data (income, expenses, balance)."
-msgstr ""
+msgstr "Tabla con estilo para datos de transparencia (ingresos, gastos, saldo)."
 "Tabla con estilo para los datos de transparencia (ingresos, gastos, saldo)."
 
 #: theme.json
