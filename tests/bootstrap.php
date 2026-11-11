@@ -201,6 +201,58 @@ if ( ! function_exists( 'icl_get_languages' ) ) {
 if ( ! function_exists( 'get_page_by_path' ) ) {
 	function get_page_by_path( $p ) {
 		return null; } }
+
+if ( ! function_exists( 'get_nav_menu_locations' ) ) {
+	/**
+	 * Ubicaciones de menú controladas por la prueba.
+	 *
+	 * @return array
+	 */
+	function get_nav_menu_locations() {
+		return $GLOBALS['convoca_test_menu_locations'] ?? array();
+	}
+}
+
+if ( ! function_exists( 'wp_create_nav_menu' ) ) {
+	/**
+	 * Crea un menú (doble).
+	 *
+	 * @param string $nombre Nombre.
+	 * @return int
+	 */
+	function wp_create_nav_menu( $nombre ) {
+		$GLOBALS['convoca_test_menu_creado'] = $nombre;
+		return 77;
+	}
+}
+
+if ( ! function_exists( 'wp_update_nav_menu_item' ) ) {
+	/**
+	 * Añade un item de menú (doble).
+	 *
+	 * @param int   $menu_id Menú.
+	 * @param int   $item_id Item.
+	 * @param array $args    Argumentos.
+	 * @return int
+	 */
+	function wp_update_nav_menu_item( $menu_id, $item_id, $args ) {
+		$GLOBALS['convoca_test_menu_items'][] = $args;
+		return 1;
+	}
+}
+
+if ( ! function_exists( 'set_theme_mod' ) ) {
+	/**
+	 * Guarda un theme mod (doble).
+	 *
+	 * @param string $clave Clave.
+	 * @param mixed  $valor Valor.
+	 * @return void
+	 */
+	function set_theme_mod( $clave, $valor ) {
+		$GLOBALS['convoca_test_theme_mods'][ $clave ] = $valor;
+	}
+}
 if ( ! function_exists( 'get_permalink' ) ) {
 	function get_permalink( $p = 0 ) {
 		return 'https://example.com/'; } }
