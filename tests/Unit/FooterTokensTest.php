@@ -50,6 +50,14 @@ class FooterTokensTest extends TestCase {
 		return \convoca_theme_render_block( $html, $block );
 	}
 
+	public function test_un_token_de_texto_sin_valor_no_queda_visible(): void {
+		$pie    = '<p style="font-size:0.94rem">{site_description}</p>';
+		$salida = $this->render( $pie );
+
+		$this->assertStringNotContainsString( '{site_description}', $salida );
+		$this->assertDoesNotMatchRegularExpression( '/\{[a-z0-9_]+\}/i', $salida );
+	}
+
 	public function test_un_token_sin_valor_no_deja_llaves_a_la_vista(): void {
 		$pie = '<p style="font-size:0.94rem"><strong>Write to us</strong><br>'
 			. '<a href="mailto:demo@example.com">demo@example.com</a><br>'
