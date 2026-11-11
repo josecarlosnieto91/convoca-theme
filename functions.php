@@ -717,6 +717,16 @@ function convoca_theme_render_block( $block_content, $block ) {
 
 	$block_content = str_replace( array_keys( $seguros ), array_values( $seguros ), $block_content );
 
+	// Los tokens de texto sin valor no tienen un enlace que retirar: se sustituyen por vacío para
+	// que no quede `{site_description}` a la vista (theme#31). Los de enlace se dejan para que la
+	// limpieza de abajo retire el `<a>`/`<li>` completo.
+	foreach ( $replacements as $convoca_token => $convoca_valor ) {
+		if ( '' !== (string) $convoca_valor || preg_match( '/_(?:url|instagram|facebook|youtube)\}$/', $convoca_token ) ) {
+			continue;
+		}
+		$block_content = str_replace( $convoca_token, '', $block_content );
+	}
+
 	if ( $had_link_tokens ) {
 		// Un enlace sin URL configurada no se muestra (ni elementos vacíos).
 		// Nota: delimitador `~` (los patrones contienen `#` para href="#...").
