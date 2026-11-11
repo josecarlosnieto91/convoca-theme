@@ -1,3 +1,10 @@
+## [2.9.53] — 2026-11-11
+
+### Corregido
+
+- **Menú principal por defecto para el bloque FSE**: se crea «Convoca — Principal» una vez y se asigna a `primary`; `render_block_data` fuerza el `ref` cuando el bloque no lo trae. Se acaba el `<ul>` anidado.
+- **Tokens de pie sin valor**: los tokens de texto vacíos se sustituyen por cadena vacía; los de enlace se dejan para que la limpieza retire el `<a>`.
+
 ## [2.9.52] — 2026-11-08
 
 ### Añadido
