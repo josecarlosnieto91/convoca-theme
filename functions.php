@@ -1030,6 +1030,86 @@ add_action(
 
 // El menú de las plantillas FSE lo pinta Convoca Core (shortcode [convoca_menu]).
 /**
+ * Crea un menú principal mínimo en instalaciones nuevas.
+ *
+ * Sin menú asignado, `wp:navigation` cae en el listado de páginas y genera un
+ * `<ul>` dentro de otro `<ul>` (theme#32). Se crea una vez y se asigna a
+ * `primary`; el filtro de abajo hace que el bloque use ese menú.
+ *
+ * @return void
+ */
+function convoca_theme_crear_menu_principal(): void {
+	if ( get_option( 'convoca_theme_menu_principal_creado' ) ) {
+		return;
+	}
+
+	$locations = (array) get_nav_menu_locations();
+	if ( ! empty( $locations['primary'] ) ) {
+		update_option( 'convoca_theme_menu_principal_creado', 1 );
+		return;
+	}
+
+	if ( ! function_exists( 'wp_create_nav_menu' ) ) {
+		return;
+	}
+
+	$menu_id = wp_create_nav_menu( 'Convoca — Principal' );
+	if ( is_wp_error( $menu_id ) ) {
+		return;
+	}
+
+	$paginas = array(
+		'actividades'     => 'Actividades',
+		'alta-de-socio'   => 'Alta de socio',
+		'calendario'      => 'Calendario',
+		'contacto'        => 'Contacto',
+	);
+
+	foreach ( $paginas as $slug => $titulo ) {
+		$pagina = get_page_by_path( $slug );
+		if ( ! $pagina instanceof \WP_Post ) {
+			continue;
+		}
+
+		wp_update_nav_menu_item(
+			$menu_id,
+			0,
+			array(
+				'menu-item-title'     => $titulo,
+				'menu-item-object'    => 'page',
+				'menu-item-object-id' => $pagina->ID,
+				'menu-item-type'      => 'post_type',
+				'menu-item-status'    => 'publish',
+			)
+		);
+	}
+
+	$locations['primary'] = (int) $menu_id;
+	set_theme_mod( 'nav_menu_locations', $locations );
+	update_option( 'convoca_theme_menu_principal_creado', 1 );
+}
+add_action( 'after_setup_theme', 'convoca_theme_crear_menu_principal', 20 );
+
+/**
+ * Hace que el bloque de navegación use el menú principal si no trae `ref`.
+ *
+ * @param array $parsed_block Bloque analizado.
+ * @return array
+ */
+function convoca_theme_nav_ref( array $parsed_block ): array {
+	if ( 'core/navigation' !== ( $parsed_block['blockName'] ?? '' ) || ! empty( $parsed_block['attrs']['ref'] ) ) {
+		return $parsed_block;
+	}
+
+	$locations = (array) get_nav_menu_locations();
+	if ( ! empty( $locations['primary'] ) ) {
+		$parsed_block['attrs']['ref'] = (int) $locations['primary'];
+	}
+
+	return $parsed_block;
+}
+add_filter( 'render_block_data', 'convoca_theme_nav_ref', 5 );
+/**
  * Meta de evento de una entrada.
  *
  * Los datos y su formulario viven en Convoca Core (`includes/event-meta.php`),
